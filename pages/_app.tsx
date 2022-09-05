@@ -8,6 +8,12 @@ import { MenuAppbar } from "../components/MenuAppBar";
 import { MenuDrawer } from "../components/MenuDrawer";
 import { Box, CssBaseline } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: "/api/graphql",
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   const noAuthRequired = ["/", "/login", "/signup"];
@@ -32,23 +38,25 @@ function MyApp({ Component, pageProps }: AppProps) {
   }));
 
   return (
-    <AuthContextProvider>
-      {noAuthRequired.includes(router.pathname) ? (
-        <Component {...pageProps} />
-      ) : (
-        <ProtectedRoute>
-          <Box sx={{ display: "flex" }}>
-            <CssBaseline />
-            <MenuAppbar open={open} handleDrawerOpen={handleDrawerOpen} />
-            <MenuDrawer open={open} handleDrawerClose={handleDrawerClose} />
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              <DrawerHeader />
-              <Component {...pageProps} />
+    <ApolloProvider client={client}>
+      <AuthContextProvider>
+        {noAuthRequired.includes(router.pathname) ? (
+          <Component {...pageProps} />
+        ) : (
+          <ProtectedRoute>
+            <Box sx={{ display: "flex" }}>
+              <CssBaseline />
+              <MenuAppbar open={open} handleDrawerOpen={handleDrawerOpen} />
+              <MenuDrawer open={open} handleDrawerClose={handleDrawerClose} />
+              <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                <DrawerHeader />
+                <Component {...pageProps} />
+              </Box>
             </Box>
-          </Box>
-        </ProtectedRoute>
-      )}
-    </AuthContextProvider>
+          </ProtectedRoute>
+        )}
+      </AuthContextProvider>
+    </ApolloProvider>
   );
 }
 
