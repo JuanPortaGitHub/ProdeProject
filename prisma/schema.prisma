@@ -33,15 +33,13 @@ model Grupo {
 }
 
 model Usuarios_Por_Grupo {
-  usuario                              User     @relation(fields: [userId], references: [id])
-  userId                               Int
-  grupo                                Grupo    @relation(fields: [grupoId], references: [id])
-  grupoId                              Int
-  nombre                               String   @unique
-  admin                                Boolean  @default(false)
-  Prode_Partido_UsuarioInfo_PartidosId Int
-  createdAt                            DateTime @default(now()) @db.Timestamptz(3)
-  updatedAt                            DateTime @updatedAt @db.Timestamptz(3)
+  usuario   User     @relation(fields: [userId], references: [id])
+  userId    Int
+  grupo     Grupo    @relation(fields: [grupoId], references: [id])
+  grupoId   Int
+  admin     Boolean  @default(false)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
 
   @@id([userId, grupoId])
 }
