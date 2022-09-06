@@ -1,6 +1,7 @@
 import { enumType, intArg, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
 import { Grupo } from "./Grupo";
+import { Prode_Partido_Usuario } from "./Prode_Partido_Usuario";
 // import { Link } from "./Link";
 
 // model User {
@@ -19,81 +20,37 @@ import { Grupo } from "./Grupo";
 export const User = objectType({
   name: "User",
   definition(t) {
-    t.string("id");
+    t.int("id");
     t.string("mail");
     t.string("name");
     t.string("apellido");
     t.string("password");
     t.string("createdAt");
     t.string("updatedAt");
-    t.list.field("grupos", {
-      type: Grupo,
+    t.list.field("Prode_Usuario", {
+      type: Prode_Partido_Usuario,
       async resolve(parent, _args, ctx) {
-        return await ctx.prisma.user
-          .findUnique({
-            where: {
-              id: parent.id,
-            },
-          })
-          .grupos();
+        const prodepartidos = await ctx.prisma.prode_Partido_Usuario.findMany({
+          where: {
+            userId: parent.id,
+          },
+        });
+        prodepartidos.map((prodePartido) => {
+          prodePartido.Tiempo_Extra;
+        });
       },
     });
   },
 });
 
-// const Role = enumType({
-//   name: "Role",
-//   members: ["USER", "ADMIN"],
-// });
-
-// export const UserFavorites = extendType({
-//   type: "Query",
-//   definition(t) {
-//     t.list.field("favorites", {
-//       type: "Link",
-//       async resolve(_, _args, ctx) {
-//         const user = await ctx.prisma.user.findUnique({
-//           where: {
-//             email: ctx.user.email,
-//           },
-//           include: {
-//             favorites: true,
-//           },
-//         });
-//         if (!user) throw new Error("Invalid user");
-//         return user.favorites;
-//       },
-//     });
-//   },
-// });
-
-// export const BookmarkLink = extendType({
-//   type: "Mutation",
-//   definition(t) {
-//     t.field("bookmarkLink", {
-//       type: "Link",
-//       args: {
-//         id: stringArg(),
-//       },
-//       async resolve(_, args, ctx) {
-//         const link = await ctx.prisma.link.findUnique({
-//           where: { id: args.id },
-//         });
-
-//         await ctx.prisma.user.update({
-//           where: {
-//             email: ctx.user.email,
-//           },
-//           data: {
-//             favorites: {
-//               connect: {
-//                 id: link.id,
-//               },
-//             },
-//           },
-//         });
-//         return link;
-//       },
-//     });
-//   },
-// });
+export const UsersQuery = extendType({
+  type: "Query",
+  definition(t) {
+    t.nonNull.list.field("user", {
+      type: "User",
+      resolve(_parent, _args, ctx) {
+        return ctx.prisma.user.findMany();
+      },
+    });
+  },
+});

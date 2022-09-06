@@ -17,34 +17,33 @@ import { User } from "./User";
 export const Grupo = objectType({
   name: "Grupo",
   definition(t) {
-    t.string("id");
+    t.id("id");
     t.string("nombre");
     t.string("imagen");
     t.string("clave_grupo");
     t.string("createdAt");
     t.string("updatedAt");
-    t.list.field("users", {
-      type: User,
-      async resolve(parent, _args, ctx) {
-        return await ctx.prisma.grupo
-          .findUnique({
-            where: {
-              id: parent.id,
-            },
-          })
-          .users();
-      },
-    });
+    // t.list.field("users", {
+    //   type: User,
+    //   async resolve(parent, _args, ctx) {
+    //     return await ctx.prisma.grupo
+    //       .findMany({
+    //         where: {
+    //           id: parent.id,
+    //         },
+    //       })
+
+    //   },
+    // });
   },
 });
 
-// get Groups
 export const GruposQuery = extendType({
   type: "Query",
   definition(t) {
-    t.nonNull.list.field("Grupos", {
+    t.nonNull.list.field("grupos", {
       type: "Grupo",
-      resolve(_parent, args, ctx) {
+      resolve(_parent, _args, ctx) {
         return ctx.prisma.grupo.findMany();
       },
     });

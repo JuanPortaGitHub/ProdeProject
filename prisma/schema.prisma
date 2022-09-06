@@ -11,21 +11,19 @@ datasource db {
 }
 
 model User {
-  id                 Int                  @id @default(autoincrement())
-  mail               String               @unique
-  name               String
-  apellido           String
-  password           String
-  grupos             Grupo[]
-  Prode_Usuario      Prode_Usuario[]
-  Usuarios_Por_Grupo Usuarios_Por_Grupo[]
-  createdAt          DateTime             @default(now()) @db.Timestamptz(3)
-  updatedAt          DateTime             @updatedAt @db.Timestamptz(3)
+  id                    Int                     @id @default(autoincrement())
+  mail                  String                  @unique
+  name                  String
+  apellido              String
+  password              String
+  Usuarios_Por_Grupo    Usuarios_Por_Grupo[]
+  Prode_Partido_Usuario Prode_Partido_Usuario[]
+  createdAt             DateTime                @default(now()) @db.Timestamptz(3)
+  updatedAt             DateTime                @updatedAt @db.Timestamptz(3)
 }
 
 model Grupo {
   id                 Int                  @id @default(autoincrement())
-  usuarios_en_grupo  User[]
   nombre             String               @unique
   imagen             String?
   clave_grupo        String
@@ -35,33 +33,34 @@ model Grupo {
 }
 
 model Usuarios_Por_Grupo {
-  id                           Int           @id @default(autoincrement())
-  usuario                      User          @relation(fields: [userId], references: [id])
-  grupo                        Grupo         @relation(fields: [grupoId], references: [id])
-  nombre                       String        @unique
-  admin                        Boolean       @default(false)
-  userId                       Int
-  grupoId                      Int
-  Prode                        Prode_Usuario @relation(fields: [prode_UsuarioInfo_PartidosId], references: [info_PartidosId])
-  prode_UsuarioInfo_PartidosId Int
-  createdAt                    DateTime      @default(now()) @db.Timestamptz(3)
-  updatedAt                    DateTime      @updatedAt @db.Timestamptz(3)
+  usuario                              User     @relation(fields: [userId], references: [id])
+  userId                               Int
+  grupo                                Grupo    @relation(fields: [grupoId], references: [id])
+  grupoId                              Int
+  nombre                               String   @unique
+  admin                                Boolean  @default(false)
+  Prode_Partido_UsuarioInfo_PartidosId Int
+  createdAt                            DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt                            DateTime @updatedAt @db.Timestamptz(3)
+
+  @@id([userId, grupoId])
 }
 
-model Prode_Usuario {
-  Usuario            User                 @relation(fields: [userId], references: [id])
-  Partido            Info_Partidos        @relation(fields: [info_PartidosId], references: [id])
-  Goles_Local        String
-  Goles_Visitante    String
-  Ganador            String
-  Tiempo_Extra       Boolean              @default(false)
-  Penales            Boolean              @default(false)
-  Puntos             Int
-  info_PartidosId    Int                  @id
-  userId             Int
-  Usuarios_Por_Grupo Usuarios_Por_Grupo[]
-  createdAt          DateTime             @default(now()) @db.Timestamptz(3)
-  updatedAt          DateTime             @updatedAt @db.Timestamptz(3)
+model Prode_Partido_Usuario {
+  info_PartidosId Int           @unique
+  userId          Int           @unique
+  Usuario         User          @relation(fields: [userId], references: [id])
+  Partido         Info_Partidos @relation(fields: [info_PartidosId], references: [id])
+  Goles_Local     String
+  Goles_Visitante String
+  Ganador         String
+  Tiempo_Extra    Boolean       @default(false)
+  Penales         Boolean       @default(false)
+  Puntos          Int
+  createdAt       DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt       DateTime      @updatedAt @db.Timestamptz(3)
+
+  @@id([userId, info_PartidosId])
 }
 
 model Info_Partidos {
@@ -71,7 +70,7 @@ model Info_Partidos {
   Lugar                        String
   Resultado                    Resultados_Reales_Partidos @relation(fields: [resultados_Reales_PartidosId], references: [id])
   resultados_Reales_PartidosId Int                        @unique
-  Prode_Usuario                Prode_Usuario[]
+  Prode_Partido_Usuario        Prode_Partido_Usuario[]
   createdAt                    DateTime                   @default(now()) @db.Timestamptz(3)
   updatedAt                    DateTime                   @updatedAt @db.Timestamptz(3)
 }

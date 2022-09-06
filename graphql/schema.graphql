@@ -2,25 +2,70 @@
 ### Do not make changes to this file directly
 
 
+type Equipos {
+  createdAt: String
+  id: Int
+  nombre_equipo: String
+  partidos: [Info_Partidos]
+  updatedAt: String
+}
+
 type Grupo {
   clave_grupo: String
   createdAt: String
-  id: String
+  id: ID
   imagen: String
   nombre: String
   updatedAt: String
-  users: [User]
+}
+
+type Info_Partidos {
+  DiaHora: String
+  Lugar: String
+  Prode_Partido_Usuario: [Prode_Partido_Usuario]
+  createdAt: String
+  equipos: [Equipos]
+  id: Int
+  resultado: [Resultados_Reales_Partidos]
+  updatedAt: String
+}
+
+type Prode_Partido_Usuario {
+  Ganador: String
+  Goles_Local: String
+  Goles_Visitante: String
+  Penales: Boolean
+  Puntos: Int
+  Tiempo_Extra: Boolean
+  createdAt: String
+  info_PartidosId: String
+  updatedAt: String
+  userId: Int
+  usuario: [User]
 }
 
 type Query {
-  Grupos: [Grupo]!
+  equipo: [Equipos]!
+  grupos: [Grupo]!
+  info_partidos: [Info_Partidos]!
+  prode_partidos_usuario: [Prode_Partido_Usuario]!
+  user: [User]!
+}
+
+type Resultados_Reales_Partidos {
+  Goles_Local: String
+  Goles_Visitante: String
+  Info_Partidos: [Info_Partidos]
+  createdAt: String
+  id: Int
+  updatedAt: String
 }
 
 type User {
+  Prode_Usuario: [Prode_Partido_Usuario]
   apellido: String
   createdAt: String
-  grupos: [Grupo]
-  id: String
+  id: Int
   mail: String
   name: String
   password: String
