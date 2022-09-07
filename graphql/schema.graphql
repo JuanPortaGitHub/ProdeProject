@@ -30,6 +30,14 @@ type Info_Partidos {
   updatedAt: String
 }
 
+type Owner {
+  email: String!
+  firstname: String!
+  id: Int!
+  lastname: String!
+  vehicle: [Vehicle]
+}
+
 type Prode_Partido_Usuario {
   Ganador: String
   Goles_Local: String
@@ -37,19 +45,23 @@ type Prode_Partido_Usuario {
   Penales: Boolean
   Puntos: Int
   Tiempo_Extra: Boolean
+  Usuario: [User]
   createdAt: String
   info_PartidosId: String
   updatedAt: String
   userId: Int
-  usuario: [User]
 }
 
 type Query {
   equipo: [Equipos]!
+  getOwnerById(id: Int!): Owner
+  getOwners: [Owner!]!
+  getVehicleByVin(vin: String!): Vehicle
+  getVehicles: [Vehicle]!
   grupos: [Grupo]!
   info_partidos: [Info_Partidos]!
-  prode_partidos_usuario: [Prode_Partido_Usuario]!
-  user: [User]!
+  resultados_Reales_Partidos: [Resultados_Reales_Partidos]!
+  users: [User]!
 }
 
 type Resultados_Reales_Partidos {
@@ -70,4 +82,13 @@ type User {
   name: String
   password: String
   updatedAt: String
+}
+
+type Vehicle {
+  id: ID!
+  make: String!
+  model: String!
+  modelyear: Int!
+  owners: [Owner!]
+  vin: String!
 }

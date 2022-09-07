@@ -24,7 +24,7 @@ export const Resultados_Reales_Partidos = objectType({
   },
 });
 
-export const ProdePartidosUsuarios_Query = extendType({
+export const Resultados_Reales_Partidos_Query = extendType({
   type: "Query",
   definition(t) {
     t.nonNull.list.field("resultados_Reales_Partidos", {

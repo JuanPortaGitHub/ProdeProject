@@ -90,3 +90,20 @@ model Resultados_Reales_Partidos {
   createdAt       DateTime       @default(now()) @db.Timestamptz(3)
   updatedAt       DateTime       @updatedAt @db.Timestamptz(3)
 }
+
+model Owner {
+  id        Int       @id @default(autoincrement())
+  firstname String
+  lastname  String
+  email     String
+  vehicles  Vehicle[]
+}
+
+model Vehicle {
+  id        Int     @id @default(autoincrement())
+  vin       String  @unique
+  modelyear Int
+  make      String
+  model     String
+  owners    Owner[]
+}

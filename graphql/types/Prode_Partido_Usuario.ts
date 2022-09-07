@@ -15,29 +15,41 @@ export const Prode_Partido_Usuario = objectType({
     t.int("Puntos");
     t.string("createdAt");
     t.string("updatedAt");
-    t.list.field("usuario", {
+    t.list.field("Usuario", {
       type: User,
       async resolve(parent, _args, ctx) {
-        return await ctx.prisma.user
+        return await ctx.prisma.prode_Partido_Usuario
           .findUnique({
-            where: {
-              id: parent.userId,
-            },
+            where: { userId: parent.userId || null || undefined },
           })
-          .Prode_Partido_Usuario();
+          .Usuario();
       },
     });
   },
 });
 
-export const ProdePartidosUsuarios_Query = extendType({
+export const UsersQuery = extendType({
   type: "Query",
   definition(t) {
-    t.nonNull.list.field("prode_partidos_usuario", {
-      type: "Prode_Partido_Usuario",
+    t.nonNull.list.field("users", {
+      type: "User",
       resolve(_parent, _args, ctx) {
-        return ctx.prisma.prode_Partido_Usuario.findMany();
+        return ctx.prisma.user.findMany();
       },
     });
   },
 });
+// export const ProdePartidosUsuarios_Query = extendType({
+//   type: "Query",
+//   definition(t) {
+//     t.nonNull.list.nonNull.field("usuario_prode", {
+//       type: "Prode_Partido_Usuario",
+//       resolve(parent, args, context, info) {
+//         return { llegue: "llegue" };
+//       },
+// resolve: (_parent, _args, context) => {
+//   return context.prisma.prode_Partido_Usuario.findMany();
+// },
+//     });
+//   },
+// });
