@@ -1,0 +1,42 @@
+.container {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.9;
+    /* z-index: 5; v    b3 */
+    height: 80vh;
+    width: 100vw
+}
+
+.paperContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50vw;
+    align-self: center;
+
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0px 2vw;
+    padding: 0px 5vw;
+    height: 80vh;
+}
+
+.ImageWorldCup{
+    width: 40vw;
+}
+.main {
+    min-height: 100vh;
+    /* padding: 4rem 0; */
+    /* flex: 1; */
+    /* display: flex;
+    s-direction: column;
+    justify-content: center;
+    align-items: center; */
+  }
+
+

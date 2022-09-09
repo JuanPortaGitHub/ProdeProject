@@ -8,18 +8,15 @@ import { MenuAppbar } from "../components/MenuAppBar";
 import { MenuDrawer } from "../components/MenuDrawer";
 import { Box, CssBaseline } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import Header from "../components/Header/header";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const noAuthRequired = ["/", "/login", "/signup"];
+  const noAuthRequired = ["/", "/login", "/signup", "/groupfase"];
   const router = useRouter();
   const [open, setOpen] = useState(true);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const handleDrawer = () => {
+    setOpen(!open);
   };
 
   const DrawerHeader = styled("div")(({ theme }) => ({
@@ -34,20 +31,38 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthContextProvider>
       {noAuthRequired.includes(router.pathname) ? (
-        <Component {...pageProps} />
+        <>
+          <Header handleDrawer={handleDrawer} />
+          <div
+            style={{
+              marginTop: "4rem",
+            }}
+          >
+            <Component {...pageProps} />
+          </div>
+        </>
       ) : (
         <ProtectedRoute>
-          <Box sx={{ display: "flex" }}>
-            <CssBaseline />
-            <MenuAppbar open={open} handleDrawerOpen={handleDrawerOpen} />
-            <MenuDrawer open={open} handleDrawerClose={handleDrawerClose} />
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              <DrawerHeader />
-              <Component {...pageProps} />
+          <div
+            style={{
+              marginTop: "3rem",
+            }}
+          >
+            <Box sx={{ display: "flex" }}>
+              <CssBaseline />
+              <MenuAppbar open={open} handleDrawerOpen={handleDrawer} />
+              <MenuDrawer open={open} handleDrawerClose={handleDrawer} />
+              <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                <DrawerHeader />
+
+                <Header handleDrawer={handleDrawer} />
+                <Component {...pageProps} />
+              </Box>
             </Box>
-          </Box>
+          </div>
         </ProtectedRoute>
       )}
+      //{" "}
     </AuthContextProvider>
   );
 }
