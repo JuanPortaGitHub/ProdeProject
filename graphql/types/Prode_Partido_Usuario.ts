@@ -1,12 +1,13 @@
-import { enumType, intArg, objectType, stringArg } from "nexus";
+import { enumType, idArg, intArg, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
+import { Info_Partidos } from "./Info_Partidos";
 import { User } from "./User";
 
 export const Prode_Partido_Usuario = objectType({
   name: "Prode_Partido_Usuario",
   definition(t) {
-    t.int("userId");
-    t.string("info_PartidosId");
+    t.id("userId");
+    t.id("info_PartidosId");
     t.string("Goles_Local");
     t.string("Goles_Visitante");
     t.string("Ganador");
@@ -15,26 +16,46 @@ export const Prode_Partido_Usuario = objectType({
     t.int("Puntos");
     t.string("createdAt");
     t.string("updatedAt");
-    t.list.field("Usuario", {
-      type: User,
+    t.field("InfoPartido", {
+      type: Info_Partidos,
       async resolve(parent, _args, ctx) {
+        console.log("parent", parent);
         return await ctx.prisma.prode_Partido_Usuario
           .findUnique({
-            where: { userId: parent.userId || null || undefined },
+            where: {
+              userId: Number(parent.userId) || null || undefined,
+              info_PartidosId:
+                Number(parent.info_PartidosId) || null || undefined,
+            },
           })
-          .Usuario();
+          .Partido();
       },
     });
   },
 });
 
-export const UsersQuery = extendType({
+export const ProdePartidosUsuarios_Query = extendType({
   type: "Query",
   definition(t) {
-    t.nonNull.list.field("users", {
-      type: "User",
+    t.list.field("GetAllProdePartidoUsuarios", {
+      type: Prode_Partido_Usuario,
       resolve(_parent, _args, ctx) {
-        return ctx.prisma.user.findMany();
+        return ctx.prisma.prode_Partido_Usuario.findMany();
+      },
+    });
+    t.field("GetProdePartidoUsuarioById", {
+      type: Prode_Partido_Usuario,
+      args: {
+        userId: idArg(),
+        info_PartidosId: idArg(),
+      },
+      resolve(_parent, { userId, info_PartidosId }, ctx) {
+        return ctx.prisma.prode_Partido_Usuario.findFirst({
+          where: {
+            userId: Number(userId),
+            info_PartidosId: Number(info_PartidosId),
+          },
+        });
       },
     });
   },

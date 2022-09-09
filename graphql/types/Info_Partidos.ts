@@ -1,4 +1,4 @@
-import { enumType, intArg, objectType, stringArg } from "nexus";
+import { enumType, idArg, intArg, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
 import { Equipos } from "./Equipos";
 import { Prode_Partido_Usuario } from "./Prode_Partido_Usuario";
@@ -25,38 +25,38 @@ export const Info_Partidos = objectType({
     t.string("Lugar");
     t.string("createdAt");
     t.string("updatedAt");
-    t.list.field("resultado", {
+    t.field("resultado", {
       type: Resultados_Reales_Partidos,
       async resolve(parent, _args, ctx) {
-        return await ctx.prisma.resultados_Reales_Partidos
+        return await ctx.prisma.info_Partidos
           .findUnique({
             where: {
-              id: parent.id,
+              id: parent.id || null || undefined,
             },
           })
-          .Info_Partidos();
+          .Resultado();
       },
     });
-    t.list.field("equipos", {
+    t.field("equipos", {
       type: Equipos,
       async resolve(parent, _args, ctx) {
-        return await ctx.prisma.equipos
+        return await ctx.prisma.info_Partidos
           .findUnique({
-            where: {
-              id: parent.id,
-            },
+            where: { id: parent.id || null || undefined },
           })
-          .Info_Partidos();
+          .Equipos();
       },
     });
     t.list.field("Prode_Partido_Usuario", {
       type: Prode_Partido_Usuario,
       async resolve(parent, _args, ctx) {
-        return await ctx.prisma.Prode_Partido_Usuario.findUnique({
-          where: {
-            info_PartidosId: parent.id,
-          },
-        }).Partido();
+        return await ctx.prisma.info_Partidos
+          .findUnique({
+            where: {
+              id: parent.id || null || undefined,
+            },
+          })
+          .Prode_Partido_Usuario();
       },
     });
   },
@@ -65,10 +65,21 @@ export const Info_Partidos = objectType({
 export const InfoPartidos_Query = extendType({
   type: "Query",
   definition(t) {
-    t.nonNull.list.field("info_partidos", {
-      type: "Info_Partidos",
+    t.list.field("GetAllInfoPartidos", {
+      type: Info_Partidos,
       resolve(_parent, _args, ctx) {
         return ctx.prisma.info_Partidos.findMany();
+      },
+    });
+    t.field("GetInfoPartidoById", {
+      type: Info_Partidos,
+      args: {
+        id: idArg(),
+      },
+      resolve(_parent, { id }, ctx) {
+        return ctx.prisma.info_Partidos.findFirst({
+          where: { id: Number(id) },
+        });
       },
     });
   },

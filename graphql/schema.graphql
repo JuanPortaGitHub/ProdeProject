@@ -17,6 +17,7 @@ type Grupo {
   imagen: String
   nombre: String
   updatedAt: String
+  usuarios: [User]
 }
 
 type Info_Partidos {
@@ -24,44 +25,38 @@ type Info_Partidos {
   Lugar: String
   Prode_Partido_Usuario: [Prode_Partido_Usuario]
   createdAt: String
-  equipos: [Equipos]
+  equipos: Equipos
   id: Int
-  resultado: [Resultados_Reales_Partidos]
+  resultado: Resultados_Reales_Partidos
   updatedAt: String
-}
-
-type Owner {
-  email: String!
-  firstname: String!
-  id: Int!
-  lastname: String!
-  vehicle: [Vehicle]
 }
 
 type Prode_Partido_Usuario {
   Ganador: String
   Goles_Local: String
   Goles_Visitante: String
+  InfoPartido: Info_Partidos
   Penales: Boolean
   Puntos: Int
   Tiempo_Extra: Boolean
-  Usuario: [User]
   createdAt: String
-  info_PartidosId: String
+  info_PartidosId: ID
   updatedAt: String
-  userId: Int
+  userId: ID
 }
 
 type Query {
-  equipo: [Equipos]!
-  getOwnerById(id: Int!): Owner
-  getOwners: [Owner!]!
-  getVehicleByVin(vin: String!): Vehicle
-  getVehicles: [Vehicle]!
-  grupos: [Grupo]!
-  info_partidos: [Info_Partidos]!
-  resultados_Reales_Partidos: [Resultados_Reales_Partidos]!
-  users: [User]!
+  GetAllEquipos: [Equipos]
+  GetAllGrupos: [Grupo]
+  GetAllInfoPartidos: [Info_Partidos]
+  GetAllProdePartidoUsuarios: [Prode_Partido_Usuario]
+  GetAllUsers: [User]
+  GetEquiposById(id: ID): Equipos
+  GetGrupoById(id: ID): Grupo
+  GetInfoPartidoById(id: ID): Info_Partidos
+  GetProdePartidoUsuarioById(info_PartidosId: ID, userId: ID): Prode_Partido_Usuario
+  GetUserById(id: ID): User
+  resultados_Reales_Partidos: [Resultados_Reales_Partidos]
 }
 
 type Resultados_Reales_Partidos {
@@ -74,21 +69,13 @@ type Resultados_Reales_Partidos {
 }
 
 type User {
+  Grupos: [User]
   Prode_Usuario: [Prode_Partido_Usuario]
   apellido: String
   createdAt: String
-  id: Int
+  id: ID
   mail: String
   name: String
   password: String
   updatedAt: String
-}
-
-type Vehicle {
-  id: ID!
-  make: String!
-  model: String!
-  modelyear: Int!
-  owners: [Owner!]
-  vin: String!
 }

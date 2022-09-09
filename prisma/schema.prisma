@@ -12,36 +12,24 @@ datasource db {
 
 model User {
   id                    Int                     @id @default(autoincrement())
-  mail                  String                  @unique
+  mail                  String
   name                  String
   apellido              String
   password              String
-  Usuarios_Por_Grupo    Usuarios_Por_Grupo[]
+  GruposDeUsuario       Grupo[]
   Prode_Partido_Usuario Prode_Partido_Usuario[]
   createdAt             DateTime                @default(now()) @db.Timestamptz(3)
   updatedAt             DateTime                @updatedAt @db.Timestamptz(3)
 }
 
 model Grupo {
-  id                 Int                  @id @default(autoincrement())
-  nombre             String               @unique
-  imagen             String?
-  clave_grupo        String
-  Usuarios_Por_Grupo Usuarios_Por_Grupo[]
-  createdAt          DateTime             @default(now()) @db.Timestamptz(3)
-  updatedAt          DateTime             @updatedAt @db.Timestamptz(3)
-}
-
-model Usuarios_Por_Grupo {
-  usuario   User     @relation(fields: [userId], references: [id])
-  userId    Int
-  grupo     Grupo    @relation(fields: [grupoId], references: [id])
-  grupoId   Int
-  admin     Boolean  @default(false)
-  createdAt DateTime @default(now()) @db.Timestamptz(3)
-  updatedAt DateTime @updatedAt @db.Timestamptz(3)
-
-  @@id([userId, grupoId])
+  id              Int      @id @default(autoincrement())
+  nombre          String
+  imagen          String?
+  clave_grupo     String
+  UsuariosDeGrupo User[]
+  createdAt       DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt       DateTime @updatedAt @db.Timestamptz(3)
 }
 
 model Prode_Partido_Usuario {
@@ -63,7 +51,8 @@ model Prode_Partido_Usuario {
 
 model Info_Partidos {
   id                           Int                        @id @default(autoincrement())
-  Equipos                      Equipos[]
+  EquipoLocal                  Equipos[]                  @relation("EquipoLocal")
+  EquipoVisitante              Equipos[]                  @relation("EquipoVisitante")
   DiaHora                      DateTime
   Lugar                        String
   Resultado                    Resultados_Reales_Partidos @relation(fields: [resultados_Reales_PartidosId], references: [id])
@@ -74,12 +63,13 @@ model Info_Partidos {
 }
 
 model Equipos {
-  id              Int            @id @default(autoincrement())
-  nombre_equipo   String
-  Info_Partidos   Info_Partidos? @relation(fields: [info_PartidosId], references: [id])
-  info_PartidosId Int?
-  createdAt       DateTime       @default(now()) @db.Timestamptz(3)
-  updatedAt       DateTime       @updatedAt @db.Timestamptz(3)
+  id                     Int            @id @unique @default(autoincrement())
+  nombre_equipo          String
+  Info_PartidosLocal     Info_Partidos? @relation("EquipoLocal", fields: [info_PartidosId], references: [id], map: "partidoequipolocal_fk")
+  Info_PartidosVisitante Info_Partidos? @relation("EquipoVisitante", fields: [info_PartidosId], references: [id], map: "partidoequipovisitante_fk")
+  info_PartidosId        Int            @unique
+  createdAt              DateTime       @default(now()) @db.Timestamptz(3)
+  updatedAt              DateTime       @updatedAt @db.Timestamptz(3)
 }
 
 model Resultados_Reales_Partidos {
@@ -89,21 +79,4 @@ model Resultados_Reales_Partidos {
   Info_Partidos   Info_Partidos?
   createdAt       DateTime       @default(now()) @db.Timestamptz(3)
   updatedAt       DateTime       @updatedAt @db.Timestamptz(3)
-}
-
-model Owner {
-  id        Int       @id @default(autoincrement())
-  firstname String
-  lastname  String
-  email     String
-  vehicles  Vehicle[]
-}
-
-model Vehicle {
-  id        Int     @id @default(autoincrement())
-  vin       String  @unique
-  modelyear Int
-  make      String
-  model     String
-  owners    Owner[]
 }

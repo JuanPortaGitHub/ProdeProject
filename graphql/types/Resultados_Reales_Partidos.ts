@@ -12,13 +12,13 @@ export const Resultados_Reales_Partidos = objectType({
     t.list.field("Info_Partidos", {
       type: Info_Partidos,
       async resolve(parent, _args, ctx) {
-        return await ctx.prisma.info_Partidos
+        return await ctx.prisma.resultados_Reales_Partidos
           .findUnique({
             where: {
-              resultados_Reales_PartidosId: parent.id,
+              id: parent.id || null || undefined,
             },
           })
-          .Resultado();
+          .Info_Partidos();
       },
     });
   },
@@ -27,7 +27,7 @@ export const Resultados_Reales_Partidos = objectType({
 export const Resultados_Reales_Partidos_Query = extendType({
   type: "Query",
   definition(t) {
-    t.nonNull.list.field("resultados_Reales_Partidos", {
+    t.list.field("resultados_Reales_Partidos", {
       type: "Resultados_Reales_Partidos",
       resolve(_parent, _args, ctx) {
         return ctx.prisma.resultados_Reales_Partidos.findMany();
