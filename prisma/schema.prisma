@@ -33,8 +33,8 @@ model Grupo {
 }
 
 model Prode_Partido_Usuario {
-  info_PartidosId Int           @unique
-  userId          Int           @unique
+  info_PartidosId Int
+  userId          Int
   Usuario         User          @relation(fields: [userId], references: [id])
   Partido         Info_Partidos @relation(fields: [info_PartidosId], references: [id])
   Goles_Local     String
@@ -50,26 +50,27 @@ model Prode_Partido_Usuario {
 }
 
 model Info_Partidos {
-  id                           Int                        @id @default(autoincrement())
-  EquipoLocal                  Equipos[]                  @relation("EquipoLocal")
-  EquipoVisitante              Equipos[]                  @relation("EquipoVisitante")
+  id                           Int                         @id @default(autoincrement())
+  EquipoLocal                  Equipos?                    @relation("EquipoLocal", fields: [equipoLocalId], references: [id], map: "infopartidos_local_fk")
+  equipoLocalId                Int?
+  EquipoVisitante              Equipos?                    @relation("EquipoVisitante", fields: [equipoVisitanteId], references: [id], map: "infopartidos_visitante_fk")
+  equipoVisitanteId            Int?
   DiaHora                      DateTime
   Lugar                        String
-  Resultado                    Resultados_Reales_Partidos @relation(fields: [resultados_Reales_PartidosId], references: [id])
-  resultados_Reales_PartidosId Int                        @unique
+  Resultado                    Resultados_Reales_Partidos? @relation(fields: [resultados_Reales_PartidosId], references: [id])
+  resultados_Reales_PartidosId Int                         @unique
   Prode_Partido_Usuario        Prode_Partido_Usuario[]
-  createdAt                    DateTime                   @default(now()) @db.Timestamptz(3)
-  updatedAt                    DateTime                   @updatedAt @db.Timestamptz(3)
+  createdAt                    DateTime                    @default(now()) @db.Timestamptz(3)
+  updatedAt                    DateTime                    @updatedAt @db.Timestamptz(3)
 }
 
 model Equipos {
-  id                     Int            @id @unique @default(autoincrement())
-  nombre_equipo          String
-  Info_PartidosLocal     Info_Partidos? @relation("EquipoLocal", fields: [info_PartidosId], references: [id], map: "partidoequipolocal_fk")
-  Info_PartidosVisitante Info_Partidos? @relation("EquipoVisitante", fields: [info_PartidosId], references: [id], map: "partidoequipovisitante_fk")
-  info_PartidosId        Int            @unique
-  createdAt              DateTime       @default(now()) @db.Timestamptz(3)
-  updatedAt              DateTime       @updatedAt @db.Timestamptz(3)
+  id                    Int             @id @default(autoincrement())
+  nombre_equipo         String
+  InfoPartidosLocal     Info_Partidos[] @relation("EquipoLocal")
+  InfoPartidosVisitante Info_Partidos[] @relation("EquipoVisitante")
+  createdAt             DateTime        @default(now()) @db.Timestamptz(3)
+  updatedAt             DateTime        @updatedAt @db.Timestamptz(3)
 }
 
 model Resultados_Reales_Partidos {

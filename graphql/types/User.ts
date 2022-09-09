@@ -14,13 +14,13 @@ export const User = objectType({
     t.string("createdAt");
     t.string("updatedAt");
     t.list.field("Grupos", {
-      type: User,
+      type: Grupo,
       resolve: (parent, args, context) => {
-        return context.prisma.grupo
+        return context.prisma.user
           .findUnique({
             where: { id: Number(parent.id) },
           })
-          .UsuariosDeGrupo();
+          .GruposDeUsuario();
       },
     });
     t.list.field("Prode_Usuario", {

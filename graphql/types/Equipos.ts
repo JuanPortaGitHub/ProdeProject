@@ -2,15 +2,6 @@ import { enumType, idArg, intArg, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
 import { Info_Partidos } from "./Info_Partidos";
 
-// model Equipos {
-//   id              Int            @id @default(autoincrement())
-//   nombre_equipo   String
-//   Info_Partidos   Info_Partidos? @relation(fields: [info_PartidosId], references: [id])
-//   info_PartidosId Int?
-//   createdAt       DateTime       @default(now()) @db.Timestamptz(3)
-//   updatedAt       DateTime       @updatedAt @db.Timestamptz(3)
-// }
-
 export const Equipos = objectType({
   name: "Equipos",
   definition(t) {
@@ -47,7 +38,7 @@ export const EquiposQuery = extendType({
         id: idArg(),
       },
       resolve(_parent, { id }, ctx) {
-        return ctx.prisma.user.findFirst({ where: { id: Number(id) } });
+        return ctx.prisma.equipos.findFirst({ where: { id: Number(id) } });
       },
     });
   },

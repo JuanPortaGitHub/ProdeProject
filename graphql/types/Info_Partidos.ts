@@ -3,19 +3,6 @@ import { extendType } from "nexus";
 import { Equipos } from "./Equipos";
 import { Prode_Partido_Usuario } from "./Prode_Partido_Usuario";
 import { Resultados_Reales_Partidos } from "./Resultados_Reales_Partidos";
-import { User } from "./User";
-
-// model Info_Partidos {
-//   id                           Int                        @id @default(autoincrement())
-//   Equipos                      Equipos[]
-//   DiaHora                      DateTime
-//   Lugar                        String
-//   Resultado                    Resultados_Reales_Partidos @relation(fields: [resultados_Reales_PartidosId], references: [id])
-//   resultados_Reales_PartidosId Int                        @unique
-//   Prode_Usuario                Prode_Usuario[]
-//   createdAt                    DateTime                   @default(now()) @db.Timestamptz(3)
-//   updatedAt                    DateTime                   @updatedAt @db.Timestamptz(3)
-// }
 
 export const Info_Partidos = objectType({
   name: "Info_Partidos",

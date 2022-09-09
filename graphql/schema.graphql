@@ -50,26 +50,27 @@ type Query {
   GetAllGrupos: [Grupo]
   GetAllInfoPartidos: [Info_Partidos]
   GetAllProdePartidoUsuarios: [Prode_Partido_Usuario]
+  GetAllResultadosReales: [Resultados_Reales_Partidos]
   GetAllUsers: [User]
   GetEquiposById(id: ID): Equipos
   GetGrupoById(id: ID): Grupo
   GetInfoPartidoById(id: ID): Info_Partidos
   GetProdePartidoUsuarioById(info_PartidosId: ID, userId: ID): Prode_Partido_Usuario
+  GetResultadosRealesById(id: ID): Resultados_Reales_Partidos
   GetUserById(id: ID): User
-  resultados_Reales_Partidos: [Resultados_Reales_Partidos]
 }
 
 type Resultados_Reales_Partidos {
   Goles_Local: String
   Goles_Visitante: String
-  Info_Partidos: [Info_Partidos]
+  Info_Partidos: Info_Partidos
   createdAt: String
   id: Int
   updatedAt: String
 }
 
 type User {
-  Grupos: [User]
+  Grupos: [Grupo]
   Prode_Usuario: [Prode_Partido_Usuario]
   apellido: String
   createdAt: String

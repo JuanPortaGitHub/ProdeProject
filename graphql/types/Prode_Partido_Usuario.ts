@@ -60,17 +60,3 @@ export const ProdePartidosUsuarios_Query = extendType({
     });
   },
 });
-// export const ProdePartidosUsuarios_Query = extendType({
-//   type: "Query",
-//   definition(t) {
-//     t.nonNull.list.nonNull.field("usuario_prode", {
-//       type: "Prode_Partido_Usuario",
-//       resolve(parent, args, context, info) {
-//         return { llegue: "llegue" };
-//       },
-// resolve: (_parent, _args, context) => {
-//   return context.prisma.prode_Partido_Usuario.findMany();
-// },
-//     });
-//   },
-// });
