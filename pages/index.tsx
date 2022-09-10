@@ -7,6 +7,7 @@ import Paper from "@mui/material/Paper";
 // import { makeStyles } from "@material-ui/core/styles";
 import Button from "@mui/material/Button";
 import { WindowSharp } from "@mui/icons-material";
+import AuthForm from "../components/auth/authform";
 
 const images = [
   {
@@ -38,21 +39,6 @@ const images = [
     src: "/qatar2022.png",
   },
 ];
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: "flex",
-//     flexWrap: "wrap",
-//     "& > *": {
-//       backgroundColor: "#eeedeb",
-//       margin: theme.spacing(1),
-//       marginLeft: theme.spacing(10),
-//       marginTop: theme.spacing(5),
-//       width: theme.spacing(90),
-//       height: theme.spacing(50),
-//     },
-//   },
-// }));
 
 const scrollToDown = () => {
   window.scrollTo({
@@ -123,6 +109,7 @@ export default function Home() {
               <Button
                 variant="contained"
                 color="primary"
+                style={{ backgroundColor: "#FF1554" }}
                 onClick={scrollToDown}
               >
                 EMPEZA A JUGAR!
@@ -164,16 +151,9 @@ export default function Home() {
                   </Carousel>
                 </Paper>
               </div>
-              <Image
-                src={images[7].src}
-                // layout="fill"
-                // objectFit="cover"
-                objectPosition="center"
-                // priority={true}
-                alt="layout"
-                width={400}
-                height={400}
-              />
+              <div className={styles.ImageWorldCup}>
+                <AuthForm />
+              </div>
             </div>
             <div
               style={{
@@ -181,11 +161,7 @@ export default function Home() {
                 alignSelf: "flex-start",
                 paddingLeft: "30vw",
               }}
-            >
-              <Button variant="contained" color="primary">
-                EMPEZA A JUGAR!
-              </Button>
-            </div>
+            ></div>
           </div>
         </main>
       </div>

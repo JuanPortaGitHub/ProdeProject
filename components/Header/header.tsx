@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StyledHeader from "./StyledHeader";
 import ProfileDropDown from "./ProfileDropDown";
 import Box from "@mui/material/Box";
@@ -17,12 +17,15 @@ import WavesIcon from "@material-ui/icons/Waves";
 import Image from "next/image";
 import Head from "next/head";
 import style from "./header.module.css";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 interface Props {
   handleDrawer?: () => void;
 }
 
 export default function Header({ handleDrawer }: Props) {
   const [color, setColor] = useState(false);
+  const { data: session, status } = useSession();
 
   const changeColor = () => {
     if (window.scrollY >= 90) {
@@ -32,7 +35,15 @@ export default function Header({ handleDrawer }: Props) {
     }
   };
 
-  window.addEventListener("scroll", changeColor);
+  function logoutHandler() {
+    signOut();
+  }
+
+  useEffect(() => {
+    // window is accessible here.
+    window.addEventListener("scroll", changeColor);
+  }, []);
+
   return (
     <div className={color ? style.headerSolid : style.headerTransparent}>
       <Head>
@@ -107,6 +118,25 @@ export default function Header({ handleDrawer }: Props) {
         <SpaIcon style={{ color: "#A20D35" }} />
         <SportsSoccerIcon style={{ color: "#A20D35" }} />
         <StopIcon style={{ color: "#A20D35" }} /> */}
+        <nav>
+          <ul>
+            {!session && !status && (
+              <li>
+                <Link href="/">Login</Link>
+              </li>
+            )}
+            {session && (
+              <li>
+                <Link href="/">Profile</Link>
+              </li>
+            )}
+            {session && (
+              <li>
+                <button onClick={logoutHandler}>Logout</button>
+              </li>
+            )}
+          </ul>
+        </nav>
         <ProfileDropDown />
       </div>
     </div>
