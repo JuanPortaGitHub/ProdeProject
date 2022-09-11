@@ -9,14 +9,24 @@ export const Equipos = objectType({
     t.string("nombre_equipo");
     t.string("createdAt");
     t.string("updatedAt");
-    t.list.field("partidos", {
+    t.list.field("partidosLocal", {
       type: Info_Partidos,
       async resolve(parent, _args, ctx) {
         return await ctx.prisma.equipos
           .findUnique({
             where: { id: parent.id || null || undefined },
           })
-          .Info_Partidos();
+          .InfoPartidosLocal();
+      },
+    });
+    t.list.field("partidosVisitante", {
+      type: Info_Partidos,
+      async resolve(parent, _args, ctx) {
+        return await ctx.prisma.equipos
+          .findUnique({
+            where: { id: parent.id || null || undefined },
+          })
+          .InfoPartidosVisitante();
       },
     });
   },

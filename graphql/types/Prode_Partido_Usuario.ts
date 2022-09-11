@@ -19,13 +19,16 @@ export const Prode_Partido_Usuario = objectType({
     t.field("InfoPartido", {
       type: Info_Partidos,
       async resolve(parent, _args, ctx) {
-        console.log("parent", parent);
         return await ctx.prisma.prode_Partido_Usuario
-          .findUnique({
+          .findFirst({
             where: {
-              userId: Number(parent.userId) || null || undefined,
-              info_PartidosId:
-                Number(parent.info_PartidosId) || null || undefined,
+              AND: [
+                {
+                  info_PartidosId:
+                    Number(parent.info_PartidosId) || null || undefined,
+                },
+                { userId: Number(parent.userId) || null || undefined },
+              ],
             },
           })
           .Partido();

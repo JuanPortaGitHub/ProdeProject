@@ -6,7 +6,8 @@ type Equipos {
   createdAt: String
   id: Int
   nombre_equipo: String
-  partidos: [Info_Partidos]
+  partidosLocal: [Info_Partidos]
+  partidosVisitante: [Info_Partidos]
   updatedAt: String
 }
 
@@ -22,10 +23,13 @@ type Grupo {
 
 type Info_Partidos {
   DiaHora: String
+  EquipoLocal: [Equipos]
+  EquipoVisitante: [Equipos]
   Lugar: String
   Prode_Partido_Usuario: [Prode_Partido_Usuario]
   createdAt: String
-  equipos: Equipos
+  equipoLocalId: String
+  equipoVisitanteId: String
   id: Int
   resultado: Resultados_Reales_Partidos
   updatedAt: String

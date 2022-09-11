@@ -50,18 +50,20 @@ model Prode_Partido_Usuario {
 }
 
 model Info_Partidos {
-  id                           Int                         @id @default(autoincrement())
-  EquipoLocal                  Equipos?                    @relation("EquipoLocal", fields: [equipoLocalId], references: [id], map: "infopartidos_local_fk")
-  equipoLocalId                Int?
-  EquipoVisitante              Equipos?                    @relation("EquipoVisitante", fields: [equipoVisitanteId], references: [id], map: "infopartidos_visitante_fk")
-  equipoVisitanteId            Int?
+  id                           Int                         @unique @default(autoincrement())
   DiaHora                      DateTime
   Lugar                        String
   Resultado                    Resultados_Reales_Partidos? @relation(fields: [resultados_Reales_PartidosId], references: [id])
-  resultados_Reales_PartidosId Int                         @unique
+  resultados_Reales_PartidosId Int?                        @unique
   Prode_Partido_Usuario        Prode_Partido_Usuario[]
   createdAt                    DateTime                    @default(now()) @db.Timestamptz(3)
   updatedAt                    DateTime                    @updatedAt @db.Timestamptz(3)
+  EquipoLocal                  Equipos                     @relation("EquipoLocal", fields: [equipoLocalId], references: [id])
+  EquipoVisitante              Equipos                     @relation("EquipoVisitante", fields: [equipoVisitanteId], references: [id])
+  equipoLocalId                Int
+  equipoVisitanteId            Int
+
+  @@id([id, equipoLocalId, equipoVisitanteId])
 }
 
 model Equipos {

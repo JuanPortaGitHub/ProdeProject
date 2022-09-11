@@ -10,6 +10,8 @@ export const Info_Partidos = objectType({
     t.int("id");
     t.string("DiaHora");
     t.string("Lugar");
+    t.string("equipoLocalId");
+    t.string("equipoVisitanteId");
     t.string("createdAt");
     t.string("updatedAt");
     t.field("resultado", {
@@ -24,14 +26,24 @@ export const Info_Partidos = objectType({
           .Resultado();
       },
     });
-    t.field("equipos", {
+    t.list.field("EquipoLocal", {
       type: Equipos,
       async resolve(parent, _args, ctx) {
-        return await ctx.prisma.info_Partidos
-          .findUnique({
-            where: { id: parent.id || null || undefined },
-          })
-          .Equipos();
+        return await ctx.prisma.equipos.findMany({
+          where: {
+            id: Number(parent.equipoLocalId) || null || undefined,
+          },
+        });
+      },
+    });
+    t.list.field("EquipoVisitante", {
+      type: Equipos,
+      async resolve(parent, _args, ctx) {
+        return await ctx.prisma.equipos.findMany({
+          where: {
+            id: Number(parent.equipoVisitanteId) || null || undefined,
+          },
+        });
       },
     });
     t.list.field("Prode_Partido_Usuario", {
