@@ -41,7 +41,7 @@ type Mutation {
   createUser(apellido: String!, mail: String!, name: String!, password: String!): User
   updateGrupo(clave_grupo: String, id: Int!, imagen: String, nombre: String): Grupo
   updateProdeUsuario(Ganador: String, Goles_Local: String, Goles_Visitante: String, Penales: Boolean, Puntos: Int, Tiempo_Extra: Boolean, info_PartidosId: Int!, userId: Int!): Prode_Partido_Usuario
-  updateUser(apellido: String, id: Int!, mail: String, name: String, password: String): User
+  updateUser(apellido: String, id: Int!, name: String, password: String): User
 }
 
 type Prode_Partido_Usuario {

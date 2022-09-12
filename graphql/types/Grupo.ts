@@ -1,4 +1,4 @@
-import { enumType, idArg, intArg, nonNull, objectType, stringArg } from "nexus";
+import { idArg, intArg, nonNull, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
 import {
   createGrupoResolver,

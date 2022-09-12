@@ -67,7 +67,6 @@ export const UpdateUser = extendType({
         id: nonNull(intArg()),
         name: stringArg(),
         apellido: stringArg(),
-        mail: stringArg(),
         password: stringArg(),
       },
       resolve: updateUserResolver,
