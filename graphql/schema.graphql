@@ -35,6 +35,15 @@ type Info_Partidos {
   updatedAt: String
 }
 
+type Mutation {
+  createGrupo(clave_grupo: String!, imagen: String!, nombre: String!): Grupo
+  createProdeUsuario(Ganador: String!, Goles_Local: String!, Goles_Visitante: String!, Penales: Boolean!, Puntos: Int!, Tiempo_Extra: Boolean!, info_PartidosId: Int!, userId: Int!): Prode_Partido_Usuario
+  createUser(apellido: String!, mail: String!, name: String!, password: String!): User
+  updateGrupo(clave_grupo: String, id: Int!, imagen: String, nombre: String): Grupo
+  updateProdeUsuario(Ganador: String, Goles_Local: String, Goles_Visitante: String, Penales: Boolean, Puntos: Int, Tiempo_Extra: Boolean, info_PartidosId: Int!, userId: Int!): Prode_Partido_Usuario
+  updateUser(apellido: String, id: Int!, mail: String, name: String, password: String): User
+}
+
 type Prode_Partido_Usuario {
   Ganador: String
   Goles_Local: String
@@ -57,7 +66,7 @@ type Query {
   GetAllResultadosReales: [Resultados_Reales_Partidos]
   GetAllUsers: [User]
   GetEquiposById(id: ID): Equipos
-  GetGrupoById(id: ID): Grupo
+  GetGrupoById(id: ID!): Grupo
   GetInfoPartidoById(id: ID): Info_Partidos
   GetProdePartidoUsuarioById(info_PartidosId: ID, userId: ID): Prode_Partido_Usuario
   GetResultadosRealesById(id: ID): Resultados_Reales_Partidos

@@ -1,4 +1,4 @@
-import { enumType, idArg, intArg, objectType, stringArg } from "nexus";
+import { enumType, idArg, intArg, nonNull, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
 import { Info_Partidos } from "./Info_Partidos";
 

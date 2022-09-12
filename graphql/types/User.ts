@@ -1,5 +1,11 @@
-import { enumType, idArg, intArg, objectType, stringArg } from "nexus";
+import { enumType, idArg, intArg, nonNull, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
+import {
+  createUserResolver,
+  getAllUsersResolver,
+  getUserByIdResolver,
+  updateUserResolver,
+} from "../resolvers/usersResolvers";
 import { Grupo } from "./Grupo";
 import { Prode_Partido_Usuario } from "./Prode_Partido_Usuario";
 
@@ -36,38 +42,58 @@ export const User = objectType({
   },
 });
 
-export const UsersQuery = extendType({
+export const CreateUser = extendType({
+  type: "Mutation",
+  definition: (t) => {
+    t.field("createUser", {
+      type: User,
+      args: {
+        name: nonNull(stringArg()),
+        apellido: nonNull(stringArg()),
+        mail: nonNull(stringArg()),
+        password: nonNull(stringArg()),
+      },
+      resolve: createUserResolver,
+    });
+  },
+});
+
+export const UpdateUser = extendType({
+  type: "Mutation",
+  definition: (t) => {
+    t.field("updateUser", {
+      type: User,
+      args: {
+        id: nonNull(intArg()),
+        name: stringArg(),
+        apellido: stringArg(),
+        mail: stringArg(),
+        password: stringArg(),
+      },
+      resolve: updateUserResolver,
+    });
+  },
+});
+
+export const GetAllUsers = extendType({
   type: "Query",
   definition(t) {
     t.list.field("GetAllUsers", {
       type: User,
-      resolve(_parent, _args, ctx) {
-        return ctx.prisma.user.findMany();
-      },
+      resolve: getAllUsersResolver,
     });
+  },
+});
+
+export const GetUserById = extendType({
+  type: "Query",
+  definition(t) {
     t.field("GetUserById", {
       type: User,
       args: {
         id: idArg(),
       },
-      resolve(_parent, { id }, ctx) {
-        return ctx.prisma.user.findFirst({ where: { id: Number(id) } });
-      },
+      resolve: getUserByIdResolver,
     });
   },
 });
-
-// export const FindUserQuery = extendType({
-//   type: "Query",
-//   definition(t) {
-//     t.nonNull.field("FindUser", {
-//       type: User,
-//       args: {
-//         id: idArg(),
-//       },
-//       resolve(_parent, { id }, ctx) {
-//         return ctx.prisma.user.findFirst({ where: { id: Number(id) } });
-//       },
-//     });
-//   },
-// });

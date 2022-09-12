@@ -1,7 +1,19 @@
-import { enumType, idArg, intArg, objectType, stringArg } from "nexus";
+import {
+  booleanArg,
+  idArg,
+  intArg,
+  nonNull,
+  objectType,
+  stringArg,
+} from "nexus";
 import { extendType } from "nexus";
+import {
+  createProdeUsuarioResolver,
+  getAllProdeUsuarioResolver,
+  getProdeUsuarioByIdResolver,
+  updateProdeUsuarioResolver,
+} from "../resolvers/prodesUsuariosResolvers";
 import { Info_Partidos } from "./Info_Partidos";
-import { User } from "./User";
 
 export const Prode_Partido_Usuario = objectType({
   name: "Prode_Partido_Usuario",
@@ -37,29 +49,66 @@ export const Prode_Partido_Usuario = objectType({
   },
 });
 
-export const ProdePartidosUsuarios_Query = extendType({
+export const CreateProdeUsuario = extendType({
+  type: "Mutation",
+  definition: (t) => {
+    t.field("createProdeUsuario", {
+      type: Prode_Partido_Usuario,
+      args: {
+        userId: nonNull(intArg()),
+        info_PartidosId: nonNull(intArg()),
+        Goles_Local: nonNull(stringArg()),
+        Goles_Visitante: nonNull(stringArg()),
+        Ganador: nonNull(stringArg()),
+        Tiempo_Extra: nonNull(booleanArg()),
+        Penales: nonNull(booleanArg()),
+        Puntos: nonNull(intArg()),
+      },
+      resolve: createProdeUsuarioResolver,
+    });
+  },
+});
+
+export const UpdateProdeUsuario = extendType({
+  type: "Mutation",
+  definition: (t) => {
+    t.field("updateProdeUsuario", {
+      type: Prode_Partido_Usuario,
+      args: {
+        userId: nonNull(intArg()),
+        info_PartidosId: nonNull(intArg()),
+        Goles_Local: stringArg(),
+        Goles_Visitante: stringArg(),
+        Ganador: stringArg(),
+        Tiempo_Extra: booleanArg(),
+        Penales: booleanArg(),
+        Puntos: intArg(),
+      },
+      resolve: updateProdeUsuarioResolver,
+    });
+  },
+});
+
+export const GetAllProdePartidoUsuarios = extendType({
   type: "Query",
   definition(t) {
     t.list.field("GetAllProdePartidoUsuarios", {
       type: Prode_Partido_Usuario,
-      resolve(_parent, _args, ctx) {
-        return ctx.prisma.prode_Partido_Usuario.findMany();
-      },
+      resolve: getAllProdeUsuarioResolver,
     });
+  },
+});
+
+export const GetProdePartidoUsuarioById = extendType({
+  type: "Query",
+  definition(t) {
     t.field("GetProdePartidoUsuarioById", {
       type: Prode_Partido_Usuario,
       args: {
         userId: idArg(),
         info_PartidosId: idArg(),
       },
-      resolve(_parent, { userId, info_PartidosId }, ctx) {
-        return ctx.prisma.prode_Partido_Usuario.findFirst({
-          where: {
-            userId: Number(userId),
-            info_PartidosId: Number(info_PartidosId),
-          },
-        });
-      },
+      resolve: getProdeUsuarioByIdResolver,
     });
   },
 });
