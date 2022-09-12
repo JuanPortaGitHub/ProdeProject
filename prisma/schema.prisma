@@ -51,6 +51,9 @@ model Prode_Partido_Usuario {
 
 model Info_Partidos {
   id                           Int                         @unique @default(autoincrement())
+  idTorneo                     Int
+  RondaTorneo                  String
+  Grupo                        String?
   DiaHora                      DateTime
   Lugar                        String
   Resultado                    Resultados_Reales_Partidos? @relation(fields: [resultados_Reales_PartidosId], references: [id])

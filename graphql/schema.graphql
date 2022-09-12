@@ -25,12 +25,15 @@ type Info_Partidos {
   DiaHora: String
   EquipoLocal: [Equipos]
   EquipoVisitante: [Equipos]
+  Grupo: String
   Lugar: String
   Prode_Partido_Usuario: [Prode_Partido_Usuario]
+  RondaTorneo: String
   createdAt: String
   equipoLocalId: String
   equipoVisitanteId: String
   id: Int
+  idTorneo: Int
   resultado: Resultados_Reales_Partidos
   updatedAt: String
 }

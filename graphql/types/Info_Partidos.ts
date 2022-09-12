@@ -8,6 +8,9 @@ export const Info_Partidos = objectType({
   name: "Info_Partidos",
   definition(t) {
     t.int("id");
+    t.int("idTorneo");
+    t.string("RondaTorneo");
+    t.string("Grupo");
     t.string("DiaHora");
     t.string("Lugar");
     t.string("equipoLocalId");
