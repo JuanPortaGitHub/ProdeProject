@@ -16,7 +16,9 @@ type Grupo {
   createdAt: String
   id: ID
   imagen: String
+  monto: String
   nombre: String
+  slogan: String
   updatedAt: String
   usuarios: [User]
 }

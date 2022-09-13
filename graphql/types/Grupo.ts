@@ -13,6 +13,8 @@ export const Grupo = objectType({
   definition(t) {
     t.id("id");
     t.string("nombre");
+    t.string("slogan");
+    t.string("monto");
     t.string("imagen");
     t.string("clave_grupo");
     t.string("createdAt");
