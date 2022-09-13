@@ -41,6 +41,8 @@ export const CreateGrupo = extendType({
         nombre: nonNull(stringArg()),
         imagen: nonNull(stringArg()),
         clave_grupo: nonNull(stringArg()),
+        slogan: nonNull(stringArg()),
+        monto: nonNull(stringArg()),
       },
       resolve: createGrupoResolver,
     });
@@ -57,6 +59,8 @@ export const UpdateGrupo = extendType({
         nombre: stringArg(),
         imagen: stringArg(),
         clave_grupo: stringArg(),
+        slogan: stringArg(),
+        monto: stringArg(),
       },
       resolve: updateGrupoResolver,
     });

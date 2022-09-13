@@ -17,7 +17,7 @@ export const getGrupoByIdResolver: FieldResolver<
 export const createGrupoResolver: FieldResolver<
   "Mutation",
   "createGrupo"
-> = async (_, { nombre, imagen, clave_grupo }, { prisma }) => {
+> = async (_, { nombre, imagen, clave_grupo, slogan, monto }, { prisma }) => {
   const nombreGrupoExist = await prisma.grupo.count({
     where: {
       nombre: nombre,
@@ -31,6 +31,8 @@ export const createGrupoResolver: FieldResolver<
       nombre,
       imagen,
       clave_grupo,
+      slogan,
+      monto,
     },
   });
   return newGroup;
@@ -39,7 +41,11 @@ export const createGrupoResolver: FieldResolver<
 export const updateGrupoResolver: FieldResolver<
   "Mutation",
   "updateGrupo"
-> = async (_, { id, nombre, imagen, clave_grupo }, { prisma }) => {
+> = async (
+  _,
+  { id, nombre, imagen, clave_grupo, slogan, monto },
+  { prisma }
+) => {
   if (nombre) {
     const nombreGrupoExist = await prisma.grupo.count({
       where: {
@@ -56,6 +62,8 @@ export const updateGrupoResolver: FieldResolver<
       nombre: nombre != null ? nombre : undefined, //para que funcione como patch
       imagen: imagen != null ? imagen : undefined, //para que funcione como patch
       clave_grupo: clave_grupo != null ? clave_grupo : undefined, //para que funcione como patch
+      slogan: slogan != null ? slogan : undefined, //para que funcione como patch
+      monto: monto != null ? monto : undefined, //para que funcione como patch
     },
   });
   return editedGroup;
