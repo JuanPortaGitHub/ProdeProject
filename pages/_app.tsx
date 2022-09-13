@@ -12,6 +12,12 @@ import { styled } from "@mui/material/styles";
 import Header from "../components/Header/header";
 import { useSession } from "next-auth/react";
 import { ConstructionOutlined } from "@mui/icons-material";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: "/api/graphql",
+});
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   // const { data: session, status } = useSession();
@@ -36,53 +42,20 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   }));
 
   return (
-    <SessionProvider session={session}>
-      <>
-        <Header handleDrawer={handleDrawer} />
-        <div
-          style={{
-            marginTop: "4rem",
-          }}
-        >
-          <Component {...pageProps} />
-        </div>
-      </>
-    </SessionProvider>
-    // <AuthContextProvider>
-    //   {noAuthRequired.includes(router.pathname) ? (
-    //     <>
-    //       <Header handleDrawer={handleDrawer} />
-    //       <div
-    //         style={{
-    //           marginTop: "4rem",
-    //         }}
-    //       >
-    //         <Component {...pageProps} />
-    //       </div>
-    //     </>
-    //   ) : (
-    //     <ProtectedRoute>
-    //       <div
-    //         style={{
-    //           marginTop: "3rem",
-    //         }}
-    //       >
-    //         <Box sx={{ display: "flex" }}>
-    //           <CssBaseline />
-    //           <MenuAppbar open={open} handleDrawerOpen={handleDrawer} />
-    //           <MenuDrawer open={open} handleDrawerClose={handleDrawer} />
-    //           <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-    //             <DrawerHeader />
-
-    //             <Header handleDrawer={handleDrawer} />
-    //             <Component {...pageProps} />
-    //           </Box>
-    //         </Box>
-    //       </div>
-    //     </ProtectedRoute>
-    //   )}
-    //   //{" "}
-    // </AuthContextProvider>
+    <ApolloProvider client={client}>
+      <SessionProvider session={session}>
+        <>
+          <Header handleDrawer={handleDrawer} />
+          <div
+            style={{
+              marginTop: "4rem",
+            }}
+          >
+            <Component {...pageProps} />
+          </div>
+        </>
+      </SessionProvider>
+    </ApolloProvider>
   );
 }
 

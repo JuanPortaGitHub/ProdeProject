@@ -11,78 +11,76 @@ datasource db {
 }
 
 model User {
-  id                 Int                  @id @default(autoincrement())
-  mail               String               @unique
-  name               String
-  apellido           String
-  password           String
-  grupos             Grupo[]
-  Prode_Usuario      Prode_Usuario[]
-  Usuarios_Por_Grupo Usuarios_Por_Grupo[]
-  createdAt          DateTime             @default(now()) @db.Timestamptz(3)
-  updatedAt          DateTime             @updatedAt @db.Timestamptz(3)
+  id                    Int                     @id @default(autoincrement())
+  mail                  String
+  name                  String
+  apellido              String
+  password              String
+  GruposDeUsuario       Grupo[]
+  Prode_Partido_Usuario Prode_Partido_Usuario[]
+  createdAt             DateTime                @default(now()) @db.Timestamptz(3)
+  updatedAt             DateTime                @updatedAt @db.Timestamptz(3)
 }
 
 model Grupo {
-  id                 Int                  @id @default(autoincrement())
-  usuarios_en_grupo  User[]
-  nombre             String               @unique
-  imagen             String?
-  clave_grupo        String
-  Usuarios_Por_Grupo Usuarios_Por_Grupo[]
-  createdAt          DateTime             @default(now()) @db.Timestamptz(3)
-  updatedAt          DateTime             @updatedAt @db.Timestamptz(3)
+  id                    Int                     @id @default(autoincrement())
+  nombre                String
+  slogan                String?
+  monto                 String?
+  imagen                String?
+  clave_grupo           String
+  UsuariosDeGrupo       User[]
+  createdAt             DateTime                @default(now()) @db.Timestamptz(3)
+  updatedAt             DateTime                @updatedAt @db.Timestamptz(3)
+  Prode_Partido_Usuario Prode_Partido_Usuario[]
 }
 
-model Usuarios_Por_Grupo {
-  id                           Int           @id @default(autoincrement())
-  usuario                      User          @relation(fields: [userId], references: [id])
-  grupo                        Grupo         @relation(fields: [grupoId], references: [id])
-  nombre                       String        @unique
-  admin                        Boolean       @default(false)
-  userId                       Int
-  grupoId                      Int
-  Prode                        Prode_Usuario @relation(fields: [prode_UsuarioInfo_PartidosId], references: [info_PartidosId])
-  prode_UsuarioInfo_PartidosId Int
-  createdAt                    DateTime      @default(now()) @db.Timestamptz(3)
-  updatedAt                    DateTime      @updatedAt @db.Timestamptz(3)
-}
+model Prode_Partido_Usuario {
+  info_PartidosId Int
+  userId          Int
+  Grupo           Grupo?        @relation(fields: [grupoId], references: [id])
+  Usuario         User          @relation(fields: [userId], references: [id])
+  Partido         Info_Partidos @relation(fields: [info_PartidosId], references: [id])
+  Goles_Local     String
+  Goles_Visitante String
+  Ganador         String
+  Tiempo_Extra    Boolean       @default(false)
+  Penales         Boolean       @default(false)
+  Puntos          Int
+  createdAt       DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt       DateTime      @updatedAt @db.Timestamptz(3)
+  grupoId         Int           @default(0)
 
-model Prode_Usuario {
-  Usuario            User                 @relation(fields: [userId], references: [id])
-  Partido            Info_Partidos        @relation(fields: [info_PartidosId], references: [id])
-  Goles_Local        String
-  Goles_Visitante    String
-  Ganador            String
-  Tiempo_Extra       Boolean              @default(false)
-  Penales            Boolean              @default(false)
-  Puntos             Int
-  info_PartidosId    Int                  @id
-  userId             Int
-  Usuarios_Por_Grupo Usuarios_Por_Grupo[]
-  createdAt          DateTime             @default(now()) @db.Timestamptz(3)
-  updatedAt          DateTime             @updatedAt @db.Timestamptz(3)
+  @@id([userId, info_PartidosId, grupoId])
 }
 
 model Info_Partidos {
-  id                           Int                        @id @default(autoincrement())
-  Equipos                      Equipos[]
+  id                           Int                         @unique @default(autoincrement())
+  idTorneo                     Int
+  RondaTorneo                  String
+  Grupo                        String?
   DiaHora                      DateTime
   Lugar                        String
-  Resultado                    Resultados_Reales_Partidos @relation(fields: [resultados_Reales_PartidosId], references: [id])
-  resultados_Reales_PartidosId Int                        @unique
-  Prode_Usuario                Prode_Usuario[]
-  createdAt                    DateTime                   @default(now()) @db.Timestamptz(3)
-  updatedAt                    DateTime                   @updatedAt @db.Timestamptz(3)
+  Resultado                    Resultados_Reales_Partidos? @relation(fields: [resultados_Reales_PartidosId], references: [id])
+  resultados_Reales_PartidosId Int?                        @unique
+  Prode_Partido_Usuario        Prode_Partido_Usuario[]
+  createdAt                    DateTime                    @default(now()) @db.Timestamptz(3)
+  updatedAt                    DateTime                    @updatedAt @db.Timestamptz(3)
+  EquipoLocal                  Equipos                     @relation("EquipoLocal", fields: [equipoLocalId], references: [id])
+  EquipoVisitante              Equipos                     @relation("EquipoVisitante", fields: [equipoVisitanteId], references: [id])
+  equipoLocalId                Int
+  equipoVisitanteId            Int
+
+  @@id([id, equipoLocalId, equipoVisitanteId])
 }
 
 model Equipos {
-  id              Int            @id @default(autoincrement())
-  nombre_equipo   String
-  Info_Partidos   Info_Partidos? @relation(fields: [info_PartidosId], references: [id])
-  info_PartidosId Int?
-  createdAt       DateTime       @default(now()) @db.Timestamptz(3)
-  updatedAt       DateTime       @updatedAt @db.Timestamptz(3)
+  id                    Int             @id @default(autoincrement())
+  nombre_equipo         String
+  InfoPartidosLocal     Info_Partidos[] @relation("EquipoLocal")
+  InfoPartidosVisitante Info_Partidos[] @relation("EquipoVisitante")
+  createdAt             DateTime        @default(now()) @db.Timestamptz(3)
+  updatedAt             DateTime        @updatedAt @db.Timestamptz(3)
 }
 
 model Resultados_Reales_Partidos {
