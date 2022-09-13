@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
 import Image from "next/image";
 import React from "react";
+import TeamContainer from "../../common/teamContainer";
 import { StyledTextField } from "./styled";
 
 export const Match = ({
@@ -19,7 +20,8 @@ export const Match = ({
       }}
     >
       <>
-        <Image src={flagHomeTeam} alt="" width={100} height={100} /> {homeTeam}
+        <TeamContainer team={homeTeam} flag={flagHomeTeam} home={true} />
+        {/* <Image src={flagHomeTeam} alt="" width={100} height={100} /> {homeTeam}*/}
         <StyledTextField
           size="small"
           style={{
@@ -41,7 +43,8 @@ export const Match = ({
           }}
           inputProps={{ maxLength: 1, style: { textAlign: "center" } }}
         />
-        {awayTeam} <Image src={flagAwayTeam} alt="" width={100} height={100} />
+        <TeamContainer team={awayTeam} flag={flagAwayTeam} home={false} />
+        {/* {awayTeam} <Image src={flagAwayTeam} alt="" width={100} height={100} /> */}
       </>
     </div>
   );
