@@ -1,22 +1,10 @@
 import type { NextPage } from "next";
-import { useAuth } from "../context/AuthContext";
-import { getCurrentUser } from "../firebase/users";
 import TeamContainer from "../components/common/teamContainer";
 
 const Dashboard: NextPage = () => {
-  const { user, logout } = useAuth();
-
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Bienvenido: {user.displayName} - {user.email}
-        </p>
-      </header>
-      <TeamContainer />
-      <button onClick={logout}>LogOut</button>
-      <button onClick={getCurrentUser}>UserData</button>
-      <p>This is a protected Route</p>
+      <h1>DASHBOARD</h1>
     </div>
   );
 };

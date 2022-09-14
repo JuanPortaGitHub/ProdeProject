@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    Int                     @id @default(autoincrement())
+  mail                  String
+  name                  String
+  apellido              String
+  password              String
+  GruposDeUsuario       Grupo[]
+  Prode_Partido_Usuario Prode_Partido_Usuario[]
+  createdAt             DateTime                @default(now()) @db.Timestamptz(3)
+  updatedAt             DateTime                @updatedAt @db.Timestamptz(3)
+}
+
+model Grupo {
+  id                    Int                     @id @default(autoincrement())
+  nombre                String
+  slogan                String?
+  monto                 String?
+  imagen                String?
+  clave_grupo           String
+  UsuariosDeGrupo       User[]
+  createdAt             DateTime                @default(now()) @db.Timestamptz(3)
+  updatedAt             DateTime                @updatedAt @db.Timestamptz(3)
+  Prode_Partido_Usuario Prode_Partido_Usuario[]
+}
+
+model Prode_Partido_Usuario {
+  info_PartidosId Int
+  userId          Int
+  Grupo           Grupo?        @relation(fields: [grupoId], references: [id])
+  Usuario         User          @relation(fields: [userId], references: [id])
+  Partido         Info_Partidos @relation(fields: [info_PartidosId], references: [id])
+  Goles_Local     String
+  Goles_Visitante String
+  Ganador         String
+  Tiempo_Extra    Boolean       @default(false)
+  Penales         Boolean       @default(false)
+  Puntos          Int
+  createdAt       DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt       DateTime      @updatedAt @db.Timestamptz(3)
+  grupoId         Int           @default(0)
+
+  @@id([userId, info_PartidosId, grupoId])
+}
+
+model Info_Partidos {
+  id                           Int                         @unique @default(autoincrement())
+  idTorneo                     Int
+  RondaTorneo                  String
+  Grupo                        String?
+  DiaHora                      DateTime
+  Lugar                        String
+  Resultado                    Resultados_Reales_Partidos? @relation(fields: [resultados_Reales_PartidosId], references: [id])
+  resultados_Reales_PartidosId Int?                        @unique
+  Prode_Partido_Usuario        Prode_Partido_Usuario[]
+  createdAt                    DateTime                    @default(now()) @db.Timestamptz(3)
+  updatedAt                    DateTime                    @updatedAt @db.Timestamptz(3)
+  EquipoLocal                  Equipos                     @relation("EquipoLocal", fields: [equipoLocalId], references: [id])
+  EquipoVisitante              Equipos                     @relation("EquipoVisitante", fields: [equipoVisitanteId], references: [id])
+  equipoLocalId                Int
+  equipoVisitanteId            Int
+
+  @@id([id, equipoLocalId, equipoVisitanteId])
+}
+
+model Equipos {
+  id                    Int             @id @default(autoincrement())
+  nombre_equipo         String
+  InfoPartidosLocal     Info_Partidos[] @relation("EquipoLocal")
+  InfoPartidosVisitante Info_Partidos[] @relation("EquipoVisitante")
+  createdAt             DateTime        @default(now()) @db.Timestamptz(3)
+  updatedAt             DateTime        @updatedAt @db.Timestamptz(3)
+}
+
+model Resultados_Reales_Partidos {
+  id              Int            @id @default(autoincrement())
+  Goles_Local     String
+  Goles_Visitante String
+  Info_Partidos   Info_Partidos?
+  createdAt       DateTime       @default(now()) @db.Timestamptz(3)
+  updatedAt       DateTime       @updatedAt @db.Timestamptz(3)
+}
