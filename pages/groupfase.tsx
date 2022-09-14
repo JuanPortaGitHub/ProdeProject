@@ -1,7 +1,5 @@
 import type { NextPage } from "next";
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../context/AuthContext";
-import { getCurrentUser } from "../firebase/users";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -11,7 +9,6 @@ import { Match } from "../components/groupfase/Match";
 import { getFaseGroupMatches } from "../services/getFaseGroupMatches";
 
 const GroupFase: NextPage = () => {
-  const { user, logout } = useAuth();
   const [groups, SetGroups] = useState([]);
 
   // const dataGroups = [

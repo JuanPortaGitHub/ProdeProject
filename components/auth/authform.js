@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import classes from "./authform.module.css";
 
 async function createUser(userName, email, password) {
+  console.log("entree");
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     body: JSON.stringify({ userName, email, password }),

@@ -1,5 +1,5 @@
 {
-  "name": "nextfirebase",
+  "name": "prode",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "updateTeams": "npx ts-node --skip-project ./cronJobs/updateTeams.ts"
+    "updatedbteams": "npx ts-node --skip-project ./cronJobs/updateTeams.ts",
+    "updatedbinfomatch": "npx ts-node --skip-project ./cronJobs/updateInfoMatchs.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -20,7 +21,6 @@
     "apollo-server-micro": "^3.10.2",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
-    "firebase": "^9.9.0",
     "graphql": "^16.6.0",
     "micro": "^9.4.1",
     "micro-cors": "^0.1.1",
