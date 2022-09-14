@@ -61,6 +61,9 @@ export default function Header({ handleDrawer }: Props) {
         >
           <MenuIcon />
           <h3>Prode Trinche</h3>
+          <Link href="#grupo1">
+            <a>fase de grupos</a>
+          </Link>
         </IconButton>
         {/* <LocalFloristIcon style={{ color: "#A20D35" }} />
         <SpaIcon style={{ color: "#A20D35" }} />

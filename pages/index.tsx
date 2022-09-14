@@ -8,6 +8,8 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { WindowSharp } from "@mui/icons-material";
 import AuthForm from "../components/auth/authform";
+import { Match } from "../components/groupfase/Match";
+import GroupFase from "../components/groupfase/groupfase";
 
 const images = [
   {
@@ -51,7 +53,7 @@ export default function Home() {
   // const classes = useStyles();
   return (
     <>
-      <div className={styles.container}>
+      <div id="main" className={styles.container}>
         <main>
           <div
             style={{
@@ -119,6 +121,7 @@ export default function Home() {
         </main>
         <main>
           <div
+            id="signUpForm"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -165,6 +168,9 @@ export default function Home() {
           </div>
         </main>
       </div>
+      <main>
+        <GroupFase />
+      </main>
     </>
   );
 }

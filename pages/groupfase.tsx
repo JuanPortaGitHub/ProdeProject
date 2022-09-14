@@ -14,115 +14,6 @@ const GroupFase: NextPage = () => {
   const { user, logout } = useAuth();
   const [groups, SetGroups] = useState([]);
 
-  // const dataGroups = [
-  //   {
-  //     groupName: "Group A",
-  //     matches: [
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     groupName: "Group B",
-  //     matches: [
-  //       {
-  //         homeTeam: "Inglaterra",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Alemania",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //       {
-  //         homeTeam: "Argentina",
-  //         flagHomeTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-  //         awayTeam: "Brasil",
-  //         flagAwayTeamURL:
-  //           "https://www.thesportsdb.com/images/media/team/badge/jgfos01591988326.png",
-  //       },
-  //     ],
-  //   },
-  // ];
-
   // let dataGroups = [];
   const getGroups = async () => {
     const dataGroups = await getFaseGroupMatches();
@@ -137,12 +28,12 @@ const GroupFase: NextPage = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>FIXTURE</p>
-      </header>
-
       {groups?.map((group, i) => (
-        <Accordion key={i} style={{ margin: "10px 0px" }}>
+        <Accordion
+          sx={{ height: 200, width: "50%" }}
+          key={i}
+          style={{ margin: "10px 0px", height: 200, width: "50%" }}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
