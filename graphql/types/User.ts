@@ -13,9 +13,8 @@ export const User = objectType({
   name: "User",
   definition(t) {
     t.id("id");
-    t.string("mail");
+    t.string("email");
     t.string("name");
-    t.string("apellido");
     t.string("password");
     t.string("createdAt");
     t.string("updatedAt");
@@ -49,9 +48,8 @@ export const CreateUser = extendType({
       type: User,
       args: {
         name: nonNull(stringArg()),
-        apellido: nonNull(stringArg()),
-        mail: nonNull(stringArg()),
-        password: nonNull(stringArg()),
+        email: nonNull(stringArg()),
+        recivedPassword: nonNull(stringArg()),
       },
       resolve: createUserResolver,
     });
@@ -66,7 +64,6 @@ export const UpdateUser = extendType({
       args: {
         id: nonNull(intArg()),
         name: stringArg(),
-        apellido: stringArg(),
         password: stringArg(),
       },
       resolve: updateUserResolver,

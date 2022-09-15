@@ -1,125 +1,103 @@
 import { useState, useRef } from "react";
-import { signIn } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../../graphql/queries/userQueries";
 import classes from "./authform.module.css";
+import { CircularProgress } from "@mui/material";
 
-async function createUser(userName, email, password) {
-  console.log("entree");
-  const response = await fetch("/api/auth/signup", {
-    method: "POST",
-    body: JSON.stringify({ userName, email, password }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
-  }
-
-  return data;
-}
-
-function AuthForm() {
+const AuthForm = () => {
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const userNameRef = useRef();
 
   const [isLogin, setIsLogin] = useState(true);
-  const router = useRouter();
+  const { data: session } = useSession();
 
-  function switchAuthModeHandler() {
+  const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
-  }
-
-  const LoginWithGoogle = async () => {
-    const result = await signIn("credentials", {
-      redirect: false,
-      email: enteredEmail,
-      password: enteredPassword,
-    });
   };
 
+  const [createNewUser, { data, loading, error }] = useMutation(ADD_USER);
   async function submitHandler(event) {
     event.preventDefault();
 
-    const enteredUserName = userNameRef.current.value;
+    const enteredFirstName = firstNameRef.current.value;
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    // optional: Add validation
-
-    if (isLogin) {
-      const result = await signIn("google", {
-        redirect: false,
-        email: enteredEmail,
-        password: enteredPassword,
+    if (!isLogin) {
+      createNewUser({
+        variables: {
+          name: enteredFirstName,
+          email: enteredEmail,
+          recivedPassword: enteredPassword,
+        },
       });
-
-      console.log(result);
-
-      if (!result.error) {
-        // set some auth state
-        router.replace("/groupfase");
-      }
     } else {
-      try {
-        const result = await createUser(
-          enteredUserName,
-          enteredEmail,
-          enteredPassword
-        );
-        console.log(result);
-      } catch (error) {
-        console.log(error);
-      }
     }
   }
-
+  console.log("seess", session);
   return (
-    <section className={classes.auth}>
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      <form onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor="UserName">Usuario</label>
-          <input type="text" id="Username" required ref={userNameRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" required ref={emailInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            required
-            ref={passwordInputRef}
-          />
-        </div>
-        <div className={classes.actions}>
-          <button>{isLogin ? "Login" : "Create Account"}</button>
-          <button
-            type="button"
-            className={classes.toggle}
-            onClick={switchAuthModeHandler}
-          >
-            {isLogin ? "Create new account" : "Login with existing account"}
-          </button>
-          <button
-            type="button"
-            className={classes.toggle}
-            onClick={switchAuthModeHandler}
-          >
-            Loguearse con Google
-          </button>
-        </div>
-      </form>
-    </section>
+    <>
+      {!session && (
+        <>
+          <section className={classes.auth}>
+            <h1>{!isLogin ? "Registro" : "Ingresar"}</h1>
+            <form onSubmit={submitHandler}>
+              {!isLogin && (
+                <>
+                  <div className={classes.control}>
+                    <label htmlFor="Nombre">Nombre</label>
+                    <input
+                      type="text"
+                      id="Nombre"
+                      required
+                      ref={firstNameRef}
+                    />
+                  </div>
+                </>
+              )}
+              <div className={classes.control}>
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" required ref={emailInputRef} />
+              </div>
+              <div className={classes.control}>
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  required
+                  ref={passwordInputRef}
+                />
+              </div>
+              <div className={classes.actions}>
+                {loading ? (
+                  <CircularProgress color="inherit" />
+                ) : (
+                  <>
+                    <button>{isLogin ? "Ingresar" : "Crear Cuenta"}</button>
+                    <button style={{ marginTop: 10 }} onClick={() => signIn()}>
+                      Inicia Sesión con Google
+                    </button>
+                    <button
+                      type="button"
+                      className={classes.toggle}
+                      onClick={switchAuthModeHandler}
+                    >
+                      {isLogin ? "No tengo cuenta" : "Ya estoy registrado"}
+                    </button>{" "}
+                  </>
+                )}
+                {error && <h3>{error.message}</h3>}
+              </div>
+            </form>
+          </section>
+        </>
+      )}
+    </>
   );
-}
+};
 
 export default AuthForm;

@@ -1,53 +1,19 @@
 import NextAuth from "next-auth";
-import SessionProvider from "next-auth/react";
-import { connectToDatabase } from "../../../lib/db";
-import { hashPassword, verifyPassword } from "../../../lib/auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import { prisma } from "../../../lib/prisma";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
-export default NextAuth({
-  session: {
-    jwt: true,
-  },
+export const authOptions = {
+  adapter: PrismaAdapter(prisma),
+
+  // Configure one or more authentication providers
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        const client = await connectToDatabase();
-
-        const usersCollections = client.db().collection("users");
-
-        const user = await usersCollections.findOne({
-          email: credentials.email,
-        });
-
-        if (!user) {
-          client.close();
-          throw new Error("No se encontro usuario");
-        }
-
-        const isValid = await verifyPassword(
-          credentials.password,
-          user.password
-        );
-
-        if (!isValid) {
-          client.close();
-          throw new Error("Contraseña invalida");
-        }
-
-        client.close();
-
-        return { email: user.email };
-      },
-    }),
+    // ...add more providers here
   ],
-});
+};
+export default NextAuth(authOptions);

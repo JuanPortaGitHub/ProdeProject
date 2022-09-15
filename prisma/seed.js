@@ -1,13 +1,7 @@
-const { PrismaClient } = require("@prisma/client");
-
-const prisma = new PrismaClient();
+import { prisma } from "../lib/prisma";
 
 async function main() {
-  const result = await prisma.user.findUnique({
-    where: {
-      id: 3,
-    },
-  });
+  const result = await prisma.equipos.deleteMany({});
   console.log("result", result);
 }
 
