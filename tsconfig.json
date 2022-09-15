@@ -3,7 +3,7 @@
     "target": "es5",
     "sourceMap": true,
     "outDir": "dist",
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,

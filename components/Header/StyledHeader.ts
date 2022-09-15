@@ -51,3 +51,48 @@ export const StyledSectionTitle = styled.div`
   font-weight: bold;
   text-align-last: left;
 `;
+
+export const StyledList = styled.ul`
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  width: 80%;
+  gap: 2rem;
+`;
+
+export const StyledNav = styled.nav`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  top: 0px;
+  height: 100%;
+`;
+
+export const StyledAnchor = styled.a`
+  color: white;
+  &:after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: linear-gradient(to right, #ff1554 0%, #900c3f 100%);
+    width: 0;
+    transition: width 0.3s;
+  }
+
+  &:hover:after {
+    width: 100%;
+  }
+`;
+
+export const StyledListElement = styled.li`
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+`;
+
+export const StyledTitle = styled.h2`
+  color: white;
+  display: flex;
+`;

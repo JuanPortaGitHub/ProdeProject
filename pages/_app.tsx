@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import ProtectedRoute from "../components/protectedRoute/protectedRoute";
 import Header from "../components/Header/header";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { StyleMainComponent } from "../styles/styled";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -13,33 +14,27 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  const noAuthRequired = ["/", "/login", "/signup", "/groupfase"];
+  const noAuthRequired = ["/", "/login", "/signup", "/groupfase", "/#grupo1"];
 
   const router = useRouter();
-  const [open, setOpen] = useState(true);
-
-  const handleDrawer = () => {
-    setOpen(!open);
-  };
 
   return (
     <ApolloProvider client={client}>
       <SessionProvider session={session}>
         {noAuthRequired.includes(router.pathname) ? (
           <>
-            <Header handleDrawer={handleDrawer} />
+            <Header />
+            <StyleMainComponent>
+              <Component {...pageProps} />
+            </StyleMainComponent>
             <Component {...pageProps} />
           </>
         ) : (
           <ProtectedRoute>
-            <Header handleDrawer={handleDrawer} />
-            <div
-              style={{
-                marginTop: "4rem",
-              }}
-            >
+            <Header />
+            <StyleMainComponent>
               <Component {...pageProps} />
-            </div>
+            </StyleMainComponent>
           </ProtectedRoute>
         )}
       </SessionProvider>

@@ -10,7 +10,6 @@
   /* background-color: #005bd0; */
   /* border-bottom: 1px solid #e3e3e3;   */
   height: 5rem;
-  box-sizing: border-box;
   padding: 0.5rem 1rem;
   position: fixed;
   top: 0px;
@@ -28,18 +27,18 @@
   rgba(30, 29, 29, 1) 0%,
   rgb(30, 29, 29) 100% 
 );
-border-top: 2px solid #a20d35;
+/* border-top: 2px solid #a20d35;
+border-bottom: 2px solid #a20d35; */
 box-shadow: 0 0 1.8rem rgb(0 0 0 / 50%);
 /* background-color: #005bd0; */
 /* border-bottom: 1px solid #e3e3e3;   */
 height: 5rem;
-box-sizing: border-box;
+/* box-sizing: border-box; */
 padding: 0.5rem 1rem;
 position: fixed;
 top: 0px;
 width: 100%;
 display: flex;
-justify-content: space-between;
 z-index: 2;
 align-items: center;
 }
