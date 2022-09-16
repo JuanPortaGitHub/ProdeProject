@@ -53,7 +53,7 @@ function AuthForm() {
     // optional: Add validation
 
     if (isLogin) {
-      const result = await signIn("google", {
+      const result = await signIn("credentials", {
         redirect: false,
         email: enteredEmail,
         password: enteredPassword,
@@ -63,7 +63,7 @@ function AuthForm() {
 
       if (!result.error) {
         // set some auth state
-        router.replace("/groupfase");
+        router.replace("/");
       }
     } else {
       try {

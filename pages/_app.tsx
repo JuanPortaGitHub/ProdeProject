@@ -14,7 +14,7 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  const noAuthRequired = ["/", "/login", "/signup", "/groupfase", "/#grupo1"];
+  const noAuthRequired = ["/", "/login", "/", "/#grupo1"];
 
   const router = useRouter();
 
@@ -23,15 +23,12 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <SessionProvider session={session}>
         {noAuthRequired.includes(router.pathname) ? (
           <>
-            <Header />
-            <StyleMainComponent>
-              <Component {...pageProps} />
-            </StyleMainComponent>
+            {/* <StyleMainComponent> */}
             <Component {...pageProps} />
+            {/* </StyleMainComponent> */}
           </>
         ) : (
           <ProtectedRoute>
-            <Header />
             <StyleMainComponent>
               <Component {...pageProps} />
             </StyleMainComponent>

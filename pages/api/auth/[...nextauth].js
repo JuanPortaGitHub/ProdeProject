@@ -31,7 +31,6 @@ export default NextAuth({
 
         if (!user) {
           client.close();
-          throw new Error("No se encontro usuario");
         }
 
         const isValid = await verifyPassword(
