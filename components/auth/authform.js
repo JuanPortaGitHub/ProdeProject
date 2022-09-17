@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../graphql/queries/userQueries";
@@ -8,7 +8,6 @@ import { CircularProgress } from "@mui/material";
 
 const AuthForm = () => {
   const firstNameRef = useRef();
-  const lastNameRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -23,11 +22,10 @@ const AuthForm = () => {
   async function submitHandler(event) {
     event.preventDefault();
 
-    const enteredFirstName = firstNameRef.current.value;
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-
     if (!isLogin) {
+      const enteredFirstName = firstNameRef.current.value;
+      const enteredEmail = emailInputRef.current.value;
+      const enteredPassword = passwordInputRef.current.value;
       createNewUser({
         variables: {
           name: enteredFirstName,
@@ -36,9 +34,25 @@ const AuthForm = () => {
         },
       });
     } else {
+      const enteredEmail = emailInputRef.current.value;
+      const enteredPassword = passwordInputRef.current.value;
+      await signIn("credentials", {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+      })
+        .then((res) => {
+          console.log("response", res);
+        })
+        .then(console.log("Session", session))
+        .catch((error) => console.log(error));
     }
   }
-  console.log("seess", session);
+
+  const verSession = async () => {
+    console.log("session", session);
+  };
+
   return (
     <>
       {!session && (
@@ -78,9 +92,6 @@ const AuthForm = () => {
                 ) : (
                   <>
                     <button>{isLogin ? "Ingresar" : "Crear Cuenta"}</button>
-                    <button style={{ marginTop: 10 }} onClick={() => signIn()}>
-                      Inicia Sesión con Google
-                    </button>
                     <button
                       type="button"
                       className={classes.toggle}
@@ -93,9 +104,13 @@ const AuthForm = () => {
                 {error && <h3>{error.message}</h3>}
               </div>
             </form>
+            <button style={{ marginTop: 10 }} onClick={() => signIn("google")}>
+              Inicia Sesión con Google
+            </button>
           </section>
         </>
       )}
+      <button onClick={() => verSession()}>SESSION</button>
     </>
   );
 };

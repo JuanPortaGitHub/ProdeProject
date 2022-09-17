@@ -75,6 +75,7 @@ type Query {
   GetInfoPartidoById(id: ID): Info_Partidos
   GetProdePartidoUsuarioById(info_PartidosId: ID, userId: ID): Prode_Partido_Usuario
   GetResultadosRealesById(id: ID): Resultados_Reales_Partidos
+  GetUserByEmail(email: String): User
   GetUserById(id: ID): User
 }
 

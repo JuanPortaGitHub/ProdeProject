@@ -15,11 +15,17 @@ export const getUserByIdResolver: FieldResolver<
   return await ctx.prisma.user.findFirst({ where: { id: Number(id) } });
 };
 
+export const getUserByEmailResolver: FieldResolver<
+  "Query",
+  "GetUserByEmail"
+> = async (_parent, { email }, ctx) => {
+  return await ctx.prisma.user.findUnique({ where: { email: email } });
+};
+
 export const createUserResolver: FieldResolver<
   "Mutation",
   "createUser"
 > = async (_, { name, email, recivedPassword }, { prisma }) => {
-  console.log("llegue", recivedPassword);
   const mailExist = await prisma.user.count({
     where: {
       email: email,

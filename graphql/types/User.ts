@@ -3,6 +3,7 @@ import { extendType } from "nexus";
 import {
   createUserResolver,
   getAllUsersResolver,
+  getUserByEmailResolver,
   getUserByIdResolver,
   updateUserResolver,
 } from "../resolvers/usersResolvers";
@@ -90,6 +91,19 @@ export const GetUserById = extendType({
         id: idArg(),
       },
       resolve: getUserByIdResolver,
+    });
+  },
+});
+
+export const GetUserByEmail = extendType({
+  type: "Query",
+  definition(t) {
+    t.field("GetUserByEmail", {
+      type: User,
+      args: {
+        email: stringArg(),
+      },
+      resolve: getUserByEmailResolver,
     });
   },
 });
