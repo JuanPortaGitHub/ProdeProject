@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import StyledHeader from "./StyledHeader";
 import ProfileDropDown from "./ProfileDropDown";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import {
   StyledList,
   StyledAnchor,
@@ -13,17 +9,24 @@ import {
   StyledButton,
   StyledButtons,
 } from "./StyledHeader";
-import Image from "next/image";
-import Head from "next/head";
 import style from "./header.module.css";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Sidebar from "../sidebar/sidebar";
-import { StyledContainer } from "../../styles/styled";
-import { StyledBody } from "../sidebar/styled";
 interface Props {
   handleDrawer?: () => void;
 }
+export const headerSections = [
+  { title: "Una Seccion sin loguear", href: "/" },
+  { title: "Otra Seccion sin loguear", href: "/" },
+  { title: "Otra Seccion sin loguear", href: "/" },
+];
+
+export const headerSectionsLogged = [
+  { title: "Una Seccion logueado", href: "/" },
+  { title: "Otra Seccion logueado", href: "/" },
+  { title: "Otra Seccion logueado", href: "/" },
+];
 
 export default function Header({ handleDrawer }: Props) {
   const [color, setColor] = useState(false);
@@ -37,10 +40,6 @@ export default function Header({ handleDrawer }: Props) {
     }
   };
 
-  function logoutHandler() {
-    signOut();
-  }
-
   useEffect(() => {
     // window is accessible here.
     window.addEventListener("scroll", changeColor);
@@ -52,24 +51,17 @@ export default function Header({ handleDrawer }: Props) {
         <StyledNav>
           <StyledTitle>Prode Trinche</StyledTitle>
           {/* <Image src={"/giflogo.gif"} alt="my gif" height={100} width={100} /> */}
+
           {!session && (
             <>
               <StyledList>
-                <StyledListElement>
-                  <Link href="/">
-                    <StyledAnchor>Una Seccion sin loguear</StyledAnchor>
-                  </Link>
-                </StyledListElement>
-                <StyledListElement>
-                  <Link href="/">
-                    <StyledAnchor>Otra Seccion sin loguear</StyledAnchor>
-                  </Link>
-                </StyledListElement>
-                <StyledListElement>
-                  <Link href="/">
-                    <StyledAnchor>Otra Seccion sin loguear</StyledAnchor>
-                  </Link>
-                </StyledListElement>
+                {headerSections.map((headerSection, index) => (
+                  <StyledListElement key={index}>
+                    <Link href={headerSection.href}>
+                      <StyledAnchor>{headerSection.title}</StyledAnchor>
+                    </Link>
+                  </StyledListElement>
+                ))}
               </StyledList>
               <StyledButtons>
                 <Link href="/#signUpForm">
@@ -84,21 +76,13 @@ export default function Header({ handleDrawer }: Props) {
           {session && (
             <>
               <StyledList>
-                <StyledListElement>
-                  <Link href="/">
-                    <StyledAnchor>Una Seccion logueado</StyledAnchor>
-                  </Link>
-                </StyledListElement>
-                <StyledListElement>
-                  <Link href="/">
-                    <StyledAnchor>Otra Seccion logueado</StyledAnchor>
-                  </Link>
-                </StyledListElement>
-                <StyledListElement>
-                  <Link href="/">
-                    <StyledAnchor>Otra Seccion logueado</StyledAnchor>
-                  </Link>
-                </StyledListElement>
+                {headerSectionsLogged.map((headerSection, index) => (
+                  <StyledListElement key={index}>
+                    <Link href={headerSection.href}>
+                      <StyledAnchor>{headerSection.title}</StyledAnchor>
+                    </Link>
+                  </StyledListElement>
+                ))}
               </StyledList>
               <ProfileDropDown />
             </>

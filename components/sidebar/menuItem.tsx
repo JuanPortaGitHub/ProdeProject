@@ -1,6 +1,10 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { StyledLi } from "./styled";
+import {
+  StyledLi,
+  StyledIconPlaceholder,
+  StyledTextPlaceHolder,
+} from "./styled";
 
 const variants = {
   open: {
@@ -21,8 +25,8 @@ const variants = {
 
 const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"];
 
-const MenuItem = ({ i }) => {
-  const style = { border: `2px solid ${colors[i]}` };
+const MenuItem = ({ children }) => {
+  // const style = { border: `2px solid ${colors[i]}` };
   return (
     <StyledLi
       as={motion.li}
@@ -30,8 +34,9 @@ const MenuItem = ({ i }) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
-      <div className="icon-placeholder" style={style} />
-      <div className="text-placeholder" style={style} />
+      {children}
+      {/* <StyledIconPlaceholder style={style} />
+      <StyledTextPlaceHolder style={style}> {children}</StyledTextPlaceHolder> */}
     </StyledLi>
   );
 };
