@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { WindowSharp } from "@mui/icons-material";
 import AuthForm from "../components/auth/authform";
+import UserGroup from "../components/UserGroup";
 
 const images = [
   {
@@ -153,6 +154,7 @@ export default function Home() {
               </div>
               <div className={styles.ImageWorldCup}>
                 <AuthForm />
+                <UserGroup />{" "}
               </div>
             </div>
             <div
