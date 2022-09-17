@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../lib/prisma";
 import axios from "axios";
 import cron from "node-cron";
-
-const prisma = new PrismaClient();
 
 const updateTeams = async () => {
   console.log(

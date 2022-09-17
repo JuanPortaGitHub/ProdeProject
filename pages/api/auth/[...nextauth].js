@@ -1,13 +1,26 @@
 import NextAuth from "next-auth";
-import SessionProvider from "next-auth/react";
-import { connectToDatabase } from "../../../lib/db";
-import { hashPassword, verifyPassword } from "../../../lib/auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { prisma } from "../../../lib/prisma";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { gql } from "@apollo/client";
+import { client } from "../../../lib/apollo";
+import { verifyPassword } from "../../../lib/auth";
 
-export default NextAuth({
+const GetUserLogin = gql`
+  query GetUserByEmail($email: String) {
+    GetUserByEmail(email: $email) {
+      id
+      email
+      name
+      password
+    }
+  }
+`;
+export const authOptions = {
+  adapter: PrismaAdapter(prisma),
   session: {
-    jwt: true,
+    strategy: "jwt",
   },
   providers: [
     GoogleProvider({
@@ -16,37 +29,49 @@ export default NextAuth({
     }),
     CredentialsProvider({
       name: "Credentials",
-      credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        const client = await connectToDatabase();
-
-        const usersCollections = client.db().collection("users");
-
-        const user = await usersCollections.findOne({
-          email: credentials.email,
+      authorize: async ({ email, password }) => {
+        const result = await client.query({
+          query: GetUserLogin,
+          variables: { email },
         });
+        const userDB = result.data.GetUserByEmail.name;
+        const hashedPasswordDB = result.data.GetUserByEmail.password;
 
-        if (!user) {
-          client.close();
-        }
+        if (!userDB) throw new Error("No se encontro usuario");
 
-        const isValid = await verifyPassword(
-          credentials.password,
-          user.password
-        );
+        const valid = await verifyPassword(password, hashedPasswordDB);
+        if (!valid) throw new Error("Contraseña incorrecta");
 
-        if (!isValid) {
-          client.close();
-          throw new Error("Contraseña invalida");
-        }
+        const userAccount = {
+          id: result.data.GetUserByEmail.id,
+          email: result.data.GetUserByEmail.email,
+          name: result.data.GetUserByEmail.name,
+        };
+        console.log("userAccountSENT", userAccount);
 
-        client.close();
-
-        return { email: user.email };
+        return userAccount;
       },
     }),
   ],
-});
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+      }
+      return token;
+    },
+    session: async ({ session, token }) => {
+      if (token) {
+        session.id = token.id;
+        const user = {
+          email: token.email,
+          image: null,
+          name: token.name,
+        };
+      }
+      return session;
+    },
+  },
+};
+export default NextAuth(authOptions);
