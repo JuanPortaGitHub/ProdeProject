@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledBody = styled.div`
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   /* background: linear-gradient(180deg, #0055ff 0%, rgb(0, 153, 255) 100%); */
   overflow: hidden;
   padding: 0;

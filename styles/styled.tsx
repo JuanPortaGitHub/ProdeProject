@@ -3,6 +3,11 @@ import styled from "styled-components";
 export const StyleMainComponent = styled.div`
   margin-top: 6rem;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 600px) {
+    margin-bottom: 6rem;
+  }
 `;
 
 export const StyledImageContainer = styled.div`
@@ -11,6 +16,12 @@ export const StyledImageContainer = styled.div`
   align-items: center;
   height: 70%;
   padding-left: 3rem;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 100%;
+  }
 `;
 
 export const StyledPaperContainer = styled.div`
@@ -18,6 +29,10 @@ export const StyledPaperContainer = styled.div`
   flex-wrap: wrap;
   width: 50vw;
   align-self: center;
+  @media (max-width: 600px) {
+    width: 100vw;
+    padding: 0 1.5rem;
+  }
 `;
 
 export const StyledContainer = styled.div`
@@ -35,6 +50,9 @@ export const StyledContainer = styled.div`
 
 export const StyledWorldCupImage = styled.div`
   width: 40vw;
+  @media (max-width: 600px) {
+    width: 70vw;
+  }
 `;
 
 export const StyledButton = styled.a`
