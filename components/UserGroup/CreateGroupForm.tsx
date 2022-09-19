@@ -2,9 +2,18 @@ import { ChangeEvent, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useMutation } from "@apollo/client";
 import classes from "../auth/authform.module.css";
-import { Button, CircularProgress, Input } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  Input,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { CREATE_GROUP } from "../../graphql/queries/groupQueries";
 import { UploadFile } from "@mui/icons-material";
+import icon1 from "/icons/1.png";
+import Image from "next/image";
 
 const CreateGroupForm = () => {
   const groupName = useRef();
@@ -13,7 +22,7 @@ const CreateGroupForm = () => {
   const groupSlogan = useRef();
   const groupAmount = useRef();
 
-  const [filename, setFilename] = useState("");
+  const [logo, setLogo] = useState("/icons/1.png");
 
   const { data: session } = useSession();
   console.log("session", session);
@@ -22,7 +31,7 @@ const CreateGroupForm = () => {
     onCompleted(data) {
       console.log("dataaa", data);
       groupName.current.value = "";
-      groupImage.current.value = "";
+      setLogo("/icons/1.png");
       groupPassword.current.value = "";
       groupSlogan.current.value = "";
       groupAmount.current.value = "";
@@ -37,7 +46,7 @@ const CreateGroupForm = () => {
     CreateNewGroup({
       variables: {
         nombre: groupName.current.value,
-        imagen: groupImage.current.value,
+        imagen: logo,
         claveGrupo: groupPassword.current.value,
         slogan: groupSlogan.current.value,
         monto: groupAmount.current.value,
@@ -45,14 +54,25 @@ const CreateGroupForm = () => {
       },
     });
   }
-
-  const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
-      return;
-    }
-    const file = e.target.files[0];
-    const { name } = file;
-    setFilename(name);
+  const icons = [
+    {
+      label: "Icono 1",
+      src: "/icons/1.png",
+      value: "icon1",
+    },
+    {
+      label: "Icono 2",
+      src: "/icons/2.png",
+      value: "icon2",
+    },
+    {
+      label: "Icono 3",
+      src: "/icons/3.png",
+      value: "icon3",
+    },
+  ];
+  const handleImageSelect = (e: SelectChangeEvent) => {
+    setLogo(e.target.value as string);
   };
   return (
     <>
@@ -62,25 +82,36 @@ const CreateGroupForm = () => {
           <h1>Crea un grupo para jugar con amigos</h1>
           <form onSubmit={submitHandler}>
             <div className={classes.control}>
-              <label htmlFor="nombre">Nombre</label>
-              <input type="text" id="text" required ref={groupName} />
-            </div>
-            <div className={classes.control}>
-              <Button
-                component="label"
-                variant="outlined"
-                startIcon={<UploadFile />}
-                sx={{ marginRight: "1rem" }}
-              >
-                Subir Logo
-                <input
-                  type="file"
-                  accept=".jpg || .jpeg || .gif"
-                  hidden
-                  onChange={handleFileUpload}
-                  ref={groupImage}
-                />
-              </Button>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <div style={{ width: "20%" }}>
+                  <Select
+                    label="Logo"
+                    onChange={handleImageSelect}
+                    defaultValue={"/icons/1.png"}
+                    value={logo}
+                    IconComponent={() => null}
+                  >
+                    {icons.map((option, key) => (
+                      <MenuItem
+                        style={{ display: "flex", justifyContent: "center" }}
+                        value={option.src}
+                        key={key}
+                      >
+                        <Image
+                          src={option.src}
+                          alt={option.label}
+                          width={50}
+                          height={50}
+                        />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </div>
+                <div style={{ width: "80%", alignSelf: "center" }}>
+                  <label htmlFor="nombre">Nombre</label>
+                  <input type="text" id="text" required ref={groupName} />
+                </div>
+              </div>
             </div>
 
             <div className={classes.control}>
