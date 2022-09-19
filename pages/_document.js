@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
             name="description"
             content="Aplicacion de prode para jugar con tus amigos"
           />
-          <link rel="icon" href="/futbol4.ico" />
+          <link rel="icon" href="/futbol6.ico" />
         </Head>
         <body>
           <Main />
