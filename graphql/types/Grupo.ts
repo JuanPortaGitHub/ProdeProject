@@ -1,6 +1,7 @@
 import { idArg, intArg, nonNull, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
 import {
+  addUserToGrupo,
   createGrupoResolver,
   getAllGruposResolver,
   getGrupoByIdResolver,
@@ -43,6 +44,7 @@ export const CreateGrupo = extendType({
         clave_grupo: nonNull(stringArg()),
         slogan: nonNull(stringArg()),
         monto: nonNull(stringArg()),
+        idUser: nonNull(stringArg()),
       },
       resolve: createGrupoResolver,
     });
@@ -63,6 +65,21 @@ export const UpdateGrupo = extendType({
         monto: stringArg(),
       },
       resolve: updateGrupoResolver,
+    });
+  },
+});
+
+export const AddUserToGrupo = extendType({
+  type: "Mutation",
+  definition: (t) => {
+    t.field("addUserToGrupo", {
+      type: Grupo,
+      args: {
+        nombre: nonNull(stringArg()),
+        clave_grupo: nonNull(stringArg()),
+        idUser: nonNull(stringArg()),
+      },
+      resolve: addUserToGrupo,
     });
   },
 });

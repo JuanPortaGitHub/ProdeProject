@@ -3,10 +3,16 @@ import JoinGroupForm from "./JoinGroupForm";
 
 const UserGroup = () => {
   return (
-    <>
-      {/* <CreateGroupForm /> */}
-      {/* <JoinGroupForm /> */}
-    </>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignContent: "center",
+      }}
+    >
+      <CreateGroupForm />
+      <JoinGroupForm />
+    </div>
   );
 };
 

@@ -17,7 +17,11 @@ export const getGrupoByIdResolver: FieldResolver<
 export const createGrupoResolver: FieldResolver<
   "Mutation",
   "createGrupo"
-> = async (_, { nombre, imagen, clave_grupo, slogan, monto }, { prisma }) => {
+> = async (
+  _,
+  { nombre, imagen, clave_grupo, slogan, monto, idUser },
+  { prisma }
+) => {
   const nombreGrupoExist = await prisma.grupo.count({
     where: {
       nombre: nombre,
@@ -28,11 +32,17 @@ export const createGrupoResolver: FieldResolver<
   }
   const newGroup = await prisma.grupo.create({
     data: {
-      nombre,
+      nombre: nombre.toUpperCase(),
       imagen,
-      clave_grupo,
+      clave_grupo: clave_grupo.toUpperCase(),
       slogan,
       monto,
+      UsuariosDeGrupo: {
+        connectOrCreate: {
+          where: { id: idUser },
+          create: { id: idUser },
+        },
+      },
     },
   });
   return newGroup;
@@ -49,7 +59,7 @@ export const updateGrupoResolver: FieldResolver<
   if (nombre) {
     const nombreGrupoExist = await prisma.grupo.count({
       where: {
-        nombre: nombre,
+        nombre: nombre.toUpperCase(),
       },
     });
     if (nombreGrupoExist !== 0) {
@@ -59,12 +69,63 @@ export const updateGrupoResolver: FieldResolver<
   const editedGroup = await prisma.grupo.update({
     where: { id: id },
     data: {
-      nombre: nombre != null ? nombre : undefined, //para que funcione como patch
+      nombre: nombre != null ? nombre.toUpperCase() : undefined, //para que funcione como patch
       imagen: imagen != null ? imagen : undefined, //para que funcione como patch
-      clave_grupo: clave_grupo != null ? clave_grupo : undefined, //para que funcione como patch
+      clave_grupo: clave_grupo != null ? clave_grupo.toUpperCase() : undefined, //para que funcione como patch
       slogan: slogan != null ? slogan : undefined, //para que funcione como patch
       monto: monto != null ? monto : undefined, //para que funcione como patch
     },
   });
   return editedGroup;
+};
+
+export const addUserToGrupo: FieldResolver<"Mutation", "updateGrupo"> = async (
+  _,
+  { nombre, clave_grupo, idUser },
+  { prisma }
+) => {
+  if (nombre && clave_grupo && idUser) {
+    const nombreGrupoExist = await prisma.grupo.count({
+      where: {
+        AND: [
+          {
+            nombre: { equals: nombre, mode: "insensitive" },
+          },
+          {
+            clave_grupo: { equals: clave_grupo, mode: "insensitive" },
+          },
+        ],
+      },
+    });
+    if (nombreGrupoExist === 0) {
+      throw new Error("No se encuentra el grupo o clave incorrecta");
+    }
+
+    const userExistInGroup = await prisma.grupo.count({
+      where: {
+        AND: [
+          {
+            nombre: { equals: nombre, mode: "insensitive" },
+          },
+          {
+            UsuariosDeGrupo: { some: { id: idUser } },
+          },
+        ],
+      },
+    });
+    if (userExistInGroup !== 0) {
+      throw new Error("Ya estás en este grupo!");
+    }
+
+    const editedGroup = await prisma.grupo.update({
+      where: { nombre: nombre.toUpperCase() },
+      data: {
+        UsuariosDeGrupo: {
+          connect: { id: idUser },
+        },
+      },
+    });
+    return editedGroup;
+  }
+  throw new Error("Faltan campos para poder agregar usuario a grupo");
 };

@@ -62,7 +62,7 @@ model VerificationToken {
 
 model Grupo {
   id                    Int                     @id @default(autoincrement())
-  nombre                String
+  nombre                String                  @unique
   slogan                String?
   monto                 String?
   imagen                String?

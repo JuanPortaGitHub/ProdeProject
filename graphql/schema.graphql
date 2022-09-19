@@ -41,7 +41,8 @@ type Info_Partidos {
 }
 
 type Mutation {
-  createGrupo(clave_grupo: String!, imagen: String!, monto: String!, nombre: String!, slogan: String!): Grupo
+  addUserToGrupo(clave_grupo: String!, idUser: String!, nombre: String!): Grupo
+  createGrupo(clave_grupo: String!, idUser: String!, imagen: String!, monto: String!, nombre: String!, slogan: String!): Grupo
   createProdeUsuario(Ganador: String!, Goles_Local: String!, Goles_Visitante: String!, Penales: Boolean!, Puntos: Int!, Tiempo_Extra: Boolean!, info_PartidosId: Int!, userId: Int!): Prode_Partido_Usuario
   createUser(email: String!, name: String!, recivedPassword: String!): User
   updateGrupo(clave_grupo: String, id: Int!, imagen: String, monto: String, nombre: String, slogan: String): Grupo

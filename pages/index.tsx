@@ -22,6 +22,7 @@ import RegisterLogin from "../components/registerLogin/registerLogin";
 import Header from "../components/Header/header";
 import Sidebar from "../components/sidebar/sidebar";
 import { StyledBody } from "../components/sidebar/styled";
+import UserGroup from "../components/UserGroup";
 
 export const images = [
   {
@@ -161,6 +162,9 @@ export default function Home() {
                   <StyledButton>EMPEZA A JUGAR!</StyledButton>
                 </Link>
               </StyledButtonContainer>
+              <StyledContainer>
+                <UserGroup />
+              </StyledContainer>
             </StyleMainComponent>
           </>
         )}
