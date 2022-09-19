@@ -1,10 +1,19 @@
 import * as React from "react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "./useDimensions";
 import MenuToggle from "./menuToggle";
 import Navigation from "./navigation";
-import { StyledNav, StyledBackground } from "./styled";
+import {
+  StyledNav,
+  StyledBackground,
+  StyledButtonsOnsideBar,
+  StyledButtonIngresar,
+  StyledAnchor,
+} from "./styled";
+import { StyledButton, StyledButtons } from "../Header/StyledHeader";
+import Link from "next/link";
+import { openStdin } from "process";
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -27,15 +36,30 @@ const sidebar = {
 };
 
 const Sidebar = () => {
-  const [isOpen, toggleOpen] = useCycle(false, true);
+  // const [isOpen, toggleOpen] = useCycle(false, true);
+  const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      event.preventDefault();
+      if (!containerRef?.current?.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+  }, [containerRef]);
+
+  const toggleHandler = () => {
+    setOpen(!open);
+  };
 
   return (
     <StyledNav
       as={motion.nav}
       initial={false}
-      animate={isOpen ? "open" : "closed"}
+      animate={open ? "open" : "closed"}
       custom={height}
       ref={containerRef}
     >
@@ -45,7 +69,7 @@ const Sidebar = () => {
         variants={sidebar}
       />
       <Navigation />
-      <MenuToggle toggle={() => toggleOpen()} />
+      <MenuToggle toggle={() => toggleHandler()} />
     </StyledNav>
   );
 };

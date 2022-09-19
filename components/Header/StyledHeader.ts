@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const AvatarSyled = styled.div`
   padding-right: 1vw;
+  /* @media (max-width: 600px) {
+    display: none;
+  } */
 `;
 
 export const StyledNav = styled.nav`
@@ -11,6 +14,10 @@ export const StyledNav = styled.nav`
   justify-content: space-between;
   top: 0px;
   height: 100%;
+  gap: 1rem;
+  @media (max-width: 600px) {
+    justify-content: flex-end;
+  }
 `;
 
 export const StyledList = styled.ul`
@@ -19,6 +26,9 @@ export const StyledList = styled.ul`
   align-items: center;
   width: 80%;
   gap: 2rem;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const StyledAnchor = styled.a`
@@ -49,6 +59,9 @@ export const StyledListElement = styled.li`
 export const StyledTitle = styled.h2`
   color: white;
   display: flex;
+  @media (max-width: 600px) {
+    align-self: flex-end;
+  }
 `;
 
 export const StyledButton = styled.a`
@@ -73,4 +86,7 @@ export const StyledButtons = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 22%;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;

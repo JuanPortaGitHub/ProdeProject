@@ -13,6 +13,8 @@ import style from "./header.module.css";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Sidebar from "../sidebar/sidebar";
+import { useMediaQuery } from "@mui/material";
+
 interface Props {
   handleDrawer?: () => void;
 }
@@ -31,6 +33,7 @@ export const headerSectionsLogged = [
 export default function Header({ handleDrawer }: Props) {
   const [color, setColor] = useState(false);
   const { data: session, status } = useSession();
+  const isDesktopMode = useMediaQuery("(min-width:600px)");
 
   const changeColor = () => {
     if (window.scrollY >= 90) {
@@ -89,7 +92,6 @@ export default function Header({ handleDrawer }: Props) {
           )}
         </StyledNav>
       </div>
-      {/* </div> */}
     </>
   );
 }
