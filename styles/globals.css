@@ -7,6 +7,8 @@ body {
   /* background: linear-gradient(to right, #A20D35 , #24000C); */
   /* background-repeat: no-repeat; */
   background-image: url('/prodebg.jpg');
+  scroll-behavior: smooth
+  
 }
 
 a {

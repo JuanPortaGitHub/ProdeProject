@@ -122,6 +122,9 @@ export default function Home() {
         )}
         {session && (
           <>
+            <StyledBody>
+              <Sidebar />
+            </StyledBody>
             <Header />
             <StyleMainComponent>
               <StyledImageContainer>

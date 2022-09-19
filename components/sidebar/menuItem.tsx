@@ -5,6 +5,8 @@ import {
   StyledIconPlaceholder,
   StyledTextPlaceHolder,
 } from "./styled";
+import Link from "next/link";
+import { StyledAnchor } from "../Header/StyledHeader";
 
 const variants = {
   open: {
@@ -25,7 +27,7 @@ const variants = {
 
 const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"];
 
-const MenuItem = ({ children }) => {
+const MenuItem = ({ item }) => {
   // const style = { border: `2px solid ${colors[i]}` };
   return (
     <StyledLi
@@ -34,9 +36,9 @@ const MenuItem = ({ children }) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
-      {children}
-      {/* <StyledIconPlaceholder style={style} />
-      <StyledTextPlaceHolder style={style}> {children}</StyledTextPlaceHolder> */}
+      <Link href={item.href}>
+        <StyledAnchor style={{ color: "black" }}>{item.title}</StyledAnchor>
+      </Link>
     </StyledLi>
   );
 };

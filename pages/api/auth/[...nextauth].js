@@ -19,6 +19,7 @@ const GetUserLogin = gql`
 `;
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
+  debug: true,
   session: {
     strategy: "jwt",
   },
@@ -69,6 +70,7 @@ export const authOptions = {
           image: null,
           name: token.name,
         };
+        console.log(session);
       }
       return session;
     },

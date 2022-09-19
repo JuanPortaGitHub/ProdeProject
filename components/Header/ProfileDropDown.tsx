@@ -4,6 +4,7 @@ import { Avatar, Menu, MenuItem } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { AvatarSyled } from "./StyledHeader";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 const ProfileDropDown = () => {
   const { data: session, status } = useSession();
@@ -22,12 +23,18 @@ const ProfileDropDown = () => {
     signOut();
   };
 
-  const first2Letters = session?.user?.email.substring(0, 2);
+  const useryData = session?.user?.image ? (
+    <>
+      <Image src={session?.user?.image} alt="" width={100} height={100} />
+    </>
+  ) : (
+    session?.user?.email.substring(0, 2)
+  );
 
   return (
     <>
       <AvatarSyled id="logOut" data-testid="logOut">
-        <Avatar onClick={handleClick}>{first2Letters}</Avatar>
+        <Avatar onClick={handleClick}>{useryData}</Avatar>
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
@@ -35,14 +42,12 @@ const ProfileDropDown = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          {/* <MenuItem onClick={() => instance.logout()}> */}
           <MenuItem component="div" data-testid="accountName">
-            Agustin
+            {session?.user?.name}
           </MenuItem>
           <ExitToAppIcon onClick={logOutHandler} className="ml-auto">
-            Sign Out
+            Salir
           </ExitToAppIcon>
-          {/* </MenuItem> */}
         </Menu>
       </AvatarSyled>
     </>
