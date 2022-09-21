@@ -12,7 +12,7 @@ export const getUserByIdResolver: FieldResolver<
   "Query",
   "GetUserById"
 > = async (_parent, { id }, ctx) => {
-  return await ctx.prisma.user.findFirst({ where: { id: Number(id) } });
+  return await ctx.prisma.user.findFirst({ where: { id: id } });
 };
 
 export const getUserByEmailResolver: FieldResolver<

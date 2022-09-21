@@ -23,6 +23,7 @@ import Header from "../components/Header/header";
 import Sidebar from "../components/sidebar/sidebar";
 import { StyledBody } from "../components/sidebar/styled";
 import UserGroup from "../components/UserGroup";
+import GroupDetail from "../components/GroupDetail";
 
 export const images = [
   {
@@ -162,6 +163,9 @@ export default function Home() {
                   <StyledButton>EMPEZA A JUGAR!</StyledButton>
                 </Link>
               </StyledButtonContainer>
+              <StyledContainer>
+                <GroupDetail />
+              </StyledContainer>
               <StyledContainer>
                 <UserGroup />
               </StyledContainer>

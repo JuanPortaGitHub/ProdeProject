@@ -11,3 +11,17 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const GET_USER_GROUPS = gql`
+  query Query($getUserByIdId: ID) {
+    GetUserById(id: $getUserByIdId) {
+      id
+      name
+      Grupos {
+        id
+        nombre
+        imagen
+      }
+    }
+  }
+`;

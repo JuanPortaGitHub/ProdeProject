@@ -24,7 +24,7 @@ export const User = objectType({
       resolve: (parent, args, context) => {
         return context.prisma.user
           .findUnique({
-            where: { id: Number(parent.id) },
+            where: { id: parent.id },
           })
           .GruposDeUsuario();
       },
