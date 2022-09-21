@@ -7,6 +7,12 @@ import { Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Match } from "../components/groupfase/Match";
 import { getFaseGroupMatches } from "../services/getFaseGroupMatches";
+import {
+  StyledPaperContainer,
+  StyledAccordionSummary,
+  StyledAccordionDetails,
+} from "../styles/groupfase";
+import Image from "next/image";
 
 const GroupFase: NextPage = () => {
   const [groups, SetGroups] = useState([]);
@@ -21,24 +27,30 @@ const GroupFase: NextPage = () => {
 
   useEffect(() => {
     getGroups();
-  }, [groups]);
+  }, []);
 
   return (
-    <div className="App">
+    // <div className="App">
+    <StyledPaperContainer>
       {groups?.map((group, i) => (
         <Accordion
-          sx={{ height: 200, width: "50%" }}
+          // sx={{ height: 200, width: "50%" }}s
           key={i}
-          style={{ margin: "10px 0px", height: 200, width: "50%" }}
+          // style={{ margin: "10px 0px", height: 200, width: "50%" }}
         >
-          <AccordionSummary
+          <StyledAccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>{group.groupName}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
+            <Typography>
+              {group.groupName}
+              {group.badges.map((badge) => (
+                <Image src={badge} alt="badge" width={25} height={25} />
+              ))}
+            </Typography>
+          </StyledAccordionSummary>
+          <StyledAccordionDetails>
             {group.matches.map((match, i) => (
               <Match
                 key={i}
@@ -48,10 +60,10 @@ const GroupFase: NextPage = () => {
                 flagAwayTeam={match.flagAwayTeamURL}
               />
             ))}
-          </AccordionDetails>
+          </StyledAccordionDetails>
         </Accordion>
       ))}
-    </div>
+    </StyledPaperContainer>
   );
 };
 

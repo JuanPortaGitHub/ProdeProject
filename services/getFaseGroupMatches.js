@@ -147,14 +147,14 @@ export const getFaseGroupMatches = async () => {
     }
   }
   matches.push(
-    { groupName: "Group A", matches: [...groupA] },
-    { groupName: "Group B", matches: [...groupB] },
-    { groupName: "Group C", matches: [...groupC] },
-    { groupName: "Group D", matches: [...groupD] },
-    { groupName: "Group E", matches: [...groupE] },
-    { groupName: "Group F", matches: [...groupF] },
-    { groupName: "Group G", matches: [...groupG] },
-    { groupName: "Group H", matches: [...groupH] }
+    { groupName: "Group A", matches: [...groupA], badges: groups[0].badges },
+    { groupName: "Group B", matches: [...groupB], badges: groups[1].badges },
+    { groupName: "Group C", matches: [...groupC], badges: groups[2].badges },
+    { groupName: "Group D", matches: [...groupD], badges: groups[3].badges },
+    { groupName: "Group E", matches: [...groupE], badges: groups[4].badges },
+    { groupName: "Group F", matches: [...groupF], badges: groups[5].badges },
+    { groupName: "Group G", matches: [...groupG], badges: groups[6].badges },
+    { groupName: "Group H", matches: [...groupH], badges: groups[7].badges }
   );
   console.log(matches);
   return matches;

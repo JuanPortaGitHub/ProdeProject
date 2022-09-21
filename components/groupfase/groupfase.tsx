@@ -11,16 +11,21 @@ import { Match } from "./Match";
 import { getFaseGroupMatches } from "../../services/getFaseGroupMatches";
 
 const GroupFase: NextPage = () => {
-  const [groups, SetGroups] = useState([]);
+  const [groups, setGroups] = useState([]);
   const getGroups = async () => {
     const dataGroups = await getFaseGroupMatches();
-    SetGroups(dataGroups);
+    setGroups(dataGroups);
   };
 
   console.log(groups);
 
+  console.log("holas");
+
   useEffect(() => {
-    getGroups();
+    if (groups == []) {
+      console.log(groups);
+      getGroups();
+    }
   }, []);
 
   return (

@@ -41,15 +41,15 @@ const Sidebar = () => {
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      event.preventDefault();
-      if (!containerRef?.current?.contains(event.target)) {
-        setOpen(false);
-      }
-    };
-    window.addEventListener("mousedown", handleClickOutside);
-  }, [containerRef]);
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     event.preventDefault();
+  //     if (!containerRef?.current?.contains(event.target)) {
+  //       setOpen(false);
+  //     }
+  //   };
+  //   window.addEventListener("mousedown", handleClickOutside);
+  // }, [containerRef]);
 
   const toggleHandler = () => {
     setOpen(!open);

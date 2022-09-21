@@ -8,11 +8,16 @@ export const StyledTextField = styled(TextField)`
 `;
 
 export const StyledTeamContainer = styled.div`
-  border-top: 0.1rem solid #ff1554;
-  border-bottom: 0.1rem solid #ff1554;
-  width: 10rem;
-  height: 2rem;
+  /* border-top: 0.1rem solid #ff1554;
+  border-bottom: 0.1rem solid #ff1554; */
+  border: 0.1rem solid #ff1554;
+  gap: 1rem;
+  border-radius: 20px;
+  padding: 0 2rem;
+  width: 100%;
+  /* height: 2rem; */
   background-color: #eeedeb;
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
