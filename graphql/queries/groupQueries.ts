@@ -36,3 +36,20 @@ export const ADD_USER_GROUP = gql`
     }
   }
 `;
+
+export const GET_GROUP_DETAIL = gql`
+  query GetGrupoById($getGrupoByIdId: ID!) {
+    GetGrupoById(id: $getGrupoByIdId) {
+      id
+      nombre
+      slogan
+      monto
+      imagen
+      clave_grupo
+      usuarios {
+        id
+        name
+      }
+    }
+  }
+`;

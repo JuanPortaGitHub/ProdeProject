@@ -11,6 +11,7 @@ export const getGrupoByIdResolver: FieldResolver<
   "Query",
   "GetGrupoById"
 > = async (_parent, { id }, ctx) => {
+  console.log("el id grupo", id);
   return await ctx.prisma.grupo.findFirst({ where: { id: Number(id) } });
 };
 
@@ -100,7 +101,7 @@ export const addUserToGrupo: FieldResolver<"Mutation", "updateGrupo"> = async (
     if (nombreGrupoExist === 0) {
       throw new Error("No se encuentra el grupo o clave incorrecta");
     }
-
+    console.log("iddddd USERRR", idUser);
     const userExistInGroup = await prisma.grupo.count({
       where: {
         AND: [
@@ -116,9 +117,8 @@ export const addUserToGrupo: FieldResolver<"Mutation", "updateGrupo"> = async (
     if (userExistInGroup !== 0) {
       throw new Error("Ya estás en este grupo!");
     }
-
     const editedGroup = await prisma.grupo.update({
-      where: { nombre: nombre.toUpperCase() },
+      where: { nombre: nombre },
       data: {
         UsuariosDeGrupo: {
           connect: { id: idUser },

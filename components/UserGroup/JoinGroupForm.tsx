@@ -62,6 +62,11 @@ const JoinGroupForm = () => {
               <h3>
                 {/* TE UNISTE AL GRUPO {data.JoinUserToGroup.nombre.toUpperCase()} */}
               </h3>
+              {data && (
+                <h3>
+                  TE UNISTE A GRUPO {data.addUserToGrupo.nombre.toUpperCase()}!!
+                </h3>
+              )}
               {error && <h3>{error.message}</h3>}
             </div>
           </form>
