@@ -19,8 +19,6 @@ const GroupFase: NextPage = () => {
     setGroups(dataGroups);
   };
 
-  console.log(groups);
-
   console.log(data ? data : null);
   useEffect(() => {
     if (groups == []) {
@@ -29,10 +27,12 @@ const GroupFase: NextPage = () => {
     }
   }, []);
 
+  console.log(loading);
+
   return (
-    <div id="grupo1" className="">
+    <div id="grupo1">
       {groups?.map((group, i) => (
-        <div style={{ width: "50%" }}>
+        <div key={i} style={{ width: "50%" }}>
           <Accordion square={false} key={i} style={{ margin: "10px 0px" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}

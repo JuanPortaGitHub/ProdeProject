@@ -36,6 +36,9 @@ const GroupFase: NextPage = () => {
     }
   }, [data]);
 
+  console.log(loading);
+  if (loading) return <h2 style={{ color: "white" }}>Loading...</h2>;
+
   return (
     // <div className="App">
     <StyledPaperContainer>
@@ -48,7 +51,7 @@ const GroupFase: NextPage = () => {
           <StyledAccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header"
+            // id="panel1a-header"
           >
             <Typography>
               {group.groupName}
