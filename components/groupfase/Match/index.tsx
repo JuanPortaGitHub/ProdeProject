@@ -18,12 +18,12 @@ export const Match = ({
         // width: "30vw",
         justifyContent: "center",
         alignItems: "center",
-        gap: "6vw",
+        // gap: "6vw",
       }}
     >
       <>
         <TeamContainer team={homeTeam} flag={flagHomeTeam} home={true} />
-        {/* <Image src={flagHomeTeam} alt="" width={100} height={100} /> {homeTeam}*/}
+        {/* <Image src={flagHomeTeam} alt="" width={15} height={15} /> {homeTeam} */}
         <div style={{ display: "flex", alignItems: "center" }}>
           <StyledTextField
             size="small"
@@ -46,7 +46,7 @@ export const Match = ({
           />
         </div>
         <TeamContainer team={awayTeam} flag={flagAwayTeam} home={false} />
-        {/* {awayTeam} <Image src={flagAwayTeam} alt="" width={100} height={100} /> */}
+        {/* {awayTeam} <Image src={flagAwayTeam} alt="" width={15} height={15} /> */}
       </>
     </div>
   );

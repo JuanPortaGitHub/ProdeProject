@@ -20,7 +20,7 @@ import { matchesGroupBuilder } from "../utils/matchesGroupBuilder";
 
 const GroupFase: NextPage = () => {
   const [groups, SetGroups] = useState([]);
-  const { loading, error, data } = useQuery(GET_FASE_GROUP_MATCHES);
+  const { loading, error, data, refetch } = useQuery(GET_FASE_GROUP_MATCHES);
 
   // let dataGroups = [];
   const getGroups = (data) => {
@@ -34,9 +34,12 @@ const GroupFase: NextPage = () => {
     if (data) {
       getGroups(data.GetAllInfoPartidos);
     }
+    if (error) {
+      refetch();
+    }
   }, [data]);
 
-  console.log(loading);
+  console.log(loading, error);
   if (loading) return <h2 style={{ color: "white" }}>Loading...</h2>;
 
   return (
@@ -55,8 +58,8 @@ const GroupFase: NextPage = () => {
           >
             <Typography>
               {group.groupName}
-              {group.badges.map((badge) => (
-                <Image src={badge} alt="badge" width={25} height={25} />
+              {group.badges.map((badge, i) => (
+                <Image src={badge} key={i} alt="badge" width={25} height={25} />
               ))}
             </Typography>
           </StyledAccordionSummary>
