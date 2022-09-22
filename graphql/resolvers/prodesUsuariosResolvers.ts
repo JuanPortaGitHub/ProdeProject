@@ -10,11 +10,12 @@ export const getAllProdeUsuarioResolver: FieldResolver<
 export const getProdeUsuarioByIdResolver: FieldResolver<
   "Query",
   "GetProdePartidoUsuarioById"
-> = async (_parent, { userId, info_PartidosId }, ctx) => {
+> = async (_parent, { userId, info_PartidosId, grupoId }, ctx) => {
   return ctx.prisma.prode_Partido_Usuario.findFirst({
     where: {
-      userId: Number(userId),
+      userId: userId,
       info_PartidosId: Number(info_PartidosId),
+      grupoId: Number(grupoId),
     },
   });
 };
@@ -27,6 +28,7 @@ export const createProdeUsuarioResolver: FieldResolver<
   {
     userId,
     info_PartidosId,
+    grupoId,
     Goles_Local,
     Goles_Visitante,
     Ganador,
@@ -40,6 +42,7 @@ export const createProdeUsuarioResolver: FieldResolver<
     where: {
       userId: userId,
       info_PartidosId: info_PartidosId,
+      grupoId: grupoId,
     },
   });
   if (prodeExist !== 0) {
@@ -49,6 +52,7 @@ export const createProdeUsuarioResolver: FieldResolver<
     data: {
       userId,
       info_PartidosId,
+      grupoId,
       Goles_Local,
       Goles_Visitante,
       Ganador,
@@ -68,6 +72,7 @@ export const updateProdeUsuarioResolver: FieldResolver<
   {
     userId,
     info_PartidosId,
+    grupoId,
     Goles_Local,
     Goles_Visitante,
     Ganador,
@@ -82,6 +87,7 @@ export const updateProdeUsuarioResolver: FieldResolver<
       userId_info_PartidosId: {
         userId: userId,
         info_PartidosId: info_PartidosId,
+        grupoId: grupoId,
       },
     },
     data: {

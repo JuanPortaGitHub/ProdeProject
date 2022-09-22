@@ -76,6 +76,7 @@ model Grupo {
 model Prode_Partido_Usuario {
   info_PartidosId Int
   userId          String
+  grupoId         Int           @default(0)
   Grupo           Grupo?        @relation(fields: [grupoId], references: [id])
   Usuario         User          @relation(fields: [userId], references: [id])
   Partido         Info_Partidos @relation(fields: [info_PartidosId], references: [id])
@@ -87,7 +88,6 @@ model Prode_Partido_Usuario {
   Puntos          Int
   createdAt       DateTime      @default(now()) @db.Timestamptz(3)
   updatedAt       DateTime      @updatedAt @db.Timestamptz(3)
-  grupoId         Int           @default(0)
 
   @@id([userId, info_PartidosId, grupoId])
 }

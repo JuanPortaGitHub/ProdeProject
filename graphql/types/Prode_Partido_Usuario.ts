@@ -20,6 +20,7 @@ export const Prode_Partido_Usuario = objectType({
   definition(t) {
     t.id("userId");
     t.id("info_PartidosId");
+    t.id("grupoId");
     t.string("Goles_Local");
     t.string("Goles_Visitante");
     t.string("Ganador");
@@ -39,7 +40,8 @@ export const Prode_Partido_Usuario = objectType({
                   info_PartidosId:
                     Number(parent.info_PartidosId) || null || undefined,
                 },
-                { userId: Number(parent.userId) || null || undefined },
+                { userId: parent.userId || null || undefined },
+                { grupoId: Number(parent.grupoId) || null || undefined },
               ],
             },
           })
@@ -55,8 +57,9 @@ export const CreateProdeUsuario = extendType({
     t.field("createProdeUsuario", {
       type: Prode_Partido_Usuario,
       args: {
-        userId: nonNull(intArg()),
+        userId: nonNull(stringArg()),
         info_PartidosId: nonNull(intArg()),
+        grupoId: nonNull(intArg()),
         Goles_Local: nonNull(stringArg()),
         Goles_Visitante: nonNull(stringArg()),
         Ganador: nonNull(stringArg()),
@@ -75,8 +78,9 @@ export const UpdateProdeUsuario = extendType({
     t.field("updateProdeUsuario", {
       type: Prode_Partido_Usuario,
       args: {
-        userId: nonNull(intArg()),
+        userId: nonNull(stringArg()),
         info_PartidosId: nonNull(intArg()),
+        grupoId: nonNull(intArg()),
         Goles_Local: stringArg(),
         Goles_Visitante: stringArg(),
         Ganador: stringArg(),
@@ -105,8 +109,9 @@ export const GetProdePartidoUsuarioById = extendType({
     t.field("GetProdePartidoUsuarioById", {
       type: Prode_Partido_Usuario,
       args: {
-        userId: idArg(),
-        info_PartidosId: idArg(),
+        userId: nonNull(stringArg()),
+        info_PartidosId: nonNull(idArg()),
+        grupoId: nonNull(intArg()),
       },
       resolve: getProdeUsuarioByIdResolver,
     });
