@@ -1,17 +1,19 @@
 import type { NextPage } from "next";
 import React, { useState, useEffect } from "react";
-// import { useAuth } from "../context/AuthContext";
-// import { getCurrentUser } from "../firebase/users";
+import { useQuery } from "@apollo/client";
+import { Typography } from "@mui/material";
+
+import { Match } from "./Match";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import { Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Match } from "./Match";
 import { getFaseGroupMatches } from "../../services/getFaseGroupMatches";
+import { GET_FASE_GROUP_MATCHES } from "../../graphql/queries/infoMatchesQueries";
 
 const GroupFase: NextPage = () => {
   const [groups, setGroups] = useState([]);
+  const { loading, error, data } = useQuery(GET_FASE_GROUP_MATCHES);
   const getGroups = async () => {
     const dataGroups = await getFaseGroupMatches();
     setGroups(dataGroups);
@@ -19,8 +21,7 @@ const GroupFase: NextPage = () => {
 
   console.log(groups);
 
-  console.log("holas");
-
+  console.log(data ? data : null);
   useEffect(() => {
     if (groups == []) {
       console.log(groups);
