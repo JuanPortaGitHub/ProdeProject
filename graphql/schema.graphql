@@ -25,8 +25,8 @@ type Grupo {
 
 type Info_Partidos {
   DiaHora: String
-  EquipoLocal: [Equipos]
-  EquipoVisitante: [Equipos]
+  EquipoLocal: Equipos
+  EquipoVisitante: Equipos
   Grupo: String
   Lugar: String
   Prode_Partido_Usuario: [Prode_Partido_Usuario]
@@ -43,10 +43,10 @@ type Info_Partidos {
 type Mutation {
   addUserToGrupo(clave_grupo: String!, idUser: String!, nombre: String!): Grupo
   createGrupo(clave_grupo: String!, idUser: String!, imagen: String!, monto: String!, nombre: String!, slogan: String!): Grupo
-  createProdeUsuario(Ganador: String!, Goles_Local: String!, Goles_Visitante: String!, Penales: Boolean!, Puntos: Int!, Tiempo_Extra: Boolean!, info_PartidosId: Int!, userId: Int!): Prode_Partido_Usuario
+  createProdeUsuario(Ganador: String!, Goles_Local: String!, Goles_Visitante: String!, Penales: Boolean!, Puntos: Int!, Tiempo_Extra: Boolean!, grupoId: Int!, info_PartidosId: Int!, userId: String!): Prode_Partido_Usuario
   createUser(email: String!, name: String!, recivedPassword: String!): User
   updateGrupo(clave_grupo: String, id: Int!, imagen: String, monto: String, nombre: String, slogan: String): Grupo
-  updateProdeUsuario(Ganador: String, Goles_Local: String, Goles_Visitante: String, Penales: Boolean, Puntos: Int, Tiempo_Extra: Boolean, info_PartidosId: Int!, userId: Int!): Prode_Partido_Usuario
+  updateProdeUsuario(Ganador: String, Goles_Local: String, Goles_Visitante: String, Penales: Boolean, Puntos: Int, Tiempo_Extra: Boolean, grupoId: Int!, info_PartidosId: Int!, userId: String!): Prode_Partido_Usuario
   updateUser(id: Int!, name: String, password: String): User
 }
 
@@ -59,6 +59,7 @@ type Prode_Partido_Usuario {
   Puntos: Int
   Tiempo_Extra: Boolean
   createdAt: String
+  grupoId: ID
   info_PartidosId: ID
   updatedAt: String
   userId: ID
@@ -74,7 +75,8 @@ type Query {
   GetEquiposById(id: ID): Equipos
   GetGrupoById(id: ID!): Grupo
   GetInfoPartidoById(id: ID): Info_Partidos
-  GetProdePartidoUsuarioById(info_PartidosId: ID, userId: ID): Prode_Partido_Usuario
+  GetMatchesByGroup(Grupo: String!): [Info_Partidos]
+  GetProdePartidoUsuarioById(grupoId: Int!, info_PartidosId: ID!, userId: String!): Prode_Partido_Usuario
   GetResultadosRealesById(id: ID): Resultados_Reales_Partidos
   GetUserByEmail(email: String): User
   GetUserById(id: ID): User

@@ -1,5 +1,6 @@
-import { enumType, idArg, intArg, objectType, stringArg } from "nexus";
+import { enumType, idArg, intArg, nonNull, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
+import { getMatchesByGroupResolver } from "../resolvers/partidosResolvers";
 import { Equipos } from "./Equipos";
 import { Prode_Partido_Usuario } from "./Prode_Partido_Usuario";
 import { Resultados_Reales_Partidos } from "./Resultados_Reales_Partidos";
@@ -29,20 +30,20 @@ export const Info_Partidos = objectType({
           .Resultado();
       },
     });
-    t.list.field("EquipoLocal", {
+    t.field("EquipoLocal", {
       type: Equipos,
       async resolve(parent, _args, ctx) {
-        return await ctx.prisma.equipos.findMany({
+        return await ctx.prisma.equipos.findFirst({
           where: {
             id: Number(parent.equipoLocalId) || null || undefined,
           },
         });
       },
     });
-    t.list.field("EquipoVisitante", {
+    t.field("EquipoVisitante", {
       type: Equipos,
       async resolve(parent, _args, ctx) {
-        return await ctx.prisma.equipos.findMany({
+        return await ctx.prisma.equipos.findFirst({
           where: {
             id: Number(parent.equipoVisitanteId) || null || undefined,
           },
@@ -83,6 +84,19 @@ export const InfoPartidos_Query = extendType({
           where: { id: Number(id) },
         });
       },
+    });
+  },
+});
+
+export const GetMatchesByGroup = extendType({
+  type: "Query",
+  definition(t) {
+    t.list.field("GetMatchesByGroup", {
+      type: Info_Partidos,
+      args: {
+        Grupo: nonNull(stringArg()),
+      },
+      resolve: getMatchesByGroupResolver,
     });
   },
 });
