@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import TeamContainer from "../../common/teamContainer";
 import { StyledTextField } from "./styled";
+import { t } from "../../../utils/dictionary";
 
 export const Match = ({
   homeTeam,
@@ -22,7 +23,7 @@ export const Match = ({
       }}
     >
       <>
-        <TeamContainer team={homeTeam} flag={flagHomeTeam} home={true} />
+        <TeamContainer team={t(homeTeam)} flag={flagHomeTeam} home={true} />
         {/* <Image src={flagHomeTeam} alt="" width={15} height={15} /> {homeTeam} */}
         <div style={{ display: "flex", alignItems: "center" }}>
           <StyledTextField
@@ -45,7 +46,7 @@ export const Match = ({
             inputProps={{ maxLength: 1, style: { textAlign: "center" } }}
           />
         </div>
-        <TeamContainer team={awayTeam} flag={flagAwayTeam} home={false} />
+        <TeamContainer team={t(awayTeam)} flag={flagAwayTeam} home={false} />
         {/* {awayTeam} <Image src={flagAwayTeam} alt="" width={15} height={15} /> */}
       </>
     </div>

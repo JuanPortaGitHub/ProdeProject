@@ -14,12 +14,12 @@ export const matchesGroupBuilder = (matches) => {
   let groupH = [];
 
   for (let i = 0; i < matches.length; i++) {
-    if (groups[0].teams.includes(matches[i].EquipoLocal[0].nombre_equipo)) {
+    if (groups[0].teams.includes(matches[i].EquipoLocal.nombre_equipo)) {
       const matchData = {
-        homeTeam: matches[i].EquipoLocal[0].nombre_equipo,
+        homeTeam: matches[i].EquipoLocal.nombre_equipo,
         flagHomeTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-        awayTeam: matches[i].EquipoVisitante[0].nombre_equipo,
+        awayTeam: matches[i].EquipoVisitante.nombre_equipo,
         flagAwayTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
         date: matches[i].DiaHora,
@@ -28,12 +28,12 @@ export const matchesGroupBuilder = (matches) => {
       };
       groupA.push(matchData);
     }
-    if (groups[1].teams.includes(matches[i].EquipoLocal[0].nombre_equipo)) {
+    if (groups[1].teams.includes(matches[i].EquipoLocal.nombre_equipo)) {
       const matchData = {
-        homeTeam: matches[i].EquipoLocal[0].nombre_equipo,
+        homeTeam: matches[i].EquipoLocal.nombre_equipo,
         flagHomeTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-        awayTeam: matches[i].EquipoVisitante[0].nombre_equipo,
+        awayTeam: matches[i].EquipoVisitante.nombre_equipo,
         flagAwayTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
         date: matches[i].DiaHora,
@@ -42,12 +42,12 @@ export const matchesGroupBuilder = (matches) => {
       };
       groupB.push(matchData);
     }
-    if (groups[2].teams.includes(matches[i].EquipoLocal[0].nombre_equipo)) {
+    if (groups[2].teams.includes(matches[i].EquipoLocal.nombre_equipo)) {
       const matchData = {
-        homeTeam: matches[i].EquipoLocal[0].nombre_equipo,
+        homeTeam: matches[i].EquipoLocal.nombre_equipo,
         flagHomeTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-        awayTeam: matches[i].EquipoVisitante[0].nombre_equipo,
+        awayTeam: matches[i].EquipoVisitante.nombre_equipo,
         flagAwayTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
         date: matches[i].DiaHora,
@@ -56,12 +56,12 @@ export const matchesGroupBuilder = (matches) => {
       };
       groupC.push(matchData);
     }
-    if (groups[3].teams.includes(matches[i].EquipoLocal[0].nombre_equipo)) {
+    if (groups[3].teams.includes(matches[i].EquipoLocal.nombre_equipo)) {
       const matchData = {
-        homeTeam: matches[i].EquipoLocal[0].nombre_equipo,
+        homeTeam: matches[i].EquipoLocal.nombre_equipo,
         flagHomeTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-        awayTeam: matches[i].EquipoVisitante[0].nombre_equipo,
+        awayTeam: matches[i].EquipoVisitante.nombre_equipo,
         flagAwayTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
         date: matches[i].DiaHora,
@@ -70,12 +70,12 @@ export const matchesGroupBuilder = (matches) => {
       };
       groupD.push(matchData);
     }
-    if (groups[4].teams.includes(matches[i].EquipoLocal[0].nombre_equipo)) {
+    if (groups[4].teams.includes(matches[i].EquipoLocal.nombre_equipo)) {
       const matchData = {
-        homeTeam: matches[i].EquipoLocal[0].nombre_equipo,
+        homeTeam: matches[i].EquipoLocal.nombre_equipo,
         flagHomeTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-        awayTeam: matches[i].EquipoVisitante[0].nombre_equipo,
+        awayTeam: matches[i].EquipoVisitante.nombre_equipo,
         flagAwayTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
         date: matches[i].DiaHora,
@@ -84,12 +84,12 @@ export const matchesGroupBuilder = (matches) => {
       };
       groupE.push(matchData);
     }
-    if (groups[5].teams.includes(matches[i].EquipoLocal[0].nombre_equipo)) {
+    if (groups[5].teams.includes(matches[i].EquipoLocal.nombre_equipo)) {
       const matchData = {
-        homeTeam: matches[i].EquipoLocal[0].nombre_equipo,
+        homeTeam: matches[i].EquipoLocal.nombre_equipo,
         flagHomeTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-        awayTeam: matches[i].EquipoVisitante[0].nombre_equipo,
+        awayTeam: matches[i].EquipoVisitante.nombre_equipo,
         flagAwayTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
         date: matches[i].DiaHora,
@@ -98,12 +98,12 @@ export const matchesGroupBuilder = (matches) => {
       };
       groupF.push(matchData);
     }
-    if (groups[6].teams.includes(matches[i].EquipoLocal[0].nombre_equipo)) {
+    if (groups[6].teams.includes(matches[i].EquipoLocal.nombre_equipo)) {
       const matchData = {
-        homeTeam: matches[i].EquipoLocal[0].nombre_equipo,
+        homeTeam: matches[i].EquipoLocal.nombre_equipo,
         flagHomeTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-        awayTeam: matches[i].EquipoVisitante[0].nombre_equipo,
+        awayTeam: matches[i].EquipoVisitante.nombre_equipo,
         flagAwayTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
         date: matches[i].DiaHora,
@@ -112,12 +112,12 @@ export const matchesGroupBuilder = (matches) => {
       };
       groupG.push(matchData);
     }
-    if (groups[7].teams.includes(matches[i].EquipoLocal[0].nombre_equipo)) {
+    if (groups[7].teams.includes(matches[i].EquipoLocal.nombre_equipo)) {
       const matchData = {
-        homeTeam: matches[i].EquipoLocal[0].nombre_equipo,
+        homeTeam: matches[i].EquipoLocal.nombre_equipo,
         flagHomeTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
-        awayTeam: matches[i].EquipoVisitante[0].nombre_equipo,
+        awayTeam: matches[i].EquipoVisitante.nombre_equipo,
         flagAwayTeamURL:
           "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
         date: matches[i].DiaHora,

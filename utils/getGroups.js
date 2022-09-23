@@ -1,7 +1,7 @@
 export const getGroups = () => {
   const WorldCupGrups = [
     {
-      groupName: "Grupo A",
+      groupName: "A",
       teams: ["Qatar", "Ecuador", "Senegal", "Netherlands"],
       badges: [
         "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
@@ -11,7 +11,7 @@ export const getGroups = () => {
       ],
     },
     {
-      groupName: "Grupo B",
+      groupName: "B",
       teams: ["England", "Iran", "USA", "Wales"],
       badges: [
         "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
@@ -21,7 +21,7 @@ export const getGroups = () => {
       ],
     },
     {
-      groupName: "Grupo C",
+      groupName: "C",
       teams: ["Argentina", "Saudi Arabia", "Mexico", "Poland"],
       badges: [
         "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
@@ -31,7 +31,7 @@ export const getGroups = () => {
       ],
     },
     {
-      groupName: "Grupo D",
+      groupName: "D",
       teams: ["France", "Australia", "Denmark", "Tunisia"],
       badges: [
         "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
@@ -41,7 +41,7 @@ export const getGroups = () => {
       ],
     },
     {
-      groupName: "Grupo E",
+      groupName: "E",
       teams: ["Spain", "Costa Rica", "Germany", "Japan"],
       badges: [
         "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
@@ -51,7 +51,7 @@ export const getGroups = () => {
       ],
     },
     {
-      groupName: "Grupo F",
+      groupName: "F",
       teams: ["Belgium", "Croatia", "Canada", "Morocco"],
       badges: [
         "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
@@ -61,7 +61,7 @@ export const getGroups = () => {
       ],
     },
     {
-      groupName: "Grupo G",
+      groupName: "G",
       teams: ["Brazil", "Serbia", "Switzerland", "Cameroon"],
       badges: [
         "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",
@@ -71,7 +71,7 @@ export const getGroups = () => {
       ],
     },
     {
-      groupName: "Grupo H",
+      groupName: "H",
       teams: ["Portugal", "Ghana", "Uruguay", "South Korea"],
       badges: [
         "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png",

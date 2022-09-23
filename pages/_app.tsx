@@ -14,7 +14,14 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  const noAuthRequired = ["/", "/login", "/", "/#grupo1", "/groupfase"];
+  const noAuthRequired = [
+    "/",
+    "/login",
+    "/",
+    "/#grupo1",
+    "/groupfase",
+    "/miprode",
+  ];
 
   const router = useRouter();
 
