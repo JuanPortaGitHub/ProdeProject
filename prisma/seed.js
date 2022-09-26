@@ -1,7 +1,10 @@
-import { prisma } from "../lib/prisma";
+const { prisma } = require("../lib/prisma");
 
 async function main() {
-  const result = await prisma.equipos.deleteMany({});
+  console.log("ENV", process.env.DATABASE_URL);
+  const result = await prisma.user.findUnique({
+    where: { id: "3" },
+  });
   console.log("result", result);
 }
 
