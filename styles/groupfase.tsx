@@ -8,8 +8,6 @@ export const StyledPaperContainer = styled.div`
   flex-direction: column;
   width: 50%;
   justify-content: center;
-  /* flex-wrap: wrap; */
-  /* width: 100vw; */
   align-self: center;
   gap: 1rem;
   @media (max-width: 600px) {
@@ -20,15 +18,15 @@ export const StyledPaperContainer = styled.div`
 
 export const StyledGroupsContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2rem;
-  width: 100%;
-  /* height: 20rem; */
-  padding: 2rem;
-  /* z-index: 100; */
-  /* background-image: url("/qatargroupbackground.png"); */
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 50%;
+  padding: 1rem;
   @media (max-width: 600px) {
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    width: 100%;
+    height: 50%;
+    overflow-x: scroll;
   }
 `;
 
@@ -41,6 +39,13 @@ export const StyleName = styled.div`
   align-self: flex-end;
   margin: 3px;
   border-radius: 5px;
+`;
+
+export const StyledFlag = styled.div`
+  display: flex;
+  align-items: center;
+  height: 80%;
+  width: 30%;
 `;
 
 export const StyledGroup = styled.div`
@@ -58,12 +63,20 @@ export const StyledGroup = styled.div`
     );
     cursor: pointer;
   }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 45vw;
+    /* height: 30vh; */
+  }
 `;
 
 export const StyledTopScreen = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 600px) {
+    /* height: 50vh; */
+  }
 `;
 
 export const StyledImage = styled.div`
@@ -73,6 +86,16 @@ export const StyledImage = styled.div`
   width: 20%;
   @media (max-width: 600px) {
     display: none;
+  }
+`;
+
+export const StyledprodeContainer = styled.div`
+  display: flex;
+  width: 80%;
+  @media (max-width: 600px) {
+    /* overflow-x: scroll; */
+    flex-direction: column;
+    width: 90%;
   }
 `;
 
@@ -100,9 +123,13 @@ export const StyledGroupTeams = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 70%;
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 export const StyledTeamContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const StyledAccordionSummary = styled(AccordionSummary)`

@@ -27,9 +27,26 @@ a {
 
 ::-webkit-scrollbar-thumb {
   background: #c7bdbd;
+  -webkit-border-radius: 1ex;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #a39a9a;
   opacity: 1;
+}
+
+::-webkit-scrollbar {
+  background: #fff3;
+  -webkit-border-radius: 1ex;
+}
+
+
+::-webkit-scrollbar-corner {
+  background: #fff3;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -8,13 +8,31 @@ export const StyledPaper = styled(Paper)`
 `;
 
 export const StyledMatchesContainer = styled.div`
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  @media (max-width: 600px) {
+    margin-top: 3rem;
+    width: 100%;
+  }
 `;
 
 export const StyledMatches = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
+  width: 100%;
+`;
+
+export const StyledMatch = styled.div`
+  &:hover {
+    background: linear-gradient(
+      to right,
+      #ff1554 0%,
+      rgba(185, 8, 246, 1),
+      #900c3f 100%
+    );
+    cursor: pointer;
+  }
 `;

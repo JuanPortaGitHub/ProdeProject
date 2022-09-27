@@ -2,10 +2,12 @@ import { CircularProgress } from "@mui/material";
 import type { NextPage } from "next";
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
+import { motion } from "framer-motion";
 
 import { Match } from "../Match";
-import { StyledPaper, StyledMatchesContainer, StyledMatches } from "./styled";
+import { StyledMatchesContainer, StyledMatches, StyledMatch } from "./styled";
 import { GET_MATCHES_BY_GROUP } from "../../../graphql/queries/infoMatchesQueries";
+import { getFlagUrl } from "../../../utils/getFlagUrl";
 
 const GroupMatches: NextPage = ({ group }) => {
   const [groups, setGroups] = useState([]);
@@ -14,7 +16,6 @@ const GroupMatches: NextPage = ({ group }) => {
   });
 
   const getGroups = (matches) => {
-    console.log(matches);
     setGroups(matches);
   };
 
@@ -24,27 +25,28 @@ const GroupMatches: NextPage = ({ group }) => {
     }
   }, [data]);
 
-  const flag =
-    "https://www.thesportsdb.com/images/media/team/badge/rrxutp1455461072.png";
-
   return (
     <StyledMatchesContainer id="grupo1">
-      <StyledPaper elevation={3}>
-        {loading && <CircularProgress />}
-        {!loading && (
-          <StyledMatches>
-            {groups?.map((group, i) => (
+      {loading && <CircularProgress />}
+      {!loading && (
+        <StyledMatches>
+          {groups?.map((group, i) => (
+            <StyledMatch
+              as={motion.div}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
               <Match
                 key={i}
                 homeTeam={group.EquipoLocal.nombre_equipo}
-                flagHomeTeam={flag}
+                flagHomeTeam={getFlagUrl(group.EquipoLocal.nombre_equipo)}
                 awayTeam={group.EquipoVisitante.nombre_equipo}
-                flagAwayTeam={flag}
+                flagAwayTeam={getFlagUrl(group.EquipoVisitante.nombre_equipo)}
               />
-            ))}
-          </StyledMatches>
-        )}
-      </StyledPaper>
+            </StyledMatch>
+          ))}
+        </StyledMatches>
+      )}
     </StyledMatchesContainer>
   );
 };
