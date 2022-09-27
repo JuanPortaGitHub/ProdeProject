@@ -70,6 +70,7 @@ type Query {
   GetAllGrupos: [Grupo]
   GetAllInfoPartidos: [Info_Partidos]
   GetAllProdePartidoUsuarios: [Prode_Partido_Usuario]
+  GetAllProdeUserByGroup(grupoId: Int!, grupoPartido: String!, userId: String!): [Prode_Partido_Usuario]
   GetAllResultadosReales: [Resultados_Reales_Partidos]
   GetAllUsers: [User]
   GetEquiposById(id: ID): Equipos

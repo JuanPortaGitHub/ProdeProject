@@ -9,6 +9,7 @@ import {
 import { extendType } from "nexus";
 import {
   createProdeUsuarioResolver,
+  getAllProdeUserByGroupResolver,
   getAllProdeUsuarioResolver,
   getProdeUsuarioByIdResolver,
   updateProdeUsuarioResolver,
@@ -114,6 +115,21 @@ export const GetProdePartidoUsuarioById = extendType({
         grupoId: nonNull(intArg()),
       },
       resolve: getProdeUsuarioByIdResolver,
+    });
+  },
+});
+
+export const GetAllProdeUserByGroup = extendType({
+  type: "Query",
+  definition(t) {
+    t.list.field("GetAllProdeUserByGroup", {
+      type: Prode_Partido_Usuario,
+      args: {
+        userId: nonNull(stringArg()),
+        grupoPartido: nonNull(stringArg()),
+        grupoId: nonNull(intArg()),
+      },
+      resolve: getAllProdeUserByGroupResolver,
     });
   },
 });
