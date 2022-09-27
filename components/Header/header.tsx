@@ -25,7 +25,7 @@ export const headerSections = [
 ];
 
 export const headerSectionsLogged = [
-  { title: "Una Seccion logueado", href: "/" },
+  { title: "Mi prode", href: "/miprode" },
   { title: "Otra Seccion logueado", href: "/" },
   { title: "Otra Seccion logueado", href: "/" },
 ];

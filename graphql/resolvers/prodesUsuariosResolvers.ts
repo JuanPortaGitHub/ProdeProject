@@ -20,37 +20,6 @@ export const getProdeUsuarioByIdResolver: FieldResolver<
   });
 };
 
-export const getAllProdeUserByGroupResolver: FieldResolver<
-  "Query",
-  "getAllProdeUserByGroupResolver"
-> = async (_parent, { userId, grupoPartido, grupoId }, ctx) => {
-  return ctx.prisma.prode_Partido_Usuario.findMany({
-    where: {
-      grupoId: grupoId,
-      userId: userId,
-    },
-    include: {
-      Partido: {
-        select: {
-          Grupo: true,
-        },
-      },
-    },
-    // return ctx.prisma.info_Partidos.findMany({
-    //   where: {
-    //     Grupo: grupoPartido,
-    //   },
-    //   select: {
-    //     Prode_Partido_Usuario: {
-    //       where: {
-    //         userId: userId,
-    //         grupoId: grupoId,
-    //       },
-    //     },
-    //   },
-  });
-};
-
 export const createProdeUsuarioResolver: FieldResolver<
   "Mutation",
   "createProdeUsuario"

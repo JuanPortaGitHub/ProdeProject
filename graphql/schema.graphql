@@ -29,7 +29,7 @@ type Info_Partidos {
   EquipoVisitante: Equipos
   Grupo: String
   Lugar: String
-  Prode_Partido_Usuario: [Prode_Partido_Usuario]
+  Prode_Partido_Usuario(grupoId: Int!, userId: String!): Prode_Partido_Usuario
   RondaTorneo: String
   createdAt: String
   equipoLocalId: String
@@ -70,7 +70,7 @@ type Query {
   GetAllGrupos: [Grupo]
   GetAllInfoPartidos: [Info_Partidos]
   GetAllProdePartidoUsuarios: [Prode_Partido_Usuario]
-  GetAllProdeUserByGroup(grupoId: Int!, grupoPartido: String!, userId: String!): [Prode_Partido_Usuario]
+  GetAllProdeUserByGroup(grupoId: Int!, grupoPartido: String!, userId: String!): [Info_Partidos]
   GetAllResultadosReales: [Resultados_Reales_Partidos]
   GetAllUsers: [User]
   GetEquiposById(id: ID): Equipos

@@ -21,6 +21,10 @@ export const StyledTeamContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  @media (max-width: 600px) {
+    padding: 0;
+  }
 `;
 
 export const StyleArrowRight = styled.div`

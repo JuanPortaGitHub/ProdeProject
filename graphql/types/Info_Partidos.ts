@@ -1,6 +1,9 @@
-import { enumType, idArg, intArg, nonNull, objectType, stringArg } from "nexus";
+import { idArg, intArg, nonNull, objectType, stringArg } from "nexus";
 import { extendType } from "nexus";
-import { getMatchesByGroupResolver } from "../resolvers/partidosResolvers";
+import {
+  getAllProdeUserByGroupResolver,
+  getMatchesByGroupResolver,
+} from "../resolvers/partidosResolvers";
 import { Equipos } from "./Equipos";
 import { Prode_Partido_Usuario } from "./Prode_Partido_Usuario";
 import { Resultados_Reales_Partidos } from "./Resultados_Reales_Partidos";
@@ -50,16 +53,24 @@ export const Info_Partidos = objectType({
         });
       },
     });
-    t.list.field("Prode_Partido_Usuario", {
+    t.field("Prode_Partido_Usuario", {
       type: Prode_Partido_Usuario,
-      async resolve(parent, _args, ctx) {
-        return await ctx.prisma.info_Partidos
-          .findUnique({
-            where: {
-              id: parent.id || null || undefined,
-            },
-          })
-          .Prode_Partido_Usuario();
+      args: {
+        userId: nonNull(stringArg()),
+        grupoId: nonNull(intArg()),
+      },
+      async resolve(parent, args, ctx) {
+        return await ctx.prisma.prode_Partido_Usuario.findFirst({
+          where: {
+            AND: [
+              {
+                info_PartidosId: Number(parent.id) || null || undefined,
+              },
+              { userId: args.userId || null || undefined },
+              { grupoId: Number(args.grupoId) || null || undefined },
+            ],
+          },
+        });
       },
     });
   },
