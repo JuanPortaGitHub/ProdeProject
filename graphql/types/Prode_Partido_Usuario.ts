@@ -7,7 +7,6 @@ import {
   stringArg,
 } from "nexus";
 import { extendType } from "nexus";
-import { getAllProdeUserByGroupResolver } from "../resolvers/partidosResolvers";
 import {
   createProdeUsuarioResolver,
   getAllProdeUsuarioResolver,
@@ -115,21 +114,6 @@ export const GetProdePartidoUsuarioById = extendType({
         grupoId: nonNull(intArg()),
       },
       resolve: getProdeUsuarioByIdResolver,
-    });
-  },
-});
-
-export const GetAllProdeUserByGroup = extendType({
-  type: "Query",
-  definition(t) {
-    t.list.field("GetAllProdeUserByGroup", {
-      type: Info_Partidos,
-      args: {
-        userId: nonNull(stringArg()),
-        grupoPartido: nonNull(stringArg()),
-        grupoId: nonNull(intArg()),
-      },
-      resolve: getAllProdeUserByGroupResolver,
     });
   },
 });

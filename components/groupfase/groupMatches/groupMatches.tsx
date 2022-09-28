@@ -32,6 +32,7 @@ const GroupMatches: NextPage = ({ group }) => {
         <StyledMatches>
           {groups?.map((group, i) => (
             <StyledMatch
+              key={i}
               as={motion.div}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}

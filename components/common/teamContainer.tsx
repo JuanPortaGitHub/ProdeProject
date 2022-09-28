@@ -9,7 +9,13 @@ import {
   Container,
 } from "./styled";
 
-const TeamContainer = ({ team, flag, home }) => {
+interface Props {
+  team: string;
+  flag: string;
+  home: string;
+}
+
+const TeamContainer = ({ team, flag, home }: Props) => {
   return (
     <>
       {home ? (

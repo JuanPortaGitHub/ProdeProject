@@ -6,7 +6,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <title>Prode Qatar</title>
+          {/* <title>Prode Qatar</title> */}
           <meta
             name="description"
             content="Aplicacion de prode para jugar con tus amigos"
