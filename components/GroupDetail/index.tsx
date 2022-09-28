@@ -11,7 +11,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { GET_USER_GROUPS } from "../../graphql/queries/userQueries";
-import { GroupInfoDetails } from "./groupInfoDetails";
+import { GroupInfoDetails } from "./GroupInfoDetails";
 
 const GroupDetail = () => {
   const [selectedGrupo, setSelectedGrupo] = useState("");
