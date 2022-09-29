@@ -6,18 +6,20 @@ import { motion } from "framer-motion";
 
 import { Match } from "../Match";
 import { StyledMatchesContainer, StyledMatches, StyledMatch } from "./styled";
-import { GET_MATCHES_BY_GROUP } from "../../../graphql/queries/infoMatchesQueries";
+import { GET_MATCHES_BY_GROUPFASE_GROUP } from "../../../graphql/queries/infoMatchesQueries";
 import { getFlagUrl } from "../../../utils/getFlagUrl";
 
-const GroupMatches: NextPage = ({ group }) => {
+const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   const [groups, setGroups] = useState([]);
-  const { loading, error, data } = useQuery(GET_MATCHES_BY_GROUP, {
-    variables: { grupo: group },
+  const { loading, error, data } = useQuery(GET_MATCHES_BY_GROUPFASE_GROUP, {
+    variables: { grupo: teamsGroup, userId: userId, grupoId: +userGroup },
   });
 
   const getGroups = (matches) => {
     setGroups(matches);
   };
+
+  console.log(data);
 
   useEffect(() => {
     if (data) {
