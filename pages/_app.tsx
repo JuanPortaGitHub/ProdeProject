@@ -20,7 +20,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     "/",
     "/#grupo1",
     "/groupfase",
-    "/miprode",
+    "/mi-prode/fase-de-grupo",
+    "/mi-prode",
+    "/mi-prode/tabla-de-posiciones",
   ];
 
   const router = useRouter();

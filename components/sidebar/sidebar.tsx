@@ -41,15 +41,15 @@ const Sidebar = () => {
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     event.preventDefault();
-  //     if (!containerRef?.current?.contains(event.target)) {
-  //       setOpen(false);
-  //     }
-  //   };
-  //   window.addEventListener("mousedown", handleClickOutside);
-  // }, [containerRef]);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      event.preventDefault();
+      if (!containerRef?.current?.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+  }, [containerRef]);
 
   const toggleHandler = () => {
     setOpen(!open);
@@ -62,11 +62,13 @@ const Sidebar = () => {
       animate={open ? "open" : "closed"}
       custom={height}
       ref={containerRef}
+      style={{ zIndex: open ? "35" : "3" }}
     >
       <StyledBackground
         as={motion.div}
         className="background"
         variants={sidebar}
+        // style={{ zIndex: open ? "35" : "20" }}
       />
       <Navigation />
       <MenuToggle toggle={() => toggleHandler()} />

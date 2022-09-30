@@ -42,7 +42,7 @@ export const StyledContainer = styled.div`
   right: 0;
   opacity: 0.9;
   /* z-index: 5; v    b3 */
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
   display: flex;
   flex-direction: column;

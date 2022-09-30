@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import styled from "styled-components";
 
 export const AvatarSyled = styled.div`
@@ -29,6 +30,15 @@ export const StyledList = styled.ul`
   @media (max-width: 600px) {
     display: none;
   }
+`;
+
+export const StyledTextfield = styled(TextField)`
+  /* margin: 10px 10px 10px 10px !important; */
+  background-color: white;
+  width: 10rem;
+  /* .MuiInputBase {
+    background-color: #fff !important;
+  } */
 `;
 
 export const StyledAnchor = styled.a`

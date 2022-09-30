@@ -2,6 +2,7 @@ import styled from "styled-components";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Accordion from "@mui/material/Accordion";
+import { TextField } from "@mui/material";
 
 export const StyledPaperContainer = styled.div`
   display: flex;
@@ -74,15 +75,22 @@ export const StyledTopScreen = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  /* margin-top: 6rem; */
+  padding-top: 6rem;
+  padding-right: 2rem;
+  /* z-index: 30; */
   @media (max-width: 600px) {
+    padding-top: 6rem;
     /* height: 50vh; */
+    padding-right: 0rem;
   }
 `;
 
 export const StyledImage = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: space-between; */
+  flex-direction: column;
   width: 20%;
   @media (max-width: 600px) {
     display: none;
@@ -105,6 +113,17 @@ export const StyledGroupName = styled.div`
   flex-direction: column;
   align-items: center;
   width: 30%;
+`;
+
+export const StyledTextfield = styled(TextField)`
+  /* mar  gin: 10px 10px 10px 10px !important; */
+  justify-self: flex-start;
+  background-color: white;
+  width: 10rem;
+  margin-bottom: 5rem;
+  /* .MuiInputBase {
+    background-color: #fff !important;
+  } */
 `;
 
 export const StyledH4 = styled.h4`
