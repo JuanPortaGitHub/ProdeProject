@@ -18,17 +18,18 @@ import {
 import { motion } from "framer-motion";
 
 const CreateGroupForm = () => {
+  const [logo, setLogo] = useState("/icons/1.png");
+  const [disableFields, setDisableFields] = useState(false);
   const groupName = useRef();
   const groupPassword = useRef();
   const groupSlogan = useRef();
   const groupAmount = useRef();
 
-  const [logo, setLogo] = useState("/icons/1.png");
-
   const { data: session } = useSession();
 
   const [CreateNewGroup, { data, loading, error }] = useMutation(CREATE_GROUP, {
     onCompleted(data) {
+      setDisableFields(false);
       console.log("data", data);
       groupName.current.value = "";
       setLogo("/icons/1.png");
@@ -37,11 +38,13 @@ const CreateGroupForm = () => {
       groupAmount.current.value = "";
     },
     onError(error) {
+      setDisableFields(false);
       console.log("errorrr", error);
     },
   });
   async function submitHandler(event: { preventDefault: () => void }) {
     event.preventDefault();
+    setDisableFields(true);
     CreateNewGroup({
       variables: {
         nombre: groupName.current.value,
@@ -94,28 +97,52 @@ const CreateGroupForm = () => {
         </IconsGrid>
         <StyledControl>
           <StyledInputLabel htmlFor="nombre">Nombre</StyledInputLabel>
-          <StyledInput type="text" id="text" required ref={groupName} />
+          <StyledInput
+            disabled={disableFields}
+            type="text"
+            id="text"
+            required
+            ref={groupName}
+          />
         </StyledControl>
         <StyledControl>
           <StyledInputLabel htmlFor="slogan">Frase de grupo</StyledInputLabel>
-          <StyledInput type="text" id="slogan" required ref={groupSlogan} />
+          <StyledInput
+            disabled={disableFields}
+            type="text"
+            id="slogan"
+            required
+            ref={groupSlogan}
+          />
         </StyledControl>
         <StyledControl>
           <StyledInputLabel htmlFor="password">
             Contraseña Ingreso
           </StyledInputLabel>
-          <StyledInput type="text" id="password" required ref={groupPassword} />
+          <StyledInput
+            disabled={disableFields}
+            type="text"
+            id="password"
+            required
+            ref={groupPassword}
+          />
         </StyledControl>
         <StyledControl>
           <StyledInputLabel htmlFor="monto">Monto a jugar</StyledInputLabel>
-          <StyledInput type="number" id="monto" required ref={groupAmount} />
+          <StyledInput
+            disabled={disableFields}
+            type="number"
+            id="monto"
+            required
+            ref={groupAmount}
+          />
         </StyledControl>
         <div>
           {loading ? (
             <CircularProgress color="inherit" />
           ) : (
             <>
-              <StyledButton>Crear grupo</StyledButton>
+              <StyledButton disabled={disableFields}>Crear grupo</StyledButton>
             </>
           )}
           {data && (
