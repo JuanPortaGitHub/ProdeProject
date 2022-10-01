@@ -17,6 +17,7 @@ import {
   StyledButton,
   StyledButtonContainer,
   StyleMainComponent,
+  StyledUserGroupContainer,
 } from "../styles/styled";
 import RegisterLogin from "../components/registerLogin/registerLogin";
 import Header from "../components/Header/header";
@@ -166,12 +167,7 @@ export default function Home() {
                   <StyledButton>EMPEZA A JUGAR!</StyledButton>
                 </Link>
               </StyledButtonContainer>
-              <StyledContainer>
-                <GroupDetail />
-              </StyledContainer>
-              <StyledContainer>
-                <UserGroup />
-              </StyledContainer>
+              <UserGroup />
             </StyleMainComponent>
           </>
         )}

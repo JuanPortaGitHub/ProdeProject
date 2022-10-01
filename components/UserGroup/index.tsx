@@ -1,18 +1,15 @@
 import CreateGroupForm from "./CreateGroupForm";
 import JoinGroupForm from "./JoinGroupForm";
+import { StyledGrid } from "./syled";
 
 const UserGroup = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-        alignContent: "center",
-      }}
-    >
-      <CreateGroupForm />
-      <JoinGroupForm />
-    </div>
+    <>
+      <StyledGrid container>
+        <CreateGroupForm />
+        <JoinGroupForm />
+      </StyledGrid>
+    </>
   );
 };
 
