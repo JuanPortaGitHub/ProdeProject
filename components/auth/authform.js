@@ -10,21 +10,25 @@ import {
   StyledInput,
   StyledInputLabel,
   StyledMainComponent,
+  StyledResultText,
 } from "./styled";
 
 const AuthForm = () => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [disableFields, setDisableFields] = useState(false);
+  const [loadingLogin, setLoadingLogin] = useState(false);
+  const [errorLogin, setErrorLogin] = useState();
   const firstNameRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  const [isLogin, setIsLogin] = useState(true);
   const { data: session } = useSession();
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
 
-  const [createNewUser, { data, loading, error }] = useMutation(ADD_USER, {
+  const [createNewUser, { error }] = useMutation(ADD_USER, {
     onCompleted(data) {
       console.log("data", data);
     },
@@ -34,6 +38,9 @@ const AuthForm = () => {
   });
   async function submitHandler(event) {
     event.preventDefault();
+    setErrorLogin(false);
+    setLoadingLogin(true);
+    setDisableFields(true);
 
     if (!isLogin) {
       const enteredFirstName = firstNameRef.current.value;
@@ -55,17 +62,19 @@ const AuthForm = () => {
         password: enteredPassword,
       })
         .then((res) => {
-          console.log("response", res);
+          res.error && setErrorLogin(res.error);
         })
         .then(console.log("Session", session))
         .catch((error) => console.log(error));
     }
+    setDisableFields(false);
+    setLoadingLogin(false);
   }
 
   return (
     <StyledMainComponent>
       <StyledCardTitle>{!isLogin ? "Registro" : "Ingresar"}</StyledCardTitle>
-      <form onSubmit={submitHandler}>
+      <form>
         {!isLogin && (
           <>
             <StyledControl>
@@ -75,13 +84,21 @@ const AuthForm = () => {
                 id="Nombre"
                 required
                 ref={firstNameRef}
+                disabled={disableFields}
               />
             </StyledControl>
           </>
         )}
         <StyledControl>
           <StyledInputLabel htmlFor="email">Email</StyledInputLabel>
-          <StyledInput type="email" id="email" required ref={emailInputRef} />
+          <StyledInput
+            type="email"
+            id="email"
+            style={{ textTransform: "lowercase" }}
+            required
+            ref={emailInputRef}
+            disabled={disableFields}
+          />
         </StyledControl>
         <StyledControl>
           <StyledInputLabel htmlFor="password">Password</StyledInputLabel>
@@ -90,21 +107,28 @@ const AuthForm = () => {
             id="password"
             required
             ref={passwordInputRef}
+            disabled={disableFields}
           />
         </StyledControl>
-        {loading ? (
+        {loadingLogin ? (
           <CircularProgress color="inherit" />
         ) : (
           <>
-            <StyledButton>{isLogin ? "Ingresar" : "Crear Cuenta"}</StyledButton>
-            <StyledButton onClick={switchAuthModeHandler}>
+            <StyledButton onClick={submitHandler}>
+              {isLogin ? "Ingresar" : "Crear Cuenta"}
+            </StyledButton>
+            <StyledButton
+              disabled={disableFields}
+              onClick={switchAuthModeHandler}
+            >
               {isLogin ? "No tengo cuenta" : "Ya estoy registrado"}
             </StyledButton>
           </>
         )}
-        {error && <h3>{error.message}</h3>}
+        {error && <StyledResultText>{error.message}</StyledResultText>}
+        {errorLogin && <StyledResultText>{errorLogin}</StyledResultText>}
       </form>
-      <StyledButton onClick={() => signIn("google")}>
+      <StyledButton disabled={disableFields} onClick={() => signIn("google")}>
         Inicia Sesión con Google
       </StyledButton>
     </StyledMainComponent>

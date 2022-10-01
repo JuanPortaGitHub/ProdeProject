@@ -15,6 +15,7 @@ import {
 } from "./syled";
 
 const JoinGroupForm = () => {
+  const [disableFields, setDisableFields] = useState(false);
   const groupName = useRef();
   const groupPassword = useRef();
 
@@ -24,17 +25,20 @@ const JoinGroupForm = () => {
     ADD_USER_GROUP,
     {
       onCompleted(data) {
-        console.log("dataaa", data);
+        setDisableFields(false);
+        console.log("data", data);
         groupName.current.value = "";
         groupPassword.current.value = "";
       },
       onError(error) {
-        console.log("errorrr", error);
+        setDisableFields(false);
+        console.log("error", error);
       },
     }
   );
   async function submitHandler(event: { preventDefault: () => void }) {
     event.preventDefault();
+    setDisableFields(true);
     JoinUserToGroup({
       variables: {
         nombre: groupName.current.value,
@@ -50,25 +54,39 @@ const JoinGroupForm = () => {
       <form onSubmit={submitHandler}>
         <StyledControl>
           <StyledInputLabel htmlFor="nombre">Nombre Grupo</StyledInputLabel>
-          <StyledInput type="text" id="text" required ref={groupName} />
+          <StyledInput
+            disabled={disableFields}
+            type="text"
+            id="text"
+            required
+            ref={groupName}
+          />
         </StyledControl>
         <StyledControl>
           <StyledInputLabel htmlFor="password">
             Contraseña Ingreso
           </StyledInputLabel>
-          <StyledInput type="text" id="password" required ref={groupPassword} />
+          <StyledInput
+            disabled={disableFields}
+            type="text"
+            id="password"
+            required
+            ref={groupPassword}
+          />
         </StyledControl>
         <div>
           {loading ? (
             <CircularProgress color="inherit" />
           ) : (
             <>
-              <StyledButton>Unirse a grupo</StyledButton>
+              <StyledButton disabled={disableFields}>
+                Unirse a grupo
+              </StyledButton>
             </>
           )}
           {data && (
             <StyledResultText>
-              Te uniste al grupo {data.createGrupo.nombre}!
+              Te uniste al grupo {data.addUserToGrupo.nombre}!
             </StyledResultText>
           )}
           {error && <StyledResultText>{error.message}</StyledResultText>}

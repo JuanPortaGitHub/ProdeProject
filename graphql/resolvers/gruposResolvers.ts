@@ -11,7 +11,6 @@ export const getGrupoByIdResolver: FieldResolver<
   "Query",
   "GetGrupoById"
 > = async (_parent, { id }, ctx) => {
-  console.log("el id grupo", id);
   return await ctx.prisma.grupo.findFirst({ where: { id: Number(id) } });
 };
 
@@ -33,9 +32,9 @@ export const createGrupoResolver: FieldResolver<
   }
   const newGroup = await prisma.grupo.create({
     data: {
-      nombre: nombre.toUpperCase(),
+      nombre: nombre.toLowerCase(),
       imagen,
-      clave_grupo: clave_grupo.toUpperCase(),
+      clave_grupo: clave_grupo.toLowerCase(),
       slogan,
       monto,
       UsuariosDeGrupo: {
@@ -60,7 +59,7 @@ export const updateGrupoResolver: FieldResolver<
   if (nombre) {
     const nombreGrupoExist = await prisma.grupo.count({
       where: {
-        nombre: nombre.toUpperCase(),
+        nombre: nombre.toLowerCase(),
       },
     });
     if (nombreGrupoExist !== 0) {
@@ -70,9 +69,9 @@ export const updateGrupoResolver: FieldResolver<
   const editedGroup = await prisma.grupo.update({
     where: { id: id },
     data: {
-      nombre: nombre != null ? nombre.toUpperCase() : undefined, //para que funcione como patch
+      nombre: nombre != null ? nombre.toLowerCase() : undefined, //para que funcione como patch
       imagen: imagen != null ? imagen : undefined, //para que funcione como patch
-      clave_grupo: clave_grupo != null ? clave_grupo.toUpperCase() : undefined, //para que funcione como patch
+      clave_grupo: clave_grupo != null ? clave_grupo.toLowerCase() : undefined, //para que funcione como patch
       slogan: slogan != null ? slogan : undefined, //para que funcione como patch
       monto: monto != null ? monto : undefined, //para que funcione como patch
     },
@@ -101,7 +100,6 @@ export const addUserToGrupo: FieldResolver<"Mutation", "updateGrupo"> = async (
     if (nombreGrupoExist === 0) {
       throw new Error("No se encuentra el grupo o clave incorrecta");
     }
-    console.log("iddddd USERRR", idUser);
     const userExistInGroup = await prisma.grupo.count({
       where: {
         AND: [

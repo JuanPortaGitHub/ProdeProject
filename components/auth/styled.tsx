@@ -13,6 +13,7 @@ export const StyledMainComponent = styled(Paper)`
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  min-width: 20%;
   @media (max-width: 600px) {
     width: 90%;
   }
@@ -73,7 +74,6 @@ export const StyledInput = styled("input")({
   textSlign: "left",
   padding: "0.25rem",
   font: "inherit",
-  textTransform: "lowercase",
 });
 
 export const StyledIconSelect = styled(Select)({
