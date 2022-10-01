@@ -16,7 +16,6 @@ import {
   IconsGrid,
 } from "./syled";
 import { motion } from "framer-motion";
-import { Carousel } from "react-responsive-carousel";
 
 const CreateGroupForm = () => {
   const groupName = useRef();
@@ -70,36 +69,6 @@ const CreateGroupForm = () => {
       src: "/icons/3.png",
       value: "icon3",
     },
-    {
-      label: "Icono 1",
-      src: "/icons/1.png",
-      value: "icon1",
-    },
-    {
-      label: "Icono 2",
-      src: "/icons/2.png",
-      value: "icon2",
-    },
-    {
-      label: "Icono 3",
-      src: "/icons/3.png",
-      value: "icon3",
-    },
-    {
-      label: "Icono 1",
-      src: "/icons/1.png",
-      value: "icon1",
-    },
-    {
-      label: "Icono 2",
-      src: "/icons/2.png",
-      value: "icon2",
-    },
-    {
-      label: "Icono 3",
-      src: "/icons/3.png",
-      value: "icon3",
-    },
   ];
 
   return (
@@ -107,15 +76,7 @@ const CreateGroupForm = () => {
       <StyledCardTitle>Crea un grupo y jugá con tus amigos</StyledCardTitle>
       <form onSubmit={submitHandler}>
         <StyledInputLabel htmlFor="logo">Logo</StyledInputLabel>
-        <Carousel
-          autoPlay
-          showStatus={false}
-          showThumbs={false}
-          infiniteLoop
-          interval={2500}
-          showArrows={true}
-          showIndicators={false}
-        >
+        <IconsGrid>
           {icons.map((icon, key) => (
             <motion.div key={key} onClick={() => setLogo(icon.src)}>
               <IconContainer
@@ -130,7 +91,7 @@ const CreateGroupForm = () => {
               </IconContainer>
             </motion.div>
           ))}
-        </Carousel>
+        </IconsGrid>
         <StyledControl>
           <StyledInputLabel htmlFor="nombre">Nombre</StyledInputLabel>
           <StyledInput type="text" id="text" required ref={groupName} />

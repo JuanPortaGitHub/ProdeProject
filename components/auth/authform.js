@@ -1,10 +1,16 @@
 import { useState, useRef } from "react";
-import { useSession, signIn, signOut, getSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useSession, signIn } from "next-auth/react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../graphql/queries/userQueries";
-import classes from "./authform.module.css";
 import { CircularProgress } from "@mui/material";
+import {
+  StyledButton,
+  StyledCardTitle,
+  StyledControl,
+  StyledInput,
+  StyledInputLabel,
+  StyledMainComponent,
+} from "./styled";
 
 const AuthForm = () => {
   const firstNameRef = useRef();
@@ -56,65 +62,52 @@ const AuthForm = () => {
     }
   }
 
-  const verSession = async () => {
-    console.log("session", session);
-  };
-
   return (
-    <>
-      {/* {!session && ( */}
-      <>
-        <section className={classes.auth}>
-          <h1>{!isLogin ? "Registro" : "Ingresar"}</h1>
-          <form onSubmit={submitHandler}>
-            {!isLogin && (
-              <>
-                <div className={classes.control}>
-                  <label htmlFor="Nombre">Nombre</label>
-                  <input type="text" id="Nombre" required ref={firstNameRef} />
-                </div>
-              </>
-            )}
-            <div className={classes.control}>
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" required ref={emailInputRef} />
-            </div>
-            <div className={classes.control}>
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
+    <StyledMainComponent>
+      <StyledCardTitle>{!isLogin ? "Registro" : "Ingresar"}</StyledCardTitle>
+      <form onSubmit={submitHandler}>
+        {!isLogin && (
+          <>
+            <StyledControl>
+              <StyledInputLabel htmlFor="Nombre">Nombre</StyledInputLabel>
+              <StyledInput
+                type="text"
+                id="Nombre"
                 required
-                ref={passwordInputRef}
+                ref={firstNameRef}
               />
-            </div>
-            <div className={classes.actions}>
-              {loading ? (
-                <CircularProgress color="inherit" />
-              ) : (
-                <>
-                  <button>{isLogin ? "Ingresar" : "Crear Cuenta"}</button>
-                  <button
-                    type="button"
-                    className={classes.toggle}
-                    onClick={switchAuthModeHandler}
-                  >
-                    {isLogin ? "No tengo cuenta" : "Ya estoy registrado"}
-                  </button>{" "}
-                </>
-              )}
-              {error && <h3>{error.message}</h3>}
-            </div>
-          </form>
-          <button style={{ marginTop: 10 }} onClick={() => signIn("google")}>
-            Inicia Sesión con Google
-          </button>
-        </section>
-      </>
-      {/* )} */}
-      <button onClick={() => verSession()}>SESSION</button>
-    </>
+            </StyledControl>
+          </>
+        )}
+        <StyledControl>
+          <StyledInputLabel htmlFor="email">Email</StyledInputLabel>
+          <StyledInput type="email" id="email" required ref={emailInputRef} />
+        </StyledControl>
+        <StyledControl>
+          <StyledInputLabel htmlFor="password">Password</StyledInputLabel>
+          <StyledInput
+            type="password"
+            id="password"
+            required
+            ref={passwordInputRef}
+          />
+        </StyledControl>
+        {loading ? (
+          <CircularProgress color="inherit" />
+        ) : (
+          <>
+            <StyledButton>{isLogin ? "Ingresar" : "Crear Cuenta"}</StyledButton>
+            <StyledButton onClick={switchAuthModeHandler}>
+              {isLogin ? "No tengo cuenta" : "Ya estoy registrado"}
+            </StyledButton>
+          </>
+        )}
+        {error && <h3>{error.message}</h3>}
+      </form>
+      <StyledButton onClick={() => signIn("google")}>
+        Inicia Sesión con Google
+      </StyledButton>
+    </StyledMainComponent>
   );
 };
-
 export default AuthForm;

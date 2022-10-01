@@ -13,24 +13,8 @@ export const StyledMainComponent = styled(Paper)`
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  min-width: 20%;
   @media (max-width: 600px) {
     width: 90%;
-  }
-`;
-
-export const StyledGrid = styled(Grid)`
-  background-image: url(${bg.src});
-  background-size: cover;
-  opacity: 88%;
-  padding-top: 17rem;
-  width: 100%;
-  align-self: center;
-
-  @media (max-width: 600px) {
-    padding-top: 20rem;
-    width: 100%;
-    background-size: 1100px 100%;
   }
 `;
 
@@ -106,7 +90,6 @@ export const StyledControl = styled("div")({
 export const IconsGrid = styled("div")({
   marginBottom: "0.5rem",
   display: "flex",
-  justifyContent: "center",
 });
 
 export const StyledButton = styled("button")({
@@ -117,5 +100,5 @@ export const StyledButton = styled("button")({
   border: "1px solid white",
   borderRadius: "4px",
   padding: "0.5rem 2.5rem",
-  marginTop: "1.5rem",
+  margin: "0.5rem 1.5rem 0.5rem 1rem",
 });
