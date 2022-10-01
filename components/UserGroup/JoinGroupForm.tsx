@@ -11,6 +11,7 @@ import {
   StyledInputLabel,
   StyledMainComponent,
   StyledCardTitle,
+  StyledResultText,
 } from "./syled";
 
 const JoinGroupForm = () => {
@@ -45,7 +46,7 @@ const JoinGroupForm = () => {
 
   return (
     <StyledMainComponent>
-      <StyledCardTitle>Únete a un grupo ya creado</StyledCardTitle>
+      <StyledCardTitle>Unite a un grupo</StyledCardTitle>
       <form onSubmit={submitHandler}>
         <StyledControl>
           <StyledInputLabel htmlFor="nombre">Nombre Grupo</StyledInputLabel>
@@ -65,8 +66,12 @@ const JoinGroupForm = () => {
               <StyledButton>Unirse a grupo</StyledButton>
             </>
           )}
-          {data && <h3>Te uniste al grupo {data.addUserToGrupo.nombre}!!</h3>}
-          {error && <h3>{error.message}</h3>}
+          {data && (
+            <StyledResultText>
+              Te uniste al grupo {data.createGrupo.nombre}!
+            </StyledResultText>
+          )}
+          {error && <StyledResultText>{error.message}</StyledResultText>}
         </div>
       </form>
     </StyledMainComponent>

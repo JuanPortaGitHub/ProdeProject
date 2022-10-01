@@ -54,7 +54,22 @@ export const StyledDivider = styled.div`
   }
 `;
 
+export const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin: 0 10px;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
 export const StyledCardTitle = styled.h3`
+  color: white;
+`;
+
+export const StyledResultText = styled.h4`
   color: white;
 `;
 
@@ -72,6 +87,7 @@ export const StyledInput = styled("input")({
   textSlign: "left",
   padding: "0.25rem",
   font: "inherit",
+  textTransform: "lowercase",
 });
 
 export const StyledIconSelect = styled(Select)({
@@ -83,6 +99,11 @@ export const StyledControl = styled("div")({
   marginBottom: "0.5rem",
   display: "flex",
   flexDirection: "column",
+});
+
+export const IconsGrid = styled("div")({
+  marginBottom: "0.5rem",
+  display: "flex",
 });
 
 export const StyledButton = styled("button")({
