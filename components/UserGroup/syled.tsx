@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Grid, Paper, Select } from "@mui/material";
-import bg from "./backgroundCards.png"; // Import using relative path
+// import bg from "/backgroundCards.png"; // Import using relative path
 
 export const StyledMainComponent = styled(Paper)`
   background-color: #ff155472;
@@ -20,7 +20,7 @@ export const StyledMainComponent = styled(Paper)`
 `;
 
 export const StyledGrid = styled(Grid)`
-  background-image: url(${bg.src});
+  background-image: url("/backgroundCards.png");
   background-size: cover;
   opacity: 88%;
   padding-top: 17rem;
