@@ -6,7 +6,11 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   /* background: linear-gradient(to right, #A20D35 , #24000C); */
   /* background-repeat: no-repeat; */
-  background-image: url('/prodebg.jpg');
+  background-image: url('/prodebg16.png');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   scroll-behavior: smooth
   
 }

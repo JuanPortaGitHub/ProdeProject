@@ -37,6 +37,7 @@ export const GET_MATCHES_BY_GROUP = gql`
 export const GET_MATCHES_BY_GROUPFASE_GROUP = gql`
   query GetMatchesByGroup($grupo: String!, $userId: String!, $grupoId: Int!) {
     GetMatchesByGroup(Grupo: $grupo) {
+      id
       Grupo
       DiaHora
       Lugar
@@ -53,6 +54,7 @@ export const GET_MATCHES_BY_GROUPFASE_GROUP = gql`
         Goles_Local
         Goles_Visitante
         Ganador
+        info_PartidosId
       }
     }
   }

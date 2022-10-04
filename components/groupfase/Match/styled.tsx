@@ -30,6 +30,10 @@ export const StyledDate = styled.div`
     rgba(185, 8, 246, 1),
     #900c3f 100%
   );
+
+  h4 {
+    color: white;
+  }
 `;
 
 export const Styledh4 = styled.h5`

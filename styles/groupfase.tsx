@@ -76,7 +76,12 @@ export const StyledTopScreen = styled.div`
   align-items: center;
   justify-content: center;
   /* margin-top: 6rem; */
-  padding-top: 6rem;
+`;
+
+export const StyledMainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
   padding-right: 2rem;
   /* z-index: 30; */
   @media (max-width: 600px) {
@@ -84,6 +89,26 @@ export const StyledTopScreen = styled.div`
     /* height: 50vh; */
     padding-right: 0rem;
   }
+`;
+
+export const StyledFriendsGroup = styled.div`
+  display: flex;
+  align-self: flex-end;
+  height: 1.5rem;
+  padding: 0;
+  .css-1ualgfl-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    border: 1px solid white;
+    color: white;
+    padding: 0;
+  }
+`;
+
+export const StyledTitle = styled.h4`
+  color: white;
+  align-self: flex-end;
+  font-weight: 100;
+  margin: 0;
+  margin-bottom: 0.4rem;
 `;
 
 export const StyledImage = styled.div`

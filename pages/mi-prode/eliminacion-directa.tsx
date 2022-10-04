@@ -78,10 +78,8 @@ const Table: NextPage = () => {
   return (
     <>
       <StyledContainer>
-        <StyledBody>
-          <Sidebar />
-        </StyledBody>
-        <Header />
+        <StyledBody>{/* <Sidebar /> */}</StyledBody>
+        {/* <Header /> */}
       </StyledContainer>
     </>
   );

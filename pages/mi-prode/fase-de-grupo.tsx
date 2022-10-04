@@ -14,6 +14,9 @@ import {
   StyleName,
   StyledFlag,
   StyledprodeContainer,
+  StyledMainContent,
+  StyledFriendsGroup,
+  StyledTitle,
   StyledTextfield,
 } from "../../styles/groupfase";
 import { getGroups } from "../../utils/getGroups";
@@ -87,22 +90,13 @@ const FaseGroup: NextPage = () => {
   return (
     <>
       <StyledContainer>
-        <StyledBody>
+        {/* <StyledBody>
           <Sidebar />
-        </StyledBody>
+        </StyledBody>*/}
         <Header />
-        <StyledTopScreen>
-          <StyledImage>
-            {/* <StyledTextfield
-              label={"Grupos"}
-              variant="outlined"
-              onChange={handleChange}
-              value={selectedGrupo}
-              select
-              hidden
-              size="small"
-              // fullWidth
-            > */}
+        <StyledMainContent>
+          <StyledTitle>Elegí tu grupo</StyledTitle>
+          <StyledFriendsGroup>
             <Select
               labelId="demo-simple-select-disabled-label"
               id="demo-simple-select-disabled"
@@ -116,91 +110,94 @@ const FaseGroup: NextPage = () => {
                 </MenuItem>
               ))}
             </Select>
-            {/* </StyledTextfield> */}
-            <Image
-              src="/worldcup8.png"
-              alt="worldCup"
-              width={500}
-              height={500}
-            />
-          </StyledImage>
-          <StyledprodeContainer>
-            <StyledGroupsContainer>
-              {faseGroups.map((group, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, translateX: -50 }}
-                  animate={{ opacity: 1, translateX: 0 }}
-                  exit={{ opacity: 0, translateX: -50 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  onClick={() => setCurrentGroup(group.groupName)}
-                >
-                  <StyledGroup
-                    as={motion.div}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
+          </StyledFriendsGroup>
+          <StyledTopScreen data-id="hola">
+            <StyledImage>
+              <Image
+                src="/worldcup8.png"
+                alt="worldCup"
+                width={500}
+                height={500}
+              />
+            </StyledImage>
+            <StyledprodeContainer>
+              <StyledGroupsContainer>
+                {faseGroups.map((group, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, translateX: -50 }}
+                    animate={{ opacity: 1, translateX: 0 }}
+                    exit={{ opacity: 0, translateX: -50 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    onClick={() => setCurrentGroup(group.groupName)}
                   >
-                    <StyledGroupName>
-                      <StyledH4>Grupo</StyledH4>
-                      <StyledH1>{group.groupName}</StyledH1>
-                    </StyledGroupName>
-                    <StyledGroupTeams>
-                      <StyledTeamContainer>
-                        <StyledFlag>
-                          <Image
-                            src={group.badges[0]}
-                            alt="badge"
-                            width={50}
-                            height={20}
-                          />
-                        </StyledFlag>
-                        <StyleName>{t(group.teams[0])}</StyleName>
-                      </StyledTeamContainer>
-                      <StyledTeamContainer>
-                        <StyledFlag>
-                          <Image
-                            src={group.badges[1]}
-                            alt="badge"
-                            width={50}
-                            height={20}
-                          />
-                        </StyledFlag>
-                        <StyleName>{t(group.teams[1])}</StyleName>
-                      </StyledTeamContainer>
-                      <StyledTeamContainer>
-                        <StyledFlag>
-                          <Image
-                            src={group.badges[2]}
-                            alt="badge"
-                            width={50}
-                            height={20}
-                          />
-                        </StyledFlag>
-                        <StyleName>{t(group.teams[2])}</StyleName>
-                      </StyledTeamContainer>
-                      <StyledTeamContainer>
-                        <StyledFlag>
-                          <Image
-                            src={group.badges[3]}
-                            alt="badge"
-                            width={50}
-                            height={20}
-                          />
-                        </StyledFlag>
-                        <StyleName>{t(group.teams[3])}</StyleName>
-                      </StyledTeamContainer>
-                    </StyledGroupTeams>
-                  </StyledGroup>
-                </motion.div>
-              ))}
-            </StyledGroupsContainer>
-            <GroupMatches
-              teamsGroup={currentGroup}
-              userGroup={selectedFriendsGroup}
-              userId={session?.id}
-            />
-          </StyledprodeContainer>
-        </StyledTopScreen>
+                    <StyledGroup
+                      as={motion.div}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <StyledGroupName>
+                        <StyledH4>Grupo</StyledH4>
+                        <StyledH1>{group.groupName}</StyledH1>
+                      </StyledGroupName>
+                      <StyledGroupTeams>
+                        <StyledTeamContainer>
+                          <StyledFlag>
+                            <Image
+                              src={group.badges[0]}
+                              alt="badge"
+                              width={50}
+                              height={20}
+                            />
+                          </StyledFlag>
+                          <StyleName>{t(group.teams[0])}</StyleName>
+                        </StyledTeamContainer>
+                        <StyledTeamContainer>
+                          <StyledFlag>
+                            <Image
+                              src={group.badges[1]}
+                              alt="badge"
+                              width={50}
+                              height={20}
+                            />
+                          </StyledFlag>
+                          <StyleName>{t(group.teams[1])}</StyleName>
+                        </StyledTeamContainer>
+                        <StyledTeamContainer>
+                          <StyledFlag>
+                            <Image
+                              src={group.badges[2]}
+                              alt="badge"
+                              width={50}
+                              height={20}
+                            />
+                          </StyledFlag>
+                          <StyleName>{t(group.teams[2])}</StyleName>
+                        </StyledTeamContainer>
+                        <StyledTeamContainer>
+                          <StyledFlag>
+                            <Image
+                              src={group.badges[3]}
+                              alt="badge"
+                              width={50}
+                              height={20}
+                            />
+                          </StyledFlag>
+                          <StyleName>{t(group.teams[3])}</StyleName>
+                        </StyledTeamContainer>
+                      </StyledGroupTeams>
+                    </StyledGroup>
+                  </motion.div>
+                ))}
+              </StyledGroupsContainer>
+              <GroupMatches
+                teamsGroup={currentGroup}
+                userGroup={selectedFriendsGroup}
+                userId={session?.id}
+              />
+            </StyledprodeContainer>
+          </StyledTopScreen>
+        </StyledMainContent>
       </StyledContainer>
     </>
   );

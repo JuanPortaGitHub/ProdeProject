@@ -15,20 +15,39 @@ import {
 } from "./styled";
 import { GET_MATCHES_BY_GROUPFASE_GROUP } from "../../../graphql/queries/infoMatchesQueries";
 import { getFlagUrl } from "../../../utils/getFlagUrl";
+import { getObjectToSubmit } from "../../../utils/getObjectToSubmit";
+import { useForm } from "react-hook-form";
 
 const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   const [groups, setGroups] = useState([]);
+  const {
+    handleSubmit,
+    setFocus,
+    register,
+    control,
+    reset,
+    watch,
+    formState,
+    getValues,
+  } = useForm({ shouldUnregister: true, defaultValues: {} });
   const [matchDate, setMatchDate] = useState("");
   const { loading, error, data } = useQuery(GET_MATCHES_BY_GROUPFASE_GROUP, {
     // variables: { grupo: teamsGroup, userId: userId, grupoId: +userGroup },
     variables: { grupo: teamsGroup, grupoId: +userGroup, userId: userId },
   });
 
-  console.log(userGroup);
+  console.log(data);
 
   const getGroups = (matches) => {
     setGroups(matches);
   };
+
+  const onSubmit = (e) => {
+    console.log(e);
+    // const objectToSubmit = getObjectToSubmit(data);
+  };
+
+  console.log(watch());
 
   const setMatchDateHandler = (date) => {
     // console.log(new Date(date * 1000));
@@ -37,11 +56,19 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
     // setMatchDate(matchDate);
   };
 
+  // const focusHandler = (id, hometeam) => {
+  //   console.log("entre");
+  //   console.log(`${id}/${hometeam}`);
+  //   setFocus(`${id}/${hometeam}`, {
+  //     shouldSelect: true,
+  //   });
+  // };
+
   useEffect(() => {
     if (data) {
       getGroups(data.GetMatchesByGroup);
     }
-  }, [data]);
+  }, [data, setFocus]);
 
   return (
     <>
@@ -50,28 +77,38 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
           {loading && <CircularProgress />}
           {!loading && (
             <StyledMatches>
-              {groups?.map((group, i) => (
-                <StyledMatch
-                  key={i}
-                  as={motion.div}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={setMatchDateHandler(group.DiaHora)}
-                >
-                  <Match
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {groups?.map((group: any, i) => (
+                  <StyledMatch
                     key={i}
-                    homeTeam={group.EquipoLocal.nombre_equipo}
-                    flagHomeTeam={getFlagUrl(group.EquipoLocal.nombre_equipo)}
-                    awayTeam={group.EquipoVisitante.nombre_equipo}
-                    flagAwayTeam={getFlagUrl(
-                      group.EquipoVisitante.nombre_equipo
-                    )}
-                    userHomeScore={group.Prode_Partido_Usuario?.Goles_Local}
-                    userAwayScore={group.Prode_Partido_Usuario?.Goles_Visitante}
-                    matchDate={group.DiaHora}
-                  />
-                </StyledMatch>
-              ))}
+                    as={motion.div}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    // onClick={focusHandler(
+                    //   group.id,
+                    //   group.EquipoLocal.nombre_equipo
+                    // )}
+                  >
+                    <Match
+                      id={group.id}
+                      homeTeam={group.EquipoLocal.nombre_equipo}
+                      flagHomeTeam={getFlagUrl(group.EquipoLocal.nombre_equipo)}
+                      awayTeam={group.EquipoVisitante.nombre_equipo}
+                      flagAwayTeam={getFlagUrl(
+                        group.EquipoVisitante.nombre_equipo
+                      )}
+                      userHomeScore={group.Prode_Partido_Usuario?.Goles_Local}
+                      userAwayScore={
+                        group.Prode_Partido_Usuario?.Goles_Visitante
+                      }
+                      matchDate={group.DiaHora}
+                      register={register}
+                      control={control}
+                    />
+                  </StyledMatch>
+                ))}
+                <input type="submit" />
+              </form>
             </StyledMatches>
           )}
         </StyledMatchesContainer>

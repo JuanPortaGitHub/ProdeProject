@@ -3,6 +3,7 @@ import { TextField } from "@mui/material";
 import dayjs from "dayjs";
 import Image from "next/image";
 import React from "react";
+import { Controller } from "react-hook-form";
 import TeamContainer from "../../common/teamContainer";
 import {
   StyledTextField,
@@ -20,9 +21,13 @@ interface Props {
   userHomeScore: string;
   userAwayScore: string;
   matchDate: Date;
+  register: any;
+  control: any;
+  id: number;
 }
 
 export const Match = ({
+  id,
   homeTeam,
   flagHomeTeam,
   awayTeam,
@@ -30,24 +35,21 @@ export const Match = ({
   userHomeScore,
   userAwayScore,
   matchDate,
+  register,
+  control,
 }: Props) => {
   const [homeScore, setHomeScore] = useState<number>();
   const [awayScore, setAwayScore] = useState<number>();
+  // const date = dayjs.unix(matchDate).format("DD-MM-YY H:mm");
+  const date = new Date(+matchDate);
 
-  // useEffect(() => {
-  // setHomeScore(() => userHomeScore);
-  // setAwayScore(() => userAwayScore);
-  // }, [userHomeScore, userAwayScore]);
-  // const date2 = new Date(matchDate * 1000);
-  const date = dayjs.unix(matchDate).format("DD-MM-YY H:mm");
+  const dateFormated = dayjs(date).format("DD-MM-YY H:mm");
 
   const min = 0;
   const max = 10;
   return (
     <StyledContainer>
-      <StyledDate>
-        <Styledh4>{`${date} hs`}</Styledh4>
-      </StyledDate>
+      <StyledDate>{`${dateFormated} hs`}</StyledDate>
       <div
         // id="primerid"
         style={{
@@ -67,58 +69,82 @@ export const Match = ({
               color: "white",
             }}
           >
-            <StyledTextField
-              size="small"
-              // id={homeTeam}
-              // defaultValue={+userHomeScore}
-              // value={homeScore}
-              value={+userHomeScore !== undefined ? +userHomeScore : homeScore}
-              style={{
-                width: "45px",
-                height: "40px",
-                textAlign: "center",
-              }}
-              inputProps={{
-                min,
-                max,
-                style: { textAlign: "center" },
-              }}
-              onChange={(e) => {
-                var value = parseInt(e.target.value, 10);
-                if (value > max) value = max;
-                if (value < min) value = min;
+            <Controller
+              name={`${id}/home`}
+              control={control}
+              defaultValue={
+                userHomeScore !== undefined ? +userHomeScore : homeScore
+              }
+              // value={userHomeScore !== undefined ? +userHomeScore : homeScore}
+              render={({ field: { onChange, ...rest } }) => (
+                <StyledTextField
+                  {...rest}
+                  size="small"
+                  // value={
+                  //   userHomeScore !== undefined ? +userHomeScore : homeScore
+                  // }
+                  style={{
+                    width: "45px",
+                    height: "40px",
+                    textAlign: "center",
+                  }}
+                  inputProps={{
+                    min,
+                    max,
+                    style: { textAlign: "center" },
+                  }}
+                  onChange={(e) => {
+                    var value = parseInt(e.target.value, 10);
+                    if (value > max) value = max;
+                    if (value < min) value = min;
 
-                setHomeScore(value);
-              }}
-              type="number"
+                    setHomeScore(value);
+                    console.log(value);
+                    return onChange(value);
+                  }}
+                  type="number"
+                />
+              )}
             />
             VS
-            <StyledTextField
-              size="small"
-              value={+userAwayScore !== undefined ? +userAwayScore : awayScore}
-              // value={awayScore}
-              style={{
-                width: "45px",
-                height: "40px",
-                textAlign: "center",
-              }}
-              inputProps={{
-                min,
-                max,
-                style: { textAlign: "center" },
-              }}
-              onChange={(e) => {
-                var value = parseInt(e.target.value, 10);
-                if (value > max) value = max;
-                if (value < min) value = min;
+            <Controller
+              name={`${id}/away`}
+              control={control}
+              defaultValue={
+                userHomeScore !== undefined ? +userHomeScore : homeScore
+              }
+              render={({ field: { onChange, ...rest } }) => (
+                <StyledTextField
+                  {...rest}
+                  size="small"
+                  value={
+                    userAwayScore !== undefined ? +userAwayScore : awayScore
+                  }
+                  style={{
+                    width: "45px",
+                    height: "40px",
+                    textAlign: "center",
+                  }}
+                  inputProps={{
+                    min,
+                    max,
+                    style: { textAlign: "center" },
+                  }}
+                  onChange={(e) => {
+                    var value = parseInt(e.target.value, 10);
+                    if (value > max) value = max;
+                    if (value < min) value = min;
 
-                setAwayScore(value);
-              }}
-              type="number"
+                    setAwayScore(value);
+                    console.log(value);
+                    return field.onChange(value);
+                  }}
+                  type="number"
+                />
+              )}
             />
           </div>
           <TeamContainer team={t(awayTeam)} flag={flagAwayTeam} home={false} />
-          {/* {awayTeam} <Image src={flagAwayTeam} alt="" width={15} height={15} /> */}
         </>
       </div>
     </StyledContainer>

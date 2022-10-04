@@ -78,10 +78,10 @@ const Miprode: NextPage = () => {
   return (
     <>
       <StyledContainer>
-        <StyledBody>
+        {/* <StyledBody>
           <Sidebar />
         </StyledBody>
-        <Header />
+        <Header /> */}
       </StyledContainer>
     </>
   );

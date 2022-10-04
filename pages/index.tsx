@@ -72,9 +72,7 @@ export default function Home() {
       <StyledContainer>
         {!session && (
           <>
-            <StyledBody>
-              <Sidebar />
-            </StyledBody>
+            <StyledBody>{/* <Sidebar /> */}</StyledBody>
             <Header />
             <StyleMainComponent>
               <StyledImageContainer>
@@ -123,9 +121,7 @@ export default function Home() {
         )}
         {session && (
           <>
-            <StyledBody>
-              <Sidebar />
-            </StyledBody>
+            <StyledBody>{/* <Sidebar /> */}</StyledBody>
             <Header />
             <StyleMainComponent>
               <StyledImageContainer>
