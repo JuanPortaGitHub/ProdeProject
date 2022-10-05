@@ -43,6 +43,7 @@ type Info_Partidos {
 type Mutation {
   addUserToGrupo(clave_grupo: String!, idUser: String!, nombre: String!): Grupo
   createGrupo(clave_grupo: String!, idUser: String!, imagen: String!, monto: String!, nombre: String!, slogan: String!): Grupo
+  createManyProdeUsuario(ProdeMatchInfo: [prodeMatchInfo!], grupoId: Int!, userId: String!): prodeResponse
   createProdeUsuario(Ganador: String!, Goles_Local: String!, Goles_Visitante: String!, Penales: Boolean!, Puntos: Int!, Tiempo_Extra: Boolean!, grupoId: Int!, info_PartidosId: Int!, userId: String!): Prode_Partido_Usuario
   createUser(email: String!, name: String!, recivedPassword: String!): User
   updateGrupo(clave_grupo: String, id: Int!, imagen: String, monto: String, nombre: String, slogan: String): Grupo
@@ -100,4 +101,18 @@ type User {
   name: String
   password: String
   updatedAt: String
+}
+
+input prodeMatchInfo {
+  Ganador: String!
+  Goles_Local: String!
+  Goles_Visitante: String!
+  Penales: Boolean!
+  Tiempo_Extra: Boolean!
+  info_PartidosId: Int!
+}
+
+type prodeResponse {
+  error: Boolean!
+  message: String!
 }

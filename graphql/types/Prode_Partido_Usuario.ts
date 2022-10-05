@@ -1,13 +1,16 @@
 import {
   booleanArg,
   idArg,
+  inputObjectType,
   intArg,
+  list,
   nonNull,
   objectType,
   stringArg,
 } from "nexus";
 import { extendType } from "nexus";
 import {
+  createManyProdeUsuarioResolver,
   createProdeUsuarioResolver,
   getAllProdeUsuarioResolver,
   getProdeUsuarioByIdResolver,
@@ -69,6 +72,41 @@ export const CreateProdeUsuario = extendType({
       },
       resolve: createProdeUsuarioResolver,
     });
+  },
+});
+
+export const CreateManyProdeUsuario = extendType({
+  type: "Mutation",
+  definition: (t) => {
+    t.field("createManyProdeUsuario", {
+      type: ProdeResponse,
+      args: {
+        userId: nonNull(stringArg()),
+        grupoId: nonNull(intArg()),
+        ProdeMatchInfo: list(nonNull(ProdeMatchInfo)),
+      },
+      resolve: createManyProdeUsuarioResolver,
+    });
+  },
+});
+
+const ProdeMatchInfo = inputObjectType({
+  name: "prodeMatchInfo",
+  definition: (t) => {
+    t.nonNull.int("info_PartidosId");
+    t.nonNull.string("Goles_Local");
+    t.nonNull.string("Goles_Visitante");
+    t.nonNull.string("Ganador");
+    t.nonNull.boolean("Tiempo_Extra");
+    t.nonNull.boolean("Penales");
+  },
+});
+
+const ProdeResponse = objectType({
+  name: "prodeResponse",
+  definition: (t) => {
+    t.nonNull.string("message");
+    t.nonNull.boolean("error");
   },
 });
 
