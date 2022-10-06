@@ -25,7 +25,6 @@ interface Props {
   control: any;
   id: number;
   focus: boolean;
-  setFocus: (name: string) => void;
 }
 
 export const Match = ({
@@ -56,7 +55,7 @@ export const Match = ({
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr",
-          width: "100%",
+          width: "90%",
           alignItems: "center",
         }}
       >
@@ -81,15 +80,11 @@ export const Match = ({
                   size="small"
                   value={value}
                   name={`${id}/home`}
-                  style={{
-                    width: "45px",
-                    height: "40px",
-                    textAlign: "center",
-                  }}
                   inputProps={{
-                    min,
-                    max,
+                    // min,
+                    // max,
                     style: { textAlign: "center" },
+                    maxLength: 1,
                   }}
                   onChange={onChange}
                   // onChange={(e) => {
@@ -98,7 +93,7 @@ export const Match = ({
                   //   if (value < min) value = min;
                   //   return onChange(value);
                   // }}
-                  // type="number"
+                  type="number"
                 />
               )}
             />
@@ -115,15 +110,11 @@ export const Match = ({
                   size="small"
                   name={`${id}/away`}
                   value={value}
-                  style={{
-                    width: "45px",
-                    height: "40px",
-                    textAlign: "center",
-                  }}
                   inputProps={{
                     min,
                     max,
                     style: { textAlign: "center" },
+                    maxLength: 1,
                   }}
                   onChange={onChange}
                   // onChange={(e) => {
@@ -132,7 +123,7 @@ export const Match = ({
                   //   if (value < min) value = min;
                   //   return onChange(value);
                   // }}
-                  // type="number"
+                  type="number"
                 />
               )}
             />

@@ -5,6 +5,19 @@ export const StyledTextField = styled(TextField)`
   border-radius: 17px;
   background-color: white;
   color: black;
+  width: 3vw;
+  height: 40px;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    width: 8vw;
+    height: 30px;
+
+    input {
+      padding: 0px;
+      padding-top: 1vw;
+    }
+  }
   /* fieldset {
     border-radius: 17px;
     background-color: white;
@@ -14,7 +27,7 @@ export const StyledTextField = styled(TextField)`
 
 export const StyledDate = styled.div`
   color: white;
-  width: 55%;
+  width: 50%;
   height: 2rem;
   display: flex;
   border-radius: 15px;
@@ -45,5 +58,5 @@ export const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2.5rem;
 `;

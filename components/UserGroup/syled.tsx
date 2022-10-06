@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Grid, Paper, Select } from "@mui/material";
 // import bg from "/backgroundCards.png"; // Import using relative path
 
-export const StyledMainComponent = styled(Paper)`
-  background-color: #ff155472;
+export const StyledMainComponent = styled.div`
+  background-color: rgba(255, 21, 84, 0.447);
   margin: 3rem auto;
   padding: 2rem;
   text-align: center;
