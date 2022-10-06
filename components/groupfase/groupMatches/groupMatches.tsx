@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import type { NextPage } from "next";
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { motion } from "framer-motion";
 
 import { Match } from "../Match";
@@ -14,8 +14,9 @@ import {
   Styledh4,
 } from "./styled";
 import { GET_MATCHES_BY_GROUPFASE_GROUP } from "../../../graphql/queries/infoMatchesQueries";
+import { CREATE_PRODES } from "../../../graphql/queries/prodesQueries";
 import { getFlagUrl } from "../../../utils/getFlagUrl";
-import { getObjectToSubmit } from "../../../utils/getObjectToSubmit";
+import { getArrayToSubmit } from "../../../utils/getArrayToSubmit";
 import { useForm } from "react-hook-form";
 
 const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
@@ -31,38 +32,102 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
     getValues,
     setValue,
   } = useForm({ shouldUnregister: true });
-  // const [focus, setFocus] = useState("");
+  // const [focus, setFocus] = useState(false);
   const { loading, error, data } = useQuery(GET_MATCHES_BY_GROUPFASE_GROUP, {
     variables: { grupo: teamsGroup, grupoId: +userGroup, userId: userId },
   });
+  const [create_Prodes, { error: createError }] = useMutation(CREATE_PRODES, {
+    onCompleted(data) {
+      console.log("data", data);
+      // createUserHandler();
+    },
+    onError(error) {
+      console.log("error", error);
+    },
+  });
 
   console.log(data);
-
-  console.log(+userGroup);
 
   const getGroups = (matches) => {
     setGroups(matches);
   };
 
-  const onSubmit = (e) => {
-    console.log(e);
-    // const objectToSubmit = getObjectToSubmit(data);
+  const onSubmit = async (formData) => {
+    const arrayToSubmit = getArrayToSubmit(groups, formData);
+
+    console.log(userId, +userGroup, arrayToSubmit);
+
+    // console.log(formData);
+
+    await create_Prodes({
+      variables: {
+        userId: userId,
+        grupoId: +userGroup,
+        ProdeMatchInfo: arrayToSubmit,
+      },
+    });
   };
 
-  // console.log(watch());
-
-  const setMatchDateHandler = (date) => {
-    // console.log(new Date(date * 1000));
-    const matchDate = new Date(date * 1000);
-    console.log(matchDate);
-    // setMatchDate(matchDate);
-  };
+  const array = [
+    {
+      info_PartidosId: 1543883,
+      Goles_Local: "2",
+      Goles_Visitante: "2",
+      Ganador: "",
+      Tiempo_Extra: false,
+      Penales: false,
+    },
+    {
+      info_PartidosId: 1543881,
+      Goles_Local: "3",
+      Goles_Visitante: "3",
+      Ganador: "",
+      Tiempo_Extra: false,
+      Penales: false,
+    },
+    {
+      info_PartidosId: 1543894,
+      Goles_Local: "5",
+      Goles_Visitante: "6",
+      Ganador: "",
+      Tiempo_Extra: false,
+      Penales: false,
+    },
+    {
+      info_PartidosId: 1543895,
+      Goles_Local: "5",
+      Goles_Visitante: "6",
+      Ganador: "",
+      Tiempo_Extra: false,
+      Penales: false,
+    },
+    {
+      info_PartidosId: 1543907,
+      Goles_Local: "5",
+      Goles_Visitante: "9",
+      Ganador: "",
+      Tiempo_Extra: false,
+      Penales: false,
+    },
+    {
+      info_PartidosId: 1543908,
+      Goles_Local: "5",
+      Goles_Visitante: "2",
+      Ganador: "",
+      Tiempo_Extra: false,
+      Penales: false,
+    },
+  ];
 
   useEffect(() => {
     if (data) {
       getGroups(data.GetMatchesByGroup);
     }
   }, [data]);
+
+  const onClickFocusHandler = (name) => {
+    console.log(name);
+  };
 
   return (
     <>
@@ -78,7 +143,6 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
                     as={motion.div}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    // onClick={() => setFocus(() => group.id)}
                   >
                     <Match
                       id={group.id}
@@ -95,6 +159,7 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
                       matchDate={group.DiaHora}
                       register={register}
                       control={control}
+                      // focus={focus}
                       setFocus={setFocus}
                       // autofocus={focus}
                     />

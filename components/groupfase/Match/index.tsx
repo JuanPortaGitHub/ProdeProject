@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { TextField } from "@mui/material";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -24,7 +24,8 @@ interface Props {
   register: any;
   control: any;
   id: number;
-  setFocus: () => void;
+  focus: boolean;
+  setFocus: (name: string) => void;
 }
 
 export const Match = ({
@@ -37,10 +38,12 @@ export const Match = ({
   userAwayScore,
   matchDate,
   control,
+  focus,
   setFocus,
 }: // autofocus,
 Props) => {
   const [focuslocal, setFocuslocal] = useState(false);
+  const homeRef = useRef(null);
   const [awayScore, setAwayScore] = useState<number>();
   // const date = dayjs.unix(matchDate).format("DD-MM-YY H:mm");
   const date = new Date(+matchDate);
@@ -50,8 +53,18 @@ Props) => {
   const min = 0;
   const max = 10;
 
+  // const focustrue = true;
+
+  // useEffect(() => {
+  //   homeRef?.current.focus();
+  // }, []);
+  const onClickHandler = () => {
+    console.log("entre");
+    console.log(homeRef?.current);
+  };
+
   return (
-    <StyledContainer>
+    <StyledContainer onClick={onClickHandler}>
       <StyledDate>{`${dateFormated} hs`}</StyledDate>
       <div
         // id="primerid"
@@ -81,7 +94,7 @@ Props) => {
                 <StyledTextField
                   {...rest}
                   size="small"
-                  ref={ref}
+                  ref={homeRef}
                   value={value}
                   name={`${id}/home`}
                   style={{
@@ -89,7 +102,7 @@ Props) => {
                     height: "40px",
                     textAlign: "center",
                   }}
-                  // autoFocus={+autofocus === id ? true : false}
+                  autoFocus={focuslocal}
                   inputProps={{
                     min,
                     max,

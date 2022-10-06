@@ -107,6 +107,7 @@ export const createManyProdeUsuarioResolver: FieldResolver<
   "createManyProdeUsuario"
 > = async (_, { userId, grupoId, ProdeMatchInfo }, { prisma }) => {
   if (ProdeMatchInfo?.length !== 6) {
+    console.log(ProdeMatchInfo);
     return { message: "Prode incompleto. Faltan cargar partidos", error: true };
   }
 
