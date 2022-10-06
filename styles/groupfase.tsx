@@ -20,6 +20,7 @@ export const StyledPaperContainer = styled.div`
 export const StyledGroupsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-bottom: 3rem;
   gap: 1rem;
   width: 50%;
   padding: 1rem;

@@ -38,14 +38,7 @@ export const Match = ({
   userAwayScore,
   matchDate,
   control,
-  focus,
-  setFocus,
-}: // autofocus,
-Props) => {
-  const [focuslocal, setFocuslocal] = useState(false);
-  const homeRef = useRef(null);
-  const [awayScore, setAwayScore] = useState<number>();
-  // const date = dayjs.unix(matchDate).format("DD-MM-YY H:mm");
+}: Props) => {
   const date = new Date(+matchDate);
 
   const dateFormated = dayjs(date).format("DD-MM-YY H:mm");
@@ -53,18 +46,10 @@ Props) => {
   const min = 0;
   const max = 10;
 
-  // const focustrue = true;
-
-  // useEffect(() => {
-  //   homeRef?.current.focus();
-  // }, []);
-  const onClickHandler = () => {
-    console.log("entre");
-    // console.log(homeRef?.current);
-  };
+  useEffect(() => {}, [userHomeScore, userAwayScore]);
 
   return (
-    <StyledContainer onClick={onClickHandler}>
+    <StyledContainer>
       <StyledDate>{`${dateFormated} hs`}</StyledDate>
       <div
         // id="primerid"
@@ -94,7 +79,6 @@ Props) => {
                 <StyledTextField
                   {...rest}
                   size="small"
-                  ref={homeRef}
                   value={value}
                   name={`${id}/home`}
                   style={{
@@ -102,7 +86,6 @@ Props) => {
                     height: "40px",
                     textAlign: "center",
                   }}
-                  autoFocus={focuslocal}
                   inputProps={{
                     min,
                     max,
@@ -113,9 +96,6 @@ Props) => {
                   //   var value = parseInt(e.target.value, 10);
                   //   if (value > max) value = max;
                   //   if (value < min) value = min;
-
-                  //   // setHomeScore(value);
-                  //   console.log(value);
                   //   return onChange(value);
                   // }}
                   // type="number"
@@ -129,12 +109,11 @@ Props) => {
               control={control}
               defaultValue={userAwayScore}
               // defaultValue={userAwayScore !== undefined ? +userAwayScore : null}
-              render={({ field: { onChange, value, ref, ...rest } }) => (
+              render={({ field: { onChange, value, ...rest } }) => (
                 <StyledTextField
                   {...rest}
                   size="small"
                   name={`${id}/away`}
-                  ref={ref}
                   value={value}
                   style={{
                     width: "45px",
@@ -151,10 +130,7 @@ Props) => {
                   //   var value = parseInt(e.target.value, 10);
                   //   if (value > max) value = max;
                   //   if (value < min) value = min;
-
-                  //   setAwayScore(value);
-                  //   console.log(value);
-                  //   return field.onChange(value);
+                  //   return onChange(value);
                   // }}
                   // type="number"
                 />

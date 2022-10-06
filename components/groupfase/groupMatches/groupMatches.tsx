@@ -12,6 +12,8 @@ import {
   StyledDate,
   StyledContainer,
   Styledh4,
+  StyledButton,
+  StyledButtonContainer,
 } from "./styled";
 import { GET_MATCHES_BY_GROUPFASE_GROUP } from "../../../graphql/queries/infoMatchesQueries";
 import { CREATE_PRODES } from "../../../graphql/queries/prodesQueries";
@@ -21,43 +23,32 @@ import { useForm } from "react-hook-form";
 
 const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   const [groups, setGroups] = useState([]);
-  const {
-    handleSubmit,
-    setFocus,
-    register,
-    control,
-    reset,
-    watch,
-    formState,
-    getValues,
-    setValue,
-  } = useForm({ shouldUnregister: true });
-  // const [focus, setFocus] = useState(false);
-  const { loading, error, data } = useQuery(GET_MATCHES_BY_GROUPFASE_GROUP, {
-    variables: { grupo: teamsGroup, grupoId: +userGroup, userId: userId },
+  const { handleSubmit, setFocus, register, control, formState } = useForm({
+    shouldUnregister: true,
   });
+  const { loading, error, data, refetch } = useQuery(
+    GET_MATCHES_BY_GROUPFASE_GROUP,
+    {
+      variables: { grupo: teamsGroup, grupoId: +userGroup, userId: userId },
+    }
+  );
   const [create_Prodes, { error: createError }] = useMutation(CREATE_PRODES, {
     onCompleted(data) {
       console.log("data", data);
-      // createUserHandler();
     },
     onError(error) {
       console.log("error", error);
     },
   });
 
-  console.log(data);
-
   const getGroups = (matches) => {
     setGroups(matches);
   };
 
+  // console.log(loading, data);
+
   const onSubmit = async (formData) => {
     const arrayToSubmit = getArrayToSubmit(groups, formData);
-
-    console.log(userId, +userGroup, arrayToSubmit);
-
-    // console.log(formData);
 
     await create_Prodes({
       variables: {
@@ -66,6 +57,8 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
         prodeMatchInfo: arrayToSubmit,
       },
     });
+
+    await refetch();
   };
 
   useEffect(() => {
@@ -73,10 +66,6 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
       getGroups(data.GetMatchesByGroup);
     }
   }, [data]);
-
-  const onClickFocusHandler = (name) => {
-    console.log(name);
-  };
 
   return (
     <>
@@ -108,13 +97,14 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
                       matchDate={group.DiaHora}
                       register={register}
                       control={control}
-                      // focus={focus}
-                      setFocus={setFocus}
-                      // autofocus={focus}
                     />
                   </StyledMatch>
                 ))}
-                <input type="submit" />
+                <StyledButtonContainer>
+                  {groups.length > 0 && (
+                    <StyledButton type="submit">Enviar Prode</StyledButton>
+                  )}
+                </StyledButtonContainer>
               </form>
             </StyledMatches>
           )}

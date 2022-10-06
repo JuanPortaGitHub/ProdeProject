@@ -34,6 +34,7 @@ export const StyledContainer = styled.div`
 export const StyledMatches = styled.div`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   flex-direction: column;
   width: 100%;
 `;
@@ -70,4 +71,34 @@ export const StyledMatch = styled.div`
     );
     cursor: pointer;
   }
+`;
+
+export const StyledButton = styled.a`
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+  /* background-color: #5ca9fb; */
+  /* background-image: linear-gradient(to right, #00c78e 0%, #708881 100%); */
+  /* background-image: linear-gradient(to right, #ff1554 0%, #ffc015 100%); */
+  background: linear-gradient(
+    to right,
+    #ff1554 0%,
+    rgba(185, 8, 246, 1),
+    #900c3f 100%
+  );
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: all 0.5s linear;
+  border: 0;
+  cursor: pointer;
+  &:hover {
+    background-image: linear-gradient(to right, #ff1554 0%, #ff1554 100%);
+  }
+`;
+
+export const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  /* height: 0.5rem; */
 `;

@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyledGroupsContainer,
   StyledGroup,
@@ -50,42 +50,13 @@ const FaseGroup: NextPage = () => {
 
   const faseGroups = getGroups();
 
-  // console.log(selectedFriendsGroup);
+  console.log(data);
 
-  //AGUS ACA ESTA LA FUNCION: LA DATA SE PODRIA PONER CON UN MAP DEPENDE COMO SE ESTE GUARDANDO
-  // const postProdes = async () => {
-  //   const createManyProde = await prisma.prode_Partido_Usuario.createMany({
-  //     data: [
-  //       {
-  //         info_PartidosId: 315151,
-  //         userId: "cl86jkdjr0077ckudp9gngh90",
-  //         Goles_Local: "5",
-  //         Goles_Visitante: "3",
-  //         Ganador: "Argentina",
-  //         grupoId: 1,
-  //       },
-  //       {
-  //         info_PartidosId: 15151,
-  //         userId: "cl86jkdjr0077ckudp9gngh90",
-  //         Goles_Local: "2",
-  //         Goles_Visitante: "1",
-  //         Ganador: "Mexico",
-  //         grupoId: 1,
-  //       },
-  //       {
-  //         info_PartidosId: 315151,
-  //         userId: "cl86jkdjr0077ckudp9gngh90",
-  //         Goles_Local: "7",
-  //         Goles_Visitante: "2",
-  //         Ganador: "Alemania",
-  //         grupoId: 1,
-  //       },
-  //     ],
-  //     skipDuplicates: true,
-  //   });
-
-  //   console.log("RESULTADO DE CREATE", createManyProde);
-  // };
+  useEffect(() => {
+    if (data) {
+      setSelectedFriendsGroup(() => data.GetUserById.Grupos[0].id);
+    }
+  }, [data]);
 
   return (
     <>

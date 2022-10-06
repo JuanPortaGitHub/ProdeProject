@@ -15,7 +15,6 @@ export const getArrayToSubmit = (groups, formData) => {
     if (matchId !== currMatchId) {
       currMatchId = matchId;
       currHome = values[match];
-      // console.log(currHome);
     }
     currAway = values[match];
 
@@ -25,18 +24,15 @@ export const getArrayToSubmit = (groups, formData) => {
     }
   }
 
-  // console.log(prodeObject);
-
   let arrayOfMatches = [];
 
   for (let match in groups) {
-    // console.log(groups[match]);
     const { id } = groups[match];
     const matchProde = {
       info_PartidosId: id,
       Goles_Local: prodeObject[id].home,
       Goles_Visitante: prodeObject[id].away,
-      Ganador: "robertito",
+      Ganador: "",
       Tiempo_Extra: false,
       Penales: false,
     };
