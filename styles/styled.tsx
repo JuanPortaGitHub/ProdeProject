@@ -48,6 +48,14 @@ export const StyledContainer = styled.div`
   flex-direction: column;
 `;
 
+export const StyledUserGroupContainer = styled.div`
+  display: flex;
+  width: 100%;
+  background-color: grey;
+  justify-content: space-evenly;
+  gap: 30px;
+`;
+
 export const StyledWorldCupImage = styled.div`
   width: 40vw;
   @media (max-width: 600px) {

@@ -4,29 +4,41 @@ import { useMutation } from "@apollo/client";
 import classes from "../auth/authform.module.css";
 import { Button, CircularProgress, Input } from "@mui/material";
 import { ADD_USER_GROUP } from "../../graphql/queries/groupQueries";
+import {
+  StyledButton,
+  StyledControl,
+  StyledInput,
+  StyledInputLabel,
+  StyledMainComponent,
+  StyledCardTitle,
+  StyledResultText,
+} from "./syled";
 
 const JoinGroupForm = () => {
+  const [disableFields, setDisableFields] = useState(false);
   const groupName = useRef();
   const groupPassword = useRef();
 
   const { data: session } = useSession();
-  console.log("session", session);
 
   const [JoinUserToGroup, { data, loading, error }] = useMutation(
     ADD_USER_GROUP,
     {
       onCompleted(data) {
-        console.log("dataaa", data);
+        setDisableFields(false);
+        console.log("data", data);
         groupName.current.value = "";
         groupPassword.current.value = "";
       },
       onError(error) {
-        console.log("errorrr", error);
+        setDisableFields(false);
+        console.log("error", error);
       },
     }
   );
   async function submitHandler(event: { preventDefault: () => void }) {
     event.preventDefault();
+    setDisableFields(true);
     JoinUserToGroup({
       variables: {
         nombre: groupName.current.value,
@@ -37,43 +49,50 @@ const JoinGroupForm = () => {
   }
 
   return (
-    <>
-      {/* {!session && ( */}
-      <>
-        <section className={classes.auth}>
-          <h1>Únete a un grupo ya creado</h1>
-          <form onSubmit={submitHandler}>
-            <div className={classes.control}>
-              <label htmlFor="nombre">Nombre Grupo</label>
-              <input type="text" id="text" required ref={groupName} />
-            </div>
-            <div className={classes.control}>
-              <label htmlFor="password">Contraseña Ingreso</label>
-              <input type="text" id="password" required ref={groupPassword} />
-            </div>
-            <div className={classes.actions}>
-              {loading ? (
-                <CircularProgress color="inherit" />
-              ) : (
-                <>
-                  <button>Unirse a grupo</button>
-                </>
-              )}
-              <h3>
-                {/* TE UNISTE AL GRUPO {data.JoinUserToGroup.nombre.toUpperCase()} */}
-              </h3>
-              {data && (
-                <h3>
-                  TE UNISTE A GRUPO {data.addUserToGrupo.nombre.toUpperCase()}!!
-                </h3>
-              )}
-              {error && <h3>{error.message}</h3>}
-            </div>
-          </form>
-        </section>
-      </>
-      {/* )} */}
-    </>
+    <StyledMainComponent>
+      <StyledCardTitle>Unite a un grupo</StyledCardTitle>
+      <form onSubmit={submitHandler}>
+        <StyledControl>
+          <StyledInputLabel htmlFor="nombre">Nombre Grupo</StyledInputLabel>
+          <StyledInput
+            disabled={disableFields}
+            type="text"
+            id="text"
+            required
+            ref={groupName}
+          />
+        </StyledControl>
+        <StyledControl>
+          <StyledInputLabel htmlFor="password">
+            Contraseña Ingreso
+          </StyledInputLabel>
+          <StyledInput
+            disabled={disableFields}
+            type="text"
+            id="password"
+            required
+            ref={groupPassword}
+          />
+        </StyledControl>
+        <div>
+          {loading ? (
+            <CircularProgress color="inherit" />
+          ) : (
+            <>
+              <StyledButton disabled={disableFields}>
+                Unirse a grupo
+              </StyledButton>
+            </>
+          )}
+          {data && (
+            <StyledResultText>
+              Te uniste al grupo {data.addUserToGrupo.nombre}!
+            </StyledResultText>
+          )}
+          {error && <StyledResultText>{error.message}</StyledResultText>}
+        </div>
+      </form>
+    </StyledMainComponent>
   );
 };
 

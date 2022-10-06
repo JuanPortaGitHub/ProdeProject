@@ -101,3 +101,56 @@ export const updateProdeUsuarioResolver: FieldResolver<
   });
   return editedProde;
 };
+
+export const createManyProdeUsuarioResolver: FieldResolver<
+  "Mutation",
+  "createManyProdeUsuario"
+> = async (_, { userId, grupoId, ProdeMatchInfo }, { prisma }) => {
+  if (ProdeMatchInfo?.length !== 6) {
+    return { message: "Prode incompleto. Faltan cargar partidos", error: true };
+  }
+
+  ProdeMatchInfo.map(async (prode: any) => {
+    const prodeCargado = await prisma.prode_Partido_Usuario.findFirst({
+      where: {
+        userId: userId,
+        grupoId: grupoId,
+        info_PartidosId: prode.info_PartidosId,
+      },
+    });
+    if (prodeCargado?.Ganador) {
+      await prisma.prode_Partido_Usuario.updateMany({
+        where: {
+          userId: userId,
+          grupoId: grupoId,
+          info_PartidosId: prode.info_PartidosId,
+        },
+        data: {
+          Goles_Local:
+            prode.Goles_Local != null ? prode.Goles_Local : undefined,
+          Goles_Visitante:
+            prode.Goles_Visitante != null ? prode.Goles_Visitante : undefined, // para que funcione como patch
+          Ganador: prode.Ganador != null ? prode.Ganador : undefined, // para que funcione como patch
+          Tiempo_Extra:
+            prode.Tiempo_Extra != null ? prode.Tiempo_Extra : undefined, // para que funcione como patch
+          Penales: prode.Penales != null ? prode.Penales : undefined, // para que funcione como patch
+        },
+      });
+      return { message: "Prode Actualizado Correctamete", error: false };
+    }
+
+    await prisma.prode_Partido_Usuario.createMany({
+      data: {
+        userId: userId,
+        grupoId: grupoId,
+        info_PartidosId: prode.info_PartidosId,
+        Goles_Local: prode.Goles_Local,
+        Goles_Visitante: prode.Goles_Visitante,
+        Ganador: prode.Ganador,
+      },
+      skipDuplicates: true, //CON ESTO REVISA EN BASE DE DATOS PARA EVITAR DUPLICADOS
+    });
+    return { message: "Prode Creado Correctamete", error: false };
+  });
+  return { message: "Prode Cargado Correctamete", error: false };
+};

@@ -33,15 +33,12 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   } = useForm({ shouldUnregister: true });
   // const [focus, setFocus] = useState("");
   const { loading, error, data } = useQuery(GET_MATCHES_BY_GROUPFASE_GROUP, {
-    // variables: { grupo: teamsGroup, userId: userId, grupoId: +userGroup },
     variables: { grupo: teamsGroup, grupoId: +userGroup, userId: userId },
   });
 
   console.log(data);
 
   console.log(+userGroup);
-
-  // setFocus("1543881/away");
 
   const getGroups = (matches) => {
     setGroups(matches);
@@ -59,14 +56,6 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
     const matchDate = new Date(date * 1000);
     console.log(matchDate);
     // setMatchDate(matchDate);
-  };
-
-  const focusHandler = (id, hometeam) => {
-    console.log("entre");
-    console.log(`${id}/${hometeam}`);
-    setFocus(`${id}/${hometeam}`, {
-      // shouldSelect: true,
-    });
   };
 
   useEffect(() => {

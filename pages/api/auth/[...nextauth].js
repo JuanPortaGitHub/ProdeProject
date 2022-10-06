@@ -35,10 +35,9 @@ export const authOptions = {
           query: GetUserLogin,
           variables: { email },
         });
-        const userDB = result.data.GetUserByEmail.name;
+        const userDB = result.data.GetUserByEmail;
+        if (userDB === null) throw new Error("No se encontro usuario");
         const hashedPasswordDB = result.data.GetUserByEmail.password;
-
-        if (!userDB) throw new Error("No se encontro usuario");
 
         const valid = await verifyPassword(password, hashedPasswordDB);
         if (!valid) throw new Error("Contraseña incorrecta");
@@ -48,8 +47,6 @@ export const authOptions = {
           email: result.data.GetUserByEmail.email,
           name: result.data.GetUserByEmail.name,
         };
-        console.log("userAccountSENT", userAccount);
-
         return userAccount;
       },
     }),
@@ -70,7 +67,6 @@ export const authOptions = {
           image: null,
           name: token.name,
         };
-        console.log(session);
       }
       return session;
     },

@@ -50,11 +50,6 @@ Props) => {
   const min = 0;
   const max = 10;
 
-  // setFocus("1543881/away");
-  // useEffect(() => {
-  //   setFocus(`${id}/home`);
-  // }, []);
-
   return (
     <StyledContainer>
       <StyledDate>{`${dateFormated} hs`}</StyledDate>

@@ -45,9 +45,7 @@ const RegisterLogin = () => {
             </Carousel>
           </Paper>
         </StyledPaperContainer>
-        <StyledWorldCupImage>
-          <AuthForm />
-        </StyledWorldCupImage>
+        <AuthForm />
       </StyledImageContainer>
     </div>
   );
