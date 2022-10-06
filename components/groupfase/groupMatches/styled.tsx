@@ -73,7 +73,7 @@ export const StyledMatch = styled.div`
   }
 `;
 
-export const StyledButton = styled.a`
+export const StyledButton = styled.button`
   font-family: "Raleway", sans-serif;
   color: #fff;
   /* background-color: #5ca9fb; */
@@ -100,5 +100,7 @@ export const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+  margin-bottom: 2rem;
+
   /* height: 0.5rem; */
 `;

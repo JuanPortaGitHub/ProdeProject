@@ -69,6 +69,7 @@ const FaseGroup: NextPage = () => {
           <StyledTitle>Elegí tu grupo</StyledTitle>
           <StyledFriendsGroup>
             <Select
+              sx={{ color: "white", border: "1px solid white" }}
               labelId="demo-simple-select-disabled-label"
               id="demo-simple-select-disabled"
               value={selectedFriendsGroup}

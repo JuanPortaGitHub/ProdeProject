@@ -50,6 +50,8 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   const onSubmit = async (formData) => {
     const arrayToSubmit = getArrayToSubmit(groups, formData);
 
+    console.log(arrayToSubmit);
+
     await create_Prodes({
       variables: {
         userId: userId,

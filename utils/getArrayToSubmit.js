@@ -26,13 +26,30 @@ export const getArrayToSubmit = (groups, formData) => {
 
   let arrayOfMatches = [];
 
+  // updatear el campo Ganador con los campos : ${nombrelocal} / ${nombrevisitante} / Empate
+
+  let matchWinner;
+
   for (let match in groups) {
+    let matchWinner;
+    console.log(groups);
     const { id } = groups[match];
+    if (prodeObject[id].home == prodeObject[id].away) {
+      matchWinner = "Empate";
+    }
+    if (prodeObject[id].home > prodeObject[id].away) {
+      matchWinner = groups[match].EquipoLocal.nombre_equipo;
+    }
+    if (prodeObject[id].home < prodeObject[id].away) {
+      matchWinner = groups[match].EquipoVisitante.nombre_equipo;
+    }
+
+    console.log(matchWinner);
     const matchProde = {
       info_PartidosId: id,
       Goles_Local: prodeObject[id].home,
       Goles_Visitante: prodeObject[id].away,
-      Ganador: "",
+      Ganador: matchWinner,
       Tiempo_Extra: false,
       Penales: false,
     };

@@ -97,10 +97,8 @@ export const StyledFriendsGroup = styled.div`
   align-self: flex-end;
   height: 1.5rem;
   padding: 0;
-  .css-1ualgfl-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-    border: 1px solid white;
+  svg {
     color: white;
-    padding: 0;
   }
 `;
 
@@ -124,6 +122,7 @@ export const StyledImage = styled.div`
 `;
 
 export const StyledprodeContainer = styled.div`
+  margin-top: 4vh;
   display: flex;
   width: 80%;
   @media (max-width: 600px) {
