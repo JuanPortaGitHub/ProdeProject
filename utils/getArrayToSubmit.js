@@ -36,7 +36,7 @@ export const getArrayToSubmit = (groups, formData) => {
       info_PartidosId: id,
       Goles_Local: prodeObject[id].home,
       Goles_Visitante: prodeObject[id].away,
-      Ganador: "",
+      Ganador: "robertito",
       Tiempo_Extra: false,
       Penales: false,
     };

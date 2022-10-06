@@ -123,6 +123,7 @@ export const createManyProdeUsuarioResolver: FieldResolver<
   "createManyProdeUsuario"
 > = async (_, { userId, grupoId, ProdeMatchInfo }, { prisma }) => {
   try {
+    console.log(userId, grupoId, ProdeMatchInfo);
     if (ProdeMatchInfo?.length !== 6) {
       return {
         message: "Prode incompleto. Faltan cargar partidos",
@@ -155,7 +156,6 @@ export const createManyProdeUsuarioResolver: FieldResolver<
         });
         return { message: "Prode Actualizado Correctamete", error: false };
       }
-
       await prisma.prode_Partido_Usuario.create({
         data: {
           userId: userId,
@@ -164,6 +164,7 @@ export const createManyProdeUsuarioResolver: FieldResolver<
           Goles_Local: prode.Goles_Local,
           Goles_Visitante: prode.Goles_Visitante,
           Ganador: prode.Ganador,
+          Puntos: 0,
         },
       });
       return { message: "Prode Creado Correctamete", error: false };

@@ -63,61 +63,10 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
       variables: {
         userId: userId,
         grupoId: +userGroup,
-        ProdeMatchInfo: arrayToSubmit,
+        prodeMatchInfo: arrayToSubmit,
       },
     });
   };
-
-  const array = [
-    {
-      info_PartidosId: 1543883,
-      Goles_Local: "2",
-      Goles_Visitante: "2",
-      Ganador: "",
-      Tiempo_Extra: false,
-      Penales: false,
-    },
-    {
-      info_PartidosId: 1543881,
-      Goles_Local: "3",
-      Goles_Visitante: "3",
-      Ganador: "",
-      Tiempo_Extra: false,
-      Penales: false,
-    },
-    {
-      info_PartidosId: 1543894,
-      Goles_Local: "5",
-      Goles_Visitante: "6",
-      Ganador: "",
-      Tiempo_Extra: false,
-      Penales: false,
-    },
-    {
-      info_PartidosId: 1543895,
-      Goles_Local: "5",
-      Goles_Visitante: "6",
-      Ganador: "",
-      Tiempo_Extra: false,
-      Penales: false,
-    },
-    {
-      info_PartidosId: 1543907,
-      Goles_Local: "5",
-      Goles_Visitante: "9",
-      Ganador: "",
-      Tiempo_Extra: false,
-      Penales: false,
-    },
-    {
-      info_PartidosId: 1543908,
-      Goles_Local: "5",
-      Goles_Visitante: "2",
-      Ganador: "",
-      Tiempo_Extra: false,
-      Penales: false,
-    },
-  ];
 
   useEffect(() => {
     if (data) {

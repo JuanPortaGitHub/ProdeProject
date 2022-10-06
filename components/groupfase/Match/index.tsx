@@ -60,7 +60,7 @@ Props) => {
   // }, []);
   const onClickHandler = () => {
     console.log("entre");
-    console.log(homeRef?.current);
+    // console.log(homeRef?.current);
   };
 
   return (
