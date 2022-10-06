@@ -24,6 +24,7 @@ interface Props {
   register: any;
   control: any;
   id: number;
+  setFocus: () => void;
 }
 
 export const Match = ({
@@ -35,10 +36,11 @@ export const Match = ({
   userHomeScore,
   userAwayScore,
   matchDate,
-  register,
   control,
-}: Props) => {
-  const [homeScore, setHomeScore] = useState<number>();
+  setFocus,
+}: // autofocus,
+Props) => {
+  const [focuslocal, setFocuslocal] = useState(false);
   const [awayScore, setAwayScore] = useState<number>();
   // const date = dayjs.unix(matchDate).format("DD-MM-YY H:mm");
   const date = new Date(+matchDate);
@@ -47,6 +49,12 @@ export const Match = ({
 
   const min = 0;
   const max = 10;
+
+  // setFocus("1543881/away");
+  // useEffect(() => {
+  //   setFocus(`${id}/home`);
+  // }, []);
+
   return (
     <StyledContainer>
       <StyledDate>{`${dateFormated} hs`}</StyledDate>
@@ -71,55 +79,55 @@ export const Match = ({
           >
             <Controller
               name={`${id}/home`}
+              key={`${id}/home`}
               control={control}
-              defaultValue={
-                userHomeScore !== undefined ? +userHomeScore : homeScore
-              }
-              // value={userHomeScore !== undefined ? +userHomeScore : homeScore}
-              render={({ field: { onChange, ...rest } }) => (
+              defaultValue={userHomeScore}
+              render={({ field: { onChange, value, ref, ...rest } }) => (
                 <StyledTextField
                   {...rest}
                   size="small"
-                  // value={
-                  //   userHomeScore !== undefined ? +userHomeScore : homeScore
-                  // }
+                  ref={ref}
+                  value={value}
+                  name={`${id}/home`}
                   style={{
                     width: "45px",
                     height: "40px",
                     textAlign: "center",
                   }}
+                  // autoFocus={+autofocus === id ? true : false}
                   inputProps={{
                     min,
                     max,
                     style: { textAlign: "center" },
                   }}
-                  onChange={(e) => {
-                    var value = parseInt(e.target.value, 10);
-                    if (value > max) value = max;
-                    if (value < min) value = min;
+                  onChange={onChange}
+                  // onChange={(e) => {
+                  //   var value = parseInt(e.target.value, 10);
+                  //   if (value > max) value = max;
+                  //   if (value < min) value = min;
 
-                    setHomeScore(value);
-                    console.log(value);
-                    return onChange(value);
-                  }}
-                  type="number"
+                  //   // setHomeScore(value);
+                  //   console.log(value);
+                  //   return onChange(value);
+                  // }}
+                  // type="number"
                 />
               )}
             />
             VS
             <Controller
               name={`${id}/away`}
+              key={`${id}/away`}
               control={control}
-              defaultValue={
-                userHomeScore !== undefined ? +userHomeScore : homeScore
-              }
-              render={({ field: { onChange, ...rest } }) => (
+              defaultValue={userAwayScore}
+              // defaultValue={userAwayScore !== undefined ? +userAwayScore : null}
+              render={({ field: { onChange, value, ref, ...rest } }) => (
                 <StyledTextField
                   {...rest}
                   size="small"
-                  value={
-                    userAwayScore !== undefined ? +userAwayScore : awayScore
-                  }
+                  name={`${id}/away`}
+                  ref={ref}
+                  value={value}
                   style={{
                     width: "45px",
                     height: "40px",
@@ -130,16 +138,17 @@ export const Match = ({
                     max,
                     style: { textAlign: "center" },
                   }}
-                  onChange={(e) => {
-                    var value = parseInt(e.target.value, 10);
-                    if (value > max) value = max;
-                    if (value < min) value = min;
+                  onChange={onChange}
+                  // onChange={(e) => {
+                  //   var value = parseInt(e.target.value, 10);
+                  //   if (value > max) value = max;
+                  //   if (value < min) value = min;
 
-                    setAwayScore(value);
-                    console.log(value);
-                    return field.onChange(value);
-                  }}
-                  type="number"
+                  //   setAwayScore(value);
+                  //   console.log(value);
+                  //   return field.onChange(value);
+                  // }}
+                  // type="number"
                 />
               )}
             />

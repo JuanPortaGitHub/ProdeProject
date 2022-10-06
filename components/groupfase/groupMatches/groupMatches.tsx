@@ -29,14 +29,19 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
     watch,
     formState,
     getValues,
-  } = useForm({ shouldUnregister: true, defaultValues: {} });
-  const [matchDate, setMatchDate] = useState("");
+    setValue,
+  } = useForm({ shouldUnregister: true });
+  // const [focus, setFocus] = useState("");
   const { loading, error, data } = useQuery(GET_MATCHES_BY_GROUPFASE_GROUP, {
     // variables: { grupo: teamsGroup, userId: userId, grupoId: +userGroup },
     variables: { grupo: teamsGroup, grupoId: +userGroup, userId: userId },
   });
 
   console.log(data);
+
+  console.log(+userGroup);
+
+  // setFocus("1543881/away");
 
   const getGroups = (matches) => {
     setGroups(matches);
@@ -47,7 +52,7 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
     // const objectToSubmit = getObjectToSubmit(data);
   };
 
-  console.log(watch());
+  // console.log(watch());
 
   const setMatchDateHandler = (date) => {
     // console.log(new Date(date * 1000));
@@ -56,19 +61,19 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
     // setMatchDate(matchDate);
   };
 
-  // const focusHandler = (id, hometeam) => {
-  //   console.log("entre");
-  //   console.log(`${id}/${hometeam}`);
-  //   setFocus(`${id}/${hometeam}`, {
-  //     shouldSelect: true,
-  //   });
-  // };
+  const focusHandler = (id, hometeam) => {
+    console.log("entre");
+    console.log(`${id}/${hometeam}`);
+    setFocus(`${id}/${hometeam}`, {
+      // shouldSelect: true,
+    });
+  };
 
   useEffect(() => {
     if (data) {
       getGroups(data.GetMatchesByGroup);
     }
-  }, [data, setFocus]);
+  }, [data]);
 
   return (
     <>
@@ -84,10 +89,7 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
                     as={motion.div}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    // onClick={focusHandler(
-                    //   group.id,
-                    //   group.EquipoLocal.nombre_equipo
-                    // )}
+                    // onClick={() => setFocus(() => group.id)}
                   >
                     <Match
                       id={group.id}
@@ -104,6 +106,8 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
                       matchDate={group.DiaHora}
                       register={register}
                       control={control}
+                      setFocus={setFocus}
+                      // autofocus={focus}
                     />
                   </StyledMatch>
                 ))}

@@ -50,7 +50,7 @@ const FaseGroup: NextPage = () => {
 
   const faseGroups = getGroups();
 
-  console.log(selectedFriendsGroup);
+  // console.log(selectedFriendsGroup);
 
   //AGUS ACA ESTA LA FUNCION: LA DATA SE PODRIA PONER CON UN MAP DEPENDE COMO SE ESTE GUARDANDO
   // const postProdes = async () => {
