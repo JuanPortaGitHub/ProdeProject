@@ -23,12 +23,16 @@ const variants = {
 };
 const itemIds = [0, 1, 2, 3, 4];
 
-const Navigation = () => {
+const Navigation = ({ open }) => {
   const { data: session, status } = useSession();
 
   return (
     <>
-      <StyledUl as={motion.ul} variants={variants}>
+      <StyledUl
+        as={motion.ul}
+        variants={variants}
+        style={{ display: open ? "block" : "none" }}
+      >
         <UserItem />
         {session &&
           headerSectionsLogged.map((headerSection, index) => (

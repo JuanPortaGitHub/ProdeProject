@@ -26,6 +26,7 @@ const sidebar = {
   }),
   closed: {
     clipPath: "circle(30px at 40px 40px)",
+    // height: "5rem",
     transition: {
       delay: 0.5,
       type: "spring",
@@ -55,24 +56,27 @@ const Sidebar = () => {
     setOpen(!open);
   };
 
+  const setHightHandler = () => {
+    setTimeout(() => {
+      return "5rem";
+    }, 1000);
+  };
+
   return (
+    // <div style={{ height: "5rem" }}>
     <StyledNav
       as={motion.nav}
       initial={false}
+      style={{ width: open ? "300px" : "0px" }}
       animate={open ? "open" : "closed"}
       custom={height}
       ref={containerRef}
-      style={{ zIndex: open ? "35" : "3" }}
     >
-      <StyledBackground
-        as={motion.div}
-        className="background"
-        variants={sidebar}
-        // style={{ zIndex: open ? "35" : "20" }}
-      />
-      <Navigation />
+      <StyledBackground as={motion.div} variants={sidebar} />
+      <Navigation open={open} />
       <MenuToggle toggle={() => toggleHandler()} />
     </StyledNav>
+    // </div>
   );
 };
 

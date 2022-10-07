@@ -54,16 +54,16 @@ const FaseGroup: NextPage = () => {
 
   useEffect(() => {
     if (data) {
-      setSelectedFriendsGroup(() => data.GetUserById.Grupos[0].id);
+      setSelectedFriendsGroup(() => data.GetUserById.Grupos[0]?.id);
     }
   }, [data]);
 
   return (
     <>
       <StyledContainer>
-        {/* <StyledBody>
+        <StyledBody>
           <Sidebar />
-        </StyledBody>*/}
+        </StyledBody>
         <Header />
         <StyledMainContent>
           <StyledTitle>Elegí tu grupo</StyledTitle>
