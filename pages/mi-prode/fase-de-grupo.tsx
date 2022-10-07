@@ -37,8 +37,9 @@ import { useQuery } from "@apollo/client";
 import Header from "../../components/Header/headerMiprode";
 import { MenuItem, Select } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
+import { StyledAnchor } from "../../components/Header/StyledHeader";
 
 const FaseGroup: NextPage = () => {
   const [currentGroup, setCurrentGroup] = useState("");
@@ -62,7 +63,9 @@ const FaseGroup: NextPage = () => {
 
   useEffect(() => {
     if (data) {
-      setSelectedFriendsGroup(() => data.GetUserById.Grupos[0]?.id);
+      if (data.GetUserById.Grupos.length != 0) {
+        setSelectedFriendsGroup(() => data.GetUserById.Grupos[0]?.id);
+      }
     }
   }, [data]);
 
@@ -91,7 +94,15 @@ const FaseGroup: NextPage = () => {
         </StyledBody>
         <Header />
         <StyledMainContent>
-          <StyledTitle>Elegí tu grupo</StyledTitle>
+          {selectedFriendsGroup == "" ? (
+            <StyledTitle>
+              <Link href="/#CreateGroup">
+                <StyledAnchor>Crea un grupo!</StyledAnchor>
+              </Link>
+            </StyledTitle>
+          ) : (
+            <StyledTitle>Elegí tu grupo</StyledTitle>
+          )}
           <StyledFriendsGroup>
             <Select
               sx={{ color: "white", border: "1px solid white" }}
@@ -120,71 +131,91 @@ const FaseGroup: NextPage = () => {
             <StyledprodeContainer>
               <StyledGroupsContainer ref={refContainer}>
                 {faseGroups.map((group, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, translateX: -50 }}
-                    animate={{ opacity: 1, translateX: 0 }}
-                    exit={{ opacity: 0, translateX: -50 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    onClick={() => setCurrentGroup(group.groupName)}
+                  <Tooltip
+                    title={
+                      selectedFriendsGroup == "" ? (
+                        <>
+                          <p>
+                            No tenes grupos, Create un grupo o unite a alguno
+                            para cargar tu prode
+                          </p>
+                          <Link href="/#CreateGroup">
+                            <div style={{ width: "20%" }}>
+                              <StyledAnchor>Acá</StyledAnchor>
+                            </div>
+                          </Link>
+                        </>
+                      ) : (
+                        ""
+                      )
+                    }
                   >
-                    <StyledGroup
-                      as={motion.div}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, translateX: -50 }}
+                      animate={{ opacity: 1, translateX: 0 }}
+                      exit={{ opacity: 0, translateX: -50 }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      onClick={() => setCurrentGroup(group.groupName)}
                     >
-                      <StyledGroupName>
-                        <StyledH4>Grupo</StyledH4>
-                        <StyledH1>{group.groupName}</StyledH1>
-                      </StyledGroupName>
-                      <StyledGroupTeams>
-                        <StyledTeamContainer>
-                          <StyledFlag>
-                            <Image
-                              src={group.badges[0]}
-                              alt="badge"
-                              width={50}
-                              height={20}
-                            />
-                          </StyledFlag>
-                          <StyleName>{t(group.teams[0])}</StyleName>
-                        </StyledTeamContainer>
-                        <StyledTeamContainer>
-                          <StyledFlag>
-                            <Image
-                              src={group.badges[1]}
-                              alt="badge"
-                              width={50}
-                              height={20}
-                            />
-                          </StyledFlag>
-                          <StyleName>{t(group.teams[1])}</StyleName>
-                        </StyledTeamContainer>
-                        <StyledTeamContainer>
-                          <StyledFlag>
-                            <Image
-                              src={group.badges[2]}
-                              alt="badge"
-                              width={50}
-                              height={20}
-                            />
-                          </StyledFlag>
-                          <StyleName>{t(group.teams[2])}</StyleName>
-                        </StyledTeamContainer>
-                        <StyledTeamContainer>
-                          <StyledFlag>
-                            <Image
-                              src={group.badges[3]}
-                              alt="badge"
-                              width={50}
-                              height={20}
-                            />
-                          </StyledFlag>
-                          <StyleName>{t(group.teams[3])}</StyleName>
-                        </StyledTeamContainer>
-                      </StyledGroupTeams>
-                    </StyledGroup>
-                  </motion.div>
+                      <StyledGroup
+                        as={motion.div}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <StyledGroupName>
+                          <StyledH4>Grupo</StyledH4>
+                          <StyledH1>{group.groupName}</StyledH1>
+                        </StyledGroupName>
+                        <StyledGroupTeams>
+                          <StyledTeamContainer>
+                            <StyledFlag>
+                              <Image
+                                src={group.badges[0]}
+                                alt="badge"
+                                width={50}
+                                height={20}
+                              />
+                            </StyledFlag>
+                            <StyleName>{t(group.teams[0])}</StyleName>
+                          </StyledTeamContainer>
+                          <StyledTeamContainer>
+                            <StyledFlag>
+                              <Image
+                                src={group.badges[1]}
+                                alt="badge"
+                                width={50}
+                                height={20}
+                              />
+                            </StyledFlag>
+                            <StyleName>{t(group.teams[1])}</StyleName>
+                          </StyledTeamContainer>
+                          <StyledTeamContainer>
+                            <StyledFlag>
+                              <Image
+                                src={group.badges[2]}
+                                alt="badge"
+                                width={50}
+                                height={20}
+                              />
+                            </StyledFlag>
+                            <StyleName>{t(group.teams[2])}</StyleName>
+                          </StyledTeamContainer>
+                          <StyledTeamContainer>
+                            <StyledFlag>
+                              <Image
+                                src={group.badges[3]}
+                                alt="badge"
+                                width={50}
+                                height={20}
+                              />
+                            </StyledFlag>
+                            <StyleName>{t(group.teams[3])}</StyleName>
+                          </StyledTeamContainer>
+                        </StyledGroupTeams>
+                      </StyledGroup>
+                    </motion.div>
+                  </Tooltip>
                 ))}
               </StyledGroupsContainer>
               <StyledRightborder>

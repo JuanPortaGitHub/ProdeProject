@@ -66,6 +66,7 @@ export const StyledGroup = styled.div`
     );
     cursor: pointer;
   }
+
   @media (max-width: 600px) {
     flex-direction: column;
     width: 45vw;

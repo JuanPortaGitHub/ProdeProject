@@ -52,9 +52,11 @@ export default function Header({ handleDrawer }: Props) {
     <>
       <div className={color ? style.headerSolid : style.headerTransparent}>
         <StyledNav>
-          <StyledTitle>Prode Trinche</StyledTitle>
-          {/* <Image src={"/giflogo.gif"} alt="my gif" height={100} width={100} /> */}
-
+          <Link href="/">
+            <a>
+              <StyledTitle>Prode Trinche</StyledTitle>
+            </a>
+          </Link>
           {!session && (
             <>
               <StyledList>

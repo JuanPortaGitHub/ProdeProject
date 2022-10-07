@@ -74,7 +74,7 @@ const JoinGroupForm = () => {
             ref={groupPassword}
           />
         </StyledControl>
-        <div>
+        <div id="CreateGroup">
           {loading ? (
             <CircularProgress color="inherit" />
           ) : (

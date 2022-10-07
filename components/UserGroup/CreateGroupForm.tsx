@@ -75,7 +75,7 @@ const CreateGroupForm = () => {
   ];
 
   return (
-    <StyledMainComponent>
+    <StyledMainComponent id="CreateGroup">
       <StyledCardTitle>Crea un grupo y jugá con tus amigos</StyledCardTitle>
       <form onSubmit={submitHandler}>
         <StyledInputLabel htmlFor="logo">Logo</StyledInputLabel>
@@ -137,7 +137,7 @@ const CreateGroupForm = () => {
             ref={groupAmount}
           />
         </StyledControl>
-        <div>
+        <div id="CreateGroup">
           {loading ? (
             <CircularProgress color="inherit" />
           ) : (

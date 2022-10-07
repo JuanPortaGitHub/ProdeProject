@@ -163,7 +163,7 @@ export default function Home() {
                 </StyledWorldCupImage>
               </StyledImageContainer>
               <StyledButtonContainer>
-                <Link href="/#signUpForm">
+                <Link href="/#CreateGroup">
                   <StyledButton>EMPEZA A JUGAR!</StyledButton>
                 </Link>
               </StyledButtonContainer>

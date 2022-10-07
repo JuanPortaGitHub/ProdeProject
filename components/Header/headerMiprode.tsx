@@ -58,7 +58,11 @@ export default function Header({ handleDrawer }: Props) {
     <>
       <div className={color ? style.headerSolid : style.headerTransparent}>
         <StyledNav>
-          <StyledTitle>Prode Trinche</StyledTitle>
+          <Link href="/">
+            <a>
+              <StyledTitle>Prode Trinche</StyledTitle>
+            </a>
+          </Link>
 
           <>
             <StyledList>

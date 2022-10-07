@@ -67,6 +67,7 @@ export const StyledListElement = styled.li`
 `;
 
 export const StyledTitle = styled.h2`
+  cursor: pointer;
   color: white;
   display: flex;
   @media (max-width: 600px) {

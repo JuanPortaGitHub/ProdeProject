@@ -5,7 +5,7 @@ import { StyledGrid } from "./syled";
 const UserGroup = () => {
   return (
     <>
-      <StyledGrid container>
+      <StyledGrid id="CreateGroup" container>
         <CreateGroupForm />
         <JoinGroupForm />
       </StyledGrid>
