@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   StyledGroupsContainer,
   StyledGroup,
@@ -17,6 +17,10 @@ import {
   StyledMainContent,
   StyledFriendsGroup,
   StyledTitle,
+  StyledRightborder,
+  StyledLeftborder,
+  StyledRightSquare,
+  StyledLeftSquare,
   StyledTextfield,
 } from "../../styles/groupfase";
 import { getGroups } from "../../utils/getGroups";
@@ -32,10 +36,16 @@ import { useSession } from "next-auth/react";
 import { useQuery } from "@apollo/client";
 import Header from "../../components/Header/headerMiprode";
 import { MenuItem, Select } from "@mui/material";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import Link from "next/link";
 
 const FaseGroup: NextPage = () => {
   const [currentGroup, setCurrentGroup] = useState("");
+  const [currentPosition, setCurrentPosition] = useState(0);
   const { data: session, status } = useSession();
+  const refGroup = useRef();
+  const refContainer = useRef();
   const { loading, error, data } = useQuery(GET_USER_GROUPS, {
     variables: { getUserByIdId: session?.id },
   });
@@ -50,13 +60,28 @@ const FaseGroup: NextPage = () => {
 
   const faseGroups = getGroups();
 
-  console.log(data);
-
   useEffect(() => {
     if (data) {
       setSelectedFriendsGroup(() => data.GetUserById.Grupos[0]?.id);
     }
   }, [data]);
+
+  const handleScroll = () => {
+    refContainer?.current?.scrollTo({
+      top: 0,
+      left: currentPosition + 100,
+      behavior: "smooth",
+    });
+    if (currentPosition == 1100) {
+      refContainer?.current?.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+      setCurrentPosition(() => 0);
+    }
+    setCurrentPosition((curr) => curr + 100);
+  };
 
   return (
     <>
@@ -93,7 +118,7 @@ const FaseGroup: NextPage = () => {
               />
             </StyledImage>
             <StyledprodeContainer>
-              <StyledGroupsContainer>
+              <StyledGroupsContainer ref={refContainer}>
                 {faseGroups.map((group, i) => (
                   <motion.div
                     key={i}
@@ -162,6 +187,14 @@ const FaseGroup: NextPage = () => {
                   </motion.div>
                 ))}
               </StyledGroupsContainer>
+              <StyledRightborder>
+                <StyledRightSquare></StyledRightSquare>
+                <ArrowForwardIosIcon
+                  onClick={() => {
+                    handleScroll(refGroup.current);
+                  }}
+                />
+              </StyledRightborder>
               <GroupMatches
                 teamsGroup={currentGroup}
                 userGroup={selectedFriendsGroup}

@@ -29,6 +29,7 @@ export const StyledGroupsContainer = styled.div`
     width: 100%;
     height: 50%;
     overflow-x: scroll;
+    /* transform: translate(100px); */
   }
 `;
 
@@ -100,6 +101,35 @@ export const StyledFriendsGroup = styled.div`
   svg {
     color: white;
   }
+`;
+
+export const StyledRightborder = styled.div`
+  display: none;
+  @media (max-width: 600px) {
+    display: block;
+    /* width: 10px; */
+    height: 30%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 100%;
+    svg {
+      color: white;
+    }
+  }
+  /* top: 40%; */
+`;
+
+export const StyledRightSquare = styled.div`
+  width: 60px;
+  position: absolute;
+  height: 100%;
+  right: 100%;
+  background-image: linear-gradient(
+    to right,
+    rgba(88, 39, 66, 0),
+    rgba(88, 39, 66, 1)
+  );
 `;
 
 export const StyledTitle = styled.h4`
