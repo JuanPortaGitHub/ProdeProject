@@ -21,6 +21,7 @@ import {
 } from "../styles/styled";
 import RegisterLogin from "../components/registerLogin/registerLogin";
 import Header from "../components/Header/header";
+import useToastContext from "../hooks/useToastContext";
 import Sidebar from "../components/sidebar/sidebar";
 import { StyledBody } from "../components/sidebar/styled";
 import UserGroup from "../components/UserGroup";
@@ -65,9 +66,11 @@ const scrollToDown = () => {
 };
 
 export default function Home() {
+  const toast = useToastContext();
   const { data: session, status } = useSession();
   // const classes = useStyles();
 
+  // toast.success("Entidad creada con exito");
   return (
     <>
       <StyledContainer>

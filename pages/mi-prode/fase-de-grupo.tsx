@@ -218,13 +218,9 @@ const FaseGroup: NextPage = () => {
                   </Tooltip>
                 ))}
               </StyledGroupsContainer>
-              <StyledRightborder>
+              <StyledRightborder onClick={handleScroll}>
                 <StyledRightSquare></StyledRightSquare>
-                <ArrowForwardIosIcon
-                  onClick={() => {
-                    handleScroll(refGroup.current);
-                  }}
-                />
+                <ArrowForwardIosIcon />
               </StyledRightborder>
               <GroupMatches
                 teamsGroup={currentGroup}
