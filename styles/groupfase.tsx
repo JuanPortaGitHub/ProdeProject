@@ -128,8 +128,8 @@ export const StyledRightSquare = styled.div`
   right: 100%;
   background-image: linear-gradient(
     to right,
-    rgba(88, 39, 66, 0),
-    rgba(88, 39, 66, 1)
+    rgba(93, 39, 66, 0),
+    rgba(93, 39, 66, 1)
   );
 `;
 
