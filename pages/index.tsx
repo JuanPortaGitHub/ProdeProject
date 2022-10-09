@@ -26,6 +26,7 @@ import Sidebar from "../components/sidebar/sidebar";
 import { StyledBody } from "../components/sidebar/styled";
 import UserGroup from "../components/UserGroup";
 import GroupDetail from "../components/GroupDetail";
+import { useEffect } from "react";
 
 export const images = [
   {
@@ -70,7 +71,9 @@ export default function Home() {
   const { data: session, status } = useSession();
   // const classes = useStyles();
 
-  // toast.success("Entidad creada con exito");
+  // useEffect(() => {
+  //   toast.success("Entidad creada con exito");
+  // }, []);
   return (
     <>
       <StyledContainer>

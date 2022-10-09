@@ -41,6 +41,8 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
     },
   });
 
+  console.log(data);
+
   const getGroups = (matches) => {
     setGroups(matches);
   };
