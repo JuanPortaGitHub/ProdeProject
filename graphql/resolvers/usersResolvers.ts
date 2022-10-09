@@ -38,29 +38,25 @@ export const createUserResolver: FieldResolver<
   "Mutation",
   "createUser"
 > = async (_, { name, email, recivedPassword }, { prisma }) => {
-  try {
-    const mailExist = await prisma.user.count({
-      where: {
-        email: email,
-      },
-    });
-    if (mailExist !== 0) {
-      throw new Error("Usuario Existente");
-    }
-
-    const password = await hashPassword(recivedPassword);
-
-    const newUser = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password,
-      },
-    });
-    return newUser;
-  } catch {
-    throw new Error("No se pudo crear usuario. Reintente");
+  const mailExist = await prisma.user.count({
+    where: {
+      email: email,
+    },
+  });
+  if (mailExist !== 0) {
+    throw new Error("Usuario Existente");
   }
+
+  const password = await hashPassword(recivedPassword);
+
+  const newUser = await prisma.user.create({
+    data: {
+      name,
+      email,
+      password,
+    },
+  });
+  return newUser;
 };
 
 export const updateUserResolver: FieldResolver<

@@ -131,6 +131,7 @@ const FaseGroup: NextPage = () => {
               <StyledGroupsContainer ref={refContainer}>
                 {faseGroups.map((group, i) => (
                   <Tooltip
+                    key={i}
                     title={
                       selectedFriendsGroup == "" ? (
                         <>
