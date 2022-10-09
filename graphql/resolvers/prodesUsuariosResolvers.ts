@@ -46,34 +46,30 @@ export const createProdeUsuarioResolver: FieldResolver<
   },
   { prisma }
 ) => {
-  try {
-    const prodeExist = await prisma.prode_Partido_Usuario.count({
-      where: {
-        userId: userId,
-        info_PartidosId: info_PartidosId,
-        grupoId: grupoId,
-      },
-    });
-    if (prodeExist !== 0) {
-      throw new Error("Ya cargaste el resultado de este partido");
-    }
-    const newProde = await prisma.prode_Partido_Usuario.create({
-      data: {
-        userId,
-        info_PartidosId,
-        grupoId,
-        Goles_Local,
-        Goles_Visitante,
-        Ganador,
-        Tiempo_Extra,
-        Penales,
-        Puntos,
-      },
-    });
-    return newProde;
-  } catch (e) {
-    throw new Error("No se pudo crear prode, reintente");
+  const prodeExist = await prisma.prode_Partido_Usuario.count({
+    where: {
+      userId: userId,
+      info_PartidosId: info_PartidosId,
+      grupoId: grupoId,
+    },
+  });
+  if (prodeExist !== 0) {
+    throw new Error("Ya cargaste el resultado de este partido");
   }
+  const newProde = await prisma.prode_Partido_Usuario.create({
+    data: {
+      userId,
+      info_PartidosId,
+      grupoId,
+      Goles_Local,
+      Goles_Visitante,
+      Ganador,
+      Tiempo_Extra,
+      Penales,
+      Puntos,
+    },
+  });
+  return newProde;
 };
 
 export const updateProdeUsuarioResolver: FieldResolver<
@@ -114,7 +110,7 @@ export const updateProdeUsuarioResolver: FieldResolver<
     });
     return editedProde;
   } catch {
-    throw new Error("No se pudo obtener la información");
+    throw new Error("No se pudo actualizar");
   }
 };
 
@@ -122,55 +118,50 @@ export const createManyProdeUsuarioResolver: FieldResolver<
   "Mutation",
   "createManyProdeUsuario"
 > = async (_, { userId, grupoId, ProdeMatchInfo }, { prisma }) => {
-  try {
-    console.log(userId, grupoId, ProdeMatchInfo);
-    if (ProdeMatchInfo?.length !== 6) {
-      return {
-        message: "Prode incompleto. Faltan cargar partidos",
-        error: true,
-      };
-    }
+  if (ProdeMatchInfo?.length !== 6) {
+    return {
+      message: "Prode incompleto. Faltan cargar partidos",
+      error: true,
+    };
+  }
 
-    ProdeMatchInfo.map(async (prode: any) => {
-      const prodeCargado = await prisma.prode_Partido_Usuario.findFirst({
+  ProdeMatchInfo.map(async (prode: any) => {
+    const prodeCargado = await prisma.prode_Partido_Usuario.findFirst({
+      where: {
+        userId: userId,
+        grupoId: grupoId,
+        info_PartidosId: prode.info_PartidosId,
+      },
+    });
+    if (prodeCargado?.Goles_Local) {
+      await prisma.prode_Partido_Usuario.updateMany({
         where: {
           userId: userId,
           grupoId: grupoId,
           info_PartidosId: prode.info_PartidosId,
         },
-      });
-      if (prodeCargado?.Goles_Local) {
-        await prisma.prode_Partido_Usuario.updateMany({
-          where: {
-            userId: userId,
-            grupoId: grupoId,
-            info_PartidosId: prode.info_PartidosId,
-          },
-          data: {
-            Goles_Local: prode.Goles_Local,
-            Goles_Visitante: prode.Goles_Visitante,
-            Ganador: prode.Ganador,
-            Tiempo_Extra: prode.Tiempo_Extra,
-            Penales: prode.Penales,
-          },
-        });
-        return { message: "Prode Actualizado Correctamete", error: false };
-      }
-      await prisma.prode_Partido_Usuario.create({
         data: {
-          userId: userId,
-          grupoId: grupoId,
-          info_PartidosId: prode.info_PartidosId,
           Goles_Local: prode.Goles_Local,
           Goles_Visitante: prode.Goles_Visitante,
           Ganador: prode.Ganador,
-          Puntos: 0,
+          Tiempo_Extra: prode.Tiempo_Extra,
+          Penales: prode.Penales,
         },
       });
-      return { message: "Prode Creado Correctamete", error: false };
+      return { message: "Prode Actualizado Correctamete", error: false };
+    }
+    await prisma.prode_Partido_Usuario.create({
+      data: {
+        userId: userId,
+        grupoId: grupoId,
+        info_PartidosId: prode.info_PartidosId,
+        Goles_Local: prode.Goles_Local,
+        Goles_Visitante: prode.Goles_Visitante,
+        Ganador: prode.Ganador,
+        Puntos: 0,
+      },
     });
-  } catch (e) {
-    return { message: "Error en carga de prode. Reintente", error: true };
-  }
+    return { message: "Prode Creado Correctamete", error: false };
+  });
   return { message: "Prode Cargado Correctamete", error: false };
 };
