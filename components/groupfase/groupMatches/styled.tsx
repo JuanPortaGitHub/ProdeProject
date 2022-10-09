@@ -74,6 +74,8 @@ export const StyledMatch = styled.div`
 `;
 
 export const StyledButton = styled.button`
+  width: 250px;
+  align-self: center;
   font-family: "Raleway", sans-serif;
   color: #fff;
   /* background-color: #5ca9fb; */
@@ -101,6 +103,12 @@ export const StyledButtonContainer = styled.div`
   justify-content: center;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  flex-direction: column;
 
   /* height: 0.5rem; */
+`;
+
+export const StyledResultText = styled.h4`
+  color: white;
+  align-self: center;
 `;

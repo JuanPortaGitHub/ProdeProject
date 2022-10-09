@@ -14,6 +14,7 @@ import {
   Styledh4,
   StyledButton,
   StyledButtonContainer,
+  StyledResultText,
 } from "./styled";
 import { GET_MATCHES_BY_GROUPFASE_GROUP } from "../../../graphql/queries/infoMatchesQueries";
 import { CREATE_PRODES } from "../../../graphql/queries/prodesQueries";
@@ -23,6 +24,8 @@ import { useForm } from "react-hook-form";
 
 const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   const [groups, setGroups] = useState([]);
+  const [errorCreate, setErrorCreate] = useState("");
+  const [dataCreated, setDataCreated] = useState("");
   const { handleSubmit, setFocus, register, control, formState } = useForm({
     shouldUnregister: true,
   });
@@ -32,12 +35,19 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
       variables: { grupo: teamsGroup, grupoId: +userGroup, userId: userId },
     }
   );
-  const [create_Prodes, { error: createError }] = useMutation(CREATE_PRODES, {
+  const [
+    create_Prodes,
+    { error: createError, loading: createLoading, data: createdData },
+  ] = useMutation(CREATE_PRODES, {
     onCompleted(data) {
       console.log("data", data);
+      setErrorCreate("");
+      setDataCreated("Prode cargado correctamente!");
     },
     onError(error) {
       console.log("error", error);
+      setErrorCreate("Faltan cargar partidos");
+      setDataCreated("");
     },
   });
 
@@ -66,6 +76,8 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   useEffect(() => {
     if (data) {
       getGroups(data.GetMatchesByGroup);
+      setErrorCreate("");
+      setDataCreated("");
     }
   }, [data]);
 
@@ -105,6 +117,17 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
                 <StyledButtonContainer>
                   {groups.length > 0 && (
                     <StyledButton type="submit">Enviar Prode</StyledButton>
+                  )}
+                  {errorCreate && (
+                    <StyledResultText>
+                      Faltan partidos por cargar
+                    </StyledResultText>
+                  )}
+                  {createLoading && <CircularProgress />}
+                  {createdData && (
+                    <StyledResultText>
+                      Prode cargado correctamente!
+                    </StyledResultText>
                   )}
                 </StyledButtonContainer>
               </form>
