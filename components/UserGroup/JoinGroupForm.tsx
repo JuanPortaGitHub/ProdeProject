@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { useSession } from "next-auth/react";
 import { useMutation } from "@apollo/client";
 import classes from "../auth/authform.module.css";
 import { Button, CircularProgress, Input } from "@mui/material";
 import { ADD_USER_GROUP } from "../../graphql/queries/groupQueries";
+import ToastContext from "../../context/toastContext";
 import {
   StyledButton,
   StyledControl,
@@ -16,6 +17,7 @@ import {
 
 const JoinGroupForm = () => {
   const [disableFields, setDisableFields] = useState(false);
+  const toast = useContext(ToastContext);
   const groupName = useRef();
   const groupPassword = useRef();
 
@@ -25,12 +27,14 @@ const JoinGroupForm = () => {
     ADD_USER_GROUP,
     {
       onCompleted(data) {
+        toast.success(`Te uniste al grupo ${data.addUserToGrupo.nombre}!`);
         setDisableFields(false);
         console.log("data", data);
         groupName.current.value = "";
         groupPassword.current.value = "";
       },
       onError(error) {
+        toast.error(error.message);
         setDisableFields(false);
         console.log("error", error);
       },
@@ -84,12 +88,6 @@ const JoinGroupForm = () => {
               </StyledButton>
             </>
           )}
-          {data && (
-            <StyledResultText>
-              Te uniste al grupo {data.addUserToGrupo.nombre}!
-            </StyledResultText>
-          )}
-          {error && <StyledResultText>{error.message}</StyledResultText>}
         </div>
       </form>
     </StyledMainComponent>

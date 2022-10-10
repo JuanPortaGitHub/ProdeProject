@@ -11,14 +11,13 @@ import {
   StyledMainComponent,
   StyledResultText,
 } from "./styled";
+import GoogleIcon from "@mui/icons-material/Google";
 import { motion } from "framer-motion";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(false);
-  const [createdUserMsg, setCreatedUserMsg] = useState("");
   const createUserHandler = () => {
     setIsLogin(true);
-    setCreatedUserMsg("Usuario Creado!!");
   };
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -47,7 +46,6 @@ const AuthForm = () => {
       ) : (
         <>
           <LoginUser />
-          <StyledResultText>{createdUserMsg}</StyledResultText>
         </>
       )}
 
@@ -57,7 +55,7 @@ const AuthForm = () => {
         whileTap={{ scale: 0.95 }}
         onClick={() => signIn("google")}
       >
-        Inicia Sesión con Google
+        Inicia Sesión con Google <GoogleIcon />
       </StyledButton>
       <StyledButton
         as={motion.button}

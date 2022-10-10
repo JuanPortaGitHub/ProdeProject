@@ -44,7 +44,7 @@ export const Match = ({
 
   const today = new Date();
 
-  console.log(today > date);
+  console.log(today >= date);
 
   const min = 0;
   const max = 10;

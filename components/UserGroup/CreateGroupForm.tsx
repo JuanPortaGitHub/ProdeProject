@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { useSession } from "next-auth/react";
 import { useMutation } from "@apollo/client";
 import { CircularProgress, SelectChangeEvent } from "@mui/material";
 import { CREATE_GROUP } from "../../graphql/queries/groupQueries";
+import ToastContext from "../../context/toastContext";
 import Image from "next/image";
 import {
   StyledButton,
@@ -18,6 +19,7 @@ import {
 import { motion } from "framer-motion";
 
 const CreateGroupForm = () => {
+  const toast = useContext(ToastContext);
   const [logo, setLogo] = useState("/icons/1.png");
   const [disableFields, setDisableFields] = useState(false);
   const groupName = useRef();
@@ -29,6 +31,7 @@ const CreateGroupForm = () => {
 
   const [CreateNewGroup, { data, loading, error }] = useMutation(CREATE_GROUP, {
     onCompleted(data) {
+      toast.success(`Grupo ${data.createGrupo.nombre} creado`);
       setDisableFields(false);
       console.log("data", data);
       groupName.current.value = "";
@@ -38,6 +41,7 @@ const CreateGroupForm = () => {
       groupAmount.current.value = "";
     },
     onError(error) {
+      toast.error(error.message);
       setDisableFields(false);
       console.log("errorrr", error);
     },
@@ -145,12 +149,6 @@ const CreateGroupForm = () => {
               <StyledButton disabled={disableFields}>Crear grupo</StyledButton>
             </>
           )}
-          {data && (
-            <StyledResultText>
-              Grupo {data.createGrupo.nombre} creado
-            </StyledResultText>
-          )}
-          {error && <StyledResultText>{error.message}</StyledResultText>}
         </div>
       </form>
     </StyledMainComponent>
