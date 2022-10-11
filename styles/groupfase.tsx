@@ -22,7 +22,7 @@ export const StyledGroupsContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   margin-bottom: 3rem;
   gap: 1rem;
-  width: 50%;
+  width: 100%;
   padding: 1rem;
   @media (max-width: 600px) {
     display: flex;
@@ -38,7 +38,18 @@ export const StyleName = styled.div`
   justify-content: center;
   background-color: white;
   border: 1px solid red;
-  width: 75%;
+  width: 55%;
+  align-self: flex-end;
+  margin: 3px;
+  border-radius: 5px;
+`;
+
+export const StyleResult = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid red;
+  width: 20%;
   align-self: flex-end;
   margin: 3px;
   border-radius: 5px;
@@ -69,7 +80,7 @@ export const StyledGroup = styled.div`
 
   @media (max-width: 600px) {
     flex-direction: column;
-    width: 45vw;
+    width: 65vw;
     /* height: 30vh; */
   }
 `;
@@ -155,7 +166,7 @@ export const StyledImage = styled.div`
 export const StyledprodeContainer = styled.div`
   margin-top: 4vh;
   display: flex;
-  width: 80%;
+  width: 100%;
   @media (max-width: 600px) {
     /* overflow-x: scroll; */
     flex-direction: column;

@@ -26,6 +26,8 @@ export const StyledTextField = styled(TextField)`
 `;
 
 export const StyledDate = styled.div`
+  align-self: center;
+  text-align: center;
   color: white;
   width: 50%;
   height: 2rem;
@@ -56,7 +58,11 @@ export const Styledh4 = styled.h5`
 export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-content: space-between;
   gap: 0.5rem;
   margin-bottom: 2.5rem;
+  width: 60%;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;

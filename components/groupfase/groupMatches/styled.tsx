@@ -61,6 +61,9 @@ export const Styledh4 = styled.h4`
 `;
 
 export const StyledMatch = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     border-radius: 17px;
     background: linear-gradient(

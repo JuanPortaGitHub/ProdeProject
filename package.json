@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "updateDBResults": "npx ts-node --skip-project ./cronJobs/updateResults.ts",
     "updateDBTeams": "npx ts-node --skip-project ./cronJobs/updateTeams.ts",
     "updateDBInfoMatch": "npx ts-node --skip-project ./cronJobs/updateInfoMatchs.ts",
     "seedPrisma": "npx ts-node --skip-project ./prisma/seed.js"

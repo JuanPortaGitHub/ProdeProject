@@ -125,8 +125,11 @@ model Equipos {
 
 model Resultados_Reales_Partidos {
   id              Int            @id @default(autoincrement())
-  Goles_Local     String
-  Goles_Visitante String
+  Goles_Local     String?
+  Goles_Visitante String?
+  Ganador         String?
+  Tiempo_Extra    Boolean        @default(false)
+  Penales         Boolean        @default(false)
   Info_Partidos   Info_Partidos?
   createdAt       DateTime       @default(now()) @db.Timestamptz(3)
   updatedAt       DateTime       @updatedAt @db.Timestamptz(3)

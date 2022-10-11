@@ -33,6 +33,40 @@ export const flags = {
   coreaDelSur: "/flags/coreaDelSur.png",
 };
 
+export const getCountry = () => [
+  { name: "Qatar", badge: flags.qatar },
+  { name: "Ecuador", badge: flags.ecuador },
+  { name: "Senegal", badge: flags.senegal },
+  { name: "Netherlands", badge: flags.paisesBajos },
+  { name: "England", badge: flags.inglaterra },
+  { name: "Iran", badge: flags.iran },
+  { name: "USA", badge: flags.USA },
+  { name: "Wales", badge: flags.gales },
+  { name: "Argentina", badge: flags.argentina },
+  { name: "Saudi Arabia", badge: flags.arabiaSaudita },
+  { name: "Mexico", badge: flags.mexico },
+  { name: "Poland", badge: flags.polonia },
+  { name: "France", badge: flags.francia },
+  { name: "Australia", badge: flags.australia },
+  { name: "Denmark", badge: flags.dinamarca },
+  { name: "Tunisia", badge: flags.tunez },
+  { name: "Spain", badge: flags.españa },
+  { name: "Costa Rica", badge: flags.costaRica },
+  { name: "Germany", badge: flags.alemania },
+  { name: "Japan", badge: flags.japon },
+  { name: "Belgium", badge: flags.belgica },
+  { name: "Croatia", badge: flags.croacia },
+  { name: "Canada", badge: flags.canada },
+  { name: "Morocco", badge: flags.marruecos },
+  { name: "Brazil", badge: flags.brasil },
+  { name: "Serbia", badge: flags.serbia },
+  { name: "Switzerland", badge: flags.suiza },
+  { name: "Cameroon", badge: flags.camerun },
+  { name: "Portugal", badge: flags.portugal },
+  { name: "Ghana", badge: flags.ghana },
+  { name: "Uruguay", badge: flags.uruguay },
+  { name: "South Korea", badge: flags.coreaDelSur },
+];
 export const getGroups = () => {
   const WorldCupGrups = [
     {

@@ -12,7 +12,7 @@ import {
 interface Props {
   team: string;
   flag: string;
-  home: string;
+  home: boolean;
 }
 
 const TeamContainer = ({ team, flag, home }: Props) => {
@@ -20,25 +20,13 @@ const TeamContainer = ({ team, flag, home }: Props) => {
     <>
       {home ? (
         <Container>
-          <Image src={flag} alt="" width={50} height={30} />
-          {/* <StyleArrowLeft> */}
-          {/* <StyleArrowLeftInner /> */}
-          {/* </StyleArrowLeft> */}
+          <Image src={flag} alt="" width={50} height={30} layout={"fixed"} />
           <StyledTeamContainer>{team}</StyledTeamContainer>
-          {/* <StyleArrowRight> */}
-          {/* <StyleArrowRightInner /> */}
-          {/* </StyleArrowRight> */}
         </Container>
       ) : (
         <Container>
-          {/* <StyleArrowLeft>
-            <StyleArrowLeftInner />
-          </StyleArrowLeft> */}
           <StyledTeamContainer>{team}</StyledTeamContainer>
-          {/* <StyleArrowRight>
-            <StyleArrowRightInner />
-          </StyleArrowRight> */}
-          <Image src={flag} alt="" width={50} height={30} />
+          <Image src={flag} alt="" width={50} height={30} layout={"fixed"} />
         </Container>
       )}
     </>

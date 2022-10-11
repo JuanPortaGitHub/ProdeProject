@@ -31,7 +31,6 @@ import { StyledBody } from "../../components/sidebar/styled";
 import { StyledContainer } from "../../styles/styled";
 import Sidebar from "../../components/sidebar/sidebar";
 import { GET_USER_GROUPS } from "../../graphql/queries/userQueries";
-import { prisma } from "../../lib/prisma";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@apollo/client";
 import Header from "../../components/Header/headerMiprode";

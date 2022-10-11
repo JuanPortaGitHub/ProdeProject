@@ -33,9 +33,6 @@ export default function Header({ handleDrawer }: Props) {
   const { data: session, status } = useSession();
   // const isDesktopMode = useMediaQuery("(min-width:600px)");
   const [selectedGrupo, setSelectedGrupo] = useState("");
-  const { loading, error, data } = useQuery(GET_USER_GROUPS, {
-    variables: { getUserByIdId: session?.id },
-  });
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedGrupo(event.target.value as string);
