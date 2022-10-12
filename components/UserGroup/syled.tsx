@@ -3,12 +3,14 @@ import { Grid, Paper, Select } from "@mui/material";
 // import bg from "/backgroundCards.png"; // Import using relative path
 
 export const StyledMainComponent = styled.div`
-  background-color: rgba(255, 21, 84, 0.447);
+  /* background-color: rgba(255, 21, 84, 0.447); */
+  background-color: rgba(255, 255, 255, 0.447);
   margin: 3rem auto;
   padding: 2rem;
   text-align: center;
   align-self: center;
-  box-shadow: 0 8px 32px 0 rgba(255, 21, 84, 0.37);
+  /* box-shadow: 0 8px 32px 0 rgba(255, 21, 84, 0.37); */
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
@@ -20,15 +22,16 @@ export const StyledMainComponent = styled.div`
 `;
 
 export const StyledGrid = styled(Grid)`
-  background-image: url("/backgroundCards.png");
+  background-image: url("/abstractbg.jpg");
+  /* box-shadow: inset 0px 0px 40px 40px black;s */
   background-size: cover;
   opacity: 88%;
-  padding-top: 17rem;
+  /* padding-top: 17rem; */
   width: 100%;
   align-self: center;
 
   @media (max-width: 600px) {
-    padding-top: 20rem;
+    /* padding-top: 20rem; */
     width: 100%;
     background-size: 1100px 100%;
   }
@@ -68,7 +71,8 @@ export const IconContainer = styled.div`
 `;
 
 export const StyledCardTitle = styled.h3`
-  color: white;
+  /* color: white; */
+  color: black;
 `;
 
 export const StyledResultText = styled.h4`
@@ -78,6 +82,7 @@ export const StyledResultText = styled.h4`
 export const StyledInputLabel = styled("label")({
   display: "block",
   color: "white",
+  color: "black",
   marginBottom: "0.5rem",
 });
 

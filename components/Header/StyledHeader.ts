@@ -43,6 +43,7 @@ export const StyledTextfield = styled(TextField)`
 
 export const StyledAnchor = styled.a`
   color: white;
+  font-family: "Gotham-Font", sans-serif;
   cursor: pointer;
   &:after {
     content: "";

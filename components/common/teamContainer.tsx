@@ -20,7 +20,7 @@ const TeamContainer = ({ team, flag, home }: Props) => {
     <>
       {home ? (
         <Container>
-          <Image src={flag} alt="" width={50} height={30} />
+          <Image src={flag} alt="" width={50} height={30} layout="fixed" />
           {/* <StyleArrowLeft> */}
           {/* <StyleArrowLeftInner /> */}
           {/* </StyleArrowLeft> */}
@@ -38,7 +38,7 @@ const TeamContainer = ({ team, flag, home }: Props) => {
           {/* <StyleArrowRight>
             <StyleArrowRightInner />
           </StyleArrowRight> */}
-          <Image src={flag} alt="" width={50} height={30} />
+          <Image src={flag} alt="" width={50} height={30} layout="fixed" />
         </Container>
       )}
     </>
