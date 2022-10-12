@@ -99,15 +99,15 @@ export const StyledTextField = styled(TextField)`
     height: 30px;
 
     input {
+      margin-left: 3vw;
       padding: 0px;
       padding-top: 1vw;
+      border: 0px;
     }
   }
-  /* fieldset {
-    border-radius: 17px;
-    background-color: white;
-    color: black;
-  } */
+  fieldset {
+    border: 0px;
+  }
 `;
 
 export const StyledContainer = styled.div`
