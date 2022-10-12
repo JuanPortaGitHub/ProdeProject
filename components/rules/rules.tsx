@@ -22,7 +22,7 @@ const Rules = () => {
           </StyledQuote>
           <StyledImage>
             <Image
-              src={"/bilardo.jpg"}
+              src="/bilardo.jpg"
               alt=""
               width={300}
               layout="fixed"
