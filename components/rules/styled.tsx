@@ -57,6 +57,9 @@ export const StyledQuoteContainer = styled.div`
   align-items: center;
   width: 40vw;
   margin-top: 3rem;
+  @media (max-width: 600px) {
+    width: 100vw;
+  }
   /* height: auto; */
 `;
 
@@ -77,6 +80,10 @@ export const StyledMainContainer = styled.div`
   padding: 1rem;
   /* justify-content: center; */
   gap: 2rem;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const StyledTextField = styled(TextField)`
