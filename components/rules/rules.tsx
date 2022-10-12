@@ -16,8 +16,9 @@ const Rules = () => {
       <StyledMainContainer id="Rules">
         <StyledQuoteContainer>
           <StyledQuote>
-            "Ganar no es lo más importante, es lo único. Nadie se acuerda del
-            segundo ¿Vos sabes quien pisó América después de Colón? - Yo no."
+            &quot;Ganar no es lo más importante, es lo único. Nadie se acuerda
+            del segundo ¿Vos sabes quien pisó América después de Colón? - Yo
+            no.&quot;
           </StyledQuote>
           <StyledImage>
             <Image
@@ -117,8 +118,8 @@ const Rules = () => {
               En los partidos de Octavos, cuartos, semi y final se agregara un
               punto extra que dependera en que etapa del partido se defina. Es
               decir se deberá especificar si el partido termina dentro de los
-              90' (con el tiempo adicional), en los tiempos suplementarios, o en
-              penales.
+              90&quot; (con el tiempo adicional), en los tiempos suplementarios,
+              o en penales.
               <br />
               <br />
               ejemplo: Para este ultimo ejemplo imaginemos unos octavos de final
