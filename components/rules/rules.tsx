@@ -1,3 +1,4 @@
+import { CheckBox } from "@mui/icons-material";
 import Image from "next/image";
 import { getFlagUrl } from "../../utils/getFlagUrl";
 
@@ -115,10 +116,12 @@ const Rules = () => {
             </p>
             <h3>Eliminacion Directa</h3>
             <p>
-              En los partidos de Octavos, cuartos, semi y final se agregara un
-              punto extra que dependera en que etapa del partido se defina. Es
-              decir se deberá especificar si el partido termina dentro de los
-              90&quot; (con el tiempo adicional), en los tiempos suplementarios,
+              En los partidos de Octavos, cuartos, semi y final se elimina la
+              opcion del empate ya que no existe, por lo que siempre se debera
+              especificar quien pasa. Además se agregará un punto extra que
+              dependera en que etapa del partido se defina. Es decir se deberá
+              especificar el ganador y si el partido termina dentro de los
+              90&#39; (con el tiempo adicional), en los tiempos suplementarios,
               o en penales.
               <br />
               <br />
@@ -134,7 +137,10 @@ const Rules = () => {
                 homeScore={1}
                 awayScore={1}
               />
+              Ganador: Paises Bajos
+              <br />
               Etapa del partido: Penales
+              <CheckBox />
               <br />
               <br />
               Y para este partido TATO puse lo siguiente:
@@ -148,14 +154,19 @@ const Rules = () => {
                 homeScore={1}
                 awayScore={1}
               />
-              Etapa del partido: Tiempos Extra
+              Ganador: Paises Bajos
+              <br />
+              Etapa del partido: Tiempos Extra <CheckBox />
               <br />
               <br />
               suma de puntos: <br />
               <br />
-              <strong>3 pts</strong> (por el empate en el partido) +{" "}
               <strong>1 pt</strong> (gol de visitante) + <strong>1 pt</strong>{" "}
-              (gol de local) =<strong> 5 pts</strong>.
+              (gol de local) =<strong> 2 pts</strong>. <br />
+              (No suma los 3 puntos por más que haya pegado el empate en los
+              90&#39; ya que falla en poner que equipo finalmente pasa la ronda
+              ni tampoco el punto extra porque no adivino en que etapa del
+              partido se define.)
             </p>
           </article>
         </StyledCard>
