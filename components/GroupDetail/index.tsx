@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { GET_USER_GROUPS } from "../../graphql/queries/userQueries";
 import { GroupInfoDetails } from "./GroupInfoDetails";
+import { StyledGroupsSection } from "../../styles/posicionesgrupo";
 
 const GroupDetail = () => {
   const [selectedGrupo, setSelectedGrupo] = useState("");
@@ -28,22 +29,14 @@ const GroupDetail = () => {
 
   return (
     <>
-      <section className={classes.auth}>
+      <StyledGroupsSection>
         {loading && <CircularProgress color="inherit" />}
         {data && (
           <>
             <FormControl sx={{ m: 1, minWidth: 300 }}>
               <>
-                <InputLabel id="demo-simple-select-disabled-label">
-                  Mis grupos
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-disabled-label"
-                  id="demo-simple-select-disabled"
-                  value={selectedGrupo}
-                  onChange={handleChange}
-                  fullWidth
-                >
+                <InputLabel>Mis grupos</InputLabel>
+                <Select value={selectedGrupo} onChange={handleChange} fullWidth>
                   {data.GetUserById.Grupos.map((grupo: any) => (
                     <MenuItem key={grupo.id} value={grupo.id}>
                       {grupo.nombre}
@@ -56,7 +49,7 @@ const GroupDetail = () => {
         )}
         {error && <h3>{error.message}</h3>}
         <GroupInfoDetails selectedGrupo={selectedGrupo} />
-      </section>
+      </StyledGroupsSection>
     </>
   );
 };

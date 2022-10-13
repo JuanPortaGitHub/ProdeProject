@@ -26,7 +26,6 @@ export const StyledImageContainer = styled.div`
 
 export const StyledPaperContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   width: 50vw;
   align-self: center;
   @media (max-width: 600px) {

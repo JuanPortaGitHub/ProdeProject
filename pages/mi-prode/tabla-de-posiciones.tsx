@@ -18,7 +18,7 @@ import {
   StyledRightborder,
   StyledRightSquare,
   StyleResult,
-} from "../../styles/groupfase";
+} from "../../styles/tabla-de-posiciones";
 import { getGroups } from "../../utils/getGroups";
 import { motion } from "framer-motion";
 import { t } from "../../utils/dictionary";
@@ -28,9 +28,8 @@ import Sidebar from "../../components/sidebar/sidebar";
 import Header from "../../components/Header/headerMiprode";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import NextMatches from "../../components/nextMatches";
-import PrevMatches from "../../components/nextMatches/prevMatches";
 
-const FaseGroup: NextPage = () => {
+const TablaPosiciones: NextPage = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const refContainer = useRef();
   const faseGroups = getGroups();
@@ -159,4 +158,4 @@ const FaseGroup: NextPage = () => {
   );
 };
 
-export default FaseGroup;
+export default TablaPosiciones;

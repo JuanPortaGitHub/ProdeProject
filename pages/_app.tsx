@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     "/mi-prode/fase-de-grupo",
     "/mi-prode",
     "/mi-prode/tabla-de-posiciones",
+    "/mi-prode/posicionesgrupo",
   ];
 
   const router = useRouter();
