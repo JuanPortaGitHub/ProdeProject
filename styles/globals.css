@@ -9,6 +9,7 @@ body {
   /* background-repeat: no-repeat; */
   
   background-image: url('/prodebg16.png');
+  background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
