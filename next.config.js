@@ -10,6 +10,7 @@ const nextConfig = {
   styledComponents: true,
   reactStrictMode: true,
   swcMinify: true,
+  crossOrigin: 'anonymous',
   images: {
     domains: [
       "www.thesportsdb.com",
