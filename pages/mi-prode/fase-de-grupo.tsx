@@ -44,7 +44,6 @@ const FaseGroup: NextPage = () => {
   const [currentGroup, setCurrentGroup] = useState("");
   const [currentPosition, setCurrentPosition] = useState(0);
   const { data: session, status } = useSession();
-  const refGroup = useRef();
   const refContainer = useRef();
   const { loading, error, data } = useQuery(GET_USER_GROUPS, {
     variables: { getUserByIdId: session?.id },

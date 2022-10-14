@@ -98,6 +98,7 @@ type User {
   createdAt: String
   email: String
   id: ID
+  image: String
   name: String
   password: String
   updatedAt: String

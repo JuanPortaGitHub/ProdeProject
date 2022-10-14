@@ -2,8 +2,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+    font-family: Gotham-font;
   /* background: linear-gradient(to right, #A20D35 , #24000C); */
   /* background-repeat: no-repeat; */
   background-image: url('/prodebg16.png');
@@ -13,6 +14,27 @@ body {
   background-size: cover;
   scroll-behavior: smooth
   
+}
+
+@font-face {
+  font-family: "Gotham-Font";
+  src: url('../fonts/Gotham-Font/Gotham-Black.otf');
+  font-weight: 900;
+  font-style: normal;
+} 
+
+@font-face {
+  font-family: "Gotham-Font";
+  src: url('../fonts/Gotham-Font/Gotham-Light.otf');
+  font-weight: inherit;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gotham-Font";
+  src: url('../fonts/Gotham-Font/GothamMedium.ttf');
+  font-weight: 700;
+  font-style: normal;
 }
 
 a {

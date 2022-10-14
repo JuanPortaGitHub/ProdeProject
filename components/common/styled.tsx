@@ -14,7 +14,6 @@ export const StyledTeamContainer = styled.div`
   gap: 1rem;
   border-radius: 20px;
   padding: 0 2rem;
-  width: 80%;
   font-size: 1vw;
   /* height: 2rem; */
   background-color: #eeedeb;

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { TextField } from "@mui/material";
+import { TextField, Tooltip } from "@mui/material";
 import dayjs from "dayjs";
 import Image from "next/image";
 import React from "react";
@@ -40,7 +40,11 @@ export const Match = ({
 }: Props) => {
   const date = new Date(+matchDate);
 
-  const dateFormated = dayjs(date).format("DD-MM-YY H:mm");
+  const matchDateFormated = dayjs(date).format("DD-MM-YY H:mm");
+
+  const today = new Date();
+
+  console.log(today >= date);
 
   const min = 0;
   const max = 10;
@@ -49,7 +53,7 @@ export const Match = ({
 
   return (
     <StyledContainer>
-      <StyledDate>{`${dateFormated} hs`}</StyledDate>
+      <StyledDate>{`${matchDateFormated} hs`}</StyledDate>
       <div
         // id="primerid"
         style={{
@@ -75,26 +79,42 @@ export const Match = ({
               control={control}
               defaultValue={userHomeScore}
               render={({ field: { onChange, value, ref, ...rest } }) => (
-                <StyledTextField
-                  {...rest}
-                  size="small"
-                  value={value}
-                  name={`${id}/home`}
-                  inputProps={{
-                    // min,
-                    // max,
-                    style: { textAlign: "center" },
-                    maxLength: 1,
-                  }}
-                  onChange={onChange}
-                  // onChange={(e) => {
-                  //   var value = parseInt(e.target.value, 10);
-                  //   if (value > max) value = max;
-                  //   if (value < min) value = min;
-                  //   return onChange(value);
-                  // }}
-                  type="number"
-                />
+                <Tooltip
+                  title={
+                    today >= date ? (
+                      <>
+                        <p>
+                          No me quieras venir a piscudear 😏...el partido ya
+                          arranco!
+                        </p>
+                      </>
+                    ) : (
+                      ""
+                    )
+                  }
+                >
+                  <StyledTextField
+                    {...rest}
+                    size="small"
+                    value={value}
+                    name={`${id}/home`}
+                    disabled={today >= date}
+                    inputProps={{
+                      // min,bl
+                      // max,
+                      style: { textAlign: "center" },
+                      maxLength: 1,
+                    }}
+                    onChange={onChange}
+                    // onChange={(e) => {
+                    //   var value = parseInt(e.target.value, 10);
+                    //   if (value > max) value = max;
+                    //   if (value < min) value = min;
+                    //   return onChange(value);
+                    // }}
+                    type="number"
+                  />
+                </Tooltip>
               )}
             />
             VS
@@ -105,26 +125,42 @@ export const Match = ({
               defaultValue={userAwayScore}
               // defaultValue={userAwayScore !== undefined ? +userAwayScore : null}
               render={({ field: { onChange, value, ...rest } }) => (
-                <StyledTextField
-                  {...rest}
-                  size="small"
-                  name={`${id}/away`}
-                  value={value}
-                  inputProps={{
-                    min,
-                    max,
-                    style: { textAlign: "center" },
-                    maxLength: 1,
-                  }}
-                  onChange={onChange}
-                  // onChange={(e) => {
-                  //   var value = parseInt(e.target.value, 10);
-                  //   if (value > max) value = max;
-                  //   if (value < min) value = min;
-                  //   return onChange(value);
-                  // }}
-                  type="number"
-                />
+                <Tooltip
+                  title={
+                    today >= date ? (
+                      <>
+                        <p>
+                          No me quieras venir a piscudear 😏...el partido ya
+                          arranco!
+                        </p>
+                      </>
+                    ) : (
+                      ""
+                    )
+                  }
+                >
+                  <StyledTextField
+                    {...rest}
+                    size="small"
+                    name={`${id}/away`}
+                    value={value}
+                    disabled={today >= date}
+                    inputProps={{
+                      min,
+                      max,
+                      style: { textAlign: "center" },
+                      maxLength: 1,
+                    }}
+                    onChange={onChange}
+                    // onChange={(e) => {
+                    //   var value = parseInt(e.target.value, 10);
+                    //   if (value > max) value = max;
+                    //   if (value < min) value = min;
+                    //   return onChange(value);
+                    // }}
+                    type="number"
+                  />
+                </Tooltip>
               )}
             />
           </div>

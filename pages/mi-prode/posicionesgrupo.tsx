@@ -31,9 +31,7 @@ const Posiciones: NextPage = () => {
         <Sidebar />
       </StyledBody>
       <Header />
-      <StyledMainContent>
-        <GroupDetail />
-      </StyledMainContent>
+      <GroupDetail />
     </StyledContainer>
   );
 };

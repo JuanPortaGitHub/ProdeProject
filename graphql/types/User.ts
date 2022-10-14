@@ -19,6 +19,7 @@ export const User = objectType({
     t.string("password");
     t.string("createdAt");
     t.string("updatedAt");
+    t.string("image");
     t.list.field("Grupos", {
       type: Grupo,
       resolve: (parent, args, context) => {

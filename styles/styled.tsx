@@ -26,6 +26,9 @@ export const StyledImageContainer = styled.div`
 
 export const StyledPaperContainer = styled.div`
   display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
   width: 50vw;
   align-self: center;
   @media (max-width: 600px) {
@@ -60,6 +63,22 @@ export const StyledWorldCupImage = styled.div`
   @media (max-width: 600px) {
     width: 70vw;
   }
+`;
+
+export const StyledMainTitle = styled.h1`
+  font-size: 4rem;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  color: white;
+`;
+
+export const StyleSubTitle = styled.div`
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.5rem;
 `;
 
 export const StyledButton = styled.a`

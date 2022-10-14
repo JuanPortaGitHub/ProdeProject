@@ -49,6 +49,7 @@ export const GET_GROUP_DETAIL = gql`
       usuarios {
         id
         name
+        image
       }
     }
   }

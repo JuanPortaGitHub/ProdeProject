@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../graphql/queries/userQueries";
 import { CircularProgress } from "@mui/material";
@@ -11,9 +11,11 @@ import {
   StyledResultText,
 } from "./styled";
 import { motion } from "framer-motion";
+import ToastContext from "../../context/toastContext";
 
 const CreateUser = ({ createUserHandler }) => {
   const [loadingLogin, setLoadingLogin] = useState(false);
+  const toast = useContext(ToastContext);
   const [errorLogin, setErrorLogin] = useState("");
   const firstNameRef = useRef();
   const emailInputRef = useRef();
@@ -23,10 +25,12 @@ const CreateUser = ({ createUserHandler }) => {
   const [createNewUser, { error }] = useMutation(ADD_USER, {
     onCompleted(data) {
       console.log("data", data);
+      toast.success("Usuario Creado!");
       createUserHandler();
     },
     onError(error) {
       console.log("error", error);
+      toast.error(error.message);
     },
   });
   const submitHandler = async (event) => {
@@ -109,7 +113,6 @@ const CreateUser = ({ createUserHandler }) => {
             >
               Crear Cuenta
             </StyledButton>
-            {error && <StyledResultText>{error.message}</StyledResultText>}
             {errorLogin && <StyledResultText>{errorLogin}</StyledResultText>}
           </>
         )}

@@ -1,6 +1,6 @@
 import { CircularProgress } from "@mui/material";
 import type { NextPage } from "next";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { motion } from "framer-motion";
 
@@ -16,6 +16,7 @@ import {
   StyledButtonContainer,
   StyledResultText,
 } from "./styled";
+import ToastContext from "../../../context/toastContext";
 import { GET_MATCHES_BY_GROUPFASE_GROUP } from "../../../graphql/queries/infoMatchesQueries";
 import { CREATE_PRODES } from "../../../graphql/queries/prodesQueries";
 import { getFlagUrl } from "../../../utils/getFlagUrl";
@@ -24,6 +25,7 @@ import { useForm } from "react-hook-form";
 
 const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   const [groups, setGroups] = useState([]);
+  const toast = useContext(ToastContext);
   const [errorCreate, setErrorCreate] = useState("");
   const [dataCreated, setDataCreated] = useState("");
   const { handleSubmit, setFocus, register, control, formState } = useForm({
@@ -41,15 +43,15 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   ] = useMutation(CREATE_PRODES, {
     onCompleted(data) {
       console.log("data", data);
-      setErrorCreate("");
-      setDataCreated("Prode cargado correctamente!");
+      toast.success(`Prode para el ${teamsGroup} grupo enviado`);
     },
     onError(error) {
       console.log("error", error);
-      setErrorCreate("Faltan cargar partidos");
-      setDataCreated("");
+      toast.error("Faltan partidos por cargar");
     },
   });
+
+  console.log(data);
 
   const getGroups = (matches) => {
     setGroups(matches);
@@ -117,17 +119,6 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
                 <StyledButtonContainer>
                   {groups.length > 0 && (
                     <StyledButton type="submit">Enviar Prode</StyledButton>
-                  )}
-                  {errorCreate && (
-                    <StyledResultText>
-                      Faltan partidos por cargar
-                    </StyledResultText>
-                  )}
-                  {createLoading && <CircularProgress />}
-                  {createdData && (
-                    <StyledResultText>
-                      Prode cargado correctamente!
-                    </StyledResultText>
                   )}
                 </StyledButtonContainer>
               </form>
