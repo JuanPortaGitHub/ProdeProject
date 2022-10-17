@@ -72,11 +72,7 @@ const scrollToDown = () => {
 export default function Home() {
   const toast = useToastContext();
   const { data: session, status } = useSession();
-  // const classes = useStyles();
 
-  // useEffect(() => {
-  //   toast.success("Entidad creada con exito");
-  // }, []);
   return (
     <>
       <StyledContainer>

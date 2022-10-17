@@ -1,10 +1,10 @@
-import { CircularProgress } from "@mui/material";
+import { Avatar, CircularProgress } from "@mui/material";
 import type { NextPage } from "next";
 import React, { useState, useEffect, useContext } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { motion } from "framer-motion";
 
-import { Match } from "../Match";
+import { Match } from "../../Match";
 import {
   StyledMatchesContainer,
   StyledMatches,
@@ -22,8 +22,16 @@ import { CREATE_PRODES } from "../../../graphql/queries/prodesQueries";
 import { getFlagUrl } from "../../../utils/getFlagUrl";
 import { getArrayToSubmit } from "../../../utils/getArrayToSubmit";
 import { useForm } from "react-hook-form";
+import PersonIcon from "@mui/icons-material/Person";
+import Image from "next/image";
 
-const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
+const GroupMatches: NextPage = ({
+  teamsGroup,
+  userGroup,
+  user,
+  showDate,
+  isEditing,
+}) => {
   const [groups, setGroups] = useState([]);
   const toast = useContext(ToastContext);
   const [errorCreate, setErrorCreate] = useState("");
@@ -34,7 +42,7 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
   const { loading, error, data, refetch } = useQuery(
     GET_MATCHES_BY_GROUPFASE_GROUP,
     {
-      variables: { grupo: teamsGroup, grupoId: +userGroup, userId: userId },
+      variables: { grupo: teamsGroup, grupoId: +userGroup, userId: user?.id },
     }
   );
   const [
@@ -51,13 +59,11 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
     },
   });
 
-  console.log(data);
-
   const getGroups = (matches) => {
     setGroups(matches);
   };
 
-  // console.log(loading, data);
+  // console.log(user.id);
 
   const onSubmit = async (formData) => {
     const arrayToSubmit = getArrayToSubmit(groups, formData);
@@ -66,7 +72,7 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
 
     await create_Prodes({
       variables: {
-        userId: userId,
+        userId: user.id,
         grupoId: +userGroup,
         prodeMatchInfo: arrayToSubmit,
       },
@@ -90,6 +96,30 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
           {loading && <CircularProgress />}
           {!loading && (
             <StyledMatches>
+              {/* <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "1rem",
+                }}
+              >
+                <Avatar>
+                  {user.image ? (
+                    <Image
+                      src={user.image}
+                      alt="avatar"
+                      width={50}
+                      height={50}
+                    />
+                  ) : (
+                    <PersonIcon />
+                  )}
+                </Avatar>
+                <h3 style={{ color: "white", alignSelf: "center" }}>
+                  Prode de {user.name.substring(0, user.name.indexOf(" "))}
+                </h3>
+              </div> */}
               <form onSubmit={handleSubmit(onSubmit)}>
                 {groups?.map((group: any, i) => (
                   <StyledMatch
@@ -100,6 +130,8 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
                   >
                     <Match
                       id={group.id}
+                      showDate={showDate}
+                      isEditing={isEditing}
                       homeTeam={group.EquipoLocal.nombre_equipo}
                       flagHomeTeam={getFlagUrl(group.EquipoLocal.nombre_equipo)}
                       awayTeam={group.EquipoVisitante.nombre_equipo}
@@ -117,7 +149,7 @@ const GroupMatches: NextPage = ({ teamsGroup, userGroup, userId }) => {
                   </StyledMatch>
                 ))}
                 <StyledButtonContainer>
-                  {groups.length > 0 && (
+                  {groups.length > 0 && isEditing && (
                     <StyledButton type="submit">Enviar Prode</StyledButton>
                   )}
                 </StyledButtonContainer>

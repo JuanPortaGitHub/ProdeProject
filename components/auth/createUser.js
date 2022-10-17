@@ -24,12 +24,10 @@ const CreateUser = ({ createUserHandler }) => {
 
   const [createNewUser, { error }] = useMutation(ADD_USER, {
     onCompleted(data) {
-      console.log("data", data);
       toast.success("Usuario Creado!");
       createUserHandler();
     },
     onError(error) {
-      console.log("error", error);
       toast.error(error.message);
     },
   });

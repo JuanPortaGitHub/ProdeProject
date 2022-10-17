@@ -7,21 +7,30 @@ import { Teamgroups } from "./Teamgroups";
 const GroupDetail = () => {
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [selectedUserGrupo, setSelectedUserGrupo] = useState();
+  const [open, setOpen] = useState(false);
 
-  console.log("selectedddplayer", selectedPlayer);
-  console.log("selectedUserGrupo", selectedUserGrupo);
+  const selectPlayerHandler = (player) => {
+    setSelectedPlayer(player);
+    setOpen(!open);
+  };
+
+  const handleModalClose = () => {
+    setOpen(false);
+  };
 
   return (
     <StyledMainContent>
       <Groups
-        setSelectedPlayer={setSelectedPlayer}
+        selectPlayerHandler={selectPlayerHandler}
         selectedUserGrupo={selectedUserGrupo}
         setSelectedUserGrupo={setSelectedUserGrupo}
       />
-      {selectedPlayer && (
+      {open && (
         <Teamgroups
           selectedPlayer={selectedPlayer}
           selectedUserGrupo={selectedUserGrupo}
+          open={open}
+          handleClose={handleModalClose}
         />
       )}
     </StyledMainContent>

@@ -1,17 +1,17 @@
 import { useEffect, useState, useRef } from "react";
-import { TextField, Tooltip } from "@mui/material";
+import { Grid, TextField, Tooltip } from "@mui/material";
 import dayjs from "dayjs";
 import Image from "next/image";
 import React from "react";
 import { Controller } from "react-hook-form";
-import TeamContainer from "../../common/teamContainer";
+import TeamContainer from "../common/teamContainer";
 import {
   StyledTextField,
   StyledDate,
   Styledh4,
   StyledContainer,
 } from "./styled";
-import { t } from "../../../utils/dictionary";
+import { t } from "../../utils/dictionary";
 
 interface Props {
   homeTeam: string;
@@ -24,7 +24,8 @@ interface Props {
   register: any;
   control: any;
   id: number;
-  focus: boolean;
+  showDate: boolean;
+  isEditing: boolean;
 }
 
 export const Match = ({
@@ -37,6 +38,8 @@ export const Match = ({
   userAwayScore,
   matchDate,
   control,
+  showDate,
+  isEditing,
 }: Props) => {
   const date = new Date(+matchDate);
 
@@ -53,25 +56,19 @@ export const Match = ({
 
   return (
     <StyledContainer>
-      <StyledDate>{`${matchDateFormated} hs`}</StyledDate>
-      <div
-        // id="primerid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
-          width: "90%",
-          alignItems: "center",
-        }}
-      >
+      {showDate && <StyledDate>{`${matchDateFormated} hs`}</StyledDate>}
+      <Grid container alignItems="center" columnSpacing={1}>
         <>
-          <TeamContainer team={t(homeTeam)} flag={flagHomeTeam} home={true} />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center",
-              color: "white",
-            }}
+          <Grid item xs={4.5} md={4.5}>
+            <TeamContainer team={t(homeTeam)} flag={flagHomeTeam} home={true} />
+          </Grid>
+          <Grid
+            item
+            xs={1}
+            md={1}
+            style={{ padding: "0" }}
+            display="flex"
+            justifyContent="center"
           >
             <Controller
               name={`${id}/home`}
@@ -98,7 +95,7 @@ export const Match = ({
                     size="small"
                     value={value}
                     name={`${id}/home`}
-                    disabled={today >= date}
+                    disabled={today >= date || !isEditing}
                     inputProps={{
                       // min,bl
                       // max,
@@ -117,7 +114,25 @@ export const Match = ({
                 </Tooltip>
               )}
             />
+          </Grid>
+          <Grid
+            item
+            xs={1}
+            md={1}
+            style={{ color: "white ", padding: "0" }}
+            display="flex"
+            justifyContent="center"
+          >
             VS
+          </Grid>
+          <Grid
+            item
+            xs={1}
+            md={1}
+            style={{ padding: "0" }}
+            display="flex"
+            justifyContent="center"
+          >
             <Controller
               name={`${id}/away`}
               key={`${id}/away`}
@@ -144,7 +159,7 @@ export const Match = ({
                     size="small"
                     name={`${id}/away`}
                     value={value}
-                    disabled={today >= date}
+                    disabled={today >= date || !isEditing}
                     inputProps={{
                       min,
                       max,
@@ -163,10 +178,16 @@ export const Match = ({
                 </Tooltip>
               )}
             />
-          </div>
-          <TeamContainer team={t(awayTeam)} flag={flagAwayTeam} home={false} />
+          </Grid>
+          <Grid item xs={4.5} md={4.5} style={{ padding: "0" }}>
+            <TeamContainer
+              team={t(awayTeam)}
+              flag={flagAwayTeam}
+              home={false}
+            />
+          </Grid>
         </>
-      </div>
+      </Grid>
     </StyledContainer>
   );
 };

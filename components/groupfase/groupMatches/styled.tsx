@@ -13,7 +13,7 @@ export const StyledMatchesContainer = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 600px) {
-    width: 100%;
+    width: 90%;
   }
 `;
 
@@ -37,6 +37,12 @@ export const StyledMatches = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
+
+  @media (max-width: 600px) {
+    form {
+      width: 100%;
+    }
+  }
 `;
 
 export const StyledDate = styled.div`
@@ -73,6 +79,10 @@ export const StyledMatch = styled.div`
       #900c3f 100%
     );
     cursor: pointer;
+  }
+  @media (max-width: 600px) {
+    /* margin-top: 3rem; */
+    width: 100%;
   }
 `;
 

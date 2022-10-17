@@ -65,7 +65,7 @@ export const StyledMainComponent = styled.div`
   /* background-color: rgba(255, 21, 84, 0.447); */
   background-color: rgba(255, 255, 255, 0.447);
   margin: 3rem auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
   align-self: center;
   /* box-shadow: 0 8px 32px 0 rgba(255, 21, 84, 0.37); */
@@ -92,7 +92,7 @@ export const StyledContainer = styled.div`
 export const StyledMainContent = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 5rem 2rem;
+  /* padding: 5rem 2rem; */
   gap: 2rem;
   margin-top: 2rem;
 
@@ -162,13 +162,15 @@ export const StyledGroupTeams = styled.div`
 export const StyledTeamContainer = styled.div`
   display: flex;
   align-items: center;
+  padding: 0.1vw;
 `;
 
 export const StyledFlag = styled.div`
   display: flex;
   align-items: center;
-  height: 80%;
-  width: 30%;
+  width: 3vw;
+  /* height: 80%;
+  width: 30%; */
 `;
 
 export const StyledGroupName = styled.div`

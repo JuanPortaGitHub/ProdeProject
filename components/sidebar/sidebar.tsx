@@ -42,15 +42,23 @@ const Sidebar = () => {
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     event.preventDefault();
-  //     if (!containerRef?.current?.contains(event.target)) {
-  //       setOpen(false);
-  //     }
-  //   };
-  //   window.addEventListener("mousedown", handleClickOutside);
-  // }, [containerRef]);
+  useEffect(() => {
+    const checkIfClickedOutside = (event) => {
+      if (
+        open &&
+        containerRef?.current &&
+        !containerRef?.current?.contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [open]);
 
   const toggleHandler = () => {
     setOpen(!open);
