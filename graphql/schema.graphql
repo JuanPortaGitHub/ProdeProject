@@ -77,6 +77,7 @@ type Query {
   GetGrupoById(id: ID!): Grupo
   GetInfoPartidoById(id: ID): Info_Partidos
   GetMatchesByGroup(Grupo: String!): [Info_Partidos]
+  GetPointByUserAndGroup(grupoId: Int!, userId: String!): SumaPuntos
   GetProdePartidoUsuarioById(grupoId: Int!, info_PartidosId: ID!, userId: String!): Prode_Partido_Usuario
   GetResultadosRealesById(id: ID): Resultados_Reales_Partidos
   GetUserByEmail(email: String): User
@@ -90,6 +91,10 @@ type Resultados_Reales_Partidos {
   createdAt: String
   id: Int
   updatedAt: String
+}
+
+type SumaPuntos {
+  sumaDePuntos: Int
 }
 
 type User {

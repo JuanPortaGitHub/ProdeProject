@@ -85,7 +85,7 @@ model Prode_Partido_Usuario {
   Ganador         String
   Tiempo_Extra    Boolean       @default(false)
   Penales         Boolean       @default(false)
-  Puntos          Int           @default(0)
+  Puntos          Int?
   createdAt       DateTime      @default(now()) @db.Timestamptz(3)
   updatedAt       DateTime      @updatedAt @db.Timestamptz(3)
 

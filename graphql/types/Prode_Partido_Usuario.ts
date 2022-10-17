@@ -13,6 +13,7 @@ import {
   createManyProdeUsuarioResolver,
   createProdeUsuarioResolver,
   getAllProdeUsuarioResolver,
+  getPointByUserAndGroupResolver,
   getProdeUsuarioByIdResolver,
   updateProdeUsuarioResolver,
 } from "../resolvers/prodesUsuariosResolvers";
@@ -153,5 +154,26 @@ export const GetProdePartidoUsuarioById = extendType({
       },
       resolve: getProdeUsuarioByIdResolver,
     });
+  },
+});
+
+export const GetPointByUserAndGroup = extendType({
+  type: "Query",
+  definition(t) {
+    t.field("GetPointByUserAndGroup", {
+      type: SumaPuntos,
+      args: {
+        userId: nonNull(stringArg()),
+        grupoId: nonNull(intArg()),
+      },
+      resolve: getPointByUserAndGroupResolver,
+    });
+  },
+});
+
+const SumaPuntos = objectType({
+  name: "SumaPuntos",
+  definition(t) {
+    t.int("sumaDePuntos");
   },
 });

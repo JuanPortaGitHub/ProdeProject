@@ -28,6 +28,23 @@ export const getProdeUsuarioByIdResolver: FieldResolver<
   }
 };
 
+export const getPointByUserAndGroupResolver: FieldResolver<
+  "Query",
+  "Prode_Partido_Usuario"
+> = async (_parent, { userId, grupoId }, ctx) => {
+  const responseSUM = await ctx.prisma.prode_Partido_Usuario.aggregate({
+    _sum: { Puntos: true },
+    where: {
+      AND: [
+        { userId: userId || null || undefined },
+        { grupoId: Number(grupoId) || null || undefined },
+      ],
+    },
+  });
+  console.log("responseSUM", responseSUM._sum.Puntos);
+  return { sumaDePuntos: responseSUM._sum.Puntos };
+};
+
 export const createProdeUsuarioResolver: FieldResolver<
   "Mutation",
   "createProdeUsuario"
@@ -158,7 +175,7 @@ export const createManyProdeUsuarioResolver: FieldResolver<
         Goles_Local: prode.Goles_Local,
         Goles_Visitante: prode.Goles_Visitante,
         Ganador: prode.Ganador,
-        Puntos: 0,
+        Puntos: undefined,
       },
     });
     return { message: "Prode Creado Correctamete", error: false };
