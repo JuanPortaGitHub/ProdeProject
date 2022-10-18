@@ -12,7 +12,7 @@ export const StyledCard = styled.div`
   text-align: center;
   align-self: center;
   /* box-shadow: 0 8px 32px 0 rgba(255, 21, 84, 0.37); */
-  /* box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37); */
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
