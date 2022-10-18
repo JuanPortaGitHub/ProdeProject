@@ -7,6 +7,7 @@ export const StyleMainComponent = styled.div`
   flex-direction: column;
   @media (max-width: 600px) {
     margin-bottom: 6rem;
+    height: 80vh;
   }
 `;
 
@@ -102,4 +103,10 @@ export const StyledButtonContainer = styled.div`
   display: flex;
   align-self: flex-start;
   padding-left: 30vw;
+  @media (max-width: 600px) {
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+  }
 `;

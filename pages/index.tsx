@@ -85,35 +85,20 @@ export default function Home() {
             <StyleMainComponent>
               <StyledImageContainer>
                 <StyledPaperContainer>
-                  <Paper elevation={3}>
-                    <Carousel
-                      autoPlay
-                      showStatus={false}
-                      showThumbs={false}
-                      infiniteLoop
-                      interval={2500}
-                      showArrows={false}
-                    >
-                      {images.map((image, index) => (
-                        <Image
-                          key={index}
-                          src={image.src}
-                          alt="layout"
-                          width={1000}
-                          height={500}
-                        />
-                      ))}
-                    </Carousel>
-                  </Paper>
+                  <StyledMainTitle>Prode Trinche</StyledMainTitle>
+                  <StyleSubTitle>Quién gana el mundial?</StyleSubTitle>
+                  <StyleSubTitle>
+                    Create un grupo con tus amigos y jugatelá
+                  </StyleSubTitle>
                 </StyledPaperContainer>
                 <StyledWorldCupImage>
-                  {/* <Image
+                  <Image
                     src={images[7].src}
                     objectPosition="center"
                     alt="layout"
                     width={500}
                     height={500}
-                  /> */}
+                  />
                 </StyledWorldCupImage>
               </StyledImageContainer>
               <StyledButtonContainer>
