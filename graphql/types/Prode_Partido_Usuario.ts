@@ -163,7 +163,6 @@ export const GetPointByUserAndGroup = extendType({
     t.field("GetPointByUserAndGroup", {
       type: RankingGrupo,
       args: {
-        userId: nonNull(stringArg()),
         grupoId: nonNull(intArg()),
       },
       resolve: getPointByUserAndGroupResolver,

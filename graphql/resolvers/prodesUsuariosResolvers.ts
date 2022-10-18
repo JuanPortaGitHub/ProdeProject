@@ -31,30 +31,45 @@ export const getProdeUsuarioByIdResolver: FieldResolver<
 export const getPointByUserAndGroupResolver: FieldResolver<
   "Query",
   "Prode_Partido_Usuario"
-> = async (_parent, { userId, grupoId }, ctx) => {
-  const responseSUM = await ctx.prisma.prode_Partido_Usuario.aggregate({
-    _sum: { Puntos: true },
+> = async (_parent, { grupoId }, ctx) => {
+  const groupInfo = await ctx.prisma.grupo.findFirst({
     where: {
-      AND: [
-        { userId: userId || null || undefined },
-        { grupoId: Number(grupoId) || null || undefined },
-      ],
+      id: Number(grupoId) || null || undefined,
     },
   });
-  console.log("responseSUM", responseSUM._sum.Puntos);
-  return {
-    idGrupo: "15",
-    nombreGrupo: "test",
-    sloganGrupo: "imagen",
-    montoGrupo: 800,
-    PosicionesUsuarios: [
-      {
-        id: "25",
-        nombreUsuario: "test",
-        imagenUsuario: "imagen",
-        sumaDePuntos: 66,
+
+  const usersInGroup = await ctx.prisma.grupo
+    .findFirst({
+      where: {
+        id: Number(grupoId) || null || undefined,
       },
-    ],
+    })
+    .UsuariosDeGrupo();
+
+  const rankingUsers = usersInGroup.map(async (user: any) => {
+    const datosUsuario = await ctx.prisma.prode_Partido_Usuario.aggregate({
+      _sum: { Puntos: true },
+      where: {
+        AND: [
+          { userId: user.id || null || undefined },
+          { grupoId: Number(grupoId) || null || undefined },
+        ],
+      },
+    });
+    return {
+      id: user.id,
+      nombreUsuario: user.name,
+      imagenUsuario: user.image,
+      sumaDePuntos: datosUsuario._sum.Puntos,
+    };
+  });
+
+  return {
+    idGrupo: groupInfo?.id,
+    nombreGrupo: groupInfo?.nombre,
+    sloganGrupo: groupInfo?.slogan,
+    montoGrupo: groupInfo?.monto,
+    PosicionesUsuarios: rankingUsers,
   };
 };
 
