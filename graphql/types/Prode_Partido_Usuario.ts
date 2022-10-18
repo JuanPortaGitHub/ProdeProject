@@ -161,7 +161,7 @@ export const GetPointByUserAndGroup = extendType({
   type: "Query",
   definition(t) {
     t.field("GetPointByUserAndGroup", {
-      type: SumaPuntos,
+      type: RankingGrupo,
       args: {
         userId: nonNull(stringArg()),
         grupoId: nonNull(intArg()),
@@ -171,9 +171,23 @@ export const GetPointByUserAndGroup = extendType({
   },
 });
 
-const SumaPuntos = objectType({
-  name: "SumaPuntos",
+const PosicionUsuario = objectType({
+  name: "PosicionUsuario",
   definition(t) {
+    t.string("id");
+    t.string("nombreUsuario");
+    t.string("imagenUsuario");
     t.int("sumaDePuntos");
+  },
+});
+
+const RankingGrupo = objectType({
+  name: "RankingGrupo",
+  definition(t) {
+    t.string("idGrupo");
+    t.string("nombreGrupo");
+    t.string("sloganGrupo");
+    t.int("montoGrupo");
+    t.list.field("PosicionesUsuarios", { type: PosicionUsuario });
   },
 });

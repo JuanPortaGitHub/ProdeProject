@@ -51,6 +51,13 @@ type Mutation {
   updateUser(id: Int!, name: String, password: String): User
 }
 
+type PosicionUsuario {
+  id: String
+  imagenUsuario: String
+  nombreUsuario: String
+  sumaDePuntos: Int
+}
+
 type Prode_Partido_Usuario {
   Ganador: String
   Goles_Local: String
@@ -77,11 +84,19 @@ type Query {
   GetGrupoById(id: ID!): Grupo
   GetInfoPartidoById(id: ID): Info_Partidos
   GetMatchesByGroup(Grupo: String!): [Info_Partidos]
-  GetPointByUserAndGroup(grupoId: Int!, userId: String!): SumaPuntos
+  GetPointByUserAndGroup(grupoId: Int!, userId: String!): RankingGrupo
   GetProdePartidoUsuarioById(grupoId: Int!, info_PartidosId: ID!, userId: String!): Prode_Partido_Usuario
   GetResultadosRealesById(id: ID): Resultados_Reales_Partidos
   GetUserByEmail(email: String): User
   GetUserById(id: ID): User
+}
+
+type RankingGrupo {
+  PosicionesUsuarios: [PosicionUsuario]
+  idGrupo: String
+  montoGrupo: Int
+  nombreGrupo: String
+  sloganGrupo: String
 }
 
 type Resultados_Reales_Partidos {
@@ -91,10 +106,6 @@ type Resultados_Reales_Partidos {
   createdAt: String
   id: Int
   updatedAt: String
-}
-
-type SumaPuntos {
-  sumaDePuntos: Int
 }
 
 type User {

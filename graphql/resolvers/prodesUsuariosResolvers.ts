@@ -42,7 +42,20 @@ export const getPointByUserAndGroupResolver: FieldResolver<
     },
   });
   console.log("responseSUM", responseSUM._sum.Puntos);
-  return { sumaDePuntos: responseSUM._sum.Puntos };
+  return {
+    idGrupo: "15",
+    nombreGrupo: "test",
+    sloganGrupo: "imagen",
+    montoGrupo: 800,
+    PosicionesUsuarios: [
+      {
+        id: "25",
+        nombreUsuario: "test",
+        imagenUsuario: "imagen",
+        sumaDePuntos: 66,
+      },
+    ],
+  };
 };
 
 export const createProdeUsuarioResolver: FieldResolver<
