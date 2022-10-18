@@ -38,7 +38,8 @@ export const StyleName = styled.div`
   justify-content: center;
   background-color: white;
   border: 1px solid red;
-  width: 55%;
+  font-size: 1vw;
+  width: 100%;
   align-self: flex-end;
   margin: 3px;
   border-radius: 5px;
@@ -58,8 +59,8 @@ export const StyleResult = styled.div`
 export const StyledFlag = styled.div`
   display: flex;
   align-items: center;
-  height: 80%;
-  width: 30%;
+  /* height: 80%; */
+  width: 3vw;
 `;
 
 export const StyledGroup = styled.div`
@@ -209,9 +210,12 @@ export const StyledGroupTeams = styled.div`
     width: 90%;
   }
 `;
+
 export const StyledTeamContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  margin-bottom: 0.5vw;
 `;
 
 export const StyledAccordionSummary = styled(AccordionSummary)`
