@@ -58,8 +58,7 @@ export const StyleResult = styled.div`
 export const StyledFlag = styled.div`
   display: flex;
   align-items: center;
-  height: 80%;
-  width: 30%;
+  width: 3vw;
 `;
 
 export const StyledGroup = styled.div`

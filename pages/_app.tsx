@@ -19,11 +19,12 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     "/",
     "/login",
     "/",
-    "/#grupo1",
-    "/groupfase",
-    "/mi-prode/fase-de-grupo",
+    "/#Rules",
+    // "/#grupo1",
+    // "/groupfase",
+    // "/mi-prode/fase-de-grupo",
     "/mi-prode",
-    "/mi-prode/tabla-de-posiciones",
+    // "/mi-prode/tabla-de-posiciones",
     "/mi-prode/posicionesgrupo",
   ];
 
@@ -41,9 +42,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             </>
           ) : (
             <ProtectedRoute>
-              <StyleMainComponent>
-                <Component {...pageProps} />
-              </StyleMainComponent>
+              {/* <StyleMainComponent> */}
+              <Component {...pageProps} />
+              {/* </StyleMainComponent> */}
             </ProtectedRoute>
           )}
         </SessionProvider>

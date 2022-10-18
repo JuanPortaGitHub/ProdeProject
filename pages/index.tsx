@@ -110,6 +110,7 @@ export default function Home() {
             <StyledContainer>
               <RegisterLogin />
             </StyledContainer>
+            <Rules />
           </>
         )}
         {session && (

@@ -43,6 +43,9 @@ export const StyleName = styled.div`
   align-self: flex-end;
   margin: 3px;
   border-radius: 5px;
+  @media (max-width: 600px) {
+    font-size: 4vw;
+  }
 `;
 
 export const StyleResult = styled.div`
@@ -61,6 +64,9 @@ export const StyledFlag = styled.div`
   align-items: center;
   /* height: 80%; */
   width: 3vw;
+  @media (max-width: 600px) {
+    width: 10vw;
+  }
 `;
 
 export const StyledGroup = styled.div`
@@ -81,7 +87,7 @@ export const StyledGroup = styled.div`
 
   @media (max-width: 600px) {
     flex-direction: column;
-    width: 65vw;
+    width: 40vw;
     /* height: 30vh; */
   }
 `;

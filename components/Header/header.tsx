@@ -20,7 +20,7 @@ interface Props {
 }
 export const headerSections = [
   { title: "Una Seccion sin loguear", href: "/" },
-  { title: "Otra Seccion sin loguear", href: "/" },
+  { title: "Reglamento", href: "/#Rules" },
   { title: "Otra Seccion sin loguear", href: "/" },
 ];
 

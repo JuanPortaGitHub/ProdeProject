@@ -77,8 +77,6 @@ export const getGroups = () => {
         { name: "Senegal", flag: flags.senegal },
         { name: "Netherlands", flag: flags.paisesBajos },
       ],
-      // teams: ["Qatar", "Ecuador", "Senegal", "Netherlands"],
-      // badges: [flags.qatar, flags.ecuador, flags.senegal, flags.paisesBajos],
     },
     {
       groupName: "B",
@@ -88,8 +86,6 @@ export const getGroups = () => {
         { name: "USA", flag: flags.USA },
         { name: "Wales", flag: flags.gales },
       ],
-      // teams: ["England", "Iran", "USA", "Wales"],
-      // badges: [flags.inglaterra, flags.iran, flags.USA, flags.gales],
     },
     {
       groupName: "C",
@@ -99,13 +95,6 @@ export const getGroups = () => {
         { name: "Mexico", flag: flags.mexico },
         { name: "Poland", flag: flags.polonia },
       ],
-      // teams: ["Argentina", "Saudi Arabia", "Mexico", "Poland"],
-      // badges: [
-      //   flags.argentina,
-      //   flags.arabiaSaudita,
-      //   flags.mexico,
-      //   flags.polonia,
-      // ],
     },
     {
       groupName: "D",
@@ -115,8 +104,6 @@ export const getGroups = () => {
         { name: "Denmark", flag: flags.dinamarca },
         { name: "Tunisia", flag: flags.tunez },
       ],
-      // teams: ["France", "Australia", "Denmark", "Tunisia"],
-      // badges: [flags.francia, flags.australia, flags.dinamarca, flags.tunez],
     },
     {
       groupName: "E",
@@ -126,8 +113,6 @@ export const getGroups = () => {
         { name: "Germany", flag: flags.alemania },
         { name: "Japan", flag: flags.japon },
       ],
-      // teams: ["Spain", "Costa Rica", "Germany", "Japan"],
-      // badges: [flags.españa, flags.costaRica, flags.alemania, flags.japon],
     },
     {
       groupName: "F",
@@ -137,8 +122,6 @@ export const getGroups = () => {
         { name: "Canada", flag: flags.canada },
         { name: "Morocco", flag: flags.marruecos },
       ],
-      // teams: ["Belgium", "Croatia", "Canada", "Morocco"],
-      // badges: [flags.belgica, flags.croacia, flags.canada, flags.marruecos],
     },
     {
       groupName: "G",
@@ -148,8 +131,6 @@ export const getGroups = () => {
         { name: "Switzerland", flag: flags.suiza },
         { name: "Cameroon", flag: flags.camerun },
       ],
-      // teams: ["Brazil", "Serbia", "Switzerland", "Cameroon"],
-      // badges: [flags.brasil, flags.serbia, flags.suiza, flags.camerun],
     },
     {
       groupName: "H",
@@ -159,8 +140,6 @@ export const getGroups = () => {
         { name: "Uruguay", flag: flags.uruguay },
         { name: "South Korea", flag: flags.coreaDelSur },
       ],
-      // teams: ["Portugal", "Ghana", "Uruguay", "South Korea"],
-      // badges: [flags.portugal, flags.ghana, flags.uruguay, flags.coreaDelSur],
     },
   ];
   return WorldCupGrups;

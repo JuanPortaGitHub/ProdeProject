@@ -60,14 +60,14 @@ const Rules = () => {
               Ahora supongamo que tenemos el usuario TATO que puso lo siguiente:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Qatar"
                 flagHomeTeam={getFlagUrl("Qatar")}
                 awayTeam="Ecuador"
                 flagAwayTeam={getFlagUrl("Ecuador")}
                 homeScore={0}
                 awayScore={2}
-              />
+              /> */}
               suma de puntos: <br />
               <br />
               <strong>3 pts</strong> (por pegar que pasa Ecuador) +{" "}
@@ -88,25 +88,25 @@ const Rules = () => {
               es:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Qatar"
                 flagHomeTeam={getFlagUrl("Qatar")}
                 awayTeam="Ecuador"
                 flagAwayTeam={getFlagUrl("Ecuador")}
                 homeScore={4}
                 awayScore={3}
-              />
+              /> */}
               Y para este partido TATO puse lo siguiente:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Qatar"
                 flagHomeTeam={getFlagUrl("Qatar")}
                 awayTeam="Ecuador"
                 flagAwayTeam={getFlagUrl("Ecuador")}
                 homeScore={4}
                 awayScore={3}
-              />
+              /> */}
               suma de puntos: <br />
               <br />
               <strong>3 pts</strong> (por el partido) + <strong>1 pt</strong>{" "}
@@ -129,14 +129,14 @@ const Rules = () => {
               entre Paises Bajos e Inglaterra:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Netherlands"
                 flagHomeTeam={getFlagUrl("Netherlands")}
                 awayTeam="England"
                 flagAwayTeam={getFlagUrl("England")}
                 homeScore={1}
                 awayScore={1}
-              />
+              /> */}
               Ganador: Paises Bajos
               <br />
               Etapa del partido: Penales
@@ -146,14 +146,14 @@ const Rules = () => {
               Y para este partido TATO puse lo siguiente:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Netherlands"
                 flagHomeTeam={getFlagUrl("Netherlands")}
                 awayTeam="England"
                 flagAwayTeam={getFlagUrl("England")}
                 homeScore={1}
                 awayScore={1}
-              />
+              /> */}
               Ganador: Paises Bajos
               <br />
               Etapa del partido: Tiempos Extra <CheckBox />

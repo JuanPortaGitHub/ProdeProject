@@ -23,8 +23,12 @@ export const StyledMainComponent = styled.div`
 
 export const StyledGrid = styled(Grid)`
   background-image: url("/abstractbg.jpg");
-  /* box-shadow: inset 0px 0px 40px 40px black;s */
+  animation: moveIt 10s linear infinite;
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* box-shadow: inset 0px 0px 40px 40px black; */
   background-size: cover;
+  /* box-shadow: 0 0 20px 8px transparent inset; */
   opacity: 88%;
   /* padding-top: 17rem; */
   width: 100%;
@@ -34,6 +38,14 @@ export const StyledGrid = styled(Grid)`
     /* padding-top: 20rem; */
     width: 100%;
     background-size: 1100px 100%;
+  }
+  @keyframes moveIt {
+    from {
+      background-position: bottom left;
+    }
+    to {
+      background-position: top right;
+    }
   }
 `;
 
