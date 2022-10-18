@@ -88,7 +88,7 @@ const TablaPosiciones: NextPage = () => {
                       </StyledGroupName>
                       <StyledGroupTeams>
                         {group.teams.map((team) => (
-                          <StyledTeamContainer>
+                          <StyledTeamContainer key={team.name}>
                             <StyledFlag>
                               <Image
                                 src={team.flag}
