@@ -15,6 +15,7 @@ import {
   getAllProdeUsuarioResolver,
   getPointByUserAndGroupResolver,
   getProdeUsuarioByIdResolver,
+  getRankingGroupResolver,
   updateProdeUsuarioResolver,
 } from "../resolvers/prodesUsuariosResolvers";
 import { Info_Partidos } from "./Info_Partidos";
@@ -157,15 +158,15 @@ export const GetProdePartidoUsuarioById = extendType({
   },
 });
 
-export const GetPointByUserAndGroup = extendType({
+export const GetRankingGroup = extendType({
   type: "Query",
   definition(t) {
-    t.field("GetPointByUserAndGroup", {
+    t.field("GetRankingGroup", {
       type: RankingGrupo,
       args: {
         grupoId: nonNull(intArg()),
       },
-      resolve: getPointByUserAndGroupResolver,
+      resolve: getRankingGroupResolver,
     });
   },
 });
