@@ -57,6 +57,9 @@ export const StyledQuoteContainer = styled.div`
   align-items: center;
   width: 40vw;
   margin-top: 3rem;
+  @media (max-width: 600px) {
+    width: 100vw;
+  }
   /* height: auto; */
 `;
 
@@ -77,6 +80,10 @@ export const StyledMainContainer = styled.div`
   padding: 1rem;
   /* justify-content: center; */
   gap: 2rem;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const StyledTextField = styled(TextField)`
@@ -92,15 +99,15 @@ export const StyledTextField = styled(TextField)`
     height: 30px;
 
     input {
+      margin-left: 3vw;
       padding: 0px;
       padding-top: 1vw;
+      border: 0px;
     }
   }
-  /* fieldset {
-    border-radius: 17px;
-    background-color: white;
-    color: black;
-  } */
+  fieldset {
+    border: 0px;
+  }
 `;
 
 export const StyledContainer = styled.div`

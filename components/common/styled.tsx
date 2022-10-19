@@ -28,6 +28,13 @@ export const StyledTeamContainer = styled.div`
   }
 `;
 
+export const StyledImageContainer = styled.div`
+  width: 3vw;
+  @media (max-width: 600px) {
+    width: 8vw;
+  }
+`;
+
 export const StyleArrowRight = styled.div`
   width: 0;
   height: 0;

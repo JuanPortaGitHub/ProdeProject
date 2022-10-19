@@ -119,12 +119,8 @@ export const StyledRightborder = styled.div`
   display: none;
   @media (max-width: 600px) {
     display: block;
-    /* width: 10px; */
-    height: 30%;
-    position: absolute;
     display: flex;
     align-items: center;
-    left: 100%;
     svg {
       color: white;
     }
@@ -170,7 +166,7 @@ export const StyledprodeContainer = styled.div`
   @media (max-width: 600px) {
     /* overflow-x: scroll; */
     flex-direction: column;
-    width: 90%;
+    width: 100%;
   }
 `;
 

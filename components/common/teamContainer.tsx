@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import {
   StyledTeamContainer,
+  StyledImageContainer,
   StyleArrowLeft,
   StyleArrowRight,
   StyleArrowLeftInner,
@@ -20,33 +21,25 @@ const TeamContainer = ({ team, flag, home }: Props) => {
   return (
     <>
       {home ? (
-        <Grid container alignItems="center">
-          <Grid item xs={12} md={4} display="flex" justifyContent="center">
-            <div
-              style={{
-                width: "3vw",
-              }}
-            >
+        <Grid container columnSpacing={1}>
+          <Grid item xs={4} md={4}>
+            <StyledImageContainer>
               <Image src={flag} alt="" width={50} height={30} />
-            </div>
+            </StyledImageContainer>
           </Grid>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={8} md={8}>
             <StyledTeamContainer>{team}</StyledTeamContainer>
           </Grid>
         </Grid>
       ) : (
-        <Grid container alignItems="center">
-          <Grid item xs={12} md={8}>
+        <Grid container columnSpacing={1}>
+          <Grid item xs={8} md={8}>
             <StyledTeamContainer>{team}</StyledTeamContainer>
           </Grid>
-          <Grid item xs={12} md={4} display="flex" justifyContent="center">
-            <div
-              style={{
-                width: "3vw",
-              }}
-            >
+          <Grid item xs={4} md={4}>
+            <StyledImageContainer>
               <Image src={flag} alt="" width={50} height={30} />
-            </div>
+            </StyledImageContainer>
           </Grid>
         </Grid>
       )}

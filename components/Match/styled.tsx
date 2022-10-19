@@ -5,7 +5,11 @@ export const StyledTextField = styled(TextField)`
   border-radius: 17px;
   background-color: white;
   color: black;
-  width: 3vw;
+  width: 2vw;
+  input {
+    padding-left: 0;
+    padding-right: 0;
+  }
   height: 40px;
   text-align: center;
 
@@ -18,11 +22,6 @@ export const StyledTextField = styled(TextField)`
       padding-top: 1vw;
     }
   }
-  /* fieldset {
-    border-radius: 17px;
-    background-color: white;
-    color: black;
-  } */
 `;
 
 export const StyledDate = styled.div`
@@ -58,10 +57,13 @@ export const Styledh4 = styled.h5`
 export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* align-content: space-between; */
   gap: 0.5rem;
-  margin-bottom: 2.5rem;
-  width: 60%;
+  margin-bottom: 1rem;
+  /* width: 100%; */
   @media (max-width: 600px) {
     width: 100%;
   }

@@ -16,9 +16,10 @@ import {
 } from "@mui/material";
 import { GET_USER_GROUPS } from "../../graphql/queries/userQueries";
 import { GroupInfoDetails } from "./GroupInfoDetails";
+import { motion } from "framer-motion";
 
 export const Groups = ({
-  setSelectedPlayer,
+  selectPlayerHandler,
   selectedUserGrupo,
   setSelectedUserGrupo,
 }) => {
@@ -52,7 +53,7 @@ export const Groups = ({
       {selectedUserGrupo && (
         <GroupInfoDetails
           selectedGrupo={selectedUserGrupo}
-          setSelectedPlayer={setSelectedPlayer}
+          selectPlayerHandler={selectPlayerHandler}
         />
       )}
     </StyledMainComponent>
