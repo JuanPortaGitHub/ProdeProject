@@ -106,6 +106,7 @@ const CreateGroupForm = () => {
             type="text"
             id="text"
             required
+            onChange={(e) => (groupName.current.value = e.target.value.trim())}
             ref={groupName}
           />
         </StyledControl>
@@ -115,6 +116,9 @@ const CreateGroupForm = () => {
             disabled={disableFields}
             type="text"
             id="slogan"
+            onChange={(e) =>
+              (groupSlogan.current.value = e.target.value.trim())
+            }
             required
             ref={groupSlogan}
           />
@@ -128,6 +132,9 @@ const CreateGroupForm = () => {
             type="text"
             id="password"
             required
+            onChange={(e) =>
+              (groupPassword.current.value = e.target.value.trim())
+            }
             ref={groupPassword}
           />
         </StyledControl>
@@ -138,6 +145,9 @@ const CreateGroupForm = () => {
             type="number"
             id="monto"
             required
+            onChange={(e) =>
+              (groupAmount.current.value = e.target.value.trim())
+            }
             ref={groupAmount}
           />
         </StyledControl>

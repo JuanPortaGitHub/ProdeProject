@@ -130,9 +130,15 @@ export const StyledButton = styled("button")({
   cursor: "pointer",
   font: "ihnerit",
   color: "white",
-  backgroundColor: "rgb(255, 21, 84)",
+  backgroundColor: "#1FBAE7",
+  backgroundImage: "linear-gradient(to right, #1FBAE7 0%, #107694 100%)",
   border: "1px solid white",
-  borderRadius: "4px",
-  padding: "0.5rem 2.5rem",
+  borderRadius: "25px",
+  fontWeight: 500,
+  padding: "0.5rem 1.5rem",
   marginTop: "1.5rem",
+  border: 0,
+  "&:hover": {
+    backgroundImage: "linear-gradient(to right, #1FBAE7 0%, #1FBAE7 100%)",
+  },
 });

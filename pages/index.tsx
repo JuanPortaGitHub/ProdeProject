@@ -30,6 +30,7 @@ import UserGroup from "../components/UserGroup";
 import GroupDetail from "../components/GroupDetail";
 import { useEffect } from "react";
 import Rules from "../components/rules/rules";
+import WordldCupGroups from "../components/groupfase/worldCupGroups";
 
 export const images = [
   {
@@ -128,6 +129,12 @@ export default function Home() {
                     Create un grupo con tus amigos y jugatelá
                   </StyleSubTitle>
                 </StyledPaperContainer>
+                {/* <WordldCupGroups
+                  userGroup={20}
+                  use="asdkasdkaskd"
+                  showDate={false}
+                  isEditing={false}
+                /> */}
                 <StyledWorldCupImage>
                   <Image
                     src={images[7].src}

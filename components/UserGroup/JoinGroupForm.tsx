@@ -63,6 +63,7 @@ const JoinGroupForm = () => {
             type="text"
             id="text"
             required
+            onChange={(e) => (groupName.current.value = e.target.value.trim())}
             ref={groupName}
           />
         </StyledControl>
@@ -75,6 +76,9 @@ const JoinGroupForm = () => {
             type="text"
             id="password"
             required
+            onChange={(e) =>
+              (groupPassword.current.value = e.target.value.trim())
+            }
             ref={groupPassword}
           />
         </StyledControl>
