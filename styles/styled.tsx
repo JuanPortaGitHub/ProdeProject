@@ -39,7 +39,9 @@ export const StyledPaperContainer = styled.div`
 `;
 
 export const CalendarContainer = styled.div`
-  margin-top: 6rem;
+  margin-left: 2rem;
+  margin-top: 7rem;
+  flex-direction: column;
   display: flex;
   height: 100vh;
   @media (max-width: 600px) {
@@ -48,12 +50,38 @@ export const CalendarContainer = styled.div`
 `;
 
 export const StyledGroup = styled.div`
-  /* margin-top: 12rem; */
+  margin-top: 2rem;
   /* height: 100vh; */
   width: 40%;
   @media (max-width: 600px) {
     width: 100%;
   }
+`;
+
+export const StyleSectionTitle = styled.div`
+  font-size: 8rem;
+  align-self: center;
+  font-weight: 700;
+
+  background-color: red;
+
+  /* Create the gradient. */
+  background-image: linear-gradient(45deg, #f3ec78, #af4261);
+
+  /* Set the background size and repeat properties. */
+  background-size: 100%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+`;
+
+export const CalendarContent = styled.div`
+  display: flex;
 `;
 
 export const StyledContainer = styled.div`
@@ -106,7 +134,16 @@ export const WavesTransition = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url("/transitionWaves.svg");
+  background-image: url("/transitionWaves2.svg");
+`;
+
+export const WavesTransitionDown = styled.div`
+  aspect-ratio: 900/600;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("/transitionWavesDown.svg");
 `;
 
 export const StyledButton = styled.a`

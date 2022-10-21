@@ -8,7 +8,8 @@ import { t } from "../../utils/dictionary";
 import { getCountry } from "../../utils/getGroups";
 import TeamContainer from "../common/teamContainer";
 import { StyledMatch } from "../groupfase/groupMatches/styled";
-import { StyledContainer, StyledDate } from "../Match/styled";
+import { StyledContainer } from "../Match/styled";
+import { StyledDate } from "./styled";
 
 const NextMatches = () => {
   const { response, loading, error } = useAxios(

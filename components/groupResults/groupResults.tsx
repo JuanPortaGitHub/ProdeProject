@@ -8,6 +8,7 @@ import {
   StyledGroup,
   StyledGroupName,
   StyledP,
+  StyledTitle,
   StyledGroupWithName,
 } from "./styled";
 import { getGroups } from "../../utils/getGroups";
@@ -44,15 +45,15 @@ const GroupResults = () => {
             <StyledGroupName>Grupo {group.groupName}</StyledGroupName>
             <StyledGroup>
               <StyledTitles>
-                <StyledP>Equipo</StyledP>
-                <StyledP>PJ</StyledP>
-                <StyledP>G</StyledP>
-                <StyledP>E</StyledP>
-                <StyledP>P</StyledP>
-                <StyledP>GF</StyledP>
-                <StyledP>GC</StyledP>
-                <StyledP>DG</StyledP>
-                <StyledP>Pts</StyledP>
+                <StyledTitle>Equipo</StyledTitle>
+                <StyledTitle>PJ</StyledTitle>
+                <StyledTitle>G</StyledTitle>
+                <StyledTitle>E</StyledTitle>
+                <StyledTitle>P</StyledTitle>
+                <StyledTitle>GF</StyledTitle>
+                <StyledTitle>GC</StyledTitle>
+                <StyledTitle>DG</StyledTitle>
+                <StyledTitle>Pts</StyledTitle>
                 {/* <StyledP>Ultimos 5</StyledP> */}
               </StyledTitles>
               <DividerLine />
@@ -69,14 +70,14 @@ const GroupResults = () => {
                     </StyledFlag>
                     <StyledP>{team.name}</StyledP>
                   </div>
-                  <StyledP>{team.intPlayed}</StyledP>
-                  <StyledP>{team.intWin}</StyledP>
-                  <StyledP>{team.intDraw}</StyledP>
-                  <StyledP>{team.intLoss}</StyledP>
-                  <StyledP>{team.intGoalsFor}</StyledP>
-                  <StyledP>{team.intGoalsAgainst}</StyledP>
-                  <StyledP>{team.intGoalDifference}</StyledP>
-                  <StyledP>{team.intPoints}</StyledP>
+                  <StyledP>{team.intPlayed || 0} </StyledP>
+                  <StyledP>{team.intWin || 0}</StyledP>
+                  <StyledP>{team.intDraw || 0}</StyledP>
+                  <StyledP>{team.intLoss || 0} </StyledP>
+                  <StyledP>{team.intGoalsFor || 0} </StyledP>
+                  <StyledP>{team.intGoalsAgainst || 0} </StyledP>
+                  <StyledP>{team.intGoalDifference || 0} </StyledP>
+                  <StyledP>{team.intPoints || 0} </StyledP>
                   {/* <StyledP>{team.intPoints}</StyledP> */}
                 </StyledContent>
               ))}

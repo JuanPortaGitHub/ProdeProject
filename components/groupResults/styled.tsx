@@ -23,6 +23,16 @@ export const StyledP = styled.p`
   }
 `;
 
+export const StyledTitle = styled.p`
+  color: white;
+  font-size: 1.2vw;
+  font-weight: 600;
+  justify-self: center;
+  @media (max-width: 600px) {
+    font-size: 3.2vw;
+  }
+`;
+
 export const StyledFlag = styled.div`
   display: flex;
   align-items: center;
@@ -35,24 +45,30 @@ export const StyledFlag = styled.div`
 
 export const StyledTitles = styled.div`
   display: grid;
+  background: linear-gradient(
+    to right,
+    #ff1554 0%,
+    rgba(185, 8, 246, 1),
+    #900c3f 100%
+  );
   justify-content: center;
   grid-template-columns: 3.6fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr;
 `;
 
 export const StyledContent = styled.div`
   display: grid;
-  grid-template-columns: 3fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 2.6fr;
+  grid-template-columns: 3.6fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr;
 `;
 
 export const StyledGroup = styled.div`
-  border: 1px solid white;
+  border: 1px solid black;
   @media (max-width: 600px) {
     width: 100vw;
   }
 `;
 
 export const DividerLine = styled.hr`
-  border-top: 4px solid white;
+  border-top: 4px solid #ff1554;
   /* border-radius: 5px; */
 `;
 

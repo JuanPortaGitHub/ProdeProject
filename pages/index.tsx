@@ -23,6 +23,9 @@ import {
   StyledUserGroupContainer,
   StyledGroup,
   WavesTransition,
+  StyleSectionTitle,
+  CalendarContent,
+  WavesTransitionDown,
 } from "../styles/styled";
 import RegisterLogin from "../components/registerLogin/registerLogin";
 import Header from "../components/Header/header";
@@ -156,13 +159,18 @@ export default function Home() {
                 </Link>
               </StyledButtonContainer>
             </StyleMainComponent>
-            {/* <WavesTransition /> */}
-            <CalendarContainer id="calendario">
-              <StyledGroup>
-                <GroupResults />
-              </StyledGroup>
-              <NextMatches />
-            </CalendarContainer>
+            <WavesTransition>
+              <CalendarContainer id="calendario">
+                <StyleSectionTitle>Calendario</StyleSectionTitle>
+                <CalendarContent>
+                  <StyledGroup>
+                    <GroupResults />
+                  </StyledGroup>
+                  <NextMatches />
+                </CalendarContent>
+              </CalendarContainer>
+            </WavesTransition>
+            {/* <WavesTransitionDown /> */}
             <UserGroup />
             <Rules />
           </>
