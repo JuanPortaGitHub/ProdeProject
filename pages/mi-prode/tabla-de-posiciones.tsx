@@ -87,58 +87,19 @@ const TablaPosiciones: NextPage = () => {
                         <StyledH1>{group.groupName}</StyledH1>
                       </StyledGroupName>
                       <StyledGroupTeams>
-                        <StyledTeamContainer>
-                          <StyledFlag>
-                            <Image
-                              src={group.badges[0]}
-                              alt="badge"
-                              width={50}
-                              height={20}
-                              layout={"fixed"}
-                            />
-                          </StyledFlag>
-                          <StyleName>{t(group.teams[0])}</StyleName>
-                          <StyleResult>2</StyleResult>
-                        </StyledTeamContainer>
-                        <StyledTeamContainer>
-                          <StyledFlag>
-                            <Image
-                              src={group.badges[1]}
-                              alt="badge"
-                              width={50}
-                              height={20}
-                              layout={"fixed"}
-                            />
-                          </StyledFlag>
-                          <StyleName>{t(group.teams[1])}</StyleName>
-                          <StyleResult>2</StyleResult>
-                        </StyledTeamContainer>
-                        <StyledTeamContainer>
-                          <StyledFlag>
-                            <Image
-                              src={group.badges[2]}
-                              alt="badge"
-                              width={50}
-                              height={20}
-                              layout={"fixed"}
-                            />
-                          </StyledFlag>
-                          <StyleName>{t(group.teams[2])}</StyleName>
-                          <StyleResult>2</StyleResult>
-                        </StyledTeamContainer>
-                        <StyledTeamContainer>
-                          <StyledFlag>
-                            <Image
-                              src={group.badges[3]}
-                              alt="badge"
-                              width={50}
-                              height={20}
-                              layout={"fixed"}
-                            />
-                          </StyledFlag>
-                          <StyleName>{t(group.teams[3])}</StyleName>
-                          <StyleResult>2</StyleResult>
-                        </StyledTeamContainer>
+                        {group.teams.map((team) => (
+                          <StyledTeamContainer key={team.name}>
+                            <StyledFlag>
+                              <Image
+                                src={team.flag}
+                                alt="badge"
+                                width={50}
+                                height={30}
+                              />
+                            </StyledFlag>
+                            <StyleName>{t(team.name)}</StyleName>
+                          </StyledTeamContainer>
+                        ))}
                       </StyledGroupTeams>
                     </StyledGroup>
                   </motion.div>

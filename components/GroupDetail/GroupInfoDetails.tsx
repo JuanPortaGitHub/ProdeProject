@@ -9,7 +9,13 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { StyledItem } from "./styled";
+import {
+  StyledItem,
+  StyledListItem,
+  StyledPlayerName,
+  StyledPoints,
+  StyledRanking,
+} from "./styled";
 import PersonIcon from "@mui/icons-material/Person";
 import { GET_GROUP_DETAIL } from "../../graphql/queries/groupQueries";
 import { useQuery } from "@apollo/client";
@@ -32,16 +38,16 @@ export const GroupInfoDetails = ({ selectedGrupo, selectPlayerHandler }) => {
       {dataDetails && dataDetails.GetGrupoById !== null && (
         <Grid item xs={12} md={6}>
           <Typography sx={{ mt: 2, mb: 2 }} variant="h6" component="div">
-            Grupo: {dataDetails.GetGrupoById.nombre}
+            {dataDetails.GetGrupoById.nombre}
           </Typography>
           <Typography sx={{ mt: 2, mb: 2 }} variant="h8" component="div">
-            &quot;{dataDetails.GetGrupoById.slogan}&quot;
+            {dataDetails.GetGrupoById.slogan}
           </Typography>
           <Typography sx={{ mt: 2, mb: 2 }} variant="h8" component="div">
             Monto a jugar: $ {dataDetails.GetGrupoById.monto}
           </Typography>
           <List dense={true}>
-            {dataDetails.GetGrupoById.usuarios.map((jugador: any) => (
+            {dataDetails.GetGrupoById.usuarios.map((jugador: any, i) => (
               <div
                 key={jugador.id}
                 onClick={() => selectPlayerHandler(jugador)}
@@ -52,7 +58,8 @@ export const GroupInfoDetails = ({ selectedGrupo, selectPlayerHandler }) => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <ListItem key={jugador.id}>
-                    <ListItemAvatar>
+                    <StyledRanking>{i + 1}</StyledRanking>
+                    <ListItemAvatar style={{ textAlign: "center" }}>
                       <Avatar>
                         {jugador.image ? (
                           <Image
@@ -65,10 +72,14 @@ export const GroupInfoDetails = ({ selectedGrupo, selectPlayerHandler }) => {
                         )}
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText
+                    <StyledListItem>
+                      <StyledPlayerName>{jugador.name}</StyledPlayerName>
+                      <StyledPoints>{40 - i} Pts</StyledPoints>
+                    </StyledListItem>
+                    {/* <ListItemText
                       primary={jugador.name}
                       secondary={"Puntaje: 40 puntos"}
-                    />
+                    /> */}
                   </ListItem>
                 </StyledItem>
               </div>

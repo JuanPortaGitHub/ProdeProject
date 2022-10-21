@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyleMainComponent = styled.div`
   margin-top: 6rem;
-  height: 100vh;
+  height: calc(100vh - 6rem);
   display: flex;
   flex-direction: column;
   @media (max-width: 600px) {
@@ -35,6 +35,61 @@ export const StyledPaperContainer = styled.div`
   @media (max-width: 600px) {
     width: 100vw;
     padding: 0 1.5rem;
+  }
+`;
+
+export const CalendarContainer = styled.div`
+  margin-left: 2rem;
+  /* margin-top: 7rem; */
+  padding-top: 7rem;
+  flex-direction: column;
+  display: flex;
+  /* height: 100vh; */
+  @media (max-width: 600px) {
+    flex-direction: column;
+    /* margin-right: 2rem; */
+  }
+`;
+
+export const StyledGroup = styled.div`
+  margin-top: 2rem;
+  /* height: 100vh; */
+  width: 40%;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`;
+
+export const StyleSectionTitle = styled.div`
+  font-size: 6rem;
+  align-self: center;
+  font-weight: 600;
+
+  background-color: red;
+
+  /* Create the gradient. */
+  background-image: linear-gradient(45deg, #f3ec78, #af4261);
+
+  /* Set the background size and repeat properties. */
+  background-size: 100%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  @media (max-width: 600px) {
+    font-size: 4rem;
+    margin-right: 2rem;
+  }
+`;
+
+export const CalendarContent = styled.div`
+  display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
   }
 `;
 
@@ -80,6 +135,24 @@ export const StyleSubTitle = styled.div`
   font-weight: 700;
   text-align: center;
   font-size: 1.5rem;
+`;
+
+export const WavesTransition = styled.div`
+  aspect-ratio: 900/600;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("/transitionWaves2.svg");
+`;
+
+export const WavesTransitionDown = styled.div`
+  aspect-ratio: 900/600;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("/transitionWavesDown.svg");
 `;
 
 export const StyledButton = styled.a`

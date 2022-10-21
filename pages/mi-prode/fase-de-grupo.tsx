@@ -2,26 +2,11 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import {
-  StyledGroupsContainer,
-  StyledGroup,
-  StyledGroupName,
-  StyledTeamContainer,
-  StyledGroupTeams,
   StyledTopScreen,
   StyledImage,
-  StyledH4,
-  StyledH1,
-  StyleName,
-  StyledFlag,
-  StyledprodeContainer,
   StyledMainContent,
   StyledFriendsGroup,
   StyledTitle,
-  StyledRightborder,
-  StyledLeftborder,
-  StyledRightSquare,
-  StyledLeftSquare,
-  StyledTextfield,
 } from "../../styles/groupfase";
 import { StyledBody } from "../../components/sidebar/styled";
 import { StyledContainer } from "../../styles/styled";

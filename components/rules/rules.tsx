@@ -1,5 +1,7 @@
 import { CheckBox } from "@mui/icons-material";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
 import { getFlagUrl } from "../../utils/getFlagUrl";
 
 import {
@@ -8,10 +10,17 @@ import {
   StyledMainContainer,
   StyledQuote,
   StyledQuoteContainer,
+  StyledNav,
+  StyledSelectedTab,
+  StyledTab,
 } from "./styled";
 import { Match } from "./trialMatch";
 
+const tabs = [{ name: "Fase de Grupo" }, { name: "Eliminación Directa" }];
+
 const Rules = () => {
+  const [selectedTab, setSelectedTab] = useState("Fase de Grupo");
+
   return (
     <>
       <StyledMainContainer id="Rules">
@@ -32,6 +41,24 @@ const Rules = () => {
           </StyledImage>
         </StyledQuoteContainer>
         <StyledCard>
+          <StyledNav>
+            <ul>
+              {tabs.map((item) =>
+                selectedTab == item.name ? (
+                  <StyledSelectedTab onClick={() => setSelectedTab(item.name)}>
+                    {item.name}
+                  </StyledSelectedTab>
+                ) : (
+                  <StyledTab onClick={() => setSelectedTab(item.name)}>
+                    {item.name}
+                  </StyledTab>
+                )
+              )}
+              {/* {item === selectedTab ? (
+                    <motion.div className="underline" layoutId="underline" />
+                  ) : null} */}
+            </ul>
+          </StyledNav>
           <article>
             <h1>Reglamento</h1>
             <h3>Fase de Grupos</h3>
@@ -60,14 +87,14 @@ const Rules = () => {
               Ahora supongamo que tenemos el usuario TATO que puso lo siguiente:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Qatar"
                 flagHomeTeam={getFlagUrl("Qatar")}
                 awayTeam="Ecuador"
                 flagAwayTeam={getFlagUrl("Ecuador")}
                 homeScore={0}
                 awayScore={2}
-              />
+              /> */}
               suma de puntos: <br />
               <br />
               <strong>3 pts</strong> (por pegar que pasa Ecuador) +{" "}
@@ -88,25 +115,25 @@ const Rules = () => {
               es:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Qatar"
                 flagHomeTeam={getFlagUrl("Qatar")}
                 awayTeam="Ecuador"
                 flagAwayTeam={getFlagUrl("Ecuador")}
                 homeScore={4}
                 awayScore={3}
-              />
+              /> */}
               Y para este partido TATO puse lo siguiente:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Qatar"
                 flagHomeTeam={getFlagUrl("Qatar")}
                 awayTeam="Ecuador"
                 flagAwayTeam={getFlagUrl("Ecuador")}
                 homeScore={4}
                 awayScore={3}
-              />
+              /> */}
               suma de puntos: <br />
               <br />
               <strong>3 pts</strong> (por el partido) + <strong>1 pt</strong>{" "}
@@ -129,14 +156,14 @@ const Rules = () => {
               entre Paises Bajos e Inglaterra:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Netherlands"
                 flagHomeTeam={getFlagUrl("Netherlands")}
                 awayTeam="England"
                 flagAwayTeam={getFlagUrl("England")}
                 homeScore={1}
                 awayScore={1}
-              />
+              /> */}
               Ganador: Paises Bajos
               <br />
               Etapa del partido: Penales
@@ -146,14 +173,14 @@ const Rules = () => {
               Y para este partido TATO puse lo siguiente:
               <br />
               <br />
-              <Match
+              {/* <Match
                 homeTeam="Netherlands"
                 flagHomeTeam={getFlagUrl("Netherlands")}
                 awayTeam="England"
                 flagAwayTeam={getFlagUrl("England")}
                 homeScore={1}
                 awayScore={1}
-              />
+              /> */}
               Ganador: Paises Bajos
               <br />
               Etapa del partido: Tiempos Extra <CheckBox />

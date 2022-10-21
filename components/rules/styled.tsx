@@ -12,7 +12,7 @@ export const StyledCard = styled.div`
   text-align: center;
   align-self: center;
   /* box-shadow: 0 8px 32px 0 rgba(255, 21, 84, 0.37); */
-  /* box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37); */
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
@@ -21,6 +21,29 @@ export const StyledCard = styled.div`
   @media (max-width: 600px) {
     width: 90%;
   }
+`;
+
+export const StyledSelectedTab = styled.li`
+  background: #eee;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+export const StyledTab = styled.li`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+export const StyledNav = styled.nav`
+  background: #fdfdfd;
+  padding: 5px 5px 0;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 1px solid #eeeeee;
+  height: 44px;
 `;
 
 export const StyledImage = styled.div`
