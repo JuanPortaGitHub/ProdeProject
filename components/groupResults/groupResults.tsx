@@ -24,9 +24,9 @@ const GroupResults = () => {
   const [results, setResults] = useState([]);
   const refContainer = useRef();
   const [currentPosition, setCurrentPosition] = useState(0);
-  const { response, loading, error } = useAxios(
-    "https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4429&s=2022"
-  );
+  // const { response, loading, error } = useAxios(
+  //   "https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4429&s=2022"
+  // );
 
   const handleScroll = () => {
     refContainer?.current?.scrollTo({
@@ -46,6 +46,63 @@ const GroupResults = () => {
   };
 
   useEffect(() => {
+    const response = {
+      table: [
+        {
+          groupName: "H",
+          teams: [
+            {
+              name: "Uruguay",
+              flag: "/flags/portugal.png",
+              idStanding: "1931522",
+              intRank: "1",
+              idTeam: "133908",
+              strTeam: "Portugal",
+              strTeamBadge:
+                "https://www.thesportsdb.com/images/media/team/badge/swqvpy1455466083.png/tiny",
+              idLeague: "4429",
+              strLeague: "FIFA World Cup",
+              strSeason: "2022",
+              strForm: "",
+              strDescription: "Promotion - World Cup (Play Offs)",
+              intPlayed: "0",
+              intWin: "0",
+              intLoss: "0",
+              intDraw: "0",
+              intGoalsFor: "0",
+              intGoalsAgainst: "0",
+              intGoalDifference: "0",
+              intPoints: "0",
+              dateUpdated: "2022-10-20 23:01:07",
+            },
+            {
+              name: "Ghana",
+              flag: "/flags/portugal.png",
+              idStanding: "1931522",
+              intRank: "1",
+              idTeam: "133908",
+              strTeam: "Portugal",
+              strTeamBadge:
+                "https://www.thesportsdb.com/images/media/team/badge/swqvpy1455466083.png/tiny",
+              idLeague: "4429",
+              strLeague: "FIFA World Cup",
+              strSeason: "2022",
+              strForm: "",
+              strDescription: "Promotion - World Cup (Play Offs)",
+              intPlayed: "0",
+              intWin: "0",
+              intLoss: "0",
+              intDraw: "0",
+              intGoalsFor: "0",
+              intGoalsAgainst: "0",
+              intGoalDifference: "0",
+              intPoints: "1",
+              dateUpdated: "2022-10-20 23:01:07",
+            },
+          ],
+        },
+      ],
+    };
     if (response !== null) {
       console.log("table", response.table);
       const resultsOfFunction = getGroupResultsArray(
@@ -56,7 +113,7 @@ const GroupResults = () => {
       setResults(resultsOfFunction);
     }
     console.log(results);
-  }, [response]);
+  }, []);
 
   return (
     <div style={{ display: "flex" }}>
@@ -76,7 +133,6 @@ const GroupResults = () => {
                   <StyledTitle>GC</StyledTitle>
                   <StyledTitle>DG</StyledTitle>
                   <StyledTitle>Pts</StyledTitle>
-                  {/* <StyledP>Ultimos 5</StyledP> */}
                 </StyledTitles>
                 <DividerLine />
                 {group.teams.map((team) => (
@@ -100,7 +156,6 @@ const GroupResults = () => {
                     <StyledP>{team.intGoalsAgainst || 0} </StyledP>
                     <StyledP>{team.intGoalDifference || 0} </StyledP>
                     <StyledP>{team.intPoints || 0} </StyledP>
-                    {/* <StyledP>{team.intPoints}</StyledP> */}
                   </StyledContent>
                 ))}
               </StyledGroup>
@@ -109,7 +164,6 @@ const GroupResults = () => {
         ))}
       </StyledMainComponent>
       <StyledRightborder onClick={handleScroll}>
-        {/* <StyledRightSquare></StyledRightSquare> */}
         <ArrowForwardIosIcon />
       </StyledRightborder>
     </div>

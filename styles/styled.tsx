@@ -82,6 +82,7 @@ export const StyleSectionTitle = styled.div`
   -moz-text-fill-color: transparent;
   @media (max-width: 600px) {
     font-size: 4rem;
+    margin-right: 2rem;
   }
 `;
 

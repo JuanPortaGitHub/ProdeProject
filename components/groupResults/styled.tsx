@@ -4,11 +4,12 @@ export const StyledMainComponent = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   height: 90vh;
+  width: 100%;
   @media (max-width: 600px) {
     /* overflow-y: ; */
     display: flex;
     /* flex-direction: column; */
-    width: 100%;
+
     height: 45vh;
     gap: 1rem;
     overflow-x: scroll;

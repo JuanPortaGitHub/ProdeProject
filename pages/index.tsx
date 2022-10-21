@@ -119,7 +119,7 @@ export default function Home() {
             <StyledContainer>
               <RegisterLogin />
             </StyledContainer>
-            <Rules />
+            {/* <Rules /> */}
           </>
         )}
         {session && (
@@ -172,7 +172,7 @@ export default function Home() {
             {/* </WavesTransition> */}
             {/* <WavesTransitionDown /> */}
             <UserGroup />
-            <Rules />
+            {/* <Rules /> */}
           </>
         )}
       </StyledContainer>
