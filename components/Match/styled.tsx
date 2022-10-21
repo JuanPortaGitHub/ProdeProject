@@ -59,7 +59,8 @@ export const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
+  height: 100vh;
   /* align-content: space-between; */
   gap: 0.5rem;
   margin-bottom: 1rem;

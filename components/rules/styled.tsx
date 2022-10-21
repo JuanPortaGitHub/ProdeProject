@@ -23,6 +23,29 @@ export const StyledCard = styled.div`
   }
 `;
 
+export const StyledSelectedTab = styled.li`
+  background: #eee;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+export const StyledTab = styled.li`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+export const StyledNav = styled.nav`
+  background: #fdfdfd;
+  padding: 5px 5px 0;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 1px solid #eeeeee;
+  height: 44px;
+`;
+
 export const StyledImage = styled.div`
   /* display: flex;
   justify-content: center;

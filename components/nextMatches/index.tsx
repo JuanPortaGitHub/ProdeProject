@@ -25,7 +25,7 @@ const NextMatches = () => {
             +new Date(a.strTimestamp) - +new Date(b.strTimestamp)
         )
         .slice(0, 5);
-      console.log("filterData", filterData);
+      // console.log("filterData", filterData);
       const countriesData = getCountry();
       const matches = filterData.map((match: any) => {
         return {
@@ -42,6 +42,7 @@ const NextMatches = () => {
     }
   }, [response]);
   return (
+    // <div id="calendario">
     <StyledContainer>
       <h3 style={{ color: "white", alignSelf: "center" }}>Próximos Partidos</h3>
       {next5Matches &&
@@ -71,6 +72,7 @@ const NextMatches = () => {
           </>
         ))}
     </StyledContainer>
+    // </div>
   );
 };
 

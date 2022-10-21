@@ -17,7 +17,7 @@ import {
 } from "../../styles/groupfase";
 import { getGroups } from "../../utils/getGroups";
 import { motion } from "framer-motion";
-import GroupMatches from "../../components/groupfase/groupMatches/groupMatches";
+import GroupMatches from "../../components/groupfase/groupMatches/matches";
 import { t } from "../../utils/dictionary";
 import { StyledBody } from "../../components/sidebar/styled";
 import { StyledContainer } from "../../styles/styled";

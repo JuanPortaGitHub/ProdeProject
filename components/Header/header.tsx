@@ -26,8 +26,8 @@ export const headerSections = [
 
 export const headerSectionsLogged = [
   { title: "Mi prode", href: "/mi-prode/fase-de-grupo" },
+  { title: "Calendario", href: "/#calendario" },
   { title: "Reglamento", href: "/#Rules" },
-  { title: "Otra Seccion logueado", href: "/" },
 ];
 
 export default function Header({ handleDrawer }: Props) {

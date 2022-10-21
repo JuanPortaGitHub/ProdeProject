@@ -25,13 +25,20 @@ import { useForm } from "react-hook-form";
 import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
 
-const GroupMatches: NextPage = ({
+interface Props {
+  teamsGroup: string;
+  userGroup: number;
+  user: string;
+  showDate: boolean;
+  isEditing: boolean;
+}
+const Matches = ({
   teamsGroup,
   userGroup,
   user,
   showDate,
   isEditing,
-}) => {
+}: Props) => {
   const [groups, setGroups] = useState([]);
   const toast = useContext(ToastContext);
   const [errorCreate, setErrorCreate] = useState("");
@@ -162,4 +169,4 @@ const GroupMatches: NextPage = ({
   );
 };
 
-export default GroupMatches;
+export default Matches;

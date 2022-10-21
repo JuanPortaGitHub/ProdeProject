@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyleMainComponent = styled.div`
   margin-top: 6rem;
-  height: 100vh;
+  height: calc(100vh - 6rem);
   display: flex;
   flex-direction: column;
   @media (max-width: 600px) {
@@ -35,6 +35,24 @@ export const StyledPaperContainer = styled.div`
   @media (max-width: 600px) {
     width: 100vw;
     padding: 0 1.5rem;
+  }
+`;
+
+export const CalendarContainer = styled.div`
+  margin-top: 6rem;
+  display: flex;
+  height: 100vh;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+export const StyledGroup = styled.div`
+  /* margin-top: 12rem; */
+  /* height: 100vh; */
+  width: 40%;
+  @media (max-width: 600px) {
+    width: 100%;
   }
 `;
 
@@ -80,6 +98,15 @@ export const StyleSubTitle = styled.div`
   font-weight: 700;
   text-align: center;
   font-size: 1.5rem;
+`;
+
+export const WavesTransition = styled.div`
+  aspect-ratio: 900/600;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("/transitionWaves.svg");
 `;
 
 export const StyledButton = styled.a`
