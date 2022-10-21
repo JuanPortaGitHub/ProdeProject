@@ -40,12 +40,14 @@ export const StyledPaperContainer = styled.div`
 
 export const CalendarContainer = styled.div`
   margin-left: 2rem;
-  margin-top: 7rem;
+  /* margin-top: 7rem; */
+  padding-top: 7rem;
   flex-direction: column;
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
   @media (max-width: 600px) {
     flex-direction: column;
+    /* margin-right: 2rem; */
   }
 `;
 
@@ -59,9 +61,9 @@ export const StyledGroup = styled.div`
 `;
 
 export const StyleSectionTitle = styled.div`
-  font-size: 8rem;
+  font-size: 6rem;
   align-self: center;
-  font-weight: 700;
+  font-weight: 600;
 
   background-color: red;
 
@@ -78,10 +80,16 @@ export const StyleSectionTitle = styled.div`
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
+  @media (max-width: 600px) {
+    font-size: 4rem;
+  }
 `;
 
 export const CalendarContent = styled.div`
   display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 export const StyledContainer = styled.div`

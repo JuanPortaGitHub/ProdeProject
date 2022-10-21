@@ -159,17 +159,17 @@ export default function Home() {
                 </Link>
               </StyledButtonContainer>
             </StyleMainComponent>
-            <WavesTransition>
-              <CalendarContainer id="calendario">
-                <StyleSectionTitle>Calendario</StyleSectionTitle>
-                <CalendarContent>
-                  <StyledGroup>
-                    <GroupResults />
-                  </StyledGroup>
-                  <NextMatches />
-                </CalendarContent>
-              </CalendarContainer>
-            </WavesTransition>
+            {/* <WavesTransition> */}
+            <CalendarContainer id="calendario">
+              <StyleSectionTitle>Calendario</StyleSectionTitle>
+              <CalendarContent>
+                <StyledGroup>
+                  <GroupResults />
+                </StyledGroup>
+                <NextMatches />
+              </CalendarContent>
+            </CalendarContainer>
+            {/* </WavesTransition> */}
             {/* <WavesTransitionDown /> */}
             <UserGroup />
             <Rules />

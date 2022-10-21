@@ -10,6 +10,7 @@ export const StyledMainComponent = styled.div`
     /* flex-direction: column; */
     width: 100%;
     height: 45vh;
+    gap: 1rem;
     overflow-x: scroll;
   }
 `;
@@ -61,9 +62,9 @@ export const StyledContent = styled.div`
 `;
 
 export const StyledGroup = styled.div`
-  border: 1px solid black;
+  border: 1px solid white;
   @media (max-width: 600px) {
-    width: 100vw;
+    width: 80vw;
   }
 `;
 
@@ -80,4 +81,17 @@ export const StyledGroupName = styled.h2`
 export const StyledGroupWithName = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const StyledRightborder = styled.div`
+  display: none;
+  @media (max-width: 600px) {
+    display: block;
+    display: flex;
+    align-items: center;
+    svg {
+      color: white;
+    }
+  }
+  /* top: 40%; */
 `;
