@@ -106,7 +106,6 @@ export const createProdeUsuarioResolver: FieldResolver<
   if (Number(Goles_Visitante) < 0) {
     throw new Error("No podes cargar goles negativos");
   }
-  console.log("ENTRE A UPDATE");
 
   const prodeExist = await prisma.prode_Partido_Usuario.count({
     where: {
