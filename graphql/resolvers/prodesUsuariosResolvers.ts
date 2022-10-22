@@ -100,6 +100,14 @@ export const createProdeUsuarioResolver: FieldResolver<
   },
   { prisma }
 ) => {
+  if (Number(Goles_Local) < 0) {
+    throw new Error("No podes cargar goles negativos");
+  }
+  if (Number(Goles_Visitante) < 0) {
+    throw new Error("No podes cargar goles negativos");
+  }
+  console.log("ENTRE A UPDATE");
+
   const prodeExist = await prisma.prode_Partido_Usuario.count({
     where: {
       userId: userId,
@@ -144,6 +152,12 @@ export const updateProdeUsuarioResolver: FieldResolver<
   },
   { prisma }
 ) => {
+  if (Number(Goles_Local) < 0) {
+    throw new Error("No podes cargar goles negativos");
+  }
+  if (Number(Goles_Visitante) < 0) {
+    throw new Error("No podes cargar goles negativos");
+  }
   try {
     const editedProde = await prisma.prode_Partido_Usuario.update({
       where: {
@@ -173,10 +187,19 @@ export const createManyProdeUsuarioResolver: FieldResolver<
   "createManyProdeUsuario"
 > = async (_, { userId, grupoId, ProdeMatchInfo }, { prisma }) => {
   if (ProdeMatchInfo?.length !== 6) {
-    return {
-      message: "Prode incompleto. Faltan cargar partidos",
-      error: true,
-    };
+    throw new Error("Faltan resultados por cargar");
+  }
+
+  const resultadosNegativos = ProdeMatchInfo.filter(
+    (prode: any) =>
+      prode.Goles_Local < 0 ||
+      prode.Goles_Visitante < 0 ||
+      prode.Goles_Local === "" ||
+      prode.Goles_Visitante === ""
+  );
+
+  if (resultadosNegativos.length > 0) {
+    throw new Error("Un resultado esta mal cargado");
   }
 
   ProdeMatchInfo.map(async (prode: any) => {

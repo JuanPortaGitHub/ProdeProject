@@ -40,7 +40,7 @@ export const createUserResolver: FieldResolver<
 > = async (_, { name, email, recivedPassword }, { prisma }) => {
   const mailExist = await prisma.user.count({
     where: {
-      email: email,
+      email: email.toLowerCase(),
     },
   });
   if (mailExist !== 0) {
@@ -51,9 +51,9 @@ export const createUserResolver: FieldResolver<
 
   const newUser = await prisma.user.create({
     data: {
-      name,
-      email,
-      password,
+      name: name,
+      email: email.toLowerCase(),
+      password: password,
     },
   });
   return newUser;

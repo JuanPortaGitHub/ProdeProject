@@ -55,7 +55,7 @@ const GroupMatches: NextPage = ({
     },
     onError(error) {
       console.log("error", error);
-      toast.error("Faltan partidos por cargar");
+      toast.error(error.message);
     },
   });
 
