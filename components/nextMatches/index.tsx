@@ -8,7 +8,8 @@ import { t } from "../../utils/dictionary";
 import { getCountry } from "../../utils/getGroups";
 import TeamContainer from "../common/teamContainer";
 import { StyledMatch } from "../groupfase/groupMatches/styled";
-import { StyledContainer, StyledDate } from "../Match/styled";
+import { StyledContainer } from "../Match/styled";
+import { StyledDate } from "./styled";
 
 const NextMatches = () => {
   const { response, loading, error } = useAxios(
@@ -25,7 +26,7 @@ const NextMatches = () => {
             +new Date(a.strTimestamp) - +new Date(b.strTimestamp)
         )
         .slice(0, 5);
-      console.log("filterData", filterData);
+      // console.log("filterData", filterData);
       const countriesData = getCountry();
       const matches = filterData.map((match: any) => {
         return {
@@ -42,6 +43,7 @@ const NextMatches = () => {
     }
   }, [response]);
   return (
+    // <div id="calendario">
     <StyledContainer>
       <h3 style={{ color: "white", alignSelf: "center" }}>Próximos Partidos</h3>
       {next5Matches &&
@@ -71,6 +73,7 @@ const NextMatches = () => {
           </>
         ))}
     </StyledContainer>
+    // </div>
   );
 };
 

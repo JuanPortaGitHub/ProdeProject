@@ -18,8 +18,14 @@ import {
   StyledButtonContainer,
   StyleMainComponent,
   StyledMainTitle,
+  CalendarContainer,
   StyleSubTitle,
   StyledUserGroupContainer,
+  StyledGroup,
+  WavesTransition,
+  StyleSectionTitle,
+  CalendarContent,
+  WavesTransitionDown,
 } from "../styles/styled";
 import RegisterLogin from "../components/registerLogin/registerLogin";
 import Header from "../components/Header/header";
@@ -30,6 +36,9 @@ import UserGroup from "../components/UserGroup";
 import GroupDetail from "../components/GroupDetail";
 import { useEffect } from "react";
 import Rules from "../components/rules/rules";
+import WordldCupGroups from "../components/groupfase/worldCupGroups";
+import NextMatches from "../components/nextMatches";
+import GroupResults from "../components/groupResults/groupResults";
 
 export const images = [
   {
@@ -110,6 +119,7 @@ export default function Home() {
             <StyledContainer>
               <RegisterLogin />
             </StyledContainer>
+            {/* <Rules /> */}
           </>
         )}
         {session && (
@@ -127,6 +137,12 @@ export default function Home() {
                     Create un grupo con tus amigos y jugatelá
                   </StyleSubTitle>
                 </StyledPaperContainer>
+                {/* <WordldCupGroups
+                  userGroup={20}
+                  use="asdkasdkaskd"
+                  showDate={false}
+                  isEditing={false}
+                /> */}
                 <StyledWorldCupImage>
                   <Image
                     src={images[7].src}
@@ -143,8 +159,20 @@ export default function Home() {
                 </Link>
               </StyledButtonContainer>
             </StyleMainComponent>
+            {/* <WavesTransition> */}
+            <CalendarContainer id="calendario">
+              <StyleSectionTitle>Calendario</StyleSectionTitle>
+              <CalendarContent>
+                <StyledGroup>
+                  <GroupResults />
+                </StyledGroup>
+                <NextMatches />
+              </CalendarContent>
+            </CalendarContainer>
+            {/* </WavesTransition> */}
+            {/* <WavesTransitionDown /> */}
             <UserGroup />
-            <Rules />
+            {/* <Rules /> */}
           </>
         )}
       </StyledContainer>

@@ -57,9 +57,10 @@ export const Styledh4 = styled.h5`
 export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
+  height: 100vh;
   /* align-content: space-between; */
   gap: 0.5rem;
   margin-bottom: 1rem;

@@ -23,8 +23,12 @@ export const StyledMainComponent = styled.div`
 
 export const StyledGrid = styled(Grid)`
   background-image: url("/abstractbg.jpg");
-  /* box-shadow: inset 0px 0px 40px 40px black;s */
+  animation: moveIt 10s linear infinite;
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* box-shadow: inset 0px 0px 40px 40px black; */
   background-size: cover;
+  /* box-shadow: 0 0 20px 8px transparent inset; */
   opacity: 88%;
   /* padding-top: 17rem; */
   width: 100%;
@@ -34,6 +38,14 @@ export const StyledGrid = styled(Grid)`
     /* padding-top: 20rem; */
     width: 100%;
     background-size: 1100px 100%;
+  }
+  @keyframes moveIt {
+    from {
+      background-position: bottom left;
+    }
+    to {
+      background-position: top right;
+    }
   }
 `;
 
@@ -118,9 +130,15 @@ export const StyledButton = styled("button")({
   cursor: "pointer",
   font: "ihnerit",
   color: "white",
-  backgroundColor: "rgb(255, 21, 84)",
+  backgroundColor: "#1FBAE7",
+  backgroundImage: "linear-gradient(to right, #1FBAE7 0%, #107694 100%)",
   border: "1px solid white",
-  borderRadius: "4px",
-  padding: "0.5rem 2.5rem",
+  borderRadius: "25px",
+  fontWeight: 500,
+  padding: "0.5rem 1.5rem",
   marginTop: "1.5rem",
+  border: 0,
+  "&:hover": {
+    backgroundImage: "linear-gradient(to right, #1FBAE7 0%, #1FBAE7 100%)",
+  },
 });

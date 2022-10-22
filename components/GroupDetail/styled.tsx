@@ -25,3 +25,22 @@ export const StyledItem = styled.div`
     width: 65vw;
   } */
 `;
+
+export const StyledPlayerName = styled.h4`
+  font-weight: 600;
+`;
+
+export const StyledPoints = styled.h3`
+  font-weight: 900;
+`;
+
+export const StyledListItem = styled.div`
+  display: flex;
+  gap: 2rem;
+`;
+
+export const StyledRanking = styled.h1`
+  font-weight: 800;
+  font-size: 4vw;
+  color: white;
+`;
