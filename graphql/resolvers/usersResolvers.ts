@@ -45,7 +45,7 @@ export const createUserResolver: FieldResolver<
       },
     });
     if (mailExist !== 0) {
-      throw new Error("Usuario Existente");
+      return new Error("Usuario Existente");
     }
 
     const password = await hashPassword(recivedPassword);
@@ -59,7 +59,6 @@ export const createUserResolver: FieldResolver<
     });
     return newUser;
   } catch (e) {
-    console.log("elll e", e);
     throw new Error("No se pudo obtener crear usuario. Reintente");
   }
 };
