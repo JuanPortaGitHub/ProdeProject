@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     "/mi-prode",
     // "/mi-prode/tabla-de-posiciones",
     "/mi-prode/posicionesgrupo",
+    "/grupos/[...groupName]",
   ];
 
   const router = useRouter();

@@ -143,3 +143,59 @@ export const StyledButton = styled("button")({
     backgroundImage: "linear-gradient(to right, #1FBAE7 0%, #1FBAE7 100%)",
   },
 });
+
+export const StyledButtonWithLinkComp = styled.button`
+  width: 250px;
+  align-self: center;
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+  /* background-color: #5ca9fb; */
+  /* background-image: linear-gradient(to right, #00c78e 0%, #708881 100%); */
+  /* background-image: linear-gradient(to right, #ff1554 0%, #ffc015 100%); */
+  background: linear-gradient(
+    to right,
+    #ff1554 0%,
+    rgba(185, 8, 246, 1),
+    #900c3f 100%
+  );
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  border-radius: 25px;
+  transition: all 0.5s linear;
+  border: 0;
+  cursor: pointer;
+  &:hover {
+    background-image: linear-gradient(to right, #ff1554 0%, #ff1554 100%);
+  }
+`;
+
+export const StyledShareGroupContainer = styled.div`
+  /* padding: 2rem; */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* height: 300px;
+  width: 300px; */
+  border: 5px solid #833ab4;
+
+  /* border-radius: 50%; */
+  border: double 5px transparent;
+  background-image: linear-gradient(white, white),
+    linear-gradient(90deg, #ff1554, rgba(185, 8, 246, 1), #900c3f);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  svg {
+    color: #ff1554;
+  }
+`;
+
+export const StyledText = styled.div`
+  padding: 2rem;
+  /* color: white; */
+  display: flex;
+  align-items: center;
+  /* background-image: url("/gradientBlack.svg"); */
+  /* background-image: url("/transitionWaves2.svg"); */
+  cursor: pointer;
+`;

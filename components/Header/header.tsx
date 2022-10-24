@@ -19,9 +19,9 @@ interface Props {
   handleDrawer?: () => void;
 }
 export const headerSections = [
-  { title: "Una Seccion sin loguear", href: "/" },
-  { title: "Reglamento", href: "/#Rules" },
-  { title: "Otra Seccion sin loguear", href: "/" },
+  // { title: "Una Seccion sin loguear", href: "/" },
+  // { title: "Reglamento", href: "/#Rules" },
+  // { title: "Otra Seccion sin loguear", href: "/" },
 ];
 
 export const headerSectionsLogged = [

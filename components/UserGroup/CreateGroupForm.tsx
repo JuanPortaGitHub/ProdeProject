@@ -1,10 +1,12 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useMutation } from "@apollo/client";
 import { CircularProgress, SelectChangeEvent } from "@mui/material";
 import { CREATE_GROUP } from "../../graphql/queries/groupQueries";
 import ToastContext from "../../context/toastContext";
 import Image from "next/image";
+import ShareIcon from "@mui/icons-material/Share";
+import Dialog from "@mui/material/Dialog";
 import {
   StyledButton,
   StyledControl,
@@ -15,6 +17,8 @@ import {
   StyledResultText,
   IconContainer,
   IconsGrid,
+  StyledShareGroupContainer,
+  StyledText,
 } from "./syled";
 import { motion } from "framer-motion";
 import { Avatar } from "@mui/material";
@@ -23,6 +27,7 @@ const CreateGroupForm = () => {
   const toast = useContext(ToastContext);
   const [logo, setLogo] = useState("/icons/1.png");
   const [disableFields, setDisableFields] = useState(false);
+  const [shareGroup, setShareGroup] = useState(false);
   const groupName = useRef();
   const groupPassword = useRef();
   const groupSlogan = useRef();
@@ -40,6 +45,7 @@ const CreateGroupForm = () => {
       groupPassword.current.value = "";
       groupSlogan.current.value = "";
       groupAmount.current.value = "";
+      setShareGroup(true);
     },
     onError(error) {
       toast.error(error.message);
@@ -61,6 +67,21 @@ const CreateGroupForm = () => {
       },
     });
   }
+
+  const shareGroupHandler = () => {
+    // const group = groupName.current.value.trim();
+
+    // console.log(group);
+    const link = `http://localhost:3000/grupos/${data.createGrupo.nombre}`;
+
+    navigator.clipboard.writeText(link);
+    setShareGroup(false);
+    toast.success(`grupo copiado, pegalo en tu grupo de wssp!`);
+  };
+
+  const onCloseHandler = () => {
+    setShareGroup(false);
+  };
   const icons = [
     {
       label: "Icono 1",
@@ -83,7 +104,6 @@ const CreateGroupForm = () => {
       value: "icon4",
     },
   ];
-
   return (
     <StyledMainComponent id="CreateGroup">
       <StyledCardTitle>Crea un grupo y jugá con tus amigos</StyledCardTitle>
@@ -164,6 +184,14 @@ const CreateGroupForm = () => {
           )}
         </div>
       </form>
+      <Dialog onClose={onCloseHandler} open={shareGroup}>
+        <StyledShareGroupContainer>
+          <StyledText onClick={shareGroupHandler}>
+            <h3>Compartir el grupo</h3>
+            <ShareIcon />
+          </StyledText>
+        </StyledShareGroupContainer>
+      </Dialog>
     </StyledMainComponent>
   );
 };

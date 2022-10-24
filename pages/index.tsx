@@ -36,13 +36,19 @@ import { StyledBody } from "../components/sidebar/styled";
 import UserGroup from "../components/UserGroup";
 import GroupDetail from "../components/GroupDetail";
 import { useEffect } from "react";
-import Rules from "../components/rules/rules";
+// import Rules from "../components/rules/rules";
+// import Rules2 from "../components/rules/rules2";
 import WordldCupGroups from "../components/groupfase/worldCupGroups";
 import NextMatches from "../components/nextMatches";
 import GroupResults from "../components/groupResults/groupResults";
 import LastMatches from "../components/lastMatches";
 import Timer from "../components/timer/timer";
 import Footer from "../components/footer/footer";
+
+import dynamic from "next/dynamic";
+const Rules = dynamic(() => import("../components/rules/rules"), {
+  ssr: false,
+});
 
 export const images = [
   {
@@ -123,7 +129,9 @@ export default function Home() {
             <StyledContainer>
               <RegisterLogin />
             </StyledContainer>
-            {/* <Rules /> */}
+            <WavesTransition>
+              <Rules />
+            </WavesTransition>
           </>
         )}
         {session && (
@@ -181,7 +189,6 @@ export default function Home() {
             <WavesTransition>
               <Rules />
             </WavesTransition>
-
             <Footer />
           </>
         )}
