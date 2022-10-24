@@ -45,8 +45,8 @@ const JoinGroupForm = () => {
     setDisableFields(true);
     JoinUserToGroup({
       variables: {
-        nombre: groupName.current.value,
-        claveGrupo: groupPassword.current.value,
+        nombre: groupName.current.value.trim(),
+        claveGrupo: groupPassword.current.value.trim(),
         idUser: session?.id,
       },
     });
@@ -63,7 +63,6 @@ const JoinGroupForm = () => {
             type="text"
             id="text"
             required
-            onChange={(e) => (groupName.current.value = e.target.value.trim())}
             ref={groupName}
           />
         </StyledControl>
@@ -76,9 +75,6 @@ const JoinGroupForm = () => {
             type="text"
             id="password"
             required
-            onChange={(e) =>
-              (groupPassword.current.value = e.target.value.trim())
-            }
             ref={groupPassword}
           />
         </StyledControl>

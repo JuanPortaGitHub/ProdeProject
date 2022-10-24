@@ -73,9 +73,10 @@ export const StyledDivider = styled.div`
 
 export const IconContainer = styled.div`
   display: flex;
+  padding: 0.3vw;
   align-items: center;
   justify-content: space-between;
-  border-radius: 5px;
+  border-radius: 50%;
   margin: 0 10px;
   @media (max-width: 600px) {
     flex-direction: column;

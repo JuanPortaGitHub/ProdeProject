@@ -27,7 +27,7 @@ const variants = {
 
 const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"];
 
-const MenuItem = ({ item }) => {
+const MenuItem = ({ item, toggle }) => {
   // const style = { border: `2px solid ${colors[i]}` };
   return (
     <StyledLi
@@ -37,7 +37,9 @@ const MenuItem = ({ item }) => {
       whileTap={{ scale: 0.95 }}
     >
       <Link href={item.href}>
-        <StyledAnchor style={{ color: "black" }}>{item.title}</StyledAnchor>
+        <StyledAnchor style={{ color: "black" }} onClick={toggle}>
+          {item.title}
+        </StyledAnchor>
       </Link>
     </StyledLi>
   );

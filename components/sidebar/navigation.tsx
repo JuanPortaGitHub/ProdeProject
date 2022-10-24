@@ -23,7 +23,7 @@ const variants = {
 };
 const itemIds = [0, 1, 2, 3, 4];
 
-const Navigation = ({ open }) => {
+const Navigation = ({ open, toggle }) => {
   const { data: session, status } = useSession();
 
   return (
@@ -36,12 +36,12 @@ const Navigation = ({ open }) => {
         <UserItem />
         {session &&
           headerSectionsLogged.map((headerSection, index) => (
-            <MenuItem key={index} item={headerSection} />
+            <MenuItem key={index} item={headerSection} toggle={toggle} />
           ))}
         {!session && (
           <>
             {headerSections.map((headerSection, index) => (
-              <MenuItem key={index} item={headerSection} />
+              <MenuItem key={index} item={headerSection} toggle={toggle} />
             ))}
           </>
         )}

@@ -54,7 +54,6 @@ const Sidebar = () => {
     };
 
     document.addEventListener("mousedown", checkIfClickedOutside);
-
     return () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
@@ -81,7 +80,7 @@ const Sidebar = () => {
       ref={containerRef}
     >
       <StyledBackground as={motion.div} variants={sidebar} />
-      <Navigation open={open} />
+      <Navigation open={open} toggle={() => toggleHandler()} />
       <MenuToggle toggle={() => toggleHandler()} />
     </StyledNav>
     // </div>

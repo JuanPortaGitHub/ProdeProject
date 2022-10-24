@@ -42,10 +42,10 @@ const UserItem = () => {
       )}
       {!session && (
         <StyledButtonsOnsideBar>
-          <Link href="/#signUpForm">
+          <Link href="/#registrarse">
             <StyledAnchor>Registrarse</StyledAnchor>
           </Link>
-          <Link href="/#signUpForm">
+          <Link href="/#entrar">
             <StyledButtonIngresar>Ingresar</StyledButtonIngresar>
           </Link>
         </StyledButtonsOnsideBar>

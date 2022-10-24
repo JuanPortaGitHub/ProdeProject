@@ -120,6 +120,9 @@ export const StyledFriendsGroup = styled.div`
   svg {
     color: white;
   }
+  @media (max-width: 600px) {
+    align-self: center;
+  }
 `;
 
 export const StyledRightborder = styled.div`
@@ -153,6 +156,9 @@ export const StyledTitle = styled.h4`
   font-weight: 100;
   margin: 0;
   margin-bottom: 0.4rem;
+  @media (max-width: 600px) {
+    align-self: center;
+  }
 `;
 
 export const StyledImage = styled.div`

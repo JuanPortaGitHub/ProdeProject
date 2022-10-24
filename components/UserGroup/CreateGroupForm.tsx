@@ -17,6 +17,7 @@ import {
   IconsGrid,
 } from "./syled";
 import { motion } from "framer-motion";
+import { Avatar } from "@mui/material";
 
 const CreateGroupForm = () => {
   const toast = useContext(ToastContext);
@@ -51,11 +52,11 @@ const CreateGroupForm = () => {
     setDisableFields(true);
     CreateNewGroup({
       variables: {
-        nombre: groupName.current.value,
+        nombre: groupName.current.value.trim(),
         imagen: logo,
-        claveGrupo: groupPassword.current.value,
-        slogan: groupSlogan.current.value,
-        monto: groupAmount.current.value,
+        claveGrupo: groupPassword.current.value.trim(),
+        slogan: groupSlogan.current.value.trim(),
+        monto: groupAmount.current.value.trim(),
         idUser: session?.id,
       },
     });
@@ -63,18 +64,23 @@ const CreateGroupForm = () => {
   const icons = [
     {
       label: "Icono 1",
-      src: "/icons/1.png",
+      src: "/icons/scaloni.png",
       value: "icon1",
     },
     {
       label: "Icono 2",
-      src: "/icons/2.png",
+      src: "/icons/eldiego.jpg",
       value: "icon2",
     },
     {
       label: "Icono 3",
-      src: "/icons/3.png",
+      src: "/icons/messirve.jpg",
       value: "icon3",
+    },
+    {
+      label: "Icono 4",
+      src: "/icons/etonoecoca.jpg",
+      value: "icon4",
     },
   ];
 
@@ -94,7 +100,14 @@ const CreateGroupForm = () => {
                   border: logo === icon.src ? "2px solid white" : "none",
                 }}
               >
-                <Image src={icon.src} alt={icon.label} width={50} height={50} />
+                <Avatar sx={{ width: 50, height: 50 }}>
+                  <Image
+                    src={icon.src}
+                    alt={icon.label}
+                    width={100}
+                    height={100}
+                  />
+                </Avatar>
               </IconContainer>
             </motion.div>
           ))}
@@ -106,7 +119,6 @@ const CreateGroupForm = () => {
             type="text"
             id="text"
             required
-            onChange={(e) => (groupName.current.value = e.target.value.trim())}
             ref={groupName}
           />
         </StyledControl>
@@ -116,9 +128,6 @@ const CreateGroupForm = () => {
             disabled={disableFields}
             type="text"
             id="slogan"
-            onChange={(e) =>
-              (groupSlogan.current.value = e.target.value.trim())
-            }
             required
             ref={groupSlogan}
           />
@@ -132,9 +141,6 @@ const CreateGroupForm = () => {
             type="text"
             id="password"
             required
-            onChange={(e) =>
-              (groupPassword.current.value = e.target.value.trim())
-            }
             ref={groupPassword}
           />
         </StyledControl>
@@ -145,9 +151,6 @@ const CreateGroupForm = () => {
             type="number"
             id="monto"
             required
-            onChange={(e) =>
-              (groupAmount.current.value = e.target.value.trim())
-            }
             ref={groupAmount}
           />
         </StyledControl>

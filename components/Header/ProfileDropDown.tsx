@@ -45,9 +45,11 @@ const ProfileDropDown = () => {
           <MenuItem component="div" data-testid="accountName">
             {session?.user?.name}
           </MenuItem>
-          <ExitToAppIcon onClick={logOutHandler} className="ml-auto">
-            Salir
-          </ExitToAppIcon>
+          <ExitToAppIcon
+            onClick={logOutHandler}
+            className="ml-auto"
+          ></ExitToAppIcon>
+          Salir
         </Menu>
       </AvatarSyled>
     </>

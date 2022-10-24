@@ -115,7 +115,7 @@ export default function Home() {
                 </StyledWorldCupImage>
               </StyledImageContainer>
               <StyledButtonContainer>
-                <Link href="/#signUpForm">
+                <Link href="/#entrar">
                   <StyledButton>EMPEZA A JUGAR!</StyledButton>
                 </Link>
               </StyledButtonContainer>

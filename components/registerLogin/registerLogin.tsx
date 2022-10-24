@@ -16,13 +16,13 @@ import { images } from "../../pages/index";
 const RegisterLogin = () => {
   return (
     <div
-      id="signUpForm"
+      id="registrarse"
       style={{
         display: "flex",
         flexDirection: "column",
       }}
     >
-      <StyledImageContainer>
+      <StyledImageContainer id="entrar">
         <StyledPaperContainer>
           <Paper elevation={3}>
             <Carousel

@@ -25,6 +25,7 @@ export const headerSections = [
 ];
 
 export const headerSectionsLogged = [
+  { title: "Inicio", href: "/" },
   { title: "Mi prode", href: "/mi-prode/fase-de-grupo" },
   { title: "Calendario", href: "/#calendario" },
   { title: "Reglamento", href: "/#Rules" },
@@ -36,7 +37,7 @@ export default function Header({ handleDrawer }: Props) {
   const isDesktopMode = useMediaQuery("(min-width:600px)");
 
   const changeColor = () => {
-    if (window.scrollY >= 90) {
+    if (window.scrollY >= 70) {
       setColor(true);
     } else {
       setColor(false);
@@ -69,10 +70,10 @@ export default function Header({ handleDrawer }: Props) {
                 ))}
               </StyledList>
               <StyledButtons>
-                <Link href="/#signUpForm">
+                <Link href="/#registrarse">
                   <StyledAnchor>Registrarse</StyledAnchor>
                 </Link>
-                <Link href="/#signUpForm">
+                <Link href="/#entrar">
                   <StyledButton>Ingresar</StyledButton>
                 </Link>
               </StyledButtons>

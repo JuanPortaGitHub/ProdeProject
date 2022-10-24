@@ -23,6 +23,7 @@ interface Props {
 }
 
 export const miProdeSections = [
+  { title: "Inicio", href: "/" },
   { title: "Tabla de Posiciones", href: "/mi-prode/tabla-de-posiciones" },
   { title: "Fase de Grupos", href: "/mi-prode/fase-de-grupo" },
   { title: "Eliminacion Directa", href: "/mi-prode/eliminacion-directa" },
@@ -39,7 +40,7 @@ export default function Header({ handleDrawer }: Props) {
   };
 
   const changeColor = () => {
-    if (window.scrollY >= 90) {
+    if (window.scrollY >= 20) {
       setColor(true);
     } else {
       setColor(false);
