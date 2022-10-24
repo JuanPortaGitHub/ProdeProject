@@ -48,40 +48,6 @@ const updateResults = async () => {
         });
       }
     });
-
-    resultadosTorneo.data.events.map(async (resultado: any) => {
-      if (resultado.strStatus !== "Not Started") {
-        const prodesParaActualizar =
-          await prisma.prode_Partido_Usuario.findMany({
-            where: {
-              AND: [
-                { info_PartidosId: resultado.idEvent },
-                // { NOT: { Partido: { Resultado: { Ganador: undefined } } } },
-                // { NOT: { Puntos: undefined } },
-              ],
-            },
-            // data: {
-            // Puntos: Goles_Local == resultado.intHomeScore ? 1 : 0
-            // Goles_Local: resultado.intHomeScore,
-            // Goles_Visitante: resultado.intAwayScore,
-            // Ganador:
-            //   +resultado.intHomeScore > +resultado.intAwayScore
-            //     ? resultado.strHomeTeam
-            //     : +resultado.intHomeScore < +resultado.intAwayScore
-            //     ? resultado.strAwayTeam
-            //     : undefined,
-            // Penales: undefined,
-            // Tiempo_Extra: undefined,
-            // },
-          });
-
-        // prodesParaActualizar.map((prode:any)=> {
-
-        // })
-      }
-    });
-
-    // console.log("Resultados Agregados", createMany);
   } catch (err) {
     console.error("Error en subida", err);
   }

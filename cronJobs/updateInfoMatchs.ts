@@ -211,9 +211,9 @@ const updateInfoMatchs = async () => {
         return {
           id: parseInt(resultado.idEvent),
           idTorneo: parseInt(resultado.idLeague),
-          Grupo: partidosPorGrupos.find(
-            (partido) => partido.id === parseInt(resultado.idEvent)
-          )?.Grupo,
+          // Grupo: partidosPorGrupos.find(
+          //   (partido) => partido.id === parseInt(resultado.idEvent)
+          // )?.Grupo,
           DiaHora: resultado.strTimestamp,
           RondaTorneo: resultado.intRound,
           Lugar: resultado.strVenue,

@@ -99,6 +99,7 @@ model Info_Partidos {
   Grupo                        String?
   DiaHora                      DateTime
   Lugar                        String
+  FaseDeGrupos                 Boolean                     @default(false)
   Resultado                    Resultados_Reales_Partidos? @relation(fields: [resultados_Reales_PartidosId], references: [id])
   resultados_Reales_PartidosId Int?                        @unique
   Prode_Partido_Usuario        Prode_Partido_Usuario[]
