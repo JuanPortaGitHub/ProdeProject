@@ -60,7 +60,7 @@ export const StyledContainer = styled.div`
   /* justify-content: center; */
   align-items: center;
   /* width: 100%; */
-  height: 100vh;
+  /* height: 100vh; */
   /* align-content: space-between; */
   gap: 0.5rem;
   margin-bottom: 1rem;

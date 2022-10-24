@@ -11,12 +11,7 @@ export const StyledItem = styled.div`
   border-radius: 5px;
   /* border: 2px solid white; */
   &:hover {
-    background: linear-gradient(
-      to right,
-      #ff1554 0%,
-      rgba(185, 8, 246, 1),
-      #900c3f 100%
-    );
+    background: linear-gradient(to right, #ff1554 0%, #b908f6, #900c3f 100%);
     cursor: pointer;
   }
 

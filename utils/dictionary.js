@@ -64,7 +64,26 @@ export const t = (country) => {
       return "Uruguay";
     case "South Korea":
       return "Corea del Sur";
+    case "Sweden":
+      return "Suecia";
+    case "Poland":
+      return "Polonia";
+    case "FYR Macedonia":
+      return "Macedonia";
+    case "Chile":
+      return "Chile";
+    case "Bolivia":
+      return "Bolivia";
+    case "New Zealand":
+      return "Nueva Zelanda";
+    case "United Arab Emirates":
+      return "Emiratos Arabes";
+    case "Scotland":
+      return "Escocia";
+    case "Ukraine":
+      return "Ucrania";
+
     default:
-      return "";
+      return country;
   }
 };

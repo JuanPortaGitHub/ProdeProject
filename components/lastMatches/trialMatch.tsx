@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { Controller } from "react-hook-form";
 import TeamContainer from "../common/teamContainer";
-import { StyledTextField, StyledContainer } from "./styled";
+import { StyledTextField, StyledMatchContainer } from "./styled";
 import { t } from "../../utils/dictionary";
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
   awayScore: number;
 }
 
-export const Match = ({
+const TrialMatch = ({
   homeTeam,
   flagHomeTeam,
   awayTeam,
@@ -25,25 +25,23 @@ export const Match = ({
   awayScore,
 }: Props) => {
   return (
-    <StyledContainer>
+    <StyledMatchContainer>
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 0.8fr 1fr",
           //   width: "70%",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <>
-          <TeamContainer
-            team={t(homeTeam) || ""}
-            flag={flagHomeTeam || ""}
-            home={true}
-          />
+          <TeamContainer team={t(homeTeam)} flag={flagHomeTeam} home={true} />
           <div
             style={{
               display: "flex",
-              justifyContent: "space-around",
+              justifyContent: "center",
+              gap: "0.2rem",
               alignItems: "center",
               color: "white",
             }}
@@ -52,13 +50,11 @@ export const Match = ({
             VS
             <StyledTextField size="small" value={awayScore} disabled />
           </div>
-          <TeamContainer
-            team={t(awayTeam) || ""}
-            flag={flagAwayTeam || ""}
-            home={false}
-          />
+          <TeamContainer team={t(awayTeam)} flag={flagAwayTeam} home={false} />
         </>
       </div>
-    </StyledContainer>
+    </StyledMatchContainer>
   );
 };
+
+export default TrialMatch;

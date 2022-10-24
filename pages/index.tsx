@@ -26,6 +26,7 @@ import {
   StyleSectionTitle,
   CalendarContent,
   WavesTransitionDown,
+  StyledNextLastContainer,
 } from "../styles/styled";
 import RegisterLogin from "../components/registerLogin/registerLogin";
 import Header from "../components/Header/header";
@@ -39,6 +40,9 @@ import Rules from "../components/rules/rules";
 import WordldCupGroups from "../components/groupfase/worldCupGroups";
 import NextMatches from "../components/nextMatches";
 import GroupResults from "../components/groupResults/groupResults";
+import LastMatches from "../components/lastMatches";
+import Timer from "../components/timer/timer";
+import Footer from "../components/footer/footer";
 
 export const images = [
   {
@@ -129,6 +133,7 @@ export default function Home() {
             </StyledBody>
             <Header />
             <StyleMainComponent>
+              <Timer />
               <StyledImageContainer>
                 <StyledPaperContainer>
                   <StyledMainTitle>Prode Trinche</StyledMainTitle>
@@ -159,20 +164,25 @@ export default function Home() {
                 </Link>
               </StyledButtonContainer>
             </StyleMainComponent>
-            {/* <WavesTransition> */}
-            <CalendarContainer id="calendario">
-              <StyleSectionTitle>Calendario</StyleSectionTitle>
-              <CalendarContent>
-                <StyledGroup>
-                  <GroupResults />
-                </StyledGroup>
-                <NextMatches />
-              </CalendarContent>
-            </CalendarContainer>
-            {/* </WavesTransition> */}
+            <WavesTransition>
+              <CalendarContainer id="calendario">
+                <StyleSectionTitle>Calendario</StyleSectionTitle>
+                <CalendarContent>
+                  <StyledGroup>
+                    <GroupResults />
+                  </StyledGroup>
+                  <NextMatches />
+                  <LastMatches />
+                </CalendarContent>
+              </CalendarContainer>
+            </WavesTransition>
             {/* <WavesTransitionDown /> */}
             <UserGroup />
-            {/* <Rules /> */}
+            <WavesTransition>
+              <Rules />
+            </WavesTransition>
+
+            <Footer />
           </>
         )}
       </StyledContainer>

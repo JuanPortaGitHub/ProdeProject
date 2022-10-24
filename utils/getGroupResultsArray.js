@@ -15,7 +15,6 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
         (teamA, teamB) => teamA.intPoints - teamB.intPoints
       );
       groupWithResults = [...orderGroupWithResults];
-      console.log("groupWithResults", groupWithResults);
     }
 
     const NewGroupWithResults = {

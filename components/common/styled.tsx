@@ -30,6 +30,7 @@ export const StyledTeamContainer = styled.div`
 
 export const StyledImageContainer = styled.div`
   width: 3vw;
+  text-align: end;
   @media (max-width: 600px) {
     width: 8vw;
   }

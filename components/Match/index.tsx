@@ -43,6 +43,8 @@ export const Match = ({
 }: Props) => {
   const date = new Date(+matchDate);
 
+  console.log(matchDate);
+
   const matchDateFormated = dayjs(date).format("DD-MM-YY H:mm");
 
   const today = new Date();
@@ -51,6 +53,8 @@ export const Match = ({
 
   const min = 0;
   const max = 10;
+
+  console.log(date);
 
   useEffect(() => {}, [userHomeScore, userAwayScore]);
 

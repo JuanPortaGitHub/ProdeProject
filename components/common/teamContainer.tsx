@@ -21,10 +21,19 @@ const TeamContainer = ({ team, flag, home }: Props) => {
   return (
     <>
       {home ? (
-        <Grid container columnSpacing={1}>
-          <Grid item xs={4} md={4}>
-            <StyledImageContainer>
-              <Image src={flag} alt="" width={50} height={30} />
+        <Grid alignItems={"center"} container>
+          <Grid
+            item
+            xs={4}
+            md={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              paddingRight: "0.2rem",
+            }}
+          >
+            <StyledImageContainer style={{ textAlign: "end" }}>
+              {flag ? <Image src={flag} alt="" width={50} height={30} /> : null}
             </StyledImageContainer>
           </Grid>
           <Grid item xs={8} md={8}>
@@ -32,13 +41,22 @@ const TeamContainer = ({ team, flag, home }: Props) => {
           </Grid>
         </Grid>
       ) : (
-        <Grid container columnSpacing={1}>
+        <Grid alignItems={"center"} container>
           <Grid item xs={8} md={8}>
             <StyledTeamContainer>{team}</StyledTeamContainer>
           </Grid>
-          <Grid item xs={4} md={4}>
+          <Grid
+            item
+            xs={4}
+            md={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "0.2rem",
+            }}
+          >
             <StyledImageContainer>
-              <Image src={flag} alt="" width={50} height={30} />
+              {flag ? <Image src={flag} alt="" width={50} height={30} /> : null}
             </StyledImageContainer>
           </Grid>
         </Grid>

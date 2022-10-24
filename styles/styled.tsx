@@ -44,6 +44,7 @@ export const CalendarContainer = styled.div`
   padding-top: 7rem;
   flex-direction: column;
   display: flex;
+  margin-bottom: 7rem;
   /* height: 100vh; */
   @media (max-width: 600px) {
     flex-direction: column;
@@ -88,6 +89,15 @@ export const StyleSectionTitle = styled.div`
 
 export const CalendarContent = styled.div`
   display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+export const StyledNextLastContainer = styled.div`
+  width: 60%;
+  display: flex;
+  align-self: flex-end;
   @media (max-width: 600px) {
     flex-direction: column;
   }

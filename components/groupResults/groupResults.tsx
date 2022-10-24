@@ -28,21 +28,23 @@ const GroupResults = () => {
   //   "https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4429&s=2022"
   // );
 
-  const handleScroll = () => {
+  const handleScroll = (e) => {
+    console.log(e.target);
     refContainer?.current?.scrollTo({
       top: 0,
-      left: currentPosition + 100,
+      left: currentPosition + window.innerWidth - 40,
       behavior: "smooth",
     });
-    if (currentPosition == 1100) {
+    if (currentPosition >= window.innerWidth * 8) {
       refContainer?.current?.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth",
       });
       setCurrentPosition(() => 0);
+      return;
     }
-    setCurrentPosition((curr) => curr + 100);
+    setCurrentPosition((curr) => curr + window.innerWidth);
   };
 
   useEffect(() => {
@@ -104,12 +106,10 @@ const GroupResults = () => {
       ],
     };
     if (response !== null) {
-      console.log("table", response.table);
       const resultsOfFunction = getGroupResultsArray(
         faseGroup,
         response?.table
       );
-      console.log(resultsOfFunction);
       setResults(resultsOfFunction);
     }
     console.log(results);

@@ -9,7 +9,7 @@ import { getCountry } from "../../utils/getGroups";
 import TeamContainer from "../common/teamContainer";
 import { StyledMatch } from "../groupfase/groupMatches/styled";
 import { StyledContainer } from "../Match/styled";
-import { StyledDate } from "./styled";
+import { StyledDate, StyledVs } from "./styled";
 
 const NextMatches = () => {
   const { response, loading, error } = useAxios(
@@ -39,6 +39,7 @@ const NextMatches = () => {
           }),
         };
       });
+      console.log(matches);
       setNext5Matches(matches);
     }
   }, [response]);
@@ -56,14 +57,13 @@ const NextMatches = () => {
               key={match.idEvent}
               as={motion.div}
               whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
             >
               <TeamContainer
                 team={t(match.HomeTeam.name)}
                 flag={match.HomeTeam.badge}
                 home={true}
               />
-              VS
+              <StyledVs>VS</StyledVs>
               <TeamContainer
                 team={t(match.AwayTeam.name)}
                 flag={match.AwayTeam.badge}

@@ -25,3 +25,8 @@ export const StyledDate = styled.div`
     color: black;
   }
 `;
+
+export const StyledVs = styled.h4`
+  color: white;
+  padding: 0 0.2rem;
+`;

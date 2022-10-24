@@ -82,6 +82,7 @@ export const StyledGroupName = styled.h2`
 export const StyledGroupWithName = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 1rem;
 `;
 
 export const StyledRightborder = styled.div`

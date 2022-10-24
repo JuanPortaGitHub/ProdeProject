@@ -8,7 +8,7 @@ export const StyledCard = styled.div`
   /* font-weight: 700; */
   font-size: large;
   margin: 3rem auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
   align-self: center;
   /* box-shadow: 0 8px 32px 0 rgba(255, 21, 84, 0.37); */
@@ -23,20 +23,57 @@ export const StyledCard = styled.div`
   }
 `;
 
-export const StyledSelectedTab = styled.li`
+export const StyledSelectedTab = styled.div`
+  /* width: 50%; */
+  cursor: pointer;
   background: #eee;
-  list-style: none;
+  border-radius: 10px;
   padding: 0;
   margin: 0;
+  align-self: center;
+  @media (max-width: 600px) {
+    padding: 1vw;
+  }
 `;
 
-export const StyledTab = styled.li`
+export const StyledTab = styled.div`
+  /* width: 50%; */
+  cursor: pointer;
   list-style: none;
+  border-radius: 10px;
   padding: 0;
+  margin: 0;
+  align-self: center;
+  height: 100%;
+  vertical-align: middle;
+  @media (max-width: 600px) {
+    padding: 1vw;
+  }
+`;
+
+export const StyledUnderline = styled.div`
+  /* position: absolute; */
+  /* bottom: -1px; */
+  border-radius: 10px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: #900c3f;
+`;
+
+export const StyledTabs = styled.div`
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* padding: 1rem; */
+  justify-content: space-evenly;
+  width: 100%;
+  height: 3rem;
   margin: 0;
 `;
 
 export const StyledNav = styled.nav`
+  width: 100%;
   background: #fdfdfd;
   padding: 5px 5px 0;
   border-radius: 10px;
@@ -140,4 +177,8 @@ export const StyledContainer = styled.div`
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 2.5rem;
+`;
+
+export const StyledMainContent = styled.div`
+  padding: 1.5rem;
 `;
