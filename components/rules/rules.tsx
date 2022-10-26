@@ -91,7 +91,7 @@ const Rules = () => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <p style={{ textAlign: "left" }}>
+                <p style={{ textAlign: "center" }}>
                   Las reglas son bastante simples: <br />
                   <br />
                   Acertar al ganador o acertar que haya empate son{" "}
@@ -124,15 +124,16 @@ const Rules = () => {
                     homeScore={0}
                     awayScore={2}
                   />
-                  suma de puntos: <br />
+                  Suma de puntos: <br />
                   <br />
-                  <strong>3 pts</strong> (por pegar que pasa Ecuador) +{" "}
-                  <strong>1 pt</strong> (por pegar los goles de visitante) ={" "}
-                  <strong>4 pts</strong>.
+                  <strong>3 pts</strong> (por pegar que pasa Ecuador) <br />
+                  <strong>+ 1 pt</strong> (por pegar los goles de visitante)
+                  <br />
+                  <strong>Total 4 pts</strong>.
                   <br />
                   <br />
                 </p>
-                <h3>+1 por Muchos goles:</h3>
+                <h3>+ 1 por Muchos goles:</h3>
                 <p>
                   <br />
                   En caso de acertar el resultado exacto y la suma de los goles
@@ -161,13 +162,14 @@ const Rules = () => {
                     homeScore={4}
                     awayScore={3}
                   />
-                  suma de puntos: <br />
+                  Suma de puntos: <br />
                   <br />
-                  <strong>3 pts</strong> (por el partido) +{" "}
-                  <strong>1 pt</strong> (por pegar los goles de visitante) +{" "}
-                  <strong>1 pt</strong> (por pegar los goles de local)+{" "}
-                  <strong>1 pt</strong> (+1 por Muchos goles) =
-                  <strong> 6 pts</strong>.
+                  <strong>3 pts</strong> (por el partido) <br />
+                  <strong>+ 1 pt</strong> (por pegar los goles de visitante){" "}
+                  <br />
+                  <strong>+ 1 pt</strong> (por pegar los goles de local) <br />
+                  <strong>+ 1 pt</strong> (+1 por Muchos goles) <br />
+                  <strong>Total 6 pts</strong>.
                 </p>
               </StyledMainContent>
             ) : (
@@ -226,9 +228,9 @@ const Rules = () => {
                   <CheckBox />
                   <br />
                   <br />
-                  suma de puntos: <br />
+                  Suma de puntos: <br />
                   <br />
-                  <strong>3 pts</strong> Unicamente por adviinar quien pasa.
+                  <strong>3 pts</strong> Unicamente por adivinar quien pasa.
                 </p>
               </StyledMainContent>
             )}

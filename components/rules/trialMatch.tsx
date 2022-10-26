@@ -48,9 +48,31 @@ export const Match = ({
               color: "white",
             }}
           >
-            <StyledTextField size="small" value={homeScore} disabled />
+            <StyledTextField
+              InputProps={{
+                sx: {
+                  "& input": {
+                    textAlign: "center",
+                    color: "black",
+                  },
+                },
+              }}
+              size="small"
+              value={homeScore}
+            />
             VS
-            <StyledTextField size="small" value={awayScore} disabled />
+            <StyledTextField
+              InputProps={{
+                sx: {
+                  "& input": {
+                    textAlign: "center",
+                    color: "black",
+                  },
+                },
+              }}
+              size="small"
+              value={awayScore}
+            />
           </div>
           <TeamContainer
             team={t(awayTeam) || ""}
