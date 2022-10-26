@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { signIn } from "next-auth/react";
 import { CircularProgress } from "@mui/material";
 import {
@@ -37,11 +37,17 @@ const LoginUser = () => {
   }
 
   return (
-    <>
-      <StyledCardTitle>Ingresar</StyledCardTitle>
-      <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "center",
+        }}
+      >
+        <StyledCardTitle>Ingresar</StyledCardTitle>
         {loadingLogin ? (
-          <CircularProgress color="inherit" />
+          <CircularProgress style={{ color: "white", alignSelf: "center" }} />
         ) : (
           <>
             <StyledControl>
@@ -73,8 +79,8 @@ const LoginUser = () => {
             {errorLogin && <StyledResultText>{errorLogin}</StyledResultText>}
           </>
         )}
-      </form>
-    </>
+      </div>
+    </form>
   );
 };
 export default LoginUser;

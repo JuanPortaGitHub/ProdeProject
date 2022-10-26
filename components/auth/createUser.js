@@ -58,9 +58,15 @@ const CreateUser = ({ createUserHandler }) => {
   };
 
   return (
-    <>
-      <StyledCardTitle>Registro</StyledCardTitle>
-      <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "center",
+        }}
+      >
+        <StyledCardTitle>Registro</StyledCardTitle>
         {loadingLogin ? (
           <CircularProgress color="inherit" />
         ) : (
@@ -114,8 +120,8 @@ const CreateUser = ({ createUserHandler }) => {
             {errorLogin && <StyledResultText>{errorLogin}</StyledResultText>}
           </>
         )}
-      </form>
-    </>
+      </div>
+    </form>
   );
 };
 export default CreateUser;

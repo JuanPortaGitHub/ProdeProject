@@ -147,23 +147,20 @@ export const StyledMainContainer = styled.div`
 `;
 
 export const StyledTextField = styled(TextField)`
-  border-radius: 17px;
+  border-radius: 50%;
   background-color: white;
   color: black;
-  width: 3vw;
+  width: 40px;
   height: 40px;
-  text-align: center;
 
   @media (max-width: 600px) {
-    width: 8vw;
+    width: 30px;
     height: 30px;
 
-    input {
-      margin-left: 3vw;
-      padding: 0px;
-      padding-top: 1vw;
-      border: 0px;
-    }
+    /* input {
+      color: black;
+      text-align: center;
+    } */
   }
   fieldset {
     border: 0px;

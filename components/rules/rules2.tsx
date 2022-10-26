@@ -92,7 +92,7 @@ const Rules = () => {
                 transition={{ duration: 0.5 }}
               >
                 <div>
-                  <p style={{ textAlign: "left" }}>
+                  <p style={{ textAlign: "center" }}>
                     Las reglas son bastante simples: <br />
                     <br />
                     Acertar al ganador o acertar que haya empate son{" "}
@@ -131,11 +131,12 @@ const Rules = () => {
                     awayScore={2}
                   />
                   <p>
-                    suma de puntos: <br />
+                    Suma de puntos: <br />
                     <br />
-                    <strong>3 pts</strong> (por pegar que pasa Ecuador) +{" "}
-                    <strong>1 pt</strong> (por pegar los goles de visitante) ={" "}
-                    <strong>4 pts</strong>.
+                    <strong>3 pts</strong> (por pegar que pasa Ecuador) <br />
+                    <strong>+ 1 pt</strong> (por pegar los goles de visitante)
+                    <br />
+                    <strong>Total 4 pts</strong>.
                     <br />
                     <br />
                   </p>
@@ -172,13 +173,17 @@ const Rules = () => {
                     awayScore={3}
                   />
                   <p>
-                    suma de puntos: <br />
+                    Suma de puntos: <br />
                     <br />
-                    <strong>3 pts</strong> (por el partido) +{" "}
-                    <strong>1 pt</strong> (por pegar los goles de visitante) +{" "}
-                    <strong>1 pt</strong> (por pegar los goles de local)+{" "}
-                    <strong>1 pt</strong> (+1 por Muchos goles) =
-                    <strong> 6 pts</strong>.
+                    <strong>3 pts</strong> (por el partido)
+                    <br />
+                    <strong>+ 1 pt</strong> (por pegar los goles de visitante)
+                    <br />
+                    <strong>+ 1 pt</strong> (por pegar los goles de local)
+                    <br />
+                    <strong>+ 1 pt</strong> (+1 por Muchos goles)
+                    <br />
+                    <strong>Total 6 pts</strong>.
                   </p>
                 </div>
               </StyledMainContent>
@@ -222,7 +227,9 @@ const Rules = () => {
                     Ganador: Inglaterra
                     <br />
                     Etapa del partido: 90&#39;
-                    <CheckBox />
+                    <CheckBox
+                      style={{ marginLeft: "10px", color: "#900C3F" }}
+                    />
                     <br />
                     <br />
                     Y para este partido TATO puse lo siguiente:
@@ -241,14 +248,16 @@ const Rules = () => {
                     Ganador: Inglaterra
                     <br />
                     Etapa del partido: Penales
+                    <CheckBox
+                      style={{ marginLeft: "10px", color: "#900C3F" }}
+                    />
                   </p>
-                  <CheckBox />
                   <p>
                     <br />
                     <br />
-                    suma de puntos: <br />
+                    Suma de puntos: <br />
                     <br />
-                    <strong>3 pts</strong> Unicamente por adviinar quien pasa.
+                    <strong>3 pts</strong> Únicamente por adivinar quien pasa.
                   </p>
                 </div>
               </StyledMainContent>

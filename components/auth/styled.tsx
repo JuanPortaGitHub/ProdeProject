@@ -104,4 +104,7 @@ export const StyledButton = styled("button")({
   borderRadius: "4px",
   padding: "0.5rem 2.5rem",
   margin: "0.5rem 1.5rem 0.5rem 1rem",
+  alignSelf: "center",
+  width: "80%",
+  justifyContent: "center",
 });

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 // import { useMsal } from '@azure/msal-react'
-import { Avatar, Menu, MenuItem } from "@mui/material";
+import { Avatar, CircularProgress, Menu, MenuItem } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { AvatarSyled } from "./StyledHeader";
 import { signOut, useSession } from "next-auth/react";
@@ -9,7 +9,8 @@ import Image from "next/image";
 const ProfileDropDown = () => {
   const { data: session, status } = useSession();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -20,6 +21,7 @@ const ProfileDropDown = () => {
   };
 
   const logOutHandler = () => {
+    setLoading(true);
     signOut();
   };
 
@@ -43,13 +45,24 @@ const ProfileDropDown = () => {
           onClose={handleClose}
         >
           <MenuItem component="div" data-testid="accountName">
-            {session?.user?.name}
+            <b>{session?.user?.name}</b>
+            {loading ? (
+              <CircularProgress
+                style={{
+                  color: "#900C3F",
+                  marginLeft: "20px",
+                  width: "25px",
+                  height: "25px",
+                }}
+              />
+            ) : (
+              <ExitToAppIcon
+                onClick={logOutHandler}
+                className="ml-auto"
+                style={{ marginLeft: "20px", color: "#900C3F" }}
+              ></ExitToAppIcon>
+            )}
           </MenuItem>
-          <ExitToAppIcon
-            onClick={logOutHandler}
-            className="ml-auto"
-          ></ExitToAppIcon>
-          Salir
         </Menu>
       </AvatarSyled>
     </>
