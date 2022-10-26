@@ -12,6 +12,7 @@ import {
   StyledButtonWithLinkComp,
 } from "./syled";
 import { useRouter } from "next/router";
+import { group } from "console";
 
 interface Props {
   groupName: string;
@@ -23,6 +24,8 @@ const JoinGroupFormWithLink = ({ groupName, userId }: Props) => {
   const toast = useContext(ToastContext);
   const router = useRouter();
   const groupPassword = useRef();
+
+  console.log(groupName, userId);
 
   const [JoinUserToGroup, { data, loading, error }] = useMutation(
     ADD_USER_GROUP,
