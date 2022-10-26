@@ -36,7 +36,10 @@ const JoinGroup = () => {
             <StyledSubTitle>
               Ingresa la contraseña y anda a ganarte unos morlacos
             </StyledSubTitle>
-            <JoinGroupFormWithLink groupName={groupName} userId={session?.id} />
+            <JoinGroupFormWithLink
+              groupName={decodedGroupName}
+              userId={session?.id}
+            />
           </StyledContainer>
         )}
       </JoinGroupContainer>
