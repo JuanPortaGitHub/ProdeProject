@@ -17,6 +17,7 @@ import { getGroupResultsArray } from "../../utils/getGroupResultsArray";
 import useAxios from "../../hooks/useAxios";
 import React, { useEffect, useRef, useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { t } from "../../utils/dictionary";
 
 const faseGroup = getGroups();
 
@@ -146,7 +147,7 @@ const GroupResults = () => {
                           height={30}
                         />
                       </StyledFlag>
-                      <StyledP>{team.name}</StyledP>
+                      <StyledP>{t(team.name)}</StyledP>
                     </div>
                     <StyledP>{team.intPlayed || 0} </StyledP>
                     <StyledP>{team.intWin || 0}</StyledP>
