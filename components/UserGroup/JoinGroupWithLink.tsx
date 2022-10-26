@@ -47,7 +47,7 @@ const JoinGroupFormWithLink = ({ groupName, userId }: Props) => {
     setDisableFields(true);
     JoinUserToGroup({
       variables: {
-        nombre: groupName[0].trim(),
+        nombre: groupName.trim(),
         claveGrupo: groupPassword.current.value.trim(),
         idUser: userId,
       },
