@@ -27,7 +27,7 @@ const Rules = () => {
 
   return (
     <>
-      <StyledMainContainer id="Reglas2">
+      <StyledMainContainer id="Reglas">
         <StyledQuoteContainer>
           <StyledQuote>
             &quot;Ganar no es lo más importante, es lo único. Nadie se acuerda
