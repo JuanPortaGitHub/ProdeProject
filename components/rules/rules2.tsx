@@ -1,4 +1,5 @@
 import { CheckBox } from "@mui/icons-material";
+import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
@@ -47,9 +48,9 @@ const Rules = () => {
           {/* <StyledNav> */}
           <h1>Reglamento</h1>
           <StyledTabs>
-            {/* {tabs.map((item) =>
+            {tabs.map((item) =>
               selectedTab == item.name ? (
-                <>
+                <React.Fragment key={item.name}>
                   <AnimatePresence key={item.name}>
                     <StyledSelectedTab
                       key={item.name}
@@ -68,7 +69,7 @@ const Rules = () => {
                       />
                     </StyledSelectedTab>
                   </AnimatePresence>
-                </>
+                </React.Fragment>
               ) : (
                 <StyledTab
                   key={item.name}
@@ -79,7 +80,7 @@ const Rules = () => {
                   <p>{item.name}</p>
                 </StyledTab>
               )
-            )} */}
+            )}
           </StyledTabs>
           <article>
             {selectedTab == "Fase de Grupo" ? (

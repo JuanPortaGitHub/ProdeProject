@@ -44,9 +44,8 @@ import GroupResults from "../components/groupResults/groupResults";
 import LastMatches from "../components/lastMatches";
 import Timer from "../components/timer/timer";
 import Footer from "../components/footer/footer";
-
 import dynamic from "next/dynamic";
-const Rules = dynamic(() => import("../components/rules/rules"), {
+const Rules2 = dynamic(() => import("../components/rules/rules2"), {
   ssr: false,
 });
 
@@ -130,7 +129,7 @@ export default function Home() {
               <RegisterLogin />
             </StyledContainer>
             <WavesTransition>
-              <Rules />
+              <Rules2 />
             </WavesTransition>
           </>
         )}
@@ -187,7 +186,7 @@ export default function Home() {
             {/* <WavesTransitionDown /> */}
             <UserGroup />
             <WavesTransition>
-              <Rules />
+              <Rules2 />
             </WavesTransition>
             <Footer />
           </>

@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
   const router = useRouter();
 
-  console.log(session);
+  console.log(router);
 
   useEffect(() => {
     if (!session) {

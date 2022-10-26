@@ -48,8 +48,8 @@ const NextMatches = () => {
     <StyledContainer>
       <h3 style={{ color: "white", alignSelf: "center" }}>Próximos Partidos</h3>
       {next5Matches &&
-        next5Matches.map((match: any) => (
-          <>
+        next5Matches.map((match: any, i) => (
+          <React.Fragment key={i}>
             <StyledDate>
               {dayjs(match.dateTime).format("DD-MM-YY H:mm")}
             </StyledDate>
@@ -70,7 +70,7 @@ const NextMatches = () => {
                 home={false}
               />
             </StyledMatch>
-          </>
+          </React.Fragment>
         ))}
     </StyledContainer>
     // </div>

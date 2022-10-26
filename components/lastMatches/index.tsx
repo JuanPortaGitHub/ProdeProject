@@ -30,7 +30,7 @@ const LastMatches = () => {
       <h3 style={{ color: "white", alignSelf: "center" }}>Últimos Partidos</h3>
       {last5Matches &&
         last5Matches.map((match: any) => (
-          <>
+          <React.Fragment key={match.idEvent}>
             <StyledDate>
               {dayjs(new Date(match.dateEvent))
                 .add(1, "day")
@@ -71,7 +71,7 @@ const LastMatches = () => {
                 home={false}
               /> */}
             </StyledMatch>
-          </>
+          </React.Fragment>
         ))}
     </StyledContainer>
     // </div>

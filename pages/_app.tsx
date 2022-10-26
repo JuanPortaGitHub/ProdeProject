@@ -31,6 +31,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 
   const router = useRouter();
 
+  console.log(router);
+
   return (
     <ApolloProvider client={client}>
       <ToastContextProvider>
