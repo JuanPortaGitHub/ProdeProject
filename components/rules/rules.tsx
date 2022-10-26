@@ -47,7 +47,7 @@ const Rules = () => {
           {/* <StyledNav> */}
           <h1>Reglamento</h1>
           <StyledTabs>
-            {/* {tabs.map((item) =>
+            {tabs.map((item) =>
               selectedTab == item.name ? (
                 <>
                   <AnimatePresence key={item.name}>
@@ -79,7 +79,7 @@ const Rules = () => {
                   <p>{item.name}</p>
                 </StyledTab>
               )
-            )} */}
+            )}
           </StyledTabs>
           <article>
             {selectedTab == "Fase de Grupo" ? (

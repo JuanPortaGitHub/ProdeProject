@@ -129,6 +129,7 @@ export const StyledUserGroupContainer = styled.div`
 
 export const StyledWorldCupImage = styled.div`
   width: 40vw;
+  /* padding-top: 4rem; */
   @media (max-width: 600px) {
     width: 70vw;
   }

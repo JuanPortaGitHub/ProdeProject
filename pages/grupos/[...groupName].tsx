@@ -15,11 +15,13 @@ const JoinGroup = () => {
   const { data: session, status } = useSession();
   const { groupName } = router.query;
 
+  const decodedGroupName = groupName ? groupName[0].replaceAll("-", " ") : null;
+
   return (
     <div style={{ color: "white" }}>
       {/* <WavesTransition> */}
       <JoinGroupContainer>
-        <StyleSectionTitle>Bienvenido al grupo {groupName}</StyleSectionTitle>
+        <StyleSectionTitle>Bienvenido a {decodedGroupName}</StyleSectionTitle>
 
         {!session && (
           <StyledContainer>

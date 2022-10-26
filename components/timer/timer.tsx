@@ -23,14 +23,14 @@ const Timer = () => {
 
   return (
     <TimerContainer>
-      Faltan
+      {/* Faltan */}
       {Object.entries({
         Días: time / DAY,
         Horas: (time / HOUR) % 24,
         Minutos: (time / MINUTE) % 60,
         Segundos: (time / SECOND) % 60,
       }).map(([label, value]) => (
-        <div key={label} className="col-4">
+        <div key={label}>
           <TimeUnit>
             {Math.floor(value) < 1 ? (
               <p>0</p>

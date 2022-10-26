@@ -143,7 +143,7 @@ export const addUserToGrupo: FieldResolver<"Mutation", "updateGrupo"> = async (
       });
       return editedGroup;
     }
-  } catch {
-    throw new Error("No pudimos unirte al grupo. Reintentar");
+  } catch (e) {
+    throw new Error(e.message);
   }
 };

@@ -173,13 +173,15 @@ export const StyledButtonWithLinkComp = styled.button`
 export const StyledShareGroupContainer = styled.div`
   /* padding: 2rem; */
   display: flex;
+  flex-direction: column;
   align-items: center;
   overflow: hidden;
+  width: 35vw;
   /* height: 300px;
   width: 300px; */
   border: 5px solid #833ab4;
 
-  /* border-radius: 50%; */
+  /* border-radius: 50%;   */
   border: double 5px transparent;
   background-image: linear-gradient(white, white),
     linear-gradient(90deg, #ff1554, rgba(185, 8, 246, 1), #900c3f);
@@ -195,7 +197,51 @@ export const StyledText = styled.div`
   /* color: white; */
   display: flex;
   align-items: center;
+  /* width: 70%; */
+  h3 {
+    text-align: center;
+  }
   /* background-image: url("/gradientBlack.svg"); */
   /* background-image: url("/transitionWaves2.svg"); */
+  /* cursor: pointer; */
+`;
+
+export const StyledImage = styled.div`
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+  /* padding-top: 4rem; */
+  @media (max-width: 600px) {
+    width: 70vw;
+  }
+`;
+
+export const StyledButtonCopy = styled.button`
+  width: 10rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  align-self: center;
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+  /* background-color: #5ca9fb; */
+  /* background-image: linear-gradient(to right, #00c78e 0%, #708881 100%); */
+  /* background-image: linear-gradient(to right, #ff1554 0%, #ffc015 100%); */
+  background: linear-gradient(
+    to right,
+    #ff1554 0%,
+    rgba(185, 8, 246, 1),
+    #900c3f 100%
+  );
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: all 0.5s linear;
+  border: 0;
   cursor: pointer;
+  &:hover {
+    background-image: linear-gradient(to right, #ff1554 0%, #ff1554 100%);
+  }
 `;

@@ -115,14 +115,35 @@ export const StyledMainContent = styled.div`
 export const StyledFriendsGroup = styled.div`
   display: flex;
   align-self: flex-end;
+  flex-direction: column;
   height: 1.5rem;
   padding: 0;
+  div {
+    padding: 0;
+  }
   svg {
     color: white;
   }
   @media (max-width: 600px) {
     align-self: center;
   }
+`;
+
+export const StyledIcon = styled.div`
+  /* padding: 2rem; */
+  /* color: white; */
+  /* display: flex; */
+
+  svg {
+    font-size: 2vw;
+    border: 1px solid red;
+    border-radius: 50%;
+  }
+  /* align-items: center; */
+  /* justify-content: flex-end; */
+  /* background-image: url("/gradientBlack.svg"); */
+  /* background-image: url("/transitionWaves2.svg"); */
+  cursor: pointer;
 `;
 
 export const StyledRightborder = styled.div`
@@ -150,12 +171,30 @@ export const StyledRightSquare = styled.div`
   );
 `;
 
-export const StyledTitle = styled.h4`
+export const StyledTitle = styled.div`
   color: white;
   align-self: flex-end;
   font-weight: 100;
   margin: 0;
   margin-bottom: 0.4rem;
+
+  svg {
+    font-size: 2vw;
+    border: 1px solid white;
+    padding: 0.1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    background: linear-gradient(
+      to right,
+      #ff1554 0%,
+      rgba(185, 8, 246, 1),
+      #900c3f 100%
+    );
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
   @media (max-width: 600px) {
     align-self: center;
   }
