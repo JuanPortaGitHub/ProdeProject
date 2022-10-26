@@ -138,7 +138,13 @@ const GroupResults = () => {
                 <DividerLine />
                 {group.teams.map((team) => (
                   <StyledContent key={team.name}>
-                    <div style={{ display: "flex", gap: "0.3rem" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "0.3rem",
+                        paddingLeft: "0.8rem",
+                      }}
+                    >
                       <StyledFlag>
                         <Image
                           src={team.flag}

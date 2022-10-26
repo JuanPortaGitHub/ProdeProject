@@ -65,18 +65,10 @@ export const StyleSectionTitle = styled.div`
   font-size: 6rem;
   align-self: center;
   font-weight: 600;
-
   background-color: red;
-
-  /* Create the gradient. */
   background-image: linear-gradient(45deg, #f3ec78, #af4261);
-
-  /* Set the background size and repeat properties. */
   background-size: 100%;
   background-repeat: repeat;
-
-  /* Use the text as a mask for the background. */
-  /* This will show the gradient as a text color rather than element bg. */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;

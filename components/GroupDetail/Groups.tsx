@@ -38,10 +38,21 @@ export const Groups = ({
       {data && (
         <>
           <>
-            <InputLabel>Mis grupos</InputLabel>
-            <Select value={selectedUserGrupo} onChange={handleChange} fullWidth>
+            <InputLabel style={{ color: "white" }}>Mis grupos</InputLabel>
+            <Select
+              value={selectedUserGrupo}
+              onChange={handleChange}
+              style={{ color: "white", border: "1px solid white" }}
+              fullWidth
+            >
               {data.GetUserById.Grupos.map((grupo: any) => (
-                <MenuItem key={grupo.id} value={grupo.id}>
+                <MenuItem
+                  key={grupo.id}
+                  value={grupo.id}
+                  style={{
+                    border: "1px solid white",
+                  }}
+                >
                   {grupo.nombre}
                 </MenuItem>
               ))}
@@ -50,12 +61,12 @@ export const Groups = ({
         </>
       )}
       {error && <h3>{error.message}</h3>}
-      {selectedUserGrupo && (
+      {/* {selectedUserGrupo && (
         <GroupInfoDetails
           selectedGrupo={selectedUserGrupo}
           selectPlayerHandler={selectPlayerHandler}
         />
-      )}
+      )} */}
     </StyledMainComponent>
   );
 };

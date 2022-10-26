@@ -98,7 +98,7 @@ const FaseGroup: NextPage = () => {
               ))}
             </Select>
           </StyledFriendsGroup>
-          <StyledTopScreen data-id="hola">
+          <StyledTopScreen>
             <StyledImage>
               <Image
                 src="/worldcup8.png"

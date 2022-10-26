@@ -22,7 +22,7 @@ export const StyledGroupsContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   margin-bottom: 3rem;
   gap: 1rem;
-  width: 100%;
+  /* width: 100%; */
   padding: 1rem;
   @media (max-width: 600px) {
     display: flex;
@@ -95,7 +95,7 @@ export const StyledGroup = styled.div`
 export const StyledTopScreen = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   /* margin-top: 6rem; */
 `;
 
@@ -114,12 +114,15 @@ export const StyledMainContent = styled.div`
 
 export const StyledFriendsGroup = styled.div`
   display: flex;
-  align-self: flex-end;
+  align-self: center;
   flex-direction: column;
   height: 1.5rem;
-  padding: 0;
+  padding-left: 2rem;
+
+  /* padding: 0; */
+
   div {
-    padding: 0;
+    padding: 0 0.3rem;
   }
   svg {
     color: white;
@@ -173,15 +176,18 @@ export const StyledRightSquare = styled.div`
 
 export const StyledTitle = styled.div`
   color: white;
-  align-self: flex-end;
+  align-self: center;
+  padding-left: 2rem;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
   font-weight: 100;
   margin: 0;
   margin-bottom: 0.4rem;
 
   svg {
     font-size: 2vw;
-    border: 1px solid white;
-    padding: 0.1rem;
+    padding-right: 0.3rem;
     border-radius: 50%;
     cursor: pointer;
     background: linear-gradient(
@@ -206,6 +212,7 @@ export const StyledTitle = styled.div`
 export const StyledImage = styled.div`
   display: flex;
   align-items: center;
+  /* justify-content: center; */
   /* justify-content: space-between; */
   flex-direction: column;
   width: 20%;
@@ -217,7 +224,8 @@ export const StyledImage = styled.div`
 export const StyledprodeContainer = styled.div`
   margin-top: 4vh;
   display: flex;
-  width: 100%;
+  justify-content: space-around;
+  width: 80%;
   @media (max-width: 600px) {
     /* overflow-x: scroll; */
     flex-direction: column;

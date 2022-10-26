@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StyledMainContent } from "../../styles/posicionesgrupo";
+import { GroupInfoDetails } from "./GroupInfoDetails";
 
 import { Groups } from "./Groups";
 import { Teamgroups } from "./Teamgroups";
@@ -25,6 +26,12 @@ const GroupDetail = () => {
         selectedUserGrupo={selectedUserGrupo}
         setSelectedUserGrupo={setSelectedUserGrupo}
       />
+      {selectedUserGrupo && (
+        <GroupInfoDetails
+          selectedGrupo={selectedUserGrupo}
+          selectPlayerHandler={selectPlayerHandler}
+        />
+      )}
       {open && (
         <Teamgroups
           selectedPlayer={selectedPlayer}

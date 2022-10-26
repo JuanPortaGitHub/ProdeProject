@@ -63,22 +63,45 @@ export const StyledScore = styled.div`
 
 export const StyledMainComponent = styled.div`
   /* background-color: rgba(255, 21, 84, 0.447); */
-  background-color: rgba(255, 255, 255, 0.447);
+  /* background-color: rgba(255, 255, 255, 0.447); */
+  /* background-image: url("/gradiente.svg"); */
+  background-image: url("/popUpbg.svg");
   margin: 3rem auto;
   padding: 1rem;
   text-align: center;
   align-self: center;
   /* box-shadow: 0 8px 32px 0 rgba(255, 21, 84, 0.37); */
-  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+  /* box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37); */
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   min-width: 380px;
+  svg {
+    color: white;
+  }
   @media (max-width: 600px) {
     width: 90%;
   }
 `;
+// export const StyledMainComponent = styled.div`
+//   background-image: url("/gradiente.svg");
+//   padding: 1rem;
+//   margin: 3rem auto;
+//   width: 40vw;
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: cover;
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+//   /* padding: 0 2rem; */
+//   border-radius: 16px;
+//   box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+//   @media (max-width: 600px) {
+//     width: 90vw;
+//   }
+// `;
 
 export const StyledContainer = styled.div`
   display: flex;
@@ -91,16 +114,18 @@ export const StyledContainer = styled.div`
 
 export const StyledMainContent = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   /* padding: 5rem 2rem; */
-  gap: 2rem;
+  align-items: center;
+  gap: 1rem;
   margin-top: 2rem;
 
   /* z-index: 30; */
   @media (max-width: 600px) {
-    padding-top: 6rem;
+    /* padding-top: 6rem; */
     /* height: 50vh; */
     padding-right: 0rem;
+    gap: 0.5rem;
   }
 `;
 

@@ -19,7 +19,7 @@ export const StyledMatchesContainer = styled.div`
 
 export const StyledContainer = styled.div`
   display: flex;
-  width: 50%;
+  /* width: 50%; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
