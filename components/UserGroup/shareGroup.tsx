@@ -27,7 +27,7 @@ const ShareGroup = ({ groupName, show, setShow }: Props) => {
 
   const shareGroupHandler = () => {
     const encondedUrl = groupName.replaceAll(" ", "-");
-    const link = `http://localhost:3000/grupos/${encondedUrl}`;
+    const link = `https://prodeproject-production.up.railway.app/${encondedUrl}`;
     // const link = `${process.env.PRODUCTION}/${data.createGrupo.nombre}`;
 
     navigator.clipboard.writeText(link);
