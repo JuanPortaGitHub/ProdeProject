@@ -197,6 +197,9 @@ export const StyledTitle = styled.div`
 
   @media (max-width: 600px) {
     align-self: center;
+    svg {
+      font-size: 5vw;
+    }
   }
 `;
 

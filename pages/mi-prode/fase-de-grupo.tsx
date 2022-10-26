@@ -42,7 +42,6 @@ const FaseGroup: NextPage = () => {
   };
 
   const showModalHandler = () => {
-    console.log(groupName.current);
     setShowShareGroupModal(true);
   };
 
@@ -50,9 +49,6 @@ const FaseGroup: NextPage = () => {
     setSelectedFriendsGroup(() => event.target.value as string);
     const group = getGroupName(data.GetUserById.Grupos, event.target.value);
     groupName.current = group.name;
-
-    // const name =
-    // setGroupName(() => name);
   };
 
   useEffect(() => {
@@ -101,14 +97,6 @@ const FaseGroup: NextPage = () => {
                 </MenuItem>
               ))}
             </Select>
-            {/* {selectedFriendsGroup != "" && (
-              <StyledText onClick={showModalHandler}>
-                <h3>Compartir el grupo</h3>
-                <a>
-                  <ShareIcon />
-                </a>
-              </StyledText>
-            )} */}
           </StyledFriendsGroup>
           <StyledTopScreen data-id="hola">
             <StyledImage>

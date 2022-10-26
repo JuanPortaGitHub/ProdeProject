@@ -177,6 +177,7 @@ export const StyledShareGroupContainer = styled.div`
   align-items: center;
   overflow: hidden;
   width: 35vw;
+  border-radius: 20px;
   /* height: 300px;
   width: 300px; */
   border: 5px solid #833ab4;
@@ -189,6 +190,10 @@ export const StyledShareGroupContainer = styled.div`
   background-clip: content-box, border-box;
   svg {
     color: #ff1554;
+  }
+
+  @media (max-width: 600px) {
+    width: 70vw;
   }
 `;
 

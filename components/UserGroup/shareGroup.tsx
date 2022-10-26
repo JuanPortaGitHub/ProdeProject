@@ -36,7 +36,13 @@ const ShareGroup = ({ groupName, show, setShow }: Props) => {
   };
 
   return (
-    <Dialog onClose={onCloseHandler} open={show}>
+    <Dialog
+      onClose={onCloseHandler}
+      open={show}
+      PaperProps={{
+        style: { borderRadius: 20 },
+      }}
+    >
       <StyledShareGroupContainer>
         {/* <div style={{ backgroundImage: "url(/gradientBlack.svg)" }}> */}
         <StyledImage>
