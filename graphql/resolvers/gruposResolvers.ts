@@ -37,7 +37,7 @@ export const createGrupoResolver: FieldResolver<
       },
     });
     if (nombreGrupoExist !== 0) {
-      throw new Error("Ese nombre de grupo ya esta siendo utilizado");
+      return new Error("Ese nombre de grupo ya esta siendo utilizado");
     }
     const newGroup = await prisma.grupo.create({
       data: {
@@ -76,7 +76,7 @@ export const updateGrupoResolver: FieldResolver<
         },
       });
       if (nombreGrupoExist !== 0) {
-        throw new Error("Ese nombre de grupo ya esta siendo utilizado");
+        return new Error("Ese nombre de grupo ya esta siendo utilizado");
       }
     }
     const editedGroup = await prisma.grupo.update({
@@ -91,7 +91,7 @@ export const updateGrupoResolver: FieldResolver<
       },
     });
     return editedGroup;
-  } catch {
+  } catch (e) {
     throw new Error("No pudimos actualizar el grupo. Reintente");
   }
 };
@@ -116,7 +116,7 @@ export const addUserToGrupo: FieldResolver<"Mutation", "updateGrupo"> = async (
         },
       });
       if (nombreGrupoExist === 0) {
-        throw new Error("No se encuentra el grupo o clave incorrecta");
+        return new Error("No se encuentra el grupo o clave incorrecta");
       }
       const userExistInGroup = await prisma.grupo.count({
         where: {
@@ -131,7 +131,7 @@ export const addUserToGrupo: FieldResolver<"Mutation", "updateGrupo"> = async (
         },
       });
       if (userExistInGroup !== 0) {
-        throw new Error("Ya estás en este grupo!");
+        return new Error("Ya estás en este grupo!");
       }
       const editedGroup = await prisma.grupo.update({
         where: { nombre: nombre },
