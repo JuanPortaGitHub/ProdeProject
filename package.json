@@ -26,6 +26,7 @@
     "bcryptjs": "2.4.3",
     "cross-env": "^7.0.3",
     "dayjs": "^1.11.5",
+    "firebase": "^9.12.1",
     "framer-motion": "7.3.5",
     "graphql": "16.6.0",
     "micro": "9.4.1",

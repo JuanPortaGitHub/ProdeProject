@@ -1,7 +1,8 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useId } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../graphql/queries/userQueries";
-import { CircularProgress } from "@mui/material";
+import { Avatar, Button, CircularProgress } from "@mui/material";
+import Image from "next/image";
 import {
   StyledButton,
   StyledCardTitle,
@@ -12,9 +13,14 @@ import {
 } from "./styled";
 import { motion } from "framer-motion";
 import ToastContext from "../../context/toastContext";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import PersonIcon from "@mui/icons-material/Person";
+import { uploadFile } from "../../imageServer/config";
 
 const CreateUser = ({ createUserHandler }) => {
   const [loadingLogin, setLoadingLogin] = useState(false);
+  const [image, setImage] = useState();
+  const [urlImage, setUrlImage] = useState("");
   const toast = useContext(ToastContext);
   const [errorLogin, setErrorLogin] = useState("");
   const firstNameRef = useRef();
@@ -26,6 +32,7 @@ const CreateUser = ({ createUserHandler }) => {
     onCompleted(data) {
       toast.success("Usuario Creado!");
       createUserHandler();
+      setImage();
     },
     onError(error) {
       toast.error(error.message);
@@ -33,8 +40,10 @@ const CreateUser = ({ createUserHandler }) => {
   });
   const submitHandler = async (event) => {
     event.preventDefault();
+
     setErrorLogin("");
     setLoadingLogin(() => true);
+
     if (
       passwordInputRef.current.value !== passwordRepeatInputRef.current.value
     ) {
@@ -42,21 +51,40 @@ const CreateUser = ({ createUserHandler }) => {
       setErrorLogin("Las contraseñas no coinciden");
       return;
     }
-
     const enteredFirstName = firstNameRef.current.value;
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
+
+    let url;
+    if (image) {
+      console.log("Subiendo imagen");
+      url = await uploadFile(image);
+      console.log("url luego de uploadfile", url);
+    }
+    console.log("urlImage", url);
     await createNewUser({
       variables: {
         name: enteredFirstName,
         email: enteredEmail,
         recivedPassword: enteredPassword,
+        image: url,
       },
     });
-
+    setUrlImage("");
     setLoadingLogin(() => false);
   };
 
+  const handleFileUpload = (e) => {
+    if (!e.target.files) {
+      return;
+    }
+    const file = e.target.files[0];
+    if (file.size >= 1000000) {
+      toast.error("Imagen muy pesada (max 1mb)");
+      return;
+    }
+    setImage(file);
+  };
   return (
     <form onSubmit={submitHandler}>
       <div
@@ -68,9 +96,41 @@ const CreateUser = ({ createUserHandler }) => {
       >
         <StyledCardTitle>Registro</StyledCardTitle>
         {loadingLogin ? (
-          <CircularProgress color="inherit" />
+          <CircularProgress style={{ color: "white", alignSelf: "center" }} />
         ) : (
           <>
+            <StyledControl>
+              <StyledInputLabel htmlFor="Nombre">Imagen</StyledInputLabel>
+
+              <Avatar
+                style={{ width: "5rem", height: "5rem", alignSelf: "center" }}
+              >
+                {image ? (
+                  <Image
+                    alt="Preview"
+                    layout="fill"
+                    src={URL.createObjectURL(image)}
+                  />
+                ) : (
+                  <PersonIcon style={{ width: "90%", height: "90%" }} />
+                )}
+              </Avatar>
+
+              <Button
+                component="label"
+                variant="outlined"
+                startIcon={<UploadFileIcon />}
+                sx={{ marginRight: "1rem" }}
+              >
+                Subir imagen (hasta 1mb)
+                <input
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={handleFileUpload}
+                />
+              </Button>
+            </StyledControl>
             <StyledControl>
               <StyledInputLabel htmlFor="Nombre">Nombre</StyledInputLabel>
               <StyledInput

@@ -14,6 +14,7 @@ const nextConfig = {
       "www.thesportsdb.com",
       "lh3.googleusercontent.com",
       "cloudinary.fifa.com",
+      "firebasestorage.googleapis.com",
     ],
   },
 };

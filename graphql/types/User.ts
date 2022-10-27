@@ -52,6 +52,7 @@ export const CreateUser = extendType({
         name: nonNull(stringArg()),
         email: nonNull(stringArg()),
         recivedPassword: nonNull(stringArg()),
+        image: nonNull(stringArg()),
       },
       resolve: createUserResolver,
     });

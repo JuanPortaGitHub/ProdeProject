@@ -14,6 +14,7 @@ const GetUserLogin = gql`
       email
       name
       password
+      image
     }
   }
 `;
@@ -46,6 +47,7 @@ export const authOptions = {
           id: result.data.GetUserByEmail.id,
           email: result.data.GetUserByEmail.email,
           name: result.data.GetUserByEmail.name,
+          image: result.data.GetUserByEmail.image,
         };
         return userAccount;
       },
