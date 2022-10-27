@@ -24,6 +24,8 @@ const LastMatches = () => {
       setLast5Matches(response?.events.slice(0, 5));
     }
   }, [response]);
+
+  console.log(last5Matches);
   return (
     // <div id="calendario">
     <StyledContainer>
