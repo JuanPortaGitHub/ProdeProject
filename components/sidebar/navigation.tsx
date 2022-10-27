@@ -31,7 +31,7 @@ const Navigation = ({ open, toggle }) => {
 
   const miProdeSection = pathname.includes("/mi-prode/");
 
-  console.log(pathname);
+  // console.log(pathname);
 
   return (
     <>

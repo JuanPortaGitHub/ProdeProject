@@ -14,6 +14,16 @@ export const StyledItem = styled.div`
   background-color: white;
   border: 1px solid red;
   padding: 0 2rem;
+
+  @media (max-width: 1280px) {
+    padding: 0 1rem;
+    /* margin-right: 2rem; */
+  }
+
+  @media (max-width: 600px) {
+    padding: 0 1rem;
+  }
+
   li {
     width: 100%;
     /* display: flex;
@@ -36,6 +46,9 @@ export const StyledPlayerName = styled.h4`
   font-weight: 600;
   font-size: 1.2rem;
   margin: 0;
+  @media (max-width: 1280px) {
+    font-size: 1rem;
+  }
   @media (max-width: 600px) {
     font-size: 1rem;
   }
@@ -61,6 +74,11 @@ export const StyledPoints = styled.h3`
   top: -25px;
   /* padding-bottom: 3rem; */
   margin: 0;
+
+  @media (max-width: 1280px) {
+    font-size: 3.5rem;
+    top: -19px;
+  }
 
   @media (max-width: 600px) {
     font-size: 3.2rem;
@@ -90,6 +108,9 @@ export const StyledListItem = styled.div`
   width: 100%;
   /* width: 100%; */
   padding-left: 6rem;
+  @media (max-width: 1280px) {
+    padding-left: 4rem;
+  }
   @media (max-width: 600px) {
     padding-left: 4rem;
   }
@@ -116,6 +137,9 @@ export const StyledRanking = styled.h1`
 export const ListContainer = styled.div`
   background-image: url("/popUpbg.svg");
   width: 40vw;
+  padding: 0 2rem;
+  /* width: 90vw;
+  padding: 0 0.5rem; */
   /* padding-top: 1rem; */
   /* background-repeat: no-repeat; */
   /* background-position: center; */
@@ -123,9 +147,12 @@ export const ListContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0 2rem;
   border-radius: 16px;
   box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+  @media (max-width: 1030px) {
+    width: 60vw;
+  }
+
   @media (max-width: 600px) {
     width: 90vw;
     padding: 0 0.5rem;
@@ -183,6 +210,11 @@ export const StyledGroupName = styled.div`
 
 export const StyledGridItem = styled(Grid)`
   width: 80%;
+  /* width: 100%; */
+  @media (max-width: 1280px) {
+    width: 100%;
+    /* margin-right: 2rem; */
+  }
   @media (max-width: 600px) {
     width: 100%;
     /* margin-right: 2rem; */
@@ -194,6 +226,10 @@ export const StyledListAvatar = styled(ListItemAvatar)`
   position: absolute;
   z-index: 10;
   padding-left: 3rem;
+  @media (max-width: 1280px) {
+    padding-left: 1.2rem;
+    /* margin-right: 2rem; */
+  }
   @media (max-width: 600px) {
     padding-left: 1.2rem;
     /* margin-right: 2rem; */
