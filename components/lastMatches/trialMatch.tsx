@@ -29,7 +29,7 @@ const TrialMatch = ({
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 0.8fr 1fr",
+          gridTemplateColumns: "1.1fr 0.8fr 1.1fr",
           //   width: "70%",
           alignItems: "center",
           justifyContent: "center",
