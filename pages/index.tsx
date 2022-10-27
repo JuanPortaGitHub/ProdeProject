@@ -97,6 +97,9 @@ export default function Home() {
             </StyledBody>
             <Header />
             <StyleMainComponent>
+              <TimerContainer>
+                <Timer />
+              </TimerContainer>
               <StyledImageContainer>
                 <StyledPaperContainer>
                   <StyledMainTitle>Prode Trinche</StyledMainTitle>
@@ -121,6 +124,18 @@ export default function Home() {
                 </Link>
               </StyledButtonContainer>
             </StyleMainComponent>
+            <WavesTransition>
+              <CalendarContainer id="calendario">
+                <StyleSectionTitle>Calendario</StyleSectionTitle>
+                <CalendarContent>
+                  <StyledGroup>
+                    <GroupResults />
+                  </StyledGroup>
+                  <NextMatches />
+                  <LastMatches />
+                </CalendarContent>
+              </CalendarContainer>
+            </WavesTransition>
             <StyledContainer>
               <RegisterLogin />
             </StyledContainer>
