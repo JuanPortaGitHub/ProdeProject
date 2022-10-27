@@ -20,9 +20,10 @@ interface Props {
   handleDrawer?: () => void;
 }
 export const headerSections = [
-  // { title: "Una Seccion sin loguear", href: "/" },
-  // { title: "Reglamento", href: "/#Rules" },
-  // { title: "Otra Seccion sin loguear", href: "/" },
+  // { title: "Inicio", href: "/" },
+  // { title: "Mi prode", href: "/mi-prode/fase-de-grupo" },
+  { title: "Calendario", href: "/#calendario" },
+  { title: "Reglamento", href: "/#Reglas" },
 ];
 
 export const headerSectionsLogged = [
