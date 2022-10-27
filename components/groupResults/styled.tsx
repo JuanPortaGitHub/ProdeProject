@@ -58,6 +58,7 @@ export const StyledTitles = styled.div`
 `;
 
 export const StyledContent = styled.div`
+  /* background-color: green; */
   display: grid;
   grid-template-columns: 3.6fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr;
 `;

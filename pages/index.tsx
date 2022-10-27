@@ -162,12 +162,6 @@ export default function Home() {
                     Create un grupo con tus amigos y jugatelá
                   </StyleSubTitle>
                 </StyledPaperContainer>
-                {/* <WordldCupGroups
-                  userGroup={20}
-                  use="asdkasdkaskd"
-                  showDate={false}
-                  isEditing={false}
-                /> */}
                 <StyledWorldCupImage>
                   <Image
                     src={images[7].src}

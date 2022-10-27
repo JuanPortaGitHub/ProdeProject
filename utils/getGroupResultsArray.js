@@ -12,7 +12,7 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
       // groupWithResults = [newTeam, ...groupWithResults];
       const unOrderGroupWithResults = [newTeam, ...groupWithResults];
       const orderGroupWithResults = unOrderGroupWithResults.sort(
-        (teamA, teamB) => teamA.intPoints - teamB.intPoints
+        (teamA, teamB) => teamB.intPoints - teamA.intPoints
       );
       groupWithResults = [...orderGroupWithResults];
     }
