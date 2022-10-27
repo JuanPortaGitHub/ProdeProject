@@ -31,7 +31,7 @@ const FaseGroup: NextPage = () => {
   const [currUser, setCurrUser] = useState({});
   const [showShareGroupModal, setShowShareGroupModal] = useState(false);
   // const [groupName, setGroupName] = useState();
-  const { loading, error, data } = useQuery(GET_USER_GROUPS, {
+  const { loading, error, data, refetch } = useQuery(GET_USER_GROUPS, {
     variables: { getUserByIdId: session?.id },
   });
   const [selectedFriendsGroup, setSelectedFriendsGroup] = useState("");
@@ -57,6 +57,7 @@ const FaseGroup: NextPage = () => {
       if (data.GetUserById.Grupos.length != 0) {
         setSelectedFriendsGroup(() => data.GetUserById.Grupos[0]?.id);
         groupName.current = data.GetUserById.Grupos[0].nombre;
+        refetch({ getUserByIdId: session?.id });
       }
     }
   }, [data]);
