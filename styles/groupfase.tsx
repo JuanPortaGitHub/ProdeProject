@@ -38,13 +38,13 @@ export const StyleName = styled.div`
   justify-content: center;
   background-color: white;
   border: 1px solid red;
-  font-size: 1vw;
+  font-size: 0.8vw;
   width: 100%;
   align-self: flex-end;
   margin: 3px;
   border-radius: 5px;
   @media (max-width: 600px) {
-    font-size: 4vw;
+    font-size: 3.5vw;
   }
 `;
 
@@ -267,7 +267,7 @@ export const StyledGroupTeams = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 70%;
+  width: 80%;
   @media (max-width: 600px) {
     width: 90%;
   }

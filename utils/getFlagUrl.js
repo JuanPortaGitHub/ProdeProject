@@ -64,12 +64,16 @@ export const getFlagUrl = (country) => {
       return "/flags/uruguay.png";
     case "South Korea":
       return "/flags/coreaDelSur.png";
-    // agregar bandera suiza
-    case "Sweden":
-      return "";
-    // agregar bandera suiza
-    case "FYR Macedonia":
-      return "";
+    case "New Zealand":
+      return "/flags/nuevaZelanda.png";
+    case "Peru":
+      return "/flags/peru.png";
+    case "United Arab Emirates":
+      return "/flags/emiratosArabes.png";
+    case "Ukraine":
+      return "/flags/ucrania.png";
+    case "Scotland":
+      return "/flags/escocia.png";
     default:
       return "";
   }

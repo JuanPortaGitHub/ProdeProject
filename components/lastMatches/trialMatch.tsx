@@ -25,35 +25,23 @@ const TrialMatch = ({
   awayScore,
 }: Props) => {
   return (
-    <StyledMatchContainer>
+    <>
+      <TeamContainer team={t(homeTeam)} flag={flagHomeTeam} home={true} />
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 0.8fr 1fr",
-          //   width: "70%",
-          alignItems: "center",
+          display: "flex",
           justifyContent: "center",
+          gap: "0.2rem",
+          alignItems: "center",
+          color: "white",
         }}
       >
-        <>
-          <TeamContainer team={t(homeTeam)} flag={flagHomeTeam} home={true} />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "0.2rem",
-              alignItems: "center",
-              color: "white",
-            }}
-          >
-            <StyledTextField size="small" value={homeScore} disabled />
-            VS
-            <StyledTextField size="small" value={awayScore} disabled />
-          </div>
-          <TeamContainer team={t(awayTeam)} flag={flagAwayTeam} home={false} />
-        </>
+        <StyledTextField size="small" value={homeScore} disabled />
+        VS
+        <StyledTextField size="small" value={awayScore} disabled />
       </div>
-    </StyledMatchContainer>
+      <TeamContainer team={t(awayTeam)} flag={flagAwayTeam} home={false} />
+    </>
   );
 };
 

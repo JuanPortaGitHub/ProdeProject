@@ -25,7 +25,7 @@ import Sidebar from "../../components/sidebar/sidebar";
 import { GET_USER_GROUPS } from "../../graphql/queries/userQueries";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@apollo/client";
-import Header from "../../components/Header/headerMiprode";
+import Header from "../../components/Header/header";
 
 const Table: NextPage = () => {
   const [currentGroup, setCurrentGroup] = useState("");
