@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const StyleMainComponent = styled.div`
-  margin-top: 6rem;
+  /* margin-top: 6rem; */
   height: calc(100vh - 6rem);
   display: flex;
   flex-direction: column;
+  margin-bottom: 6rem;
   @media (max-width: 600px) {
-    margin-bottom: 6rem;
-    height: 80vh;
+    margin-bottom: 15rem;
+    height: 70vh;
   }
 `;
 
@@ -187,5 +188,13 @@ export const StyledButtonContainer = styled.div`
     display: flex;
     justify-content: center;
     width: 100vw;
+  }
+`;
+
+export const TimerContainer = styled.div`
+  padding-top: 5rem;
+  @media (max-width: 600px) {
+    padding-bottom: 1rem;
+    padding-top: 3rem;
   }
 `;

@@ -1,14 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Carousel } from "react-responsive-carousel";
-import { WindowSharp } from "@mui/icons-material";
 import { signOut, useSession } from "next-auth/react";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Paper from "@mui/material/Paper";
-import AuthForm from "../components/auth/authform";
-import { Match } from "../components/groupfase/Match";
-import GroupFase from "../components/groupfase/groupfase";
 import {
   StyledImageContainer,
   StyledPaperContainer,
@@ -27,6 +22,7 @@ import {
   CalendarContent,
   WavesTransitionDown,
   StyledNextLastContainer,
+  TimerContainer,
 } from "../styles/styled";
 import RegisterLogin from "../components/registerLogin/registerLogin";
 import Header from "../components/Header/header";
@@ -38,13 +34,13 @@ import GroupDetail from "../components/GroupDetail";
 import { useEffect } from "react";
 // import Rules from "../components/rules/rules";
 // import Rules2 from "../components/rules/rules2";
-import WordldCupGroups from "../components/groupfase/worldCupGroups";
 import NextMatches from "../components/nextMatches";
 import GroupResults from "../components/groupResults/groupResults";
 import LastMatches from "../components/lastMatches";
 import Timer from "../components/timer/timer";
 import Footer from "../components/footer/footer";
 import dynamic from "next/dynamic";
+// import { TimerContainer } from "../components/timer/styled";
 const Rules2 = dynamic(() => import("../components/rules/rules2"), {
   ssr: false,
 });
@@ -140,7 +136,9 @@ export default function Home() {
             </StyledBody>
             <Header />
             <StyleMainComponent>
-              <Timer />
+              <TimerContainer>
+                <Timer />
+              </TimerContainer>
               <StyledImageContainer>
                 <StyledPaperContainer>
                   <StyledMainTitle>Prode Trinche</StyledMainTitle>
