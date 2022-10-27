@@ -16,11 +16,12 @@ import ToastContext from "../../context/toastContext";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import PersonIcon from "@mui/icons-material/Person";
 import { uploadFile } from "../../imageServer/config";
+import { resizeFile } from "../../utils/reziserImage";
+import IconButton from "@mui/material/IconButton";
 
 const CreateUser = ({ createUserHandler }) => {
   const [loadingLogin, setLoadingLogin] = useState(false);
   const [image, setImage] = useState();
-  const [urlImage, setUrlImage] = useState("");
   const toast = useContext(ToastContext);
   const [errorLogin, setErrorLogin] = useState("");
   const firstNameRef = useRef();
@@ -55,11 +56,15 @@ const CreateUser = ({ createUserHandler }) => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    let url;
+    let url = "";
     if (image) {
-      console.log("Subiendo imagen");
-      url = await uploadFile(image);
-      console.log("url luego de uploadfile", url);
+      try {
+        console.log("Subiendo imagen");
+        const imageSmall = await resizeFile(image);
+        url = await uploadFile(imageSmall);
+      } catch (err) {
+        console.log(err);
+      }
     }
     console.log("urlImage", url);
     await createNewUser({
@@ -70,7 +75,6 @@ const CreateUser = ({ createUserHandler }) => {
         image: url,
       },
     });
-    setUrlImage("");
     setLoadingLogin(() => false);
   };
 
@@ -99,9 +103,8 @@ const CreateUser = ({ createUserHandler }) => {
           <CircularProgress style={{ color: "white", alignSelf: "center" }} />
         ) : (
           <>
-            <StyledControl>
+            <StyledControl style={{ position: "relative" }}>
               <StyledInputLabel htmlFor="Nombre">Imagen</StyledInputLabel>
-
               <Avatar
                 style={{ width: "5rem", height: "5rem", alignSelf: "center" }}
               >
@@ -112,17 +115,20 @@ const CreateUser = ({ createUserHandler }) => {
                     src={URL.createObjectURL(image)}
                   />
                 ) : (
-                  <PersonIcon style={{ width: "90%", height: "90%" }} />
+                  <PersonIcon style={{ width: "80%", height: "80%" }} />
                 )}
               </Avatar>
 
               <Button
                 component="label"
-                variant="outlined"
-                startIcon={<UploadFileIcon />}
-                sx={{ marginRight: "1rem" }}
+                startIcon={<UploadFileIcon style={{ fontSize: "30" }} />}
+                style={{
+                  position: "absolute",
+                  bottom: "0px",
+                  left: "50%",
+                  padding: "0px",
+                }}
               >
-                Subir imagen (hasta 1mb)
                 <input
                   type="file"
                   accept="image/*"

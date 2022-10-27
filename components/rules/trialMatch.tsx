@@ -30,7 +30,7 @@ export const Match = ({
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr",
-          //   width: "70%",
+          width: "100%",
           alignItems: "center",
         }}
       >

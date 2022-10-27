@@ -19,7 +19,7 @@ export const StyledCard = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.3);
   width: 60%;
   @media (max-width: 600px) {
-    width: 90%;
+    width: 100%;
   }
 `;
 
@@ -143,6 +143,7 @@ export const StyledMainContainer = styled.div`
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: center;
+    padding: 0.2rem;
   }
 `;
 
@@ -156,7 +157,10 @@ export const StyledTextField = styled(TextField)`
   @media (max-width: 600px) {
     width: 30px;
     height: 30px;
-
+    justify-content: center;
+    input {
+      padding: 0;
+    }
     /* input {
       color: black;
       text-align: center;
@@ -178,4 +182,11 @@ export const StyledContainer = styled.div`
 
 export const StyledMainContent = styled.div`
   padding: 1.5rem;
+  @media (max-width: 600px) {
+    padding: 0;
+
+    p {
+      padding: 1.5rem;
+    }
+  }
 `;
