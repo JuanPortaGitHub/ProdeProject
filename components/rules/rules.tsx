@@ -117,7 +117,7 @@ const Rules = () => {
                     awayScore={2}
                   />
                   <p>
-                    Ahora supongamo que tenemos el usuario TATO que puso lo
+                    Ahora supongamos que tenemos el usuario TATO que puso lo
                     siguiente:
                     <br />
                     <br />
