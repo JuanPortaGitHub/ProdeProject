@@ -29,7 +29,7 @@ import { GET_GROUP_DETAIL } from "../../graphql/queries/groupQueries";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import LoadingIcon from "../common/loadingIcon/loading";
+import LoadingIcon from "../common/loadingIconFolder/loading";
 
 export const GroupInfoDetails = ({ selectedGrupo, selectPlayerHandler }) => {
   const {

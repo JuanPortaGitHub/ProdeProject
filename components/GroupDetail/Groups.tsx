@@ -17,7 +17,7 @@ import {
 import { GET_USER_GROUPS } from "../../graphql/queries/userQueries";
 import { GroupInfoDetails } from "./GroupInfoDetails";
 import { motion } from "framer-motion";
-import LoadingIcon from "../common/loadingIcon/loading";
+import LoadingIcon from "../common/loadingIconFolder/loading";
 
 export const Groups = ({
   selectPlayerHandler,

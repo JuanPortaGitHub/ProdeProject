@@ -24,7 +24,7 @@ import { getArrayToSubmit } from "../../../utils/getArrayToSubmit";
 import { useForm } from "react-hook-form";
 import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
-import LoadingIcon from "../../common/loadingIcon/loading";
+import LoadingIcon from "../../common/loadingIconFolder/loading";
 
 interface Props {
   teamsGroup: string;
