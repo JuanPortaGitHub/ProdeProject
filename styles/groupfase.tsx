@@ -225,7 +225,7 @@ export const StyledprodeContainer = styled.div`
   margin-top: 4vh;
   display: flex;
   justify-content: space-around;
-  width: 80%;
+  width: 100%;
   @media (max-width: 600px) {
     /* overflow-x: scroll; */
     flex-direction: column;

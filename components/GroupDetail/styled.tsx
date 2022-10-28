@@ -198,6 +198,7 @@ export const StyledGroupName = styled.div`
   background-image: linear-gradient(45deg, white, white);
   background-size: 100%;
   background-repeat: repeat;
+  text-align: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;

@@ -27,6 +27,8 @@ export const Groups = ({
 
   const { loading, error, data } = useQuery(GET_USER_GROUPS, {
     variables: { getUserByIdId: session?.id },
+    onCompleted: (data: any) =>
+      setSelectedUserGrupo(data?.GetUserById.Grupos[0].id),
   });
 
   const handleChange = (event: SelectChangeEvent) => {

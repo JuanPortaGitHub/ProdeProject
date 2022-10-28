@@ -7,7 +7,7 @@ import { Teamgroups } from "./Teamgroups";
 
 const GroupDetail = () => {
   const [selectedPlayer, setSelectedPlayer] = useState();
-  const [selectedUserGrupo, setSelectedUserGrupo] = useState();
+  const [selectedUserGrupo, setSelectedUserGrupo] = useState("");
   const [open, setOpen] = useState(false);
 
   const selectPlayerHandler = (player) => {

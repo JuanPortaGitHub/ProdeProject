@@ -119,6 +119,7 @@ export const StyledMainContent = styled.div`
   align-items: center;
   gap: 1rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 
   /* z-index: 30; */
   @media (max-width: 600px) {

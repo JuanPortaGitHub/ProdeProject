@@ -104,12 +104,13 @@ const Matches = ({
           {loading && <CircularProgress />}
           {!loading && (
             <StyledMatches>
-              {/* <div
+              <div
                 style={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "1rem",
+                  marginBottom: "1rem",
                 }}
               >
                 <Avatar>
@@ -127,7 +128,7 @@ const Matches = ({
                 <h3 style={{ color: "white", alignSelf: "center" }}>
                   Prode de {user.name.substring(0, user.name.indexOf(" "))}
                 </h3>
-              </div> */}
+              </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 {groups?.map((group: any, i) => (
                   <StyledMatch
