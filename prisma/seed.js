@@ -9,7 +9,6 @@ async function main() {
       },
     })
     .UsuariosDeGrupo();
-  console.log("result", result);
 }
 
 main()

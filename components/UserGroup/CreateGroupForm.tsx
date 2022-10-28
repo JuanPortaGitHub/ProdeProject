@@ -40,7 +40,6 @@ const CreateGroupForm = () => {
     onCompleted(data) {
       toast.success(`Grupo ${data.createGrupo.nombre} creado`);
       setDisableFields(false);
-      console.log("data", data);
       groupName.current.value = "";
       setLogo("/icons/1.png");
       groupPassword.current.value = "";

@@ -35,7 +35,6 @@ export const getFaseGroupMatches = async () => {
       groupA.push(matchData);
     }
     if (groups[1].teams.includes(events[i].strHomeTeam)) {
-      //   console.log(events[i].strHomeTeam);
       // en qatar son 6 horas mas, solo tengo que restar 6 horas a la local
       const matchData = {
         homeTeam: events[i].strHomeTeam,
@@ -66,7 +65,6 @@ export const getFaseGroupMatches = async () => {
       groupC.push(matchData);
     }
     if (groups[3].teams.includes(events[i].strHomeTeam)) {
-      //   console.log(events[i].strHomeTeam);
       // en qatar son 6 horas mas, solo tengo que restar 6 horas a la local
       const matchData = {
         homeTeam: events[i].strHomeTeam,
@@ -82,7 +80,6 @@ export const getFaseGroupMatches = async () => {
       groupD.push(matchData);
     }
     if (groups[4].teams.includes(events[i].strHomeTeam)) {
-      //   console.log(events[i].strHomeTeam);
       // en qatar son 6 horas mas, solo tengo que restar 6 horas a la local
       const matchData = {
         homeTeam: events[i].strHomeTeam,
@@ -98,7 +95,6 @@ export const getFaseGroupMatches = async () => {
       groupE.push(matchData);
     }
     if (groups[5].teams.includes(events[i].strHomeTeam)) {
-      //   console.log(events[i].strHomeTeam);
       // en qatar son 6 horas mas, solo tengo que restar 6 horas a la local
       const matchData = {
         homeTeam: events[i].strHomeTeam,
@@ -114,7 +110,6 @@ export const getFaseGroupMatches = async () => {
       groupF.push(matchData);
     }
     if (groups[6].teams.includes(events[i].strHomeTeam)) {
-      //   console.log(events[i].strHomeTeam);
       // en qatar son 6 horas mas, solo tengo que restar 6 horas a la local
       const matchData = {
         homeTeam: events[i].strHomeTeam,
@@ -130,7 +125,6 @@ export const getFaseGroupMatches = async () => {
       groupG.push(matchData);
     }
     if (groups[7].teams.includes(events[i].strHomeTeam)) {
-      //   console.log(events[i].strHomeTeam);
       // en qatar son 6 horas mas, solo tengo que restar 6 horas a la local
       const matchData = {
         homeTeam: events[i].strHomeTeam,
@@ -156,6 +150,5 @@ export const getFaseGroupMatches = async () => {
     { groupName: "Group G", matches: [...groupG], badges: groups[6].badges },
     { groupName: "Group H", matches: [...groupH], badges: groups[7].badges }
   );
-  console.log(matches);
   return matches;
 };

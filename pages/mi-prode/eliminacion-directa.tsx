@@ -34,9 +34,6 @@ const Table: NextPage = () => {
     variables: { getUserByIdId: session?.id },
   });
 
-  // const { Grupos } = data.GetUserById;
-  console.log(session);
-
   const faseGroups = getGroups();
 
   return (

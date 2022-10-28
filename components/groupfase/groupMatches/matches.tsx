@@ -57,7 +57,6 @@ const Matches = ({
     { error: createError, loading: createLoading, data: createdData },
   ] = useMutation(CREATE_PRODES, {
     onCompleted(data) {
-      console.log("data", data);
       toast.success(`Prode para el ${teamsGroup} grupo enviado`);
     },
     onError(error) {
@@ -70,13 +69,9 @@ const Matches = ({
     setGroups(matches);
   };
 
-  // console.log(user.id);
-
   const onSubmit = async (formData) => {
-    console.log(formData, "form");
+    s;
     const arrayToSubmit = getArrayToSubmit(groups, formData);
-
-    console.log(arrayToSubmit);
 
     await create_Prodes({
       variables: {

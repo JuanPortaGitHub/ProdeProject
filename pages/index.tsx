@@ -26,22 +26,21 @@ import {
 } from "../styles/styled";
 import RegisterLogin from "../components/registerLogin/registerLogin";
 import Header from "../components/Header/header";
-import useToastContext from "../hooks/useToastContext";
 import Sidebar from "../components/sidebar/sidebar";
 import { StyledBody } from "../components/sidebar/styled";
 import UserGroup from "../components/UserGroup";
-import GroupDetail from "../components/GroupDetail";
-import { useEffect } from "react";
-// import Rules from "../components/rules/rules";
 // import Rules2 from "../components/rules/rules2";
+// import Timer from "../components/timer/timer";
 import NextMatches from "../components/nextMatches";
 import GroupResults from "../components/groupResults/groupResults";
 import LastMatches from "../components/lastMatches";
-import Timer from "../components/timer/timer";
 import Footer from "../components/footer/footer";
 import dynamic from "next/dynamic";
-// import { TimerContainer } from "../components/timer/styled";
-const Rules2 = dynamic(() => import("../components/rules/rules2"), {
+const Rules = dynamic(() => import("../components/rules/rules"), {
+  ssr: false,
+});
+
+const Timer = dynamic(() => import("../components/timer/timer"), {
   ssr: false,
 });
 
@@ -76,15 +75,7 @@ export const images = [
   },
 ];
 
-const scrollToDown = () => {
-  window.scrollTo({
-    top: document.documentElement.scrollHeight,
-    behavior: "smooth",
-  });
-};
-
 export default function Home() {
-  const toast = useToastContext();
   const { data: session, status } = useSession();
 
   return (
@@ -140,8 +131,9 @@ export default function Home() {
               <RegisterLogin />
             </StyledContainer>
             <WavesTransition>
-              <Rules2 />
+              <Rules />
             </WavesTransition>
+            <Footer />
           </>
         )}
         {session && (
@@ -198,8 +190,9 @@ export default function Home() {
             </WavesTransition>
             {/* <WavesTransitionDown /> */}
             <UserGroup />
+
             <WavesTransition>
-              <Rules2 />
+              <Rules />
             </WavesTransition>
             <Footer />
           </>

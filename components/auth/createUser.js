@@ -59,14 +59,12 @@ const CreateUser = ({ createUserHandler }) => {
     let url = "";
     if (image) {
       try {
-        console.log("Subiendo imagen");
         const imageSmall = await resizeFile(image);
         url = await uploadFile(imageSmall);
       } catch (err) {
         console.log(err);
       }
     }
-    console.log("urlImage", url);
     await createNewUser({
       variables: {
         name: enteredFirstName,

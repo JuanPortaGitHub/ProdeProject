@@ -49,14 +49,12 @@ const GroupResults = () => {
 
   useEffect(() => {
     if (response !== null) {
-      // console.log(response.table);
       const resultsOfFunction = getGroupResultsArray(
         faseGroup,
         response?.table
       );
       setResults(resultsOfFunction);
     }
-    // console.log(results);
   }, [response]);
 
   return (
