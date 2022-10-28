@@ -9,7 +9,6 @@ export const useDimensions = (ref) => {
 
   useEffect(() => {
     dimensions.current.width = ref.current.offsetWidth;
-    console.log(dimensions.current.width, dimensions.current.height);
     dimensions.current.height = ref.current.offsetHeight;
   }, []);
 

@@ -46,8 +46,6 @@ export const Match = ({
 
   const today = new Date();
 
-  // console.log(today >= date);
-
   const min = 0;
   const max = 10;
 
@@ -96,15 +94,12 @@ export const Match = ({
                     name={`${id}/home`}
                     disabled={today >= date || !isEditing}
                     inputProps={{
-                      // min,bl
-                      // max,
                       style: { textAlign: "center" },
                       maxLength: 1,
                     }}
                     // onChange={onChange}
                     onChange={(e) => {
                       let value = parseInt(e.target.value, 10);
-                      console.log(value);
                       let valueToString;
                       if (value > max) value = max;
                       if (value < min) value = min;
@@ -162,16 +157,12 @@ export const Match = ({
                     value={value}
                     disabled={today >= date || !isEditing}
                     inputProps={{
-                      min,
-                      max,
                       style: { textAlign: "center" },
                       maxLength: 1,
                     }}
                     // onChange={onChange}
                     onChange={(e) => {
                       let value = parseInt(e.target.value, 10);
-                      console.log(value);
-                      let valueToString;
                       if (value > max) value = max;
                       if (value < min) value = min;
                       return onChange(value);

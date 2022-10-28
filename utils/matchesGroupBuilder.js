@@ -138,6 +138,5 @@ export const matchesGroupBuilder = (matches) => {
     { groupName: "Group G", matches: [...groupG], badges: groups[6].badges },
     { groupName: "Group H", matches: [...groupH], badges: groups[7].badges }
   );
-  console.log(matchesData);
   return matchesData;
 };

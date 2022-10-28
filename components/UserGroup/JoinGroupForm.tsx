@@ -29,7 +29,6 @@ const JoinGroupForm = () => {
       onCompleted(data) {
         toast.success(`Te uniste al grupo ${data.addUserToGrupo.nombre}!`);
         setDisableFields(false);
-        console.log("data", data);
         groupName.current.value = "";
         groupPassword.current.value = "";
       },

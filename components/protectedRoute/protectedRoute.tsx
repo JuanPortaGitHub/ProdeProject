@@ -7,8 +7,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
   const router = useRouter();
 
-  // console.log(router);
-
   useEffect(() => {
     if (!session) {
       router.push("/");

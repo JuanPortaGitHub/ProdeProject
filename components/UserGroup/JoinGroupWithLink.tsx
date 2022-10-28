@@ -25,8 +25,6 @@ const JoinGroupFormWithLink = ({ groupName, userId }: Props) => {
   const router = useRouter();
   const groupPassword = useRef();
 
-  console.log(groupName, userId);
-
   const [JoinUserToGroup, { data, loading, error }] = useMutation(
     ADD_USER_GROUP,
     {

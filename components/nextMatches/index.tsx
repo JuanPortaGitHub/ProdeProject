@@ -26,7 +26,6 @@ const NextMatches = () => {
             +new Date(a.strTimestamp) - +new Date(b.strTimestamp)
         )
         .slice(0, 5);
-      // console.log("filterData", filterData);
       const countriesData = getCountry();
       const matches = filterData.map((match: any) => {
         return {

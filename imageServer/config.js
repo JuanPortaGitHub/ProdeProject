@@ -22,6 +22,5 @@ export const uploadFile = async (file) => {
   const storageRef = ref(storage, imageNameUnique);
   await uploadBytes(storageRef, file);
   const url = await getDownloadURL(storageRef);
-  console.log("urlImagen de config", url);
   return url;
 };

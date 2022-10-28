@@ -2,9 +2,6 @@ export const getArrayToSubmit = (groups, formData) => {
   const keys = Object.keys(formData);
   const values = Object.values(formData);
 
-  // console.log(keys[0].substring(0, keys[0].indexOf("/")));
-  // console.log(keys[0].substring(keys[0].indexOf("/") + 1));
-
   let prodeObject = {};
   let currMatchId = "";
   let currHome = "";
@@ -32,7 +29,6 @@ export const getArrayToSubmit = (groups, formData) => {
 
   for (let match in groups) {
     let matchWinner;
-    console.log(groups);
     const { id } = groups[match];
     if (prodeObject[id].home == prodeObject[id].away) {
       matchWinner = "Empate";
@@ -44,7 +40,6 @@ export const getArrayToSubmit = (groups, formData) => {
       matchWinner = groups[match].EquipoVisitante.nombre_equipo;
     }
 
-    console.log(matchWinner);
     const matchProde = {
       info_PartidosId: id,
       Goles_Local: prodeObject[id].home.toString(),
