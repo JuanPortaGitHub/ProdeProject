@@ -53,23 +53,26 @@ export const StyledMatch = styled.div`
 `;
 
 export const StyledTextField = styled(TextField)`
-  border-radius: 17px;
+  border-radius: 50%;
   background-color: white;
   color: black;
-  width: 3vw;
+  width: 40px;
   height: 40px;
-  text-align: center;
-
+  input {
+    text-align: center;
+  }
   @media (max-width: 600px) {
-    width: 8vw;
+    width: 30px;
     height: 30px;
-
+    justify-content: center;
     input {
-      margin-left: 3vw;
-      padding: 0px;
-      padding-top: 1vw;
-      border: 0px;
+      padding: 0;
+      text-align: center;
     }
+    /* input {
+      color: black;
+      text-align: center;
+    } */
   }
   fieldset {
     border: 0px;

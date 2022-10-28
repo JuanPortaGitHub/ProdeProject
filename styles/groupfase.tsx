@@ -106,7 +106,7 @@ export const StyledMainContent = styled.div`
   padding-right: 2rem;
   /* z-index: 30; */
   @media (max-width: 600px) {
-    padding-top: 6rem;
+    padding-top: 2rem;
     /* height: 50vh; */
     padding-right: 0rem;
   }

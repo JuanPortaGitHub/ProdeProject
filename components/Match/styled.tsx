@@ -2,25 +2,30 @@ import styled from "styled-components";
 import { TextField } from "@mui/material";
 
 export const StyledTextField = styled(TextField)`
-  border-radius: 17px;
+  border-radius: 50%;
   background-color: white;
   color: black;
-  width: 2vw;
-  input {
-    padding-left: 0;
-    padding-right: 0;
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  div {
+    height: 100%;
   }
-  height: 40px;
-  text-align: center;
-
+  input {
+    text-align: center;
+    padding: 0;
+  }
   @media (max-width: 600px) {
-    width: 8vw;
+    width: 30px;
     height: 30px;
-
+    justify-content: center;
     input {
-      padding: 0px;
-      padding-top: 1vw;
+      padding: 0;
+      text-align: center;
     }
+  }
+  fieldset {
+    border: 0px;
   }
 `;
 

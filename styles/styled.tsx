@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 export const StyleMainComponent = styled.div`
   /* margin-top: 6rem; */
-  height: calc(100vh - 6rem);
+  /* height: calc(100vh - 6rem); */
   display: flex;
   flex-direction: column;
   margin-bottom: 6rem;
   @media (max-width: 600px) {
     margin-bottom: 15rem;
+    justify-content: space-between;
+    /* align-items: stretch; */
     height: 70vh;
   }
 `;
@@ -77,7 +79,6 @@ export const StyleSectionTitle = styled.div`
   -moz-text-fill-color: transparent;
   @media (max-width: 600px) {
     font-size: 4rem;
-    margin-right: 2rem;
   }
 `;
 
@@ -136,6 +137,9 @@ export const StyledMainTitle = styled.h1`
   margin-bottom: 1rem;
   font-weight: 900;
   color: white;
+  @media (max-width: 600px) {
+    font-size: 3rem;
+  }
 `;
 
 export const StyleSubTitle = styled.div`
@@ -196,6 +200,6 @@ export const TimerContainer = styled.div`
   padding-top: 5rem;
   @media (max-width: 600px) {
     padding-bottom: 1rem;
-    padding-top: 3rem;
+    padding-top: 0.5rem;
   }
 `;

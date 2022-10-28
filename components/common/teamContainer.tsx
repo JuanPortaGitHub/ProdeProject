@@ -21,7 +21,11 @@ const TeamContainer = ({ team, flag, home }: Props) => {
   return (
     <>
       {home ? (
-        <Grid alignItems={"center"} container>
+        <Grid
+          alignItems={"center"}
+          container
+          style={{ paddingRight: "0.2rem" }}
+        >
           <Grid
             item
             xs={4}
@@ -41,7 +45,7 @@ const TeamContainer = ({ team, flag, home }: Props) => {
           </Grid>
         </Grid>
       ) : (
-        <Grid alignItems={"center"} container>
+        <Grid alignItems={"center"} container style={{ paddingLeft: "0.2rem" }}>
           <Grid item xs={8} md={8}>
             <StyledTeamContainer>{team}</StyledTeamContainer>
           </Grid>

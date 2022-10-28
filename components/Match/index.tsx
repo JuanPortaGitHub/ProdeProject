@@ -54,7 +54,7 @@ export const Match = ({
   return (
     <StyledContainer>
       {showDate && <StyledDate>{`${matchDateFormated} hs`}</StyledDate>}
-      <Grid container alignItems="center" columnSpacing={1}>
+      <Grid container alignItems="center" columnSpacing={0.5}>
         <>
           <Grid item xs={4.5} md={4.5}>
             <TeamContainer team={t(homeTeam)} flag={flagHomeTeam} home={true} />
@@ -63,9 +63,9 @@ export const Match = ({
             item
             xs={1}
             md={1}
-            style={{ padding: "0" }}
             display="flex"
             justifyContent="center"
+            style={{ padding: 0 }}
           >
             <Controller
               name={`${id}/home`}
@@ -125,9 +125,9 @@ export const Match = ({
             item
             xs={1}
             md={1}
-            style={{ padding: "0" }}
             display="flex"
             justifyContent="center"
+            style={{ padding: 0, display: "flex", alignItems: "center" }}
           >
             <Controller
               name={`${id}/away`}
@@ -156,11 +156,6 @@ export const Match = ({
                     name={`${id}/away`}
                     value={value}
                     disabled={today >= date || !isEditing}
-                    inputProps={{
-                      style: { textAlign: "center" },
-                      maxLength: 1,
-                    }}
-                    // onChange={onChange}
                     onChange={(e) => {
                       let value = parseInt(e.target.value, 10);
                       if (value > max) value = max;

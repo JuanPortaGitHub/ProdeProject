@@ -21,6 +21,7 @@ export const TimerContainer = styled.div`
   @media (max-width: 600px) {
     font-size: 3vw;
     padding-right: 0;
+    height: 2rem;
   }
 `;
 

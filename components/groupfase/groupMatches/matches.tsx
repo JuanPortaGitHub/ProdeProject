@@ -108,21 +108,27 @@ const Matches = ({
                   marginBottom: "1rem",
                 }}
               >
-                <Avatar>
-                  {user.image ? (
-                    <Image
-                      src={user.image}
-                      alt="avatar"
-                      width={50}
-                      height={50}
-                    />
-                  ) : (
-                    <PersonIcon />
-                  )}
-                </Avatar>
-                <h3 style={{ color: "white", alignSelf: "center" }}>
-                  Prode de {user.name.substring(0, user.name.indexOf(" "))}
-                </h3>
+                {user?.name && (
+                  <>
+                    <Avatar>
+                      {user.image ? (
+                        <Image
+                          src={user.image}
+                          alt="avatar"
+                          width={50}
+                          height={50}
+                        />
+                      ) : (
+                        <PersonIcon />
+                      )}
+                    </Avatar>
+
+                    <h3 style={{ color: "white", alignSelf: "center" }}>
+                      Prode de{" "}
+                      {user?.name?.substring(0, user?.name?.indexOf(" "))}
+                    </h3>
+                  </>
+                )}
               </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 {groups?.map((group: any, i) => (
