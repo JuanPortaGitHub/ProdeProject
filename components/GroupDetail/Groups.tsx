@@ -17,6 +17,7 @@ import {
 import { GET_USER_GROUPS } from "../../graphql/queries/userQueries";
 import { GroupInfoDetails } from "./GroupInfoDetails";
 import { motion } from "framer-motion";
+import LoadingIcon from "../common/loadingIcon/loading";
 
 export const Groups = ({
   selectPlayerHandler,
@@ -36,7 +37,7 @@ export const Groups = ({
   };
   return (
     <StyledMainComponent>
-      {loading && <CircularProgress color="inherit" />}
+      {loading && <LoadingIcon />}
       {data && (
         <>
           <>

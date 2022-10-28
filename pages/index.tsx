@@ -36,6 +36,7 @@ import GroupResults from "../components/groupResults/groupResults";
 import LastMatches from "../components/lastMatches";
 import Footer from "../components/footer/footer";
 import dynamic from "next/dynamic";
+import LoadingIcon from "../components/common/loadingicon/loading";
 const Rules = dynamic(() => import("../components/rules/rules"), {
   ssr: false,
 });

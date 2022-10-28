@@ -24,6 +24,7 @@ import { getArrayToSubmit } from "../../../utils/getArrayToSubmit";
 import { useForm } from "react-hook-form";
 import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
+import LoadingIcon from "../../common/loadingIcon/loading";
 
 interface Props {
   teamsGroup: string;
@@ -71,7 +72,6 @@ const Matches = ({
   };
 
   const onSubmit = async (formData) => {
-    s;
     const arrayToSubmit = getArrayToSubmit(groups, formData);
 
     await create_Prodes({
@@ -97,7 +97,7 @@ const Matches = ({
     <>
       <StyledContainer>
         <StyledMatchesContainer id="grupo1">
-          {loading && <CircularProgress />}
+          {loading && <LoadingIcon />}
           {!loading && (
             <StyledMatches>
               <div
