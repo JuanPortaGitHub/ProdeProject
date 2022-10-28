@@ -25,7 +25,6 @@ const LastMatches = () => {
     }
   }, [response]);
 
-  console.log(last5Matches);
   return (
     // <div id="calendario">
     <StyledContainer>

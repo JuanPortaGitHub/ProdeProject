@@ -23,15 +23,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     // "/#grupo1",
     // "/groupfase",
     // "/mi-prode/fase-de-grupo",
-    "/mi-prode",
+    // "/mi-prode",
     // "/mi-prode/tabla-de-posiciones",
     "/mi-prode/posicionesgrupo",
     "/grupos/[...groupName]",
   ];
 
   const router = useRouter();
-
-  console.log(router);
 
   return (
     <ApolloProvider client={client}>

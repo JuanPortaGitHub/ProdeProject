@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Grid, TextField, Tooltip } from "@mui/material";
 import dayjs from "dayjs";
-import Image from "next/image";
 import React from "react";
 import { Controller } from "react-hook-form";
 import TeamContainer from "../common/teamContainer";
@@ -43,18 +42,14 @@ export const Match = ({
 }: Props) => {
   const date = new Date(+matchDate);
 
-  console.log(matchDate);
-
   const matchDateFormated = dayjs(date).format("DD-MM-YY H:mm");
 
   const today = new Date();
 
-  console.log(today >= date);
+  // console.log(today >= date);
 
   const min = 0;
   const max = 10;
-
-  console.log(date);
 
   useEffect(() => {}, [userHomeScore, userAwayScore]);
 
@@ -106,13 +101,15 @@ export const Match = ({
                       style: { textAlign: "center" },
                       maxLength: 1,
                     }}
-                    onChange={onChange}
-                    // onChange={(e) => {
-                    //   var value = parseInt(e.target.value, 10);
-                    //   if (value > max) value = max;
-                    //   if (value < min) value = min;
-                    //   return onChange(value);
-                    // }}
+                    // onChange={onChange}
+                    onChange={(e) => {
+                      let value = parseInt(e.target.value, 10);
+                      console.log(value);
+                      let valueToString;
+                      if (value > max) value = max;
+                      if (value < min) value = min;
+                      return onChange(value);
+                    }}
                     type="number"
                   />
                 </Tooltip>
@@ -170,13 +167,15 @@ export const Match = ({
                       style: { textAlign: "center" },
                       maxLength: 1,
                     }}
-                    onChange={onChange}
-                    // onChange={(e) => {
-                    //   var value = parseInt(e.target.value, 10);
-                    //   if (value > max) value = max;
-                    //   if (value < min) value = min;
-                    //   return onChange(value);
-                    // }}
+                    // onChange={onChange}
+                    onChange={(e) => {
+                      let value = parseInt(e.target.value, 10);
+                      console.log(value);
+                      let valueToString;
+                      if (value > max) value = max;
+                      if (value < min) value = min;
+                      return onChange(value);
+                    }}
                     type="number"
                   />
                 </Tooltip>

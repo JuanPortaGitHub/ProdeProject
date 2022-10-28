@@ -4,20 +4,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import {
-  StyledFlag,
-  StyledGroup,
-  StyledGroupName,
-  StyledGroupsContainer,
-  StyledGroupTeams,
-  StyledH1,
-  StyledH4,
-  StyledprodeContainer,
-  StyledRightborder,
-  StyledRightSquare,
-  StyledTeamContainer,
-  StyleName,
-} from "../../styles/groupfase";
+import { StyledprodeContainer } from "../../styles/groupfase";
 import { t } from "../../utils/dictionary";
 import { getGroups } from "../../utils/getGroups";
 import { StyledAnchor } from "../Header/StyledHeader";
@@ -33,7 +20,7 @@ interface Props {
 }
 
 const WordldCupGroups = ({ userGroup, user, showDate, isEditing }: Props) => {
-  const [currentGroup, setCurrentGroup] = useState("");
+  const [currentGroup, setCurrentGroup] = useState("A");
 
   const setCurrentGroupHandler = (groupSelected: string) => {
     setCurrentGroup(() => groupSelected);

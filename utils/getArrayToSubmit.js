@@ -47,8 +47,8 @@ export const getArrayToSubmit = (groups, formData) => {
     console.log(matchWinner);
     const matchProde = {
       info_PartidosId: id,
-      Goles_Local: prodeObject[id].home,
-      Goles_Visitante: prodeObject[id].away,
+      Goles_Local: prodeObject[id].home.toString(),
+      Goles_Visitante: prodeObject[id].away.toString(),
       Ganador: matchWinner,
       Tiempo_Extra: false,
       Penales: false,

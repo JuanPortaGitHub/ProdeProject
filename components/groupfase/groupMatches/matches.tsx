@@ -73,6 +73,7 @@ const Matches = ({
   // console.log(user.id);
 
   const onSubmit = async (formData) => {
+    console.log(formData, "form");
     const arrayToSubmit = getArrayToSubmit(groups, formData);
 
     console.log(arrayToSubmit);

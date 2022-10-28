@@ -39,7 +39,6 @@ const NextMatches = () => {
           }),
         };
       });
-      console.log(matches);
       setNext5Matches(matches);
     }
   }, [response]);
