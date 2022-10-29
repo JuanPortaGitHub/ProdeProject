@@ -93,6 +93,11 @@ const Matches = ({
     }
   }, [data]);
 
+  const playerName =
+    user?.name?.substring(0, user?.name?.indexOf(" ")) == ""
+      ? user?.name
+      : user?.name?.substring(0, user?.name?.indexOf(" "));
+
   return (
     <>
       <StyledContainer>
@@ -125,8 +130,8 @@ const Matches = ({
                     </Avatar>
 
                     <h3 style={{ color: "white", alignSelf: "center" }}>
-                      Prode de{" "}
-                      {user?.name?.substring(0, user?.name?.indexOf(" "))}
+                      Prode de {` `}
+                      {playerName}
                     </h3>
                   </>
                 )}
