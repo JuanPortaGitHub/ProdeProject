@@ -15,6 +15,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { CircularProgress } from "@mui/material";
+import LoadingIcon from "../common/loadingIconFolder/loading";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -38,62 +39,61 @@ const AuthForm = () => {
   }, [asPath]);
 
   return (
-    <StyledMainComponent
-      id="StyledMainComponent"
-      as={motion.div}
-      style={{ display: "flex", flexDirection: "column" }}
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        default: {
-          duration: 0.3,
-          ease: [0, 0.71, 0.2, 1.01],
-        },
-        scale: {
-          type: "spring",
-          damping: 5,
-          stiffness: 100,
-          restDelta: 0.001,
-        },
-      }}
-    >
-      {/* <AnimatePresence> */}
-      {!isLogin ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          display="flex"
-        >
-          {" "}
-          <LoginUser />
-        </motion.div>
-      ) : (
-        <>
+    <>
+      {loading && <LoadingIcon />}
+      <StyledMainComponent
+        id="StyledMainComponent"
+        as={motion.div}
+        style={{ display: "flex", flexDirection: "column" }}
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          default: {
+            duration: 0.3,
+            ease: [0, 0.71, 0.2, 1.01],
+          },
+          scale: {
+            type: "spring",
+            damping: 5,
+            stiffness: 100,
+            restDelta: 0.001,
+          },
+        }}
+      >
+        {/* <AnimatePresence> */}
+        {!isLogin ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
+            display="flex"
           >
-            <CreateUser createUserHandler={createUserHandler} />
+            {" "}
+            <LoginUser />
           </motion.div>
-        </>
-      )}
-      {/* </AnimatePresence> */}
+        ) : (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <CreateUser createUserHandler={createUserHandler} />
+            </motion.div>
+          </>
+        )}
+        {/* </AnimatePresence> */}
 
-      <StyledButton
-        as={motion.button}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={switchAuthModeHandler}
-      >
-        {!isLogin ? "No tengo cuenta" : "Ya estoy registrado"}
-      </StyledButton>
-      {loading ? (
-        <CircularProgress style={{ color: "white", alignSelf: "center" }} />
-      ) : (
+        <StyledButton
+          as={motion.button}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={switchAuthModeHandler}
+        >
+          {!isLogin ? "No tengo cuenta" : "Ya estoy registrado"}
+        </StyledButton>
         <StyledButton
           as={motion.button}
           whileHover={{ scale: 1.1 }}
@@ -102,8 +102,8 @@ const AuthForm = () => {
         >
           Inicia Sesión con Google <GoogleIcon />
         </StyledButton>
-      )}
-    </StyledMainComponent>
+      </StyledMainComponent>
+    </>
   );
 };
 export default AuthForm;
