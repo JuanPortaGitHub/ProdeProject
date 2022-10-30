@@ -7,6 +7,7 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  styledComponents: true,
   reactStrictMode: true,
   swcMinify: true,
   images: {
