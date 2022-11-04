@@ -9,6 +9,7 @@ export const Teamgroups = ({
   open,
   handleClose,
 }) => {
+  console.log(selectedPlayer);
   return (
     <Modal open={open} onClose={handleClose}>
       <StyledMainComponent

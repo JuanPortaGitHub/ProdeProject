@@ -29,6 +29,7 @@ export const StyledGroupsContainer = styled.div`
     width: 100%;
     height: 50%;
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
     /* transform: translate(100px); */
   }
 `;

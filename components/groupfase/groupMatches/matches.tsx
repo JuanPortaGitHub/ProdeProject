@@ -24,6 +24,7 @@ import { getArrayToSubmit } from "../../../utils/getArrayToSubmit";
 import { useForm } from "react-hook-form";
 import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
+import LoadingIcon from "../../common/loadingIconFolder/loading";
 
 interface Props {
   teamsGroup: string;
@@ -64,13 +65,13 @@ const Matches = ({
       toast.error(error.message);
     },
   });
+  // comment
 
   const getGroups = (matches) => {
     setGroups(matches);
   };
 
   const onSubmit = async (formData) => {
-    s;
     const arrayToSubmit = getArrayToSubmit(groups, formData);
 
     await create_Prodes({
@@ -92,11 +93,16 @@ const Matches = ({
     }
   }, [data]);
 
+  const playerName =
+    user?.name?.substring(0, user?.name?.indexOf(" ")) == ""
+      ? user?.name
+      : user?.name?.substring(0, user?.name?.indexOf(" "));
+
   return (
     <>
       <StyledContainer>
         <StyledMatchesContainer id="grupo1">
-          {loading && <CircularProgress />}
+          {loading && <LoadingIcon />}
           {!loading && (
             <StyledMatches>
               <div
@@ -124,8 +130,8 @@ const Matches = ({
                     </Avatar>
 
                     <h3 style={{ color: "white", alignSelf: "center" }}>
-                      Prode de{" "}
-                      {user?.name?.substring(0, user?.name?.indexOf(" "))}
+                      Prode de {` `}
+                      {playerName}
                     </h3>
                   </>
                 )}

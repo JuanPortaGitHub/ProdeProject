@@ -29,6 +29,7 @@ import { GET_GROUP_DETAIL } from "../../graphql/queries/groupQueries";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import LoadingIcon from "../common/loadingIconFolder/loading";
 
 export const GroupInfoDetails = ({ selectedGrupo, selectPlayerHandler }) => {
   const {
@@ -41,7 +42,7 @@ export const GroupInfoDetails = ({ selectedGrupo, selectPlayerHandler }) => {
 
   return (
     <>
-      {loadingDetails && <CircularProgress color="inherit" />}
+      {loadingDetails && <LoadingIcon />}
       {errorDetails && <h3>No se pudo cargar detalles de grupo</h3>}
       {dataDetails && dataDetails.GetGrupoById !== null && (
         <ListContainer>
