@@ -124,6 +124,7 @@ const LoadingIcon = () => {
             />
           </svg>
         </svg>
+        <div className={style.animateCharacter}>Prode Trinche</div>
       </div>
     </Backdrop>
   );

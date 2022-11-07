@@ -78,3 +78,46 @@
       opacity: 0.1;
     }
   }
+
+
+  .animateCharacter
+{
+/*    text-transform: uppercase; */
+  background-image: linear-gradient(
+    -225deg,
+    #b908f6 0%,
+    #ff1554 29%,
+    #b908f6 67%,
+    #900c3f 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 1s linear infinite;
+  display: inline-block;
+      font-size: 190px;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 5vw;
+      position:relative;
+      left: -5vw;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+@media(max-width: 600px){
+  .animateCharacter{
+    font-size: 9vw;
+    left: -10vw;
+  }
+} 
