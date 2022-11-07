@@ -32,14 +32,14 @@ const GroupDetail = () => {
           selectPlayerHandler={selectPlayerHandler}
         />
       )}
-      {open && (
+      {/* {open && (
         <Teamgroups
           selectedPlayer={selectedPlayer}
           selectedUserGrupo={selectedUserGrupo}
           open={open}
           handleClose={handleModalClose}
         />
-      )}
+      )} */}
     </StyledMainContent>
   );
 };

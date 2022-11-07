@@ -23,6 +23,7 @@ import {
   WavesTransitionDown,
   StyledNextLastContainer,
   TimerContainer,
+  StyleButtonContainerFullView,
 } from "../styles/styled";
 import RegisterLogin from "../components/registerLogin/registerLogin";
 import Header from "../components/Header/header";
@@ -98,6 +99,11 @@ export default function Home() {
                   <StyleSubTitle>
                     Create un grupo con tus amigos y jugatelá
                   </StyleSubTitle>
+                  <StyleButtonContainerFullView>
+                    <Link href="/#entrar">
+                      <StyledButton>EMPEZA A JUGAR!</StyledButton>
+                    </Link>
+                  </StyleButtonContainerFullView>
                 </StyledPaperContainer>
                 <StyledWorldCupImage>
                   <Image

@@ -35,6 +35,7 @@ export const StyledPaperContainer = styled.div`
   flex-wrap: wrap;
   width: 50vw;
   align-self: center;
+  /* justify-content: space-around; */
   @media (max-width: 600px) {
     width: 100vw;
     padding: 0 1.5rem;
@@ -188,11 +189,23 @@ export const StyledButtonContainer = styled.div`
   display: flex;
   align-self: flex-start;
   padding-left: 30vw;
+  display: none;
   @media (max-width: 600px) {
+    display: block;
     padding-left: 0;
     display: flex;
     justify-content: center;
     width: 100vw;
+  }
+`;
+
+export const StyleButtonContainerFullView = styled.div`
+  padding-top: 6rem;
+  display: flex;
+  align-self: center;
+  /* padding-left: 30vw; */
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 

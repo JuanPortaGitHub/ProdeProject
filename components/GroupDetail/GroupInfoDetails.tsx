@@ -49,7 +49,8 @@ export const GroupInfoDetails = ({ selectedGrupo, selectPlayerHandler }) => {
           <StyledTitle>POSICIONES</StyledTitle>
           <StyledGroupName>{dataDetails.GetGrupoById.nombre}</StyledGroupName>
           <StyledGroupDescription>
-            {dataDetails.GetGrupoById.slogan}
+            {dataDetails.GetGrupoById.slogan}(los verdaderos puntos se
+            actualizaran cuando comience el torneo)
           </StyledGroupDescription>
           <StyledGroupAmount>
             Monto a jugar: $ {dataDetails.GetGrupoById.monto}
