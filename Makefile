@@ -1,6 +1,12 @@
 migrate:
 	docker-compose run prode npm run db:migrate
 
+update-db-teams:
+	docker-compose run prode npm run updateDBTeams
+
+update-db-info-match:
+	docker-compose run prode npm run updateDBInfoMatch
+
 # Config
 envs:
 	docker-compose run prode env
