@@ -110,8 +110,8 @@ export default function Home() {
                     src={images[7].src}
                     objectPosition="center"
                     alt="layout"
-                    width={500}
-                    height={500}
+                    width={400}
+                    height={400}
                   />
                 </StyledWorldCupImage>
               </StyledImageContainer>
@@ -159,6 +159,11 @@ export default function Home() {
                   <StyleSubTitle>
                     Create un grupo con tus amigos y jugatelá
                   </StyleSubTitle>
+                  <StyleButtonContainerFullView>
+                    <Link href="/#entrar">
+                      <StyledButton>EMPEZA A JUGAR!</StyledButton>
+                    </Link>
+                  </StyleButtonContainerFullView>
                 </StyledPaperContainer>
                 {/* <WordldCupGroups
                   userGroup={20}
@@ -171,8 +176,8 @@ export default function Home() {
                     src={images[7].src}
                     objectPosition="center"
                     alt="layout"
-                    width={500}
-                    height={500}
+                    width={400}
+                    height={400}
                   />
                 </StyledWorldCupImage>
               </StyledImageContainer>
