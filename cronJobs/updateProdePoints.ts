@@ -10,12 +10,24 @@ const updateProdePoints = async () => {
     );
 
     const calculatePoints = (prode: any, resultado: any) => {
+      // console.log("prode que llega", prode);
       let points = 0;
-      resultado.Goles_Local == prode.Goles_Local && points + 1;
-      resultado.Goles_Visitante == prode.Goles_Visitante && points + 1;
-      Number(resultado.Goles_Visitante) + Number(prode.Goles_Visitante) >= 5 &&
-        points + 1;
-      resultado.Ganador == prode.Ganador && points + 3;
+      if (resultado.intHomeScore == prode.Goles_Local) points = points + 1;
+      if (resultado.intAwayScore == prode.Goles_Visitante) points = points + 1;
+      if (
+        resultado.intHomeScore == prode.Goles_Local &&
+        resultado.intAwayScore == prode.Goles_Visitante &&
+        prode.Goles_Local + prode.Goles_Visitante >= 5
+      )
+        points = points + 1;
+
+      let Ganador;
+      resultado.intHomeScore > +resultado.intAwayScore
+        ? (Ganador = resultado.strHomeTeam)
+        : +resultado.intHomeScore < +resultado.intAwayScore
+        ? (Ganador = resultado.strAwayTeam)
+        : (Ganador = "Empate");
+      if (Ganador == prode.Ganador) points = points + 3;
       return points;
     };
 
@@ -27,14 +39,13 @@ const updateProdePoints = async () => {
         const prodesParaActualizar =
           await prisma.prode_Partido_Usuario.findMany({
             where: {
-              info_PartidosId: resultado.idEvent,
+              info_PartidosId: Number(resultado.idEvent),
             },
           });
 
         // 3)Por cada uno de esos prode consulto para ver que puntaje tienen
         prodesParaActualizar.map(async (prode: any) => {
           const puntosObtenidos = calculatePoints(prode, resultado);
-
           // 4) Actualizo los puntos de prode
           await prisma.prode_Partido_Usuario.updateMany({
             where: {
@@ -51,10 +62,12 @@ const updateProdePoints = async () => {
     });
   } catch (err) {
     console.error("Error en subida", err);
+  } finally {
+    console.log("Finalizó la carga de puntos");
   }
 };
 
-cron.schedule("* * * * *", () => {
+cron.schedule("*/5 * * * *", () => {
   //Actualiza cada 1 min
   updateProdePoints();
 });
