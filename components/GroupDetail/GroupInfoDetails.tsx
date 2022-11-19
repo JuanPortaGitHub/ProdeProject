@@ -25,7 +25,11 @@ import {
   StyledAvatar,
 } from "./styled";
 import PersonIcon from "@mui/icons-material/Person";
-import { GET_GROUP_DETAIL } from "../../graphql/queries/groupQueries";
+import {
+  GET_GROUP_DETAIL,
+  GET_RANKING_GROUP,
+} from "../../graphql/queries/groupQueries";
+
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -36,9 +40,12 @@ export const GroupInfoDetails = ({ selectedGrupo, selectPlayerHandler }) => {
     loading: loadingDetails,
     error: errorDetails,
     data: dataDetails,
-  } = useQuery(GET_GROUP_DETAIL, {
-    variables: { getGrupoByIdId: selectedGrupo },
+    refetch,
+  } = useQuery(GET_RANKING_GROUP, {
+    variables: { grupoId: +selectedGrupo },
   });
+
+  refetch({ grupoId: +selectedGrupo });
 
   return (
     <>
@@ -47,50 +54,55 @@ export const GroupInfoDetails = ({ selectedGrupo, selectPlayerHandler }) => {
       {dataDetails && dataDetails.GetGrupoById !== null && (
         <ListContainer>
           <StyledTitle>POSICIONES</StyledTitle>
-          <StyledGroupName>{dataDetails.GetGrupoById.nombre}</StyledGroupName>
+          <StyledGroupName>
+            {dataDetails.GetRankingGroup.nombreGrupo}
+          </StyledGroupName>
           <StyledGroupDescription>
-            {dataDetails.GetGrupoById.slogan}(los verdaderos puntos se
-            actualizaran cuando comience el torneo)
+            {dataDetails.GetRankingGroup.sloganGrupo}
           </StyledGroupDescription>
           <StyledGroupAmount>
-            Monto a jugar: $ {dataDetails.GetGrupoById.monto}
+            Monto a jugar: $ {dataDetails.GetRankingGroup.montoGrupo}
           </StyledGroupAmount>
           <StyledGridItem item xs={12} md={6}>
             <List>
-              {dataDetails.GetGrupoById.usuarios.map((jugador: any, i) => (
-                <div
-                  key={jugador.id}
-                  onClick={() => selectPlayerHandler(jugador)}
-                >
-                  <StyledItem
-                    as={motion.div}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
+              {dataDetails.GetRankingGroup.PosicionesUsuarios.map(
+                (jugador: any, i) => (
+                  <div
+                    key={jugador.id}
+                    onClick={() => selectPlayerHandler(jugador)}
                   >
-                    <ListItem key={jugador.id}>
-                      <StyledRanking>{i + 1}</StyledRanking>
-                      <StyledListAvatar>
-                        <StyledAvatar>
-                          {jugador.image ? (
-                            <Image
-                              src={jugador.image}
-                              alt={"foto-usuario"}
-                              layout="fill"
-                            />
-                          ) : (
-                            <PersonIcon />
-                          )}
-                        </StyledAvatar>
-                      </StyledListAvatar>
-                      <StyledListItem>
-                        <StyledPlayerName>{jugador.name}</StyledPlayerName>
-                        <StyledPoints>{40 - i} </StyledPoints>
-                        <StyledPlayerName>Pts</StyledPlayerName>
-                      </StyledListItem>
-                    </ListItem>
-                  </StyledItem>
-                </div>
-              ))}
+                    <StyledItem
+                      as={motion.div}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <ListItem key={jugador.id}>
+                        <StyledRanking>{i + 1}</StyledRanking>
+                        <StyledListAvatar>
+                          <StyledAvatar>
+                            {jugador.imagenUsuario ? (
+                              <Image
+                                src={jugador.imagenUsuario}
+                                alt={"foto-usuario"}
+                                layout="fill"
+                              />
+                            ) : (
+                              <PersonIcon />
+                            )}
+                          </StyledAvatar>
+                        </StyledListAvatar>
+                        <StyledListItem>
+                          <StyledPlayerName>
+                            {jugador.nombreUsuario}
+                          </StyledPlayerName>
+                          <StyledPoints>{jugador.sumaDePuntos} </StyledPoints>
+                          <StyledPlayerName>Pts</StyledPlayerName>
+                        </StyledListItem>
+                      </ListItem>
+                    </StyledItem>
+                  </div>
+                )
+              )}
             </List>
           </StyledGridItem>
         </ListContainer>

@@ -68,6 +68,6 @@ const updateProdePoints = async () => {
 };
 
 cron.schedule("*/5 * * * *", () => {
-  //Actualiza cada 1 min
+  //Actualiza cada 5 min
   updateProdePoints();
 });

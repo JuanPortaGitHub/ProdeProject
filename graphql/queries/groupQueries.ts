@@ -54,3 +54,20 @@ export const GET_GROUP_DETAIL = gql`
     }
   }
 `;
+
+export const GET_RANKING_GROUP = gql`
+  query GetRankingGroup($grupoId: Int!) {
+    GetRankingGroup(grupoId: $grupoId) {
+      PosicionesUsuarios {
+        id
+        imagenUsuario
+        nombreUsuario
+        sumaDePuntos
+      }
+      nombreGrupo
+      montoGrupo
+      sloganGrupo
+      idGrupo
+    }
+  }
+`;
