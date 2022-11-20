@@ -96,9 +96,9 @@ const ProdeMatchInfo = inputObjectType({
   name: "prodeMatchInfo",
   definition: (t) => {
     t.nonNull.int("info_PartidosId");
-    t.nonNull.string("Goles_Local");
-    t.nonNull.string("Goles_Visitante");
-    t.nonNull.string("Ganador");
+    t.string("Goles_Local");
+    t.string("Goles_Visitante");
+    t.string("Ganador");
     t.nonNull.boolean("Tiempo_Extra");
     t.nonNull.boolean("Penales");
   },

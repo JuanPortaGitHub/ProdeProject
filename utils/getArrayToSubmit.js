@@ -28,22 +28,24 @@ export const getArrayToSubmit = (groups, formData) => {
   let matchWinner;
 
   for (let match in groups) {
-    let matchWinner;
+    let matchWinner = null;
     const { id } = groups[match];
-    if (prodeObject[id].home == prodeObject[id].away) {
-      matchWinner = "Empate";
-    }
-    if (prodeObject[id].home > prodeObject[id].away) {
-      matchWinner = groups[match].EquipoLocal.nombre_equipo;
-    }
-    if (prodeObject[id].home < prodeObject[id].away) {
-      matchWinner = groups[match].EquipoVisitante.nombre_equipo;
+    if (prodeObject[id].home != null && prodeObject[id].away != null) {
+      if (prodeObject[id].home == prodeObject[id].away) {
+        matchWinner = "Empate";
+      }
+      if (prodeObject[id].home > prodeObject[id].away) {
+        matchWinner = groups[match].EquipoLocal.nombre_equipo;
+      }
+      if (prodeObject[id].home < prodeObject[id].away) {
+        matchWinner = groups[match].EquipoVisitante.nombre_equipo;
+      }
     }
 
     const matchProde = {
       info_PartidosId: id,
-      Goles_Local: prodeObject[id].home.toString(),
-      Goles_Visitante: prodeObject[id].away.toString(),
+      Goles_Local: prodeObject[id].home?.toString() || null,
+      Goles_Visitante: prodeObject[id].away?.toString() || null,
       Ganador: matchWinner,
       Tiempo_Extra: false,
       Penales: false,

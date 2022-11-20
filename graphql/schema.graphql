@@ -121,9 +121,9 @@ type User {
 }
 
 input prodeMatchInfo {
-  Ganador: String!
-  Goles_Local: String!
-  Goles_Visitante: String!
+  Ganador: String
+  Goles_Local: String
+  Goles_Visitante: String
   Penales: Boolean!
   Tiempo_Extra: Boolean!
   info_PartidosId: Int!
