@@ -19,9 +19,9 @@ const updateProdePoints = async () => {
 
     const calculatePoints = (prode, resultado) => {
       // console.log("prode que llega", prode);
-      console.log(prode, resultado);
+      // console.log(prode, resultado);
       let points = 0;
-      if (prode.Goles_Local != null || prode.Goles_Visitante) {
+      if (prode.Goles_Local != null || prode.Goles_Visitante != null) {
         if (resultado.intHomeScore == prode.Goles_Local) points = points + 1;
         if (resultado.intAwayScore == prode.Goles_Visitante)
           points = points + 1;
@@ -48,7 +48,7 @@ const updateProdePoints = async () => {
       // 1) Me fijo que el partido este en juego o terminado
       if (resultado.strStatus !== "Not Started") {
         // 2) Busco los prodes de esos partidos
-        console.log(resultado);
+        // console.log(resultado);
         const prodesParaActualizar =
           await prisma.prode_Partido_Usuario.findMany({
             where: {
