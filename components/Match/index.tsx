@@ -92,7 +92,7 @@ export const Match = ({
                     size="small"
                     value={value}
                     name={`${id}/home`}
-                    disabled={today >= date || !isEditing}
+                    // disabled={today >= date || !isEditing}
                     inputProps={{
                       style: { textAlign: "center" },
                       maxLength: 1,
@@ -155,7 +155,7 @@ export const Match = ({
                     size="small"
                     name={`${id}/away`}
                     value={value}
-                    disabled={today >= date || !isEditing}
+                    // disabled={today >= date || !isEditing}
                     onChange={(e) => {
                       let value = parseInt(e.target.value, 10);
                       if (value > max) value = max;
