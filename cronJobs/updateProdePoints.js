@@ -4,6 +4,7 @@ const axios = require("axios");
 // import axios from "axios";
 // import { PrismaClient } from "@prisma/client";
 const { PrismaClient } = require("@prisma/client");
+const cron = require("node-cron");
 // import cron from "node-cron";
 
 const prisma = new PrismaClient({
@@ -80,9 +81,9 @@ const updateProdePoints = async () => {
   }
 };
 
-updateProdePoints();
-// cron.schedule("*/5 * * * *", () => {
-//   //Actualiza cada 5 min
-// });
+cron.schedule("*/5 * * * *", () => {
+  updateProdePoints();
+  //   //Actualiza cada 5 min
+});
 
 // export {};
