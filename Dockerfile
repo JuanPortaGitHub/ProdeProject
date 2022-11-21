@@ -3,6 +3,9 @@ FROM node:16.13.0
 # Create app's dir
 RUN mkdir -p /prode
 
+# Install cron dependency
+RUN apt-get update && apt-get install -y cron
+
 # Use app's dir as working dir
 WORKDIR /prode/
 
