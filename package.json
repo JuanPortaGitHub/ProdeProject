@@ -11,6 +11,7 @@
     "updateDBTeams": "npx ts-node --skip-project ./cronJobs/updateTeams.ts",
     "updateDBInfoMatch": "npx ts-node --skip-project ./cronJobs/updateInfoMatchs.ts",
     "updateDBProdePoints": "node ./cronJobs/updateProdePoints.js",
+    "updateDBProdePointsManual": "node ./cronJobs/updateDBProdePointsManual.js",
     "seedPrisma": "npx ts-node --skip-project ./prisma/seed.js",
     "db:generate": "npx prisma generate",
     "db:migrate": "npx prisma migrate dev"
