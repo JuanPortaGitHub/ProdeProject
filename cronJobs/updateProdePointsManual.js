@@ -29,7 +29,7 @@ const updateProdePoints = async () => {
         if (
           resultado.intHomeScore == prode.Goles_Local &&
           resultado.intAwayScore == prode.Goles_Visitante &&
-          prode.Goles_Local + prode.Goles_Visitante >= 5
+          +prode.Goles_Local + +prode.Goles_Visitante >= 5
         )
           points = points + 1;
 
