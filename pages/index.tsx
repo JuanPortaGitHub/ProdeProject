@@ -89,9 +89,7 @@ export default function Home() {
             </StyledBody>
             <Header />
             <StyleMainComponent>
-              <TimerContainer>
-                <Timer />
-              </TimerContainer>
+              <TimerContainer>{/* <Timer /> */}</TimerContainer>
               <StyledImageContainer>
                 <StyledPaperContainer>
                   <StyledMainTitle>Prode Trinche</StyledMainTitle>
@@ -149,9 +147,7 @@ export default function Home() {
             </StyledBody>
             <Header />
             <StyleMainComponent>
-              <TimerContainer>
-                <Timer />
-              </TimerContainer>
+              <TimerContainer>{/* <Timer /> */}</TimerContainer>
               <StyledImageContainer>
                 <StyledPaperContainer>
                   <StyledMainTitle>Prode Trinche</StyledMainTitle>

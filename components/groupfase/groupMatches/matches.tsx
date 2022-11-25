@@ -21,10 +21,12 @@ import { GET_MATCHES_BY_GROUPFASE_GROUP } from "../../../graphql/queries/infoMat
 import { CREATE_PRODES } from "../../../graphql/queries/prodesQueries";
 import { getFlagUrl } from "../../../utils/getFlagUrl";
 import { getArrayToSubmit } from "../../../utils/getArrayToSubmit";
+import { filterNotStartedMatches } from "../../../utils/filterNotStartedMatches";
 import { useForm } from "react-hook-form";
 import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
 import LoadingIcon from "../../common/loadingIconFolder/loading";
+import { useRouter } from "next/router";
 
 interface Props {
   teamsGroup: string;
@@ -41,6 +43,7 @@ const Matches = ({
   isEditing,
 }: Props) => {
   const [groups, setGroups] = useState([]);
+  const { pathname } = useRouter();
   const toast = useContext(ToastContext);
   const [errorCreate, setErrorCreate] = useState("");
   const [dataCreated, setDataCreated] = useState("");
@@ -53,6 +56,7 @@ const Matches = ({
       variables: { grupo: teamsGroup, grupoId: +userGroup, userId: user?.id },
     }
   );
+
   const [
     create_Prodes,
     { error: createError, loading: createLoading, data: createdData },
@@ -67,7 +71,13 @@ const Matches = ({
   });
 
   const getGroups = (matches) => {
-    setGroups(matches);
+    if (pathname == "/mi-prode/tabla-de-posiciones") {
+      const notStartedMatches = filterNotStartedMatches(matches);
+      setGroups(notStartedMatches);
+    }
+    if (pathname == "/mi-prode/fase-de-grupo") {
+      setGroups(matches);
+    }
   };
 
   const onSubmit = async (formData) => {
@@ -92,10 +102,17 @@ const Matches = ({
     }
   }, [data]);
 
-  const playerName =
+  let playerName =
     user?.name?.substring(0, user?.name?.indexOf(" ")) == ""
       ? user?.name
       : user?.name?.substring(0, user?.name?.indexOf(" "));
+
+  if (playerName == undefined) {
+    playerName =
+      user?.nombreUsuario?.substring(0, user?.nombreUsuario?.indexOf(" ")) == ""
+        ? user?.nombreUsuario
+        : user?.nombreUsuario?.substring(0, user?.nombreUsuario?.indexOf(" "));
+  }
 
   return (
     <>
@@ -134,17 +151,39 @@ const Matches = ({
                     </h3>
                   </>
                 )}
+                {user?.nombreUsuario && (
+                  <>
+                    <Avatar>
+                      {user.imagenUsuario ? (
+                        <Image
+                          src={user.imagenUsuario}
+                          alt="avatar"
+                          width={50}
+                          height={50}
+                        />
+                      ) : (
+                        <PersonIcon />
+                      )}
+                    </Avatar>
+
+                    <h3 style={{ color: "white", alignSelf: "center" }}>
+                      Prode de {` `}
+                      {playerName}
+                    </h3>
+                  </>
+                )}
               </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 {groups?.map((group: any, i) => (
                   <StyledMatch
-                    key={i}
+                    key={group.id}
                     as={motion.div}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <Match
                       id={group.id}
+                      userGroup={+userGroup}
                       showDate={showDate}
                       isEditing={isEditing}
                       homeTeam={group.EquipoLocal.nombre_equipo}

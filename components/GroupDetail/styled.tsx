@@ -247,3 +247,20 @@ export const StyledAvatar = styled(Avatar)`
     /* margin-right: 2rem; */
   }
 `;
+
+export const StyledExitIcon = styled.div`
+  /* right: -100%; */
+
+  &:hover {
+    border-radius: 50%;
+    border: 2rem;
+    background: linear-gradient(to right, #ff1554 0%, #b908f6, #900c3f 100%);
+    cursor: pointer;
+  }
+`;
+
+export const StyledTopModal = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;

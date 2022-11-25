@@ -25,6 +25,7 @@ interface Props {
   id: number;
   showDate: boolean;
   isEditing: boolean;
+  userGroup: number;
 }
 
 export const Match = ({
@@ -39,6 +40,7 @@ export const Match = ({
   control,
   showDate,
   isEditing,
+  userGroup,
 }: Props) => {
   const date = new Date(+matchDate);
 
@@ -68,8 +70,8 @@ export const Match = ({
             style={{ padding: 0 }}
           >
             <Controller
-              name={`${id}/home`}
-              key={`${id}/home`}
+              name={`${id}/${userGroup}/home`}
+              key={`${id}/${userGroup}/home`}
               control={control}
               defaultValue={userHomeScore}
               render={({ field: { onChange, value, ref, ...rest } }) => (
@@ -91,7 +93,7 @@ export const Match = ({
                     {...rest}
                     size="small"
                     value={value}
-                    name={`${id}/home`}
+                    name={`${id}/${userGroup}/home`}
                     disabled={today >= date || !isEditing}
                     inputProps={{
                       style: { textAlign: "center" },
@@ -130,8 +132,8 @@ export const Match = ({
             style={{ padding: 0, display: "flex", alignItems: "center" }}
           >
             <Controller
-              name={`${id}/away`}
-              key={`${id}/away`}
+              name={`${id}/${userGroup}/away`}
+              key={`${id}/${userGroup}/away`}
               control={control}
               defaultValue={userAwayScore}
               // defaultValue={userAwayScore !== undefined ? +userAwayScore : null}
@@ -153,7 +155,7 @@ export const Match = ({
                   <StyledTextField
                     {...rest}
                     size="small"
-                    name={`${id}/away`}
+                    name={`${id}/${userGroup}/away`}
                     value={value}
                     disabled={today >= date || !isEditing}
                     onChange={(e) => {
