@@ -60,7 +60,7 @@ const FaseGroup: NextPage = () => {
         refetch({ getUserByIdId: session?.id });
       }
     }
-  }, [data, selectedFriendsGroup]);
+  }, [data]);
 
   return (
     <>

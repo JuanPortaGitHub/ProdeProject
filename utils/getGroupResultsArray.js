@@ -12,8 +12,8 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
     let g = accumulatedPoints.g;
     let p = accumulatedPoints.p;
     let e = accumulatedPoints.e;
-    let gf = 0;
-    let gc = 0;
+    let gf = accumulatedPoints.gf;
+    let gc = accumulatedPoints.gc;
 
     if (+teamObject.intHomeScore == +teamObject.intAwayScore) {
       points = +accumulatedPoints.pts + 1;
@@ -51,8 +51,8 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
     let g = accumulatedPoints.g;
     let p = accumulatedPoints.p;
     let e = accumulatedPoints.e;
-    let gf = 0;
-    let gc = 0;
+    let gf = accumulatedPoints.gf;
+    let gc = accumulatedPoints.gc;
 
     if (+teamObject.intHomeScore == +teamObject.intAwayScore) {
       points = accumulatedPoints.pts + 1;
@@ -68,8 +68,8 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
       g = accumulatedPoints.g + 1;
     }
 
-    gf = +teamObject.intHomeScore + +accumulatedPoints.gf;
-    gc = +teamObject.intAwayScore + +accumulatedPoints.gc;
+    gf = +teamObject.intAwayScore + +accumulatedPoints.gf;
+    gc = +teamObject.intHomeScore + +accumulatedPoints.gc;
 
     const newAccumulatedPoints = {
       ...accumulatedPoints,
