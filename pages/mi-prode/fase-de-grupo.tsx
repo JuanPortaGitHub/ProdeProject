@@ -51,8 +51,6 @@ const FaseGroup: NextPage = () => {
     groupName.current = group.nombre;
   };
 
-  console.log();
-
   useEffect(() => {
     if (data) {
       setCurrUser({ id: session?.id, ...session?.user });

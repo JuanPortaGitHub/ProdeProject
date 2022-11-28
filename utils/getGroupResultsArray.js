@@ -124,8 +124,7 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
         (teamA, teamB) => teamB.pts - teamA.pts
       );
       const orderScoreDiff = orderGroupWithResults.sort((teamA, teamB) => {
-        if (teamA.pts == teamB.pts) console.log("entre");
-        return teamB.dg - teamA.dg;
+        if (teamA.pts == teamB.pts) return teamB.dg - teamA.dg;
       });
 
       NewGroupWithResults = {
