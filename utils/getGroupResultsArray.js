@@ -8,10 +8,10 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
   );
 
   const calculateHomePoints = (teamObject, accumulatedPoints) => {
-    let points = 0;
-    let g = 0;
-    let p = 0;
-    let e = 0;
+    let points = +accumulatedPoints.pts;
+    let g = accumulatedPoints.g;
+    let p = accumulatedPoints.p;
+    let e = accumulatedPoints.e;
     let gf = 0;
     let gc = 0;
 
@@ -22,6 +22,9 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
 
     if (+teamObject.intHomeScore < +teamObject.intAwayScore) {
       p = +accumulatedPoints.p + 1;
+      // if (accumulatedPoints.name == "Argentina") {
+      //   console.log(p, "perdido");
+      // }
     }
 
     if (+teamObject.intHomeScore > +teamObject.intAwayScore) {
@@ -47,10 +50,10 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
     return newAccumulatedPoints;
   };
   const calculateAwayPoints = (teamObject, accumulatedPoints) => {
-    let points = 0;
-    let g = 0;
-    let p = 0;
-    let e = 0;
+    let points = +accumulatedPoints.pts;
+    let g = accumulatedPoints.g;
+    let p = accumulatedPoints.p;
+    let e = accumulatedPoints.e;
     let gf = 0;
     let gc = 0;
 
@@ -104,6 +107,9 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
           startedMatches[i],
           accumulatedPoints
         );
+        if (team.name == "Argentina") {
+          console.log(accumulatedPoints);
+        }
       }
       if (startedMatches[i].strAwayTeam == team.name) {
         accumulatedPoints = calculateAwayPoints(
@@ -119,7 +125,10 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
     groupWithResults = [];
     for (let j = 0; j < worldCupTeams[i].teams.length; j++) {
       const team = calculatePoints(worldCupTeams[i].teams[j]);
-      groupWithResults = [team, ...groupWithResults];
+      // if (team.name == "Argentina") {
+      //   console.log(team);
+      // }
+      groupWithResults = [...groupWithResults, team];
       const orderGroupWithResults = groupWithResults.sort(
         (teamA, teamB) => teamB.pts - teamA.pts
       );
