@@ -129,7 +129,7 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
 
       NewGroupWithResults = {
         ...worldCupTeams[i],
-        teams: groupWithResults,
+        teams: orderScoreDiff,
       };
     }
     resultsWithTeams.push(NewGroupWithResults);
