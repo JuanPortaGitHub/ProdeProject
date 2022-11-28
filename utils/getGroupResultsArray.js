@@ -22,9 +22,6 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
 
     if (+teamObject.intHomeScore < +teamObject.intAwayScore) {
       p = +accumulatedPoints.p + 1;
-      // if (accumulatedPoints.name == "Argentina") {
-      //   console.log(p, "perdido");
-      // }
     }
 
     if (+teamObject.intHomeScore > +teamObject.intAwayScore) {
@@ -125,9 +122,6 @@ export const getGroupResultsArray = (worldCupTeams, resultsOfquery) => {
     groupWithResults = [];
     for (let j = 0; j < worldCupTeams[i].teams.length; j++) {
       const team = calculatePoints(worldCupTeams[i].teams[j]);
-      // if (team.name == "Argentina") {
-      //   console.log(team);
-      // }
       groupWithResults = [...groupWithResults, team];
       const orderGroupWithResults = groupWithResults.sort(
         (teamA, teamB) => teamB.pts - teamA.pts
