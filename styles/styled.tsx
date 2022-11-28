@@ -115,6 +115,54 @@ export const StyledContainer = styled.div`
   }
 `;
 
+export const StyledMessisContainer = styled.div`
+  width: 100vw;
+  position: fixed;
+  bottom: 5%;
+  /* padding-top: 80vh; */
+  z-index: 100;
+`;
+
+export const StyledExitIcon = styled.div`
+  /* right: -100%; */
+
+  &:hover {
+    border-radius: 50%;
+    border: 2rem;
+    background: linear-gradient(to right, #ff1554 0%, #b908f6, #900c3f 100%);
+    cursor: pointer;
+  }
+`;
+
+export const StyledTopModal = styled.div`
+  display: flex;
+  /* justify-content: flex-end; */
+  width: 100%;
+  width: 100%;
+  height: 5rem;
+  color: white;
+  padding-right: 5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1vw;
+  align-items: center;
+  gap: 2vw;
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+  /* background-color: #1e1d1d; */
+  /* background-image: url("/gradientBlack.svg"); */
+  background: linear-gradient(
+    36deg,
+    rgba(30, 29, 29, 1) 0%,
+    rgba(30, 29, 29, 1) 0%,
+    rgb(30, 29, 29) 100%
+  );
+  @media (max-width: 600px) {
+    font-size: 3vw;
+    padding-right: 0;
+    height: 5rem;
+  }
+`;
+
 export const StyledUserGroupContainer = styled.div`
   display: flex;
   width: 100%;

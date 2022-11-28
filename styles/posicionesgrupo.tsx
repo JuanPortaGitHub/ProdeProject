@@ -66,7 +66,10 @@ export const StyledMainComponent = styled.div`
   /* background-color: rgba(255, 255, 255, 0.447); */
   /* background-image: url("/gradiente.svg"); */
   background-image: url("/popUpbg.svg");
-  margin: 3rem auto;
+  /* margin: 3rem auto; */
+  margin-bottom: 1rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
   padding: 1rem;
   text-align: center;
   align-self: center;
@@ -81,7 +84,7 @@ export const StyledMainComponent = styled.div`
     color: white;
   }
   @media (max-width: 600px) {
-    width: 90%;
+    width: 80%;
   }
 `;
 // export const StyledMainComponent = styled.div`
@@ -115,7 +118,7 @@ export const StyledContainer = styled.div`
 export const StyledMainContent = styled.div`
   display: flex;
   flex-direction: column;
-  /* padding: 5rem 2rem; */
+  padding: 3rem 2rem;
   align-items: center;
   gap: 1rem;
   margin-top: 2rem;
@@ -125,6 +128,7 @@ export const StyledMainContent = styled.div`
   @media (max-width: 600px) {
     /* padding-top: 6rem; */
     /* height: 50vh; */
+    padding: 0rem 2rem;
     padding-right: 0rem;
     gap: 0.5rem;
   }

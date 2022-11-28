@@ -48,8 +48,10 @@ const FaseGroup: NextPage = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedFriendsGroup(() => event.target.value as string);
     const group = getGroupName(data.GetUserById.Grupos, event.target.value);
-    groupName.current = group.name;
+    groupName.current = group.nombre;
   };
+
+  console.log();
 
   useEffect(() => {
     if (data) {
@@ -60,7 +62,7 @@ const FaseGroup: NextPage = () => {
         refetch({ getUserByIdId: session?.id });
       }
     }
-  }, [data]);
+  }, [data, selectedFriendsGroup]);
 
   return (
     <>
