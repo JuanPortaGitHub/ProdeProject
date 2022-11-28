@@ -26,7 +26,7 @@ const GroupResults = () => {
   const refContainer = useRef();
   const [currentPosition, setCurrentPosition] = useState(0);
   const { response, loading, error } = useAxios(
-    "https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4429&s=2022"
+    "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=4429&s=2022"
   );
 
   const handleScroll = (e) => {
@@ -51,7 +51,7 @@ const GroupResults = () => {
     if (response !== null) {
       const resultsOfFunction = getGroupResultsArray(
         faseGroup,
-        response?.table
+        response?.events
       );
       setResults(resultsOfFunction);
     }
@@ -96,14 +96,14 @@ const GroupResults = () => {
                       </StyledFlag>
                       <StyledP>{t(team.name)}</StyledP>
                     </div>
-                    <StyledP>{team.intPlayed || 0} </StyledP>
-                    <StyledP>{team.intWin || 0}</StyledP>
-                    <StyledP>{team.intDraw || 0}</StyledP>
-                    <StyledP>{team.intLoss || 0} </StyledP>
-                    <StyledP>{team.intGoalsFor || 0} </StyledP>
-                    <StyledP>{team.intGoalsAgainst || 0} </StyledP>
-                    <StyledP>{team.intGoalDifference || 0} </StyledP>
-                    <StyledP>{team.intPoints || 0} </StyledP>
+                    <StyledP>{team.pj || 0} </StyledP>
+                    <StyledP>{team.g || 0}</StyledP>
+                    <StyledP>{team.e || 0}</StyledP>
+                    <StyledP>{team.p || 0} </StyledP>
+                    <StyledP>{team.gf || 0} </StyledP>
+                    <StyledP>{team.gc || 0} </StyledP>
+                    <StyledP>{team.dg || 0} </StyledP>
+                    <StyledP>{team.pts || 0} </StyledP>
                   </StyledContent>
                 ))}
               </StyledGroup>
