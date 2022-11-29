@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { StyledMainContent } from "../../styles/posicionesgrupo";
+import { LiveMatch } from "../liveMatch/liveMatch";
 import { GroupInfoDetails } from "./GroupInfoDetails";
+import {
+  StyledMainContainer,
+  StyledMatch,
+} from "../../styles/tabla-de-posiciones";
 
 import { Groups } from "./Groups";
 import { Teamgroups } from "./Teamgroups";
@@ -20,18 +25,33 @@ const GroupDetail = () => {
   };
 
   return (
-    <StyledMainContent>
-      <Groups
-        selectPlayerHandler={selectPlayerHandler}
-        selectedUserGrupo={selectedUserGrupo}
-        setSelectedUserGrupo={setSelectedUserGrupo}
-      />
-      {selectedUserGrupo && (
-        <GroupInfoDetails
-          selectedGrupo={selectedUserGrupo}
-          selectPlayerHandler={selectPlayerHandler}
-        />
-      )}
+    <>
+      <StyledMainContainer>
+        <StyledMainContent>
+          <Groups
+            selectPlayerHandler={selectPlayerHandler}
+            selectedUserGrupo={selectedUserGrupo}
+            setSelectedUserGrupo={setSelectedUserGrupo}
+          />
+          {selectedUserGrupo && (
+            <GroupInfoDetails
+              selectedGrupo={selectedUserGrupo}
+              selectPlayerHandler={selectPlayerHandler}
+            />
+          )}
+        </StyledMainContent>
+        <StyledMatch
+          key={"rober"}
+          // as={motion.div}
+          // whileHover={{ scale: 1.1 }}
+        >
+          <LiveMatch
+            selectedUserGrupo={selectedUserGrupo}
+            selectedUserGrupo={selectedUserGrupo}
+            setSelectedUserGrupo={setSelectedUserGrupo}
+          />
+        </StyledMatch>
+      </StyledMainContainer>
       {open && (
         <Teamgroups
           selectedPlayer={selectedPlayer}
@@ -40,7 +60,7 @@ const GroupDetail = () => {
           handleClose={handleModalClose}
         />
       )}
-    </StyledMainContent>
+    </>
   );
 };
 

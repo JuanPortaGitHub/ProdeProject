@@ -137,7 +137,7 @@ export const StyledRanking = styled.h1`
 export const ListContainer = styled.div`
   background-image: url("/popUpbg.svg");
   width: 40vw;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
   /* width: 90vw;
   padding: 0 0.5rem; */
   /* padding-top: 1rem; */
@@ -210,7 +210,7 @@ export const StyledGroupName = styled.div`
 `;
 
 export const StyledGridItem = styled(Grid)`
-  width: 80%;
+  width: 90%;
   /* width: 100%; */
   @media (max-width: 1280px) {
     width: 100%;

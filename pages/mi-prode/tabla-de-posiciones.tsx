@@ -13,6 +13,11 @@ import Sidebar from "../../components/sidebar/sidebar";
 import GroupDetail from "../../components/GroupDetail";
 import { MessisBanner } from "../../components/messisBaner/messisBanner";
 import ClearIcon from "@mui/icons-material/Clear";
+import { LiveMatch } from "../../components/liveMatch/liveMatch";
+import {
+  StyledMainContainer,
+  StyledMatch,
+} from "../../styles/tabla-de-posiciones";
 
 const TablaPosiciones: NextPage = () => {
   const [visibleModal, setVisibleModal] = useState(true);

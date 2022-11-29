@@ -232,3 +232,26 @@ export const StyledAccordionDetails = styled(AccordionDetails)`
 export const StyledAccordion = styled(Accordion)`
   border-radius: 5px;
 `;
+
+export const StyledMainContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  @media (max-width: 600px) {
+    /* margin-top: 3rem; */
+    width: 100%;
+    flex-direction: column;
+  }
+`;
+
+export const StyledMatch = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5rem;
+  gap: 0.2rem;
+  @media (max-width: 600px) {
+    /* margin-top: 3rem; */
+    padding-top: 0rem;
+    width: 100%;
+  }
+`;

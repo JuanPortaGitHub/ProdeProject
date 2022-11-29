@@ -50,27 +50,6 @@ const LastMatches = () => {
                 homeScore={+match.intHomeScore}
                 awayScore={+match.intAwayScore}
               />
-              {/* <TeamContainer
-                team={t(match.strHomeTeam)}
-                flag={getFlagUrl(match.strHomeTeam)}
-                home={true}
-              />
-              <StyledTextField
-                size="small"
-                value={+match.intHomeScore}
-                disabled
-              />
-              <StyledVs>VS</StyledVs>
-              <StyledTextField
-                size="small"
-                value={+match.intAwayScore}
-                disabled
-              />
-              <TeamContainer
-                team={t(match.strAwayTeam)}
-                flag={getFlagUrl(match.strAwayTeam)}
-                home={false}
-              /> */}
             </StyledMatch>
           </React.Fragment>
         ))}

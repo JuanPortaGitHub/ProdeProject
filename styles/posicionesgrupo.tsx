@@ -68,9 +68,9 @@ export const StyledMainComponent = styled.div`
   background-image: url("/popUpbg.svg");
   /* margin: 3rem auto; */
   margin-bottom: 1rem;
-  margin-left: 3rem;
-  margin-right: 3rem;
-  padding: 1rem;
+  /* margin-left: 3rem; */
+  /* margin-right: 3rem; */
+  padding: 0.5rem;
   text-align: center;
   align-self: center;
   /* box-shadow: 0 8px 32px 0 rgba(255, 21, 84, 0.37); */
@@ -128,8 +128,8 @@ export const StyledMainContent = styled.div`
   @media (max-width: 600px) {
     /* padding-top: 6rem; */
     /* height: 50vh; */
-    padding: 0rem 2rem;
-    padding-right: 0rem;
+    /* padding: 0rem 2rem; */
+    padding: 0rem;
     gap: 0.5rem;
   }
 `;
