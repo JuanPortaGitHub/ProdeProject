@@ -19,6 +19,8 @@ import {
   GET_GROUP_DETAIL,
   GET_RANKING_GROUP,
 } from "../../graphql/queries/groupQueries";
+import { GET_USERS_AND_POINTS } from "../../graphql/queries/prodesQueries";
+
 import Image from "next/image";
 import {
   StyledAvatar,
@@ -30,7 +32,7 @@ import {
   StyledPoints,
   StyledRanking,
 } from "../GroupDetail/styled";
-import LoadingIcon from "../common/loadingIconFolder/loading";
+import { Match } from "./match";
 
 export const LiveMatch = ({
   selectPlayerHandler,
@@ -46,8 +48,8 @@ export const LiveMatch = ({
     error: errorDetails,
     data: dataDetails,
     refetch,
-  } = useQuery(GET_RANKING_GROUP, {
-    variables: { grupoId: +selectedUserGrupo },
+  } = useQuery(GET_USERS_AND_POINTS, {
+    variables: { grupoId: +selectedUserGrupo, infoPartidosId: 1543912 },
   });
 
   const statusT = (status) => {
@@ -56,189 +58,10 @@ export const LiveMatch = ({
     if (status == "HT") return "Entretiempo";
   };
 
-  const otherResponse = [
-    {
-      idEvent: "1543912",
-      strEvent: "Saudi Arabia vs Mexico",
-      strHomeTeam: "Saudi Arabia",
-      strAwayTeam: "Mexico",
-      intHomeScore: null,
-      intRound: "3",
-      intAwayScore: null,
-      intSpectators: null,
-      strOfficial: "",
-      strTimestamp: "2022-11-30T19:00:00+00:00",
-      dateEvent: "2022-11-30",
-      dateEventLocal: "2022-11-30",
-      strTime: "19:00:00",
-      strTimeLocal: "22:00:00",
-      strTVStation: null,
-      idHomeTeam: "136137",
-      idAwayTeam: "134497",
-      intScore: null,
-      intScoreVotes: null,
-      strResult: "",
-      strVenue: "Lusail Iconic Stadium",
-      strCountry: "Qatar",
-      strCity: "",
-      strPoster:
-        "https://www.thesportsdb.com/images/media/event/poster/a2hfhn1661780237.jpg",
-      strSquare:
-        "https://www.thesportsdb.com/images/media/event/square/5f0tj21661780254.jpg",
-      strFanart: null,
-      strThumb:
-        "https://www.thesportsdb.com/images/media/event/thumb/wy5gsc1661780220.jpg",
-      strBanner:
-        "https://www.thesportsdb.com/images/media/event/banner/51wsrp1661780269.jpg",
-      strMap: null,
-      strTweet1: "",
-      strTweet2: "",
-      strTweet3: "",
-      strVideo: "",
-      strStatus: "Not Started",
-      strPostponed: "no",
-      strLocked: "unlocked",
-    },
-    {
-      idEvent: "1543912",
-      strEvent: "Saudi Arabia vs Mexico",
-      strHomeTeam: "Saudi Arabia",
-      strAwayTeam: "Mexico",
-      intHomeScore: null,
-      intRound: "3",
-      intAwayScore: null,
-      intSpectators: null,
-      strOfficial: "",
-      strTimestamp: "2022-11-30T19:00:00+00:00",
-      dateEvent: "2022-11-30",
-      dateEventLocal: "2022-11-30",
-      strTime: "19:00:00",
-      strTimeLocal: "22:00:00",
-      strTVStation: null,
-      idHomeTeam: "136137",
-      idAwayTeam: "134497",
-      intScore: null,
-      intScoreVotes: null,
-      strResult: "",
-      strVenue: "Lusail Iconic Stadium",
-      strCountry: "Qatar",
-      strCity: "",
-      strPoster:
-        "https://www.thesportsdb.com/images/media/event/poster/a2hfhn1661780237.jpg",
-      strSquare:
-        "https://www.thesportsdb.com/images/media/event/square/5f0tj21661780254.jpg",
-      strFanart: null,
-      strThumb:
-        "https://www.thesportsdb.com/images/media/event/thumb/wy5gsc1661780220.jpg",
-      strBanner:
-        "https://www.thesportsdb.com/images/media/event/banner/51wsrp1661780269.jpg",
-      strMap: null,
-      strTweet1: "",
-      strTweet2: "",
-      strTweet3: "",
-      strVideo: "",
-      strStatus: "1H",
-      strPostponed: "no",
-      strLocked: "unlocked",
-    },
-    {
-      idEvent: "1543912",
-      strEvent: "Saudi Arabia vs Mexico",
-      strHomeTeam: "Saudi Arabia",
-      strAwayTeam: "Mexico",
-      intHomeScore: null,
-      intRound: "3",
-      intAwayScore: null,
-      intSpectators: null,
-      strOfficial: "",
-      strTimestamp: "2022-11-30T19:00:00+00:00",
-      dateEvent: "2022-11-30",
-      dateEventLocal: "2022-11-30",
-      strTime: "19:00:00",
-      strTimeLocal: "22:00:00",
-      strTVStation: null,
-      idHomeTeam: "136137",
-      idAwayTeam: "134497",
-      intScore: null,
-      intScoreVotes: null,
-      strResult: "",
-      strVenue: "Lusail Iconic Stadium",
-      strCountry: "Qatar",
-      strCity: "",
-      strPoster:
-        "https://www.thesportsdb.com/images/media/event/poster/a2hfhn1661780237.jpg",
-      strSquare:
-        "https://www.thesportsdb.com/images/media/event/square/5f0tj21661780254.jpg",
-      strFanart: null,
-      strThumb:
-        "https://www.thesportsdb.com/images/media/event/thumb/wy5gsc1661780220.jpg",
-      strBanner:
-        "https://www.thesportsdb.com/images/media/event/banner/51wsrp1661780269.jpg",
-      strMap: null,
-      strTweet1: "",
-      strTweet2: "",
-      strTweet3: "",
-      strVideo: "",
-      strStatus: "Not Started",
-      strPostponed: "no",
-      strLocked: "unlocked",
-    },
-    {
-      idEvent: "1543912",
-      strEvent: "Saudi Arabia vs Mexico",
-      strHomeTeam: "Saudi Arabia",
-      strAwayTeam: "Mexico",
-      intHomeScore: null,
-      intRound: "3",
-      intAwayScore: null,
-      intSpectators: null,
-      strOfficial: "",
-      strTimestamp: "2022-11-30T19:00:00+00:00",
-      dateEvent: "2022-11-30",
-      dateEventLocal: "2022-11-30",
-      strTime: "19:00:00",
-      strTimeLocal: "22:00:00",
-      strTVStation: null,
-      idHomeTeam: "136137",
-      idAwayTeam: "134497",
-      intScore: null,
-      intScoreVotes: null,
-      strResult: "",
-      strVenue: "Lusail Iconic Stadium",
-      strCountry: "Qatar",
-      strCity: "",
-      strPoster:
-        "https://www.thesportsdb.com/images/media/event/poster/a2hfhn1661780237.jpg",
-      strSquare:
-        "https://www.thesportsdb.com/images/media/event/square/5f0tj21661780254.jpg",
-      strFanart: null,
-      strThumb:
-        "https://www.thesportsdb.com/images/media/event/thumb/wy5gsc1661780220.jpg",
-      strBanner:
-        "https://www.thesportsdb.com/images/media/event/banner/51wsrp1661780269.jpg",
-      strMap: null,
-      strTweet1: "",
-      strTweet2: "",
-      strTweet3: "",
-      strVideo: "",
-      strStatus: "2H",
-      strPostponed: "no",
-      strLocked: "unlocked",
-    },
-  ];
-
   useEffect(() => {
     if (response !== null) {
-      //   setCurrentMatches(
-      //     response?.events.filter(
-      //       (match) =>
-      //         match.strStatus == "1H" ||
-      //         match.strStatus == "2H" ||
-      //         match.strStatus == "HT"
-      //     )
-      //   );
       setCurrentMatches(
-        otherResponse?.filter(
+        response?.events.filter(
           (match) =>
             match.strStatus == "1H" ||
             match.strStatus == "2H" ||
@@ -247,78 +70,18 @@ export const LiveMatch = ({
       );
     }
   }, [response]);
+
   return (
     <>
       {currentMatches.length > 0 ? (
         <StyledContainer>
-          <StyledTitle>Partido en curso</StyledTitle>
-          {/* <div style={{ width: "10vw" }}>
-            <LoadingIcon />
-          </div> */}
+          <StyledTitle>
+            {currentMatches.length > 1 ? "Partidos" : "Partido"} en curso
+          </StyledTitle>
           {currentMatches.map((match) => (
             <>
               <div>
-                <StyledMatchStatus>
-                  {statusT(match.strStatus)}
-                </StyledMatchStatus>
-                <StyledMatch
-                  key={"rober"}
-                  // as={motion.div}
-                  // whileHover={{ scale: 1.1 }}
-                >
-                  <TrialMatch
-                    homeTeam={t(match.strHomeTeam)}
-                    flagHomeTeam={getFlagUrl(match.strHomeTeam)}
-                    awayTeam={t(match.strAwayTeam)}
-                    flagAwayTeam={getFlagUrl(match.strAwayTeam)}
-                    homeScore={+match.intHomeScore}
-                    awayScore={+match.intAwayScore}
-                  />
-                </StyledMatch>
-                <StyledGridItem item xs={12} md={6}>
-                  <List>
-                    {dataDetails?.GetRankingGroup?.PosicionesUsuarios.map(
-                      (jugador: any, i) => (
-                        <div
-                          key={jugador.id}
-                          onClick={() => selectPlayerHandler(jugador)}
-                        >
-                          <StyledItem
-                            as={motion.div}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <ListItem key={jugador.id}>
-                              {/* <StyledRanking>{i + 1}</StyledRanking> */}
-                              <StyledListAvatar>
-                                <StyledAvatar>
-                                  {jugador.imagenUsuario ? (
-                                    <Image
-                                      src={jugador.imagenUsuario}
-                                      alt={"foto-usuario"}
-                                      layout="fill"
-                                    />
-                                  ) : (
-                                    <PersonIcon />
-                                  )}
-                                </StyledAvatar>
-                              </StyledListAvatar>
-                              <StyledListItem>
-                                <StyledPlayerName>
-                                  {jugador.nombreUsuario}
-                                </StyledPlayerName>
-                                <StyledPoints>
-                                  +{jugador.sumaDePuntos}{" "}
-                                </StyledPoints>
-                                <StyledPlayerName>Pts</StyledPlayerName>
-                              </StyledListItem>
-                            </ListItem>
-                          </StyledItem>
-                        </div>
-                      )
-                    )}
-                  </List>
-                </StyledGridItem>
+                <Match match={match} group={selectedUserGrupo} />
               </div>
             </>
           ))}

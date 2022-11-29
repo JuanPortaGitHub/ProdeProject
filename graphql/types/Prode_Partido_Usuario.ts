@@ -84,7 +84,7 @@ export const CreateProdeUsuario = extendType({
         Ganador: nonNull(stringArg()),
         Tiempo_Extra: nonNull(booleanArg()),
         Penales: nonNull(booleanArg()),
-        Puntos: nonNull(intArg()),
+        Puntos: intArg(),
       },
       resolve: createProdeUsuarioResolver,
     });
