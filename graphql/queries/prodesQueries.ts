@@ -17,19 +17,17 @@ export const CREATE_PRODES = gql`
   }
 `;
 
-export const GET_PRODE_BY_USER_AND_GROUP = gql`
-  query GetGrupoById($getGrupoByIdId: ID!) {
-    GetGrupoById(id: $getGrupoByIdId) {
-      id
-      nombre
-      slogan
-      monto
-      imagen
-      clave_grupo
-      usuarios {
+export const GET_USERS_AND_POINTS = gql`
+  query GetUsersAndPointsByMatch($infoPartidosId: ID!, $grupoId: Int!) {
+    GetUsersAndPointsByMatch(
+      info_PartidosId: $infoPartidosId
+      grupoId: $grupoId
+    ) {
+      Puntos
+      Usuario {
         id
-        name
         image
+        name
       }
     }
   }

@@ -28,6 +28,34 @@ export const getProdeUsuarioByIdResolver: FieldResolver<
   }
 };
 
+export const GetUsersAndPointsByMatchResolver: FieldResolver<
+  "Query",
+  "GetProdePartidoUsuarioById"
+> = async (_parent, { info_PartidosId, grupoId }, ctx) => {
+  console.log("infopartidos", info_PartidosId);
+  console.log("grupoId", grupoId);
+  console.log(
+    "resultado",
+    await ctx.prisma.prode_Partido_Usuario.findMany({
+      where: {
+        info_PartidosId: Number(info_PartidosId),
+        grupoId: Number(grupoId),
+      },
+    })
+  );
+  try {
+    return ctx.prisma.prode_Partido_Usuario.findMany({
+      where: {
+        info_PartidosId: Number(info_PartidosId),
+        grupoId: Number(grupoId),
+      },
+      orderBy: { Puntos: "desc" },
+    });
+  } catch (e) {
+    throw new Error("No se pudo obtener la información");
+  }
+};
+
 export const getRankingGroupResolver: FieldResolver<
   "Query",
   "Prode_Partido_Usuario"

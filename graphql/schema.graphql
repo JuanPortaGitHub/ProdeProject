@@ -66,6 +66,7 @@ type Prode_Partido_Usuario {
   Penales: Boolean
   Puntos: Int
   Tiempo_Extra: Boolean
+  Usuario: User
   createdAt: String
   grupoId: ID
   info_PartidosId: ID
@@ -89,6 +90,7 @@ type Query {
   GetResultadosRealesById(id: ID): Resultados_Reales_Partidos
   GetUserByEmail(email: String): User
   GetUserById(id: ID): User
+  GetUsersAndPointsByMatch(grupoId: Int!, info_PartidosId: ID!): [Prode_Partido_Usuario]
 }
 
 type RankingGrupo {

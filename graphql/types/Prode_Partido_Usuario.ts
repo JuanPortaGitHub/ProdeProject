@@ -16,9 +16,11 @@ import {
   getPointByUserAndGroupResolver,
   getProdeUsuarioByIdResolver,
   getRankingGroupResolver,
+  GetUsersAndPointsByMatchResolver,
   updateProdeUsuarioResolver,
 } from "../resolvers/prodesUsuariosResolvers";
 import { Info_Partidos } from "./Info_Partidos";
+import { User } from "./User";
 
 export const Prode_Partido_Usuario = objectType({
   name: "Prode_Partido_Usuario",
@@ -51,6 +53,18 @@ export const Prode_Partido_Usuario = objectType({
             },
           })
           .Partido();
+      },
+    });
+    t.field("Usuario", {
+      type: User,
+      async resolve(parent, _args, ctx) {
+        return await ctx.prisma.prode_Partido_Usuario
+          .findFirst({
+            where: {
+              userId: parent.userId || null || undefined,
+            },
+          })
+          .Usuario();
       },
     });
   },
@@ -154,6 +168,20 @@ export const GetProdePartidoUsuarioById = extendType({
         grupoId: nonNull(intArg()),
       },
       resolve: getProdeUsuarioByIdResolver,
+    });
+  },
+});
+
+export const GetUsersAndPointsByMatch = extendType({
+  type: "Query",
+  definition(t) {
+    t.list.field("GetUsersAndPointsByMatch", {
+      type: Prode_Partido_Usuario,
+      args: {
+        info_PartidosId: nonNull(idArg()),
+        grupoId: nonNull(intArg()),
+      },
+      resolve: GetUsersAndPointsByMatchResolver,
     });
   },
 });
