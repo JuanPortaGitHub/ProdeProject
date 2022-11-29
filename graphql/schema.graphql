@@ -44,7 +44,7 @@ type Mutation {
   addUserToGrupo(clave_grupo: String!, idUser: String!, nombre: String!): Grupo
   createGrupo(clave_grupo: String!, idUser: String!, imagen: String!, monto: String!, nombre: String!, slogan: String!): Grupo
   createManyProdeUsuario(ProdeMatchInfo: [prodeMatchInfo!], grupoId: Int!, userId: String!): prodeResponse
-  createProdeUsuario(Ganador: String!, Goles_Local: String!, Goles_Visitante: String!, Penales: Boolean!, Puntos: Int!, Tiempo_Extra: Boolean!, grupoId: Int!, info_PartidosId: Int!, userId: String!): Prode_Partido_Usuario
+  createProdeUsuario(Ganador: String!, Goles_Local: String!, Goles_Visitante: String!, Penales: Boolean!, Puntos: Int, Tiempo_Extra: Boolean!, grupoId: Int!, info_PartidosId: Int!, userId: String!): Prode_Partido_Usuario
   createUser(email: String!, image: String!, name: String!, recivedPassword: String!): User
   updateGrupo(clave_grupo: String, id: Int!, imagen: String, monto: String, nombre: String, slogan: String): Grupo
   updateProdeUsuario(Ganador: String, Goles_Local: String, Goles_Visitante: String, Penales: Boolean, Puntos: Int, Tiempo_Extra: Boolean, grupoId: Int!, info_PartidosId: Int!, userId: String!): Prode_Partido_Usuario
@@ -66,6 +66,7 @@ type Prode_Partido_Usuario {
   Penales: Boolean
   Puntos: Int
   Tiempo_Extra: Boolean
+  Usuario: User
   createdAt: String
   grupoId: ID
   info_PartidosId: ID
@@ -89,6 +90,7 @@ type Query {
   GetResultadosRealesById(id: ID): Resultados_Reales_Partidos
   GetUserByEmail(email: String): User
   GetUserById(id: ID): User
+  GetUsersAndPointsByMatch(grupoId: Int!, info_PartidosId: ID!): [Prode_Partido_Usuario]
 }
 
 type RankingGrupo {
