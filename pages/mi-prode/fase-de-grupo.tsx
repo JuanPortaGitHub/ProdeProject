@@ -47,6 +47,7 @@ const FaseGroup: NextPage = () => {
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedFriendsGroup(() => event.target.value as string);
+    localStorage.setItem("groupId", event.target.value);
     const group = getGroupName(data.GetUserById.Grupos, event.target.value);
     groupName.current = group.nombre;
   };
