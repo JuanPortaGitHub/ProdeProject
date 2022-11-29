@@ -55,6 +55,12 @@ const FaseGroup: NextPage = () => {
     if (data) {
       setCurrUser({ id: session?.id, ...session?.user });
       if (data.GetUserById.Grupos.length != 0) {
+        if (localStorage.getItem("groupId") != null) {
+          setSelectedFriendsGroup(localStorage.getItem("groupId"));
+          refetch({ getUserByIdId: session?.id });
+          groupName.current = data.GetUserById.Grupos[0].nombre;
+          return;
+        }
         setSelectedFriendsGroup(() => data.GetUserById.Grupos[0]?.id);
         groupName.current = data.GetUserById.Grupos[0].nombre;
         refetch({ getUserByIdId: session?.id });

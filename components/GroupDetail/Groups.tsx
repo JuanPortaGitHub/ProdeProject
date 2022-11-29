@@ -29,6 +29,10 @@ export const Groups = ({
   const { loading, error, data } = useQuery(GET_USER_GROUPS, {
     variables: { getUserByIdId: session?.id },
     onCompleted: (data: any) => {
+      if (localStorage.getItem("groupId") != null) {
+        setSelectedUserGrupo(localStorage.getItem("groupId"));
+        return;
+      }
       if (data.GetUserById.Grupos[0]) {
         setSelectedUserGrupo(data?.GetUserById.Grupos[0].id);
       }
@@ -37,6 +41,7 @@ export const Groups = ({
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedUserGrupo(event.target.value as string);
+    localStorage.setItem("groupId", event.target.value);
   };
   return (
     <StyledMainComponent>
