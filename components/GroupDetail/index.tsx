@@ -40,16 +40,8 @@ const GroupDetail = () => {
             />
           )}
         </StyledMainContent>
-        <StyledMatch
-          key={"rober"}
-          // as={motion.div}
-          // whileHover={{ scale: 1.1 }}
-        >
-          <LiveMatch
-            selectedUserGrupo={selectedUserGrupo}
-            selectedUserGrupo={selectedUserGrupo}
-            setSelectedUserGrupo={setSelectedUserGrupo}
-          />
+        <StyledMatch key={"rober"}>
+          <LiveMatch selectedUserGrupo={selectedUserGrupo} />
         </StyledMatch>
       </StyledMainContainer>
       {open && (
