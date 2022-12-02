@@ -111,7 +111,7 @@ export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   @media (max-width: 600px) {
-    padding-top: 5rem;
+    padding-top: 3rem;
   }
 `;
 

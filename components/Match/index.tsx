@@ -53,6 +53,8 @@ export const Match = ({
 
   useEffect(() => {}, [userHomeScore, userAwayScore]);
 
+  console.log(homeTeam);
+
   return (
     <StyledContainer>
       {showDate && <StyledDate>{`${matchDateFormated} hs`}</StyledDate>}
