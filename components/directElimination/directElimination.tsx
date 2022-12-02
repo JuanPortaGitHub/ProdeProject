@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import useAxios from "../../hooks/useAxios";
 import { WorldCupInstance } from "./worldCupIntance";
 import Matches from "./matches";
-import { StyledprodeContainer } from "../../styles/eliminacionDirecta";
+import {
+  StyledContainer,
+  StyledprodeContainer,
+} from "../../styles/eliminacionDirecta";
 
 export const DirectElimination = ({ userGroup, user, showDate, isEditing }) => {
   const [currentInstance, setCurrentInstance] = useState("Octavos de Final");
@@ -13,11 +16,13 @@ export const DirectElimination = ({ userGroup, user, showDate, isEditing }) => {
 
   return (
     <>
-      <StyledprodeContainer>
-        <WorldCupInstance
-          setCurrentInstanceHandler={setCurrentInstanceHandler}
-        />
-        {/* <div style={{ width: "40%" }}> */}
+      <StyledContainer>
+        <StyledprodeContainer>
+          <WorldCupInstance
+            setCurrentInstanceHandler={setCurrentInstanceHandler}
+          />
+          {/* <div style={{ width: "40%" }}> */}
+        </StyledprodeContainer>
         <Matches
           instance={currentInstance}
           userGroup={userGroup}
@@ -26,7 +31,7 @@ export const DirectElimination = ({ userGroup, user, showDate, isEditing }) => {
           isEditing={isEditing}
         />
         {/* </div> */}
-      </StyledprodeContainer>
+      </StyledContainer>
     </>
   );
 };

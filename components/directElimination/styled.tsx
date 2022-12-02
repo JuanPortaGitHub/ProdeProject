@@ -19,12 +19,14 @@ export const StyledMatchesContainer = styled.div`
 
 export const StyledContainer = styled.div`
   display: flex;
-  width: 50%;
+  width: 100%;
+  padding-right: 3rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   @media (max-width: 600px) {
     margin-top: 3rem;
+    padding-right: 0rem;
     width: 100%;
   }
   /* margin-bottom: 3rem; */

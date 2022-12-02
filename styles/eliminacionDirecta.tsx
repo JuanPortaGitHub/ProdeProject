@@ -70,6 +70,7 @@ export const StyledFriendsGroup = styled.div`
 
 export const StyledGroupsContainer = styled.div`
   display: grid;
+  /* display: flex; */
   grid-template-columns: 1fr 1fr;
   margin-bottom: 3rem;
   gap: 1rem;
@@ -154,11 +155,34 @@ export const StyledRightborder = styled.div`
 export const StyledprodeContainer = styled.div`
   margin-top: 2vh;
   display: flex;
+  align-self: flex-start;
   justify-content: space-around;
   width: 100%;
   @media (max-width: 600px) {
     /* overflow-x: scroll; */
     flex-direction: column;
     width: 100%;
+  }
+`;
+
+export const StyledContainer = styled.div`
+  display: flex;
+  @media (max-width: 600px) {
+    /* overflow-x: scroll; */
+    flex-direction: column;
+    width: 100%;
+  }
+`;
+
+export const StyledImage = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  /* justify-content: center; */
+  /* justify-content: space-between; */
+  flex-direction: column;
+  width: 30%;
+  @media (max-width: 600px) {
+    display: none;
   }
 `;

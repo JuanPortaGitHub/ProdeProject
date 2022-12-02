@@ -19,7 +19,7 @@ import ToastContext from "../../context/toastContext";
 import { GET_MATCHES_BY_GROUPFASE_GROUP } from "../../graphql/queries/infoMatchesQueries";
 import { CREATE_PRODES } from "../../graphql/queries/prodesQueries";
 import { getFlagUrl } from "../../utils/getFlagUrl";
-import { getArrayToSubmit } from "../../utils/getArrayToSubmit";
+import { getArrayToSubmit } from "./getArrayToSubmit";
 import { filterNotStartedMatches } from "../../utils/filterNotStartedMatches";
 import { useForm, useWatch } from "react-hook-form";
 import PersonIcon from "@mui/icons-material/Person";
@@ -54,76 +54,13 @@ const Matches = ({ instance, userGroup, user, showDate, isEditing }: Props) => {
   const watch = useWatch({
     control,
   });
-  const loading = false;
 
-  // const { loading, error, data, refetch } = useQuery(
-  //   GET_MATCHES_BY_GROUPFASE_GROUP,
-  //   {
-  //     variables: { grupo: teamsGroup, grupoId: +userGroup, userId: user?.id },
-  //   }
-  // );
-
-  const data = {
-    GetMatchesByGroup: [
-      {
-        id: 123456,
-        EquipoLocal: { nombre_equipo: "Argentina" },
-        EquipoVisitante: { nombre_equipo: "Australia" },
-        Prode_Partido_Usuario: {
-          Goles_Local: "3",
-          Goles_Visitante: "1",
-          Ganador: "Argentina",
-          Tiempo_Extra: false,
-          Penales: false,
-        },
-        DiaHora: 1669943764,
-      },
-      {
-        id: 123457,
-        EquipoLocal: { nombre_equipo: "USA" },
-        EquipoVisitante: { nombre_equipo: "Netherlands" },
-        Prode_Partido_Usuario: {
-          Goles_Local: "1",
-          Goles_Visitante: "2",
-          Ganador: "Netherlands",
-          Tiempo_Extra: true,
-          Penales: false,
-        },
-        DiaHora: 1669943764,
-      },
-    ],
-  };
-
-  const data2 = {
-    GetMatchesByGroup: [
-      {
-        id: 123456,
-        EquipoLocal: { nombre_equipo: "Argentina" },
-        EquipoVisitante: { nombre_equipo: "Australia" },
-        Prode_Partido_Usuario: {
-          Goles_Local: "3",
-          Goles_Visitante: "2",
-          Ganador: "Australia",
-          Tiempo_Extra: false,
-          Penales: false,
-        },
-        DiaHora: 1669943764,
-      },
-      {
-        id: 123457,
-        EquipoLocal: { nombre_equipo: "USA" },
-        EquipoVisitante: { nombre_equipo: "Netherlands" },
-        Prode_Partido_Usuario: {
-          Goles_Local: "2",
-          Goles_Visitante: "2",
-          Ganador: "Netherlands",
-          Tiempo_Extra: true,
-          Penales: false,
-        },
-        DiaHora: 1669943764,
-      },
-    ],
-  };
+  const { loading, error, data, refetch } = useQuery(
+    GET_MATCHES_BY_GROUPFASE_GROUP,
+    {
+      variables: { grupo: instance, grupoId: +userGroup, userId: user?.id },
+    }
+  );
 
   const [
     create_Prodes,
@@ -150,17 +87,18 @@ const Matches = ({ instance, userGroup, user, showDate, isEditing }: Props) => {
 
   const onSubmit = async (formData) => {
     console.log(formData);
-    // const arrayToSubmit = getArrayToSubmit(groups, formData);
+    const arrayToSubmit = getArrayToSubmit(groups, formData);
 
-    // await create_Prodes({
-    //   variables: {
-    //     userId: user.id,
-    //     grupoId: +userGroup,
-    //     prodeMatchInfo: arrayToSubmit,
-    //   },
-    // });
+    console.log(arrayToSubmit);
+    await create_Prodes({
+      variables: {
+        userId: user.id,
+        grupoId: +userGroup,
+        prodeMatchInfo: arrayToSubmit,
+      },
+    });
 
-    // await refetch();
+    await refetch();
   };
 
   useEffect(() => {
@@ -169,8 +107,7 @@ const Matches = ({ instance, userGroup, user, showDate, isEditing }: Props) => {
       setErrorCreate("");
       setDataCreated("");
     }
-  }, []);
-  // }, [data]);
+  }, [data]);
 
   let playerName =
     user?.name?.substring(0, user?.name?.indexOf(" ")) == ""

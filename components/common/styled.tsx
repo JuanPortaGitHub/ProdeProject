@@ -11,6 +11,7 @@ export const StyledTeamContainer = styled.div`
   /* border-top: 0.1rem solid #ff1554;
   border-bottom: 0.1rem solid #ff1554; */
   border: 0.1rem solid #ff1554;
+  color: black;
   white-space: nowrap;
   /* gap: 1rem; */
   border-radius: 20px;

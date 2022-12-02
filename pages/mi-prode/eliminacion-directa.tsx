@@ -8,7 +8,6 @@ import {
   StyledTeamContainer,
   StyledGroupTeams,
   StyledTopScreen,
-  StyledImage,
   StyledH4,
   StyledH1,
   StyleName,
@@ -32,6 +31,7 @@ import {
   StyledFriendsGroup,
   StyledMainContent,
   StyledTitle,
+  StyledImage,
 } from "../../styles/eliminacionDirecta";
 import { StyledAnchor } from "../../components/Header/StyledHeader";
 import Link from "next/link";

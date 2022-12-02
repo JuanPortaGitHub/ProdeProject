@@ -72,16 +72,12 @@ export const Match = ({
   if (!penales && !tiempoExtra) instance = "90";
 
   useEffect(() => {
-    console.log(watch[`${id}/${userGroup}/winnerTeam`]);
     if (watch[`${id}/${userGroup}/home`] > watch[`${id}/${userGroup}/away`]) {
-      console.log(true);
       setValue(`${id}/${userGroup}/winnerTeam`, homeTeam);
     }
     if (watch[`${id}/${userGroup}/home`] < watch[`${id}/${userGroup}/away`]) {
-      console.log(true);
       setValue(`${id}/${userGroup}/winnerTeam`, awayTeam);
     }
-    console.log(watch[`${id}/${userGroup}/winnerTeam`]);
   }, [
     userHomeScore,
     userAwayScore,
@@ -90,10 +86,6 @@ export const Match = ({
   ]);
 
   useEffect(() => {}, []);
-
-  // console.log(watch[`${id}/${userGroup}/home`]);
-
-  // console.log(watch);
 
   return (
     <>
@@ -142,9 +134,9 @@ export const Match = ({
                       size="small"
                       value={value}
                       name={`${id}/${userGroup}/home`}
-                      // disabled={today >= date || !isEditing}
+                      disabled={today >= date || !isEditing}
                       inputProps={{
-                        style: { textAlign: "center" },
+                        style: { textAlign: "center", color: "black" },
                         maxLength: 1,
                       }}
                       // onChange={onChange}
@@ -165,7 +157,7 @@ export const Match = ({
               item
               xs={1}
               md={1}
-              style={{ color: "white ", padding: "0" }}
+              style={{ padding: "0" }}
               display="flex"
               justifyContent="center"
             >
@@ -205,7 +197,7 @@ export const Match = ({
                       size="small"
                       name={`${id}/${userGroup}/away`}
                       value={value}
-                      // disabled={today >= date || !isEditing}
+                      disabled={today >= date || !isEditing}
                       onChange={(e) => {
                         let value = parseInt(e.target.value, 10);
                         if (value > max) value = max;
