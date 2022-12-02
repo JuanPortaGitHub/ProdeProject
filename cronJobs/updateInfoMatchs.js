@@ -1,6 +1,11 @@
-import { prisma } from "../lib/prisma";
-import axios from "axios";
-import cron from "node-cron";
+const axios = require("axios");
+const cron = require("node-cron");
+
+const { PrismaClient } = require("@prisma/client");
+
+const prisma = new PrismaClient({
+  log: ["query"],
+});
 
 const partidosPorGrupos = [
   {
@@ -197,6 +202,24 @@ const partidosPorGrupos = [
   },
 ];
 
+const faseEliminacion = (intRound) => {
+  if (intRound == "16") {
+    return "Octavos de Final";
+  }
+  if (intRound == "125") {
+    return "Cuartos de Final";
+  }
+  if (intRound == "150") {
+    return "Semifinal";
+  }
+  if (intRound == "3") {
+    return "Tercer Puesto";
+  }
+  if (intRound == "200") {
+    return "Final";
+  }
+};
+
 const updateInfoMatchs = async () => {
   console.log(
     "Iniciando información partidos nuevos a base de datos. Espere..."
@@ -207,14 +230,15 @@ const updateInfoMatchs = async () => {
     );
 
     const createMany = await prisma.info_Partidos.createMany({
-      data: partidos.data.events.map((resultado: any) => {
+      data: partidos.data.events.map((resultado) => {
         return {
           id: parseInt(resultado.idEvent),
           idTorneo: parseInt(resultado.idLeague),
-          Grupo: partidosPorGrupos.find(
-            (partido) => partido.id === parseInt(resultado.idEvent)
-          )?.Grupo,
-          DiaHora: resultado.strTimestamp,
+          Grupo:
+            partidosPorGrupos.find(
+              (partido) => partido.id === parseInt(resultado.idEvent)
+            )?.Grupo || faseEliminacion(resultado.intRound),
+          DiaHora: new Date(resultado.strTimestamp),
           RondaTorneo: resultado.intRound,
           Lugar: resultado.strVenue,
           equipoLocalId: parseInt(resultado.idHomeTeam),
@@ -231,7 +255,7 @@ const updateInfoMatchs = async () => {
   }
 };
 
-cron.schedule("* * * * *", () => {
-  //Actualiza cada 1 min
+cron.schedule("*/5 * * * *", () => {
+  //Actualiza cada 5 min
   updateInfoMatchs();
 });

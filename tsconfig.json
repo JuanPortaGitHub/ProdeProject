@@ -17,6 +17,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "cronJobs/updateProdePoints.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "cronJobs/updateProdePoints.js",
+    "cronJobs/updateInfoMatchs.js"
+, "cronJobs/updateResults.js"  ],
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,11 @@
-import { prisma } from "../lib/prisma";
-import axios from "axios";
-import cron from "node-cron";
+const axios = require("axios");
+const cron = require("node-cron");
+
+const { PrismaClient } = require("@prisma/client");
+
+const prisma = new PrismaClient({
+  log: ["query"],
+});
 
 const updateResults = async () => {
   console.log(
@@ -12,24 +17,22 @@ const updateResults = async () => {
     );
 
     //FUNCION CREA REGISTROS EN ESTADO UNDEFINED
-    const createNewMatches = await prisma.resultados_Reales_Partidos.createMany(
-      {
-        data: resultadosTorneo.data.events.map((resultado: any) => {
-          return {
-            id: +resultado.idEvent,
-            Goles_Local: undefined,
-            Goles_Visitante: undefined,
-            Ganador: undefined,
-            Penales: undefined,
-            Tiempo_Extra: undefined,
-          };
-        }),
-        skipDuplicates: true, //CON ESTO REVISA EN BASE DE DATOS PARA EVITAR DUPLICADOS
-      }
-    );
+    await prisma.resultados_Reales_Partidos.createMany({
+      data: resultadosTorneo.data.events.map((resultado) => {
+        return {
+          id: +resultado.idEvent,
+          Goles_Local: undefined,
+          Goles_Visitante: undefined,
+          Ganador: undefined,
+          Penales: undefined,
+          Tiempo_Extra: undefined,
+        };
+      }),
+      skipDuplicates: true, //CON ESTO REVISA EN BASE DE DATOS PARA EVITAR DUPLICADOS
+    });
 
     //FUNCION ACTUALIZA REGISTROS CON RESULTADOS
-    resultadosTorneo.data.events.map(async (resultado: any) => {
+    resultadosTorneo.data.events.map(async (resultado) => {
       if (resultado.strStatus !== "Not Started") {
         await prisma.resultados_Reales_Partidos.update({
           where: { id: +resultado.idEvent },
@@ -53,7 +56,8 @@ const updateResults = async () => {
   }
 };
 
-cron.schedule("* * * * *", () => {
-  //Actualiza cada 1 min
+cron.schedule("*/5 * * * *", () => {
+  //Actualiza cada 5 min
+
   updateResults();
 });

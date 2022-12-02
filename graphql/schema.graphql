@@ -126,8 +126,8 @@ input prodeMatchInfo {
   Ganador: String
   Goles_Local: String
   Goles_Visitante: String
-  Penales: Boolean!
-  Tiempo_Extra: Boolean!
+  Penales: Boolean
+  Tiempo_Extra: Boolean
   info_PartidosId: Int!
 }
 

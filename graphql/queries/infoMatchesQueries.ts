@@ -53,6 +53,8 @@ export const GET_MATCHES_BY_GROUPFASE_GROUP = gql`
         grupoId
         Goles_Local
         Goles_Visitante
+        Penales
+        Tiempo_Extra
         Ganador
         info_PartidosId
       }

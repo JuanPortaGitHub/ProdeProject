@@ -113,8 +113,8 @@ const ProdeMatchInfo = inputObjectType({
     t.string("Goles_Local");
     t.string("Goles_Visitante");
     t.string("Ganador");
-    t.nonNull.boolean("Tiempo_Extra");
-    t.nonNull.boolean("Penales");
+    t.boolean("Tiempo_Extra");
+    t.boolean("Penales");
   },
 });
 
