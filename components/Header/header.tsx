@@ -28,7 +28,7 @@ export const headerSections = [
 
 export const headerSectionsLogged = [
   { title: "Inicio", href: "/" },
-  { title: "Mi prode", href: "/mi-prode/fase-de-grupo" },
+  { title: "Mi prode", href: "/mi-prode/eliminacion-directa" },
   { title: "Calendario", href: "/#calendario" },
   { title: "Reglamento", href: "/#Reglas" },
 ];
