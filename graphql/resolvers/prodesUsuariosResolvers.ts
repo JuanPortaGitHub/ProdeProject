@@ -222,10 +222,6 @@ export const createManyProdeUsuarioResolver: FieldResolver<
   "createManyProdeUsuario"
 > = async (_, { userId, grupoId, ProdeMatchInfo }, { prisma }) => {
   try {
-    if (ProdeMatchInfo?.length !== 6) {
-      return new Error("Faltan resultados por cargar");
-    }
-
     const resultadosNegativos = ProdeMatchInfo.filter(
       (prode: any) =>
         prode.Goles_Local < 0 ||
