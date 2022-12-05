@@ -67,25 +67,33 @@ export const Match = ({
   const max = 10;
 
   let instance;
+
   if (penales) instance = "Penales";
   if (tiempoExtra) instance = "120";
   if (!penales && !tiempoExtra) instance = "90";
-
   useEffect(() => {
+    // console.log(instance);
     if (watch[`${id}/${userGroup}/home`] > watch[`${id}/${userGroup}/away`]) {
       setValue(`${id}/${userGroup}/winnerTeam`, homeTeam);
+      setValue(`${id}/${userGroup}/instance`, "90");
     }
     if (watch[`${id}/${userGroup}/home`] < watch[`${id}/${userGroup}/away`]) {
       setValue(`${id}/${userGroup}/winnerTeam`, awayTeam);
+      setValue(`${id}/${userGroup}/instance`, "90");
+    }
+    if (watch[`${id}/${userGroup}/home`] == watch[`${id}/${userGroup}/away`]) {
+      console.log("entre");
+      setValue(`${id}/${userGroup}/instance`, "Penales");
+      console.log(watch[`${id}/${userGroup}/instance`]);
+      // instance = "Penales";
     }
   }, [
     userHomeScore,
     userAwayScore,
     watch[`${id}/${userGroup}/home`],
     watch[`${id}/${userGroup}/away`],
+    watch[`${id}/${userGroup}/instance`],
   ]);
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -248,7 +256,9 @@ export const Match = ({
                     value={homeTeam}
                     disabled={
                       watch[`${id}/${userGroup}/home`] <
-                      watch[`${id}/${userGroup}/away`]
+                        watch[`${id}/${userGroup}/away`] ||
+                      today >= date ||
+                      !isEditing
                     }
                     control={<Radio style={{ color: "white" }} />}
                     label={t(homeTeam)}
@@ -257,7 +267,9 @@ export const Match = ({
                     {...register(`${id}/${userGroup}/winnerTeam`)}
                     disabled={
                       watch[`${id}/${userGroup}/home`] >
-                      watch[`${id}/${userGroup}/away`]
+                        watch[`${id}/${userGroup}/away`] ||
+                      today >= date ||
+                      !isEditing
                     }
                     value={awayTeam}
                     control={<Radio style={{ color: "white" }} />}
@@ -291,7 +303,8 @@ export const Match = ({
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
-                  defaultValue={instance}
+                  // defaultValue={instance}
+                  value={watch[`${id}/${userGroup}/instance`] || instance}
                   style={{
                     paddingBottom: "2rem",
                     display: "flex",
@@ -300,14 +313,14 @@ export const Match = ({
                 >
                   <FormControlLabel
                     {...register(`${id}/${userGroup}/instance`)}
-                    // disabled={userHomeScore != userAwayScore}
+                    disabled={today >= date || !isEditing}
                     value="90"
                     control={<Radio style={{ color: "white" }} />}
                     label="En los 90'"
                   />
                   <FormControlLabel
                     {...register(`${id}/${userGroup}/instance`)}
-                    // disabled={userHomeScore != userAwayScore}
+                    disabled={today >= date || !isEditing}
                     value="120"
                     control={<Radio style={{ color: "white" }} />}
                     label="En los 120'"
@@ -316,7 +329,9 @@ export const Match = ({
                     {...register(`${id}/${userGroup}/instance`)}
                     disabled={
                       watch[`${id}/${userGroup}/home`] !=
-                      watch[`${id}/${userGroup}/away`]
+                        watch[`${id}/${userGroup}/away`] ||
+                      today >= date ||
+                      !isEditing
                     }
                     value="Penales"
                     control={<Radio style={{ color: "white" }} />}
