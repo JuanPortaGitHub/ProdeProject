@@ -22,7 +22,8 @@
     "**/*.ts",
     "**/*.tsx",
     "cronJobs/updateProdePoints.js",
-    "cronJobs/updateInfoMatchs.js"
-, "cronJobs/updateResults.js"  ],
+    "cronJobs/updateInfoMatchs.js",
+    "cronJobs/updateResults.js"
+  ],
   "exclude": ["node_modules"]
 }

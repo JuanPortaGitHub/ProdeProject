@@ -18,9 +18,36 @@ const updateProdePoints = async () => {
       "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=4429&s=2022"
     );
 
+    const calculatePointsEliminacion = async (prode) => {
+      const resultadoReal = await prisma.resultados_Reales_Partidos.findFirst({
+        where: {
+          id: prode.info_PartidosId,
+        },
+      });
+
+      let points = 0;
+      if (prode.Goles_Local != null || prode.Goles_Visitante != null) {
+        if (resultadoReal.Goles_Local == prode.Goles_Local) points = points + 1;
+        if (resultadoReal.Goles_Visitante == prode.Goles_Visitante)
+          points = points + 1;
+        if (
+          resultadoReal.Goles_Local == prode.Goles_Local &&
+          resultadoReal.Goles_Visitante == prode.Goles_Visitante &&
+          +prode.Goles_Local + +prode.Goles_Visitante >= 5
+        )
+          points = points + 1;
+
+        if (resultadoReal.Ganador == prode.Ganador) points = points + 3;
+        if (
+          resultadoReal.Penales == prode.Penales &&
+          resultadoReal.Tiempo_Extra == prode.Tiempo_Extra
+        )
+          points = points + 1;
+      }
+      return points;
+    };
+
     const calculatePoints = (prode, resultado) => {
-      // console.log("prode que llega", prode);
-      // console.log(prode, resultado);
       let points = 0;
       if (prode.Goles_Local != null || prode.Goles_Visitante != null) {
         if (resultado.intHomeScore == prode.Goles_Local) points = points + 1;
@@ -59,7 +86,12 @@ const updateProdePoints = async () => {
 
         // 3)Por cada uno de esos prode consulto para ver que puntaje tienen
         prodesParaActualizar.map(async (prode) => {
-          const puntosObtenidos = calculatePoints(prode, resultado);
+          const puntosObtenidos =
+            resultado.intRound == "1" ||
+            resultado.intRound == "2" ||
+            resultado.intRound == "3"
+              ? calculatePoints(prode, resultado)
+              : await calculatePointsEliminacion(prode);
           // 4) Actualizo los puntos de prode
           await prisma.prode_Partido_Usuario.updateMany({
             where: {
