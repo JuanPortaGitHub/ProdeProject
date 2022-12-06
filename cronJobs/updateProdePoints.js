@@ -38,10 +38,10 @@ const updateProdePoints = async () => {
         )
           points = points + 1;
 
-        if (+resultadoReal.Ganador == +prode.Ganador) points = points + 3;
+        if (resultadoReal.Ganador == prode.Ganador) points = points + 3;
         if (
-          +resultadoReal.Penales == +prode.Penales &&
-          +resultadoReal.Tiempo_Extra == +prode.Tiempo_Extra
+          resultadoReal.Penales == prode.Penales &&
+          resultadoReal.Tiempo_Extra == prode.Tiempo_Extra
         )
           points = points + 1;
       }
