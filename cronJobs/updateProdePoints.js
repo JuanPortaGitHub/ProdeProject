@@ -27,20 +27,21 @@ const updateProdePoints = async () => {
 
       let points = 0;
       if (prode.Goles_Local != null || prode.Goles_Visitante != null) {
-        if (resultadoReal.Goles_Local == prode.Goles_Local) points = points + 1;
-        if (resultadoReal.Goles_Visitante == prode.Goles_Visitante)
+        if (+resultadoReal.Goles_Local == +prode.Goles_Local)
+          points = points + 1;
+        if (+resultadoReal.Goles_Visitante == +prode.Goles_Visitante)
           points = points + 1;
         if (
-          resultadoReal.Goles_Local == prode.Goles_Local &&
-          resultadoReal.Goles_Visitante == prode.Goles_Visitante &&
+          +resultadoReal.Goles_Local == +prode.Goles_Local &&
+          +resultadoReal.Goles_Visitante == +prode.Goles_Visitante &&
           +prode.Goles_Local + +prode.Goles_Visitante >= 5
         )
           points = points + 1;
 
-        if (resultadoReal.Ganador == prode.Ganador) points = points + 3;
+        if (+resultadoReal.Ganador == +prode.Ganador) points = points + 3;
         if (
-          resultadoReal.Penales == prode.Penales &&
-          resultadoReal.Tiempo_Extra == prode.Tiempo_Extra
+          +resultadoReal.Penales == +prode.Penales &&
+          +resultadoReal.Tiempo_Extra == +prode.Tiempo_Extra
         )
           points = points + 1;
       }

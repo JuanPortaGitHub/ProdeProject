@@ -62,27 +62,25 @@ export const StyledScore = styled.div`
 `;
 
 export const StyledMainComponent = styled.div`
-  /* background-color: rgba(255, 21, 84, 0.447); */
-  /* background-color: rgba(255, 255, 255, 0.447); */
-  /* background-image: url("/gradiente.svg"); */
   background-image: url("/popUpbg.svg");
-  /* margin: 3rem auto; */
+  display: flex;
+  flex-direction: column;
   margin-bottom: 1rem;
-  /* margin-left: 3rem; */
-  /* margin-right: 3rem; */
+  width: 80%;
   padding: 0.5rem;
   text-align: center;
   align-self: center;
-  /* box-shadow: 0 8px 32px 0 rgba(255, 21, 84, 0.37); */
-  /* box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37); */
+  align-items: center;
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  min-width: 380px;
   svg {
     color: white;
   }
+  /* span {
+    border: 1px solid white;
+  } */
   @media (max-width: 600px) {
     width: 80%;
   }

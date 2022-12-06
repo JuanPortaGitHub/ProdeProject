@@ -14,6 +14,8 @@ import {
   StyledDate,
   Styledh4,
   StyledContainer,
+  StyledFormConrolLabel,
+  StyledFormControlLabel,
 } from "./styled";
 import { t } from "../../../utils/dictionary";
 
@@ -235,6 +237,8 @@ export const Match = ({
                 paddingTop: "1rem",
               }}
             >
+              {/* <StyledDefinition> */}
+
               <FormControl>
                 <FormLabel
                   style={{
@@ -251,7 +255,7 @@ export const Match = ({
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-groupd"
                 >
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     {...register(`${id}/${userGroup}/winnerTeam`)}
                     value={homeTeam}
                     disabled={
@@ -263,7 +267,7 @@ export const Match = ({
                     control={<Radio style={{ color: "white" }} />}
                     label={t(homeTeam)}
                   />
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     {...register(`${id}/${userGroup}/winnerTeam`)}
                     disabled={
                       watch[`${id}/${userGroup}/home`] >
@@ -277,6 +281,7 @@ export const Match = ({
                   />
                 </RadioGroup>
               </FormControl>
+              {/* </StyledDefinition> */}
             </Grid>
             <Grid
               item
@@ -311,21 +316,21 @@ export const Match = ({
                     justifyContent: "center",
                   }}
                 >
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     {...register(`${id}/${userGroup}/instance`)}
                     disabled={today >= date || !isEditing}
                     value="90"
                     control={<Radio style={{ color: "white" }} />}
                     label="En los 90'"
                   />
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     {...register(`${id}/${userGroup}/instance`)}
                     disabled={today >= date || !isEditing}
                     value="120"
                     control={<Radio style={{ color: "white" }} />}
                     label="En los 120'"
                   />
-                  <FormControlLabel
+                  <StyledFormControlLabel
                     {...register(`${id}/${userGroup}/instance`)}
                     disabled={
                       watch[`${id}/${userGroup}/home`] !=

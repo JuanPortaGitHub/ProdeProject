@@ -24,10 +24,15 @@ export const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
   @media (max-width: 600px) {
     margin-top: 3rem;
     padding-right: 0rem;
     width: 100%;
+  }
+  span {
+    border: 0px;
+    color: white;
   }
   /* margin-bottom: 3rem; */
   /* gap: 10rem; */

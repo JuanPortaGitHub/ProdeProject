@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TextField } from "@mui/material";
+import { FormControlLabel, TextField } from "@mui/material";
 
 export const StyledTextField = styled(TextField)`
   border-radius: 50%;
@@ -74,5 +74,11 @@ export const StyledContainer = styled.div`
   /* width: 100%; */
   @media (max-width: 600px) {
     width: 100%;
+  }
+`;
+
+export const StyledFormControlLabel = styled(FormControlLabel)`
+  span {
+    color: white !important;
   }
 `;

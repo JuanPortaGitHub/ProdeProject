@@ -2,7 +2,13 @@ import styled from "styled-components";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Accordion from "@mui/material/Accordion";
-import { TextField, Grid, ListItemAvatar, Avatar } from "@mui/material";
+import {
+  TextField,
+  Grid,
+  ListItemAvatar,
+  Avatar,
+  ButtonGroup,
+} from "@mui/material";
 
 export const StyledItem = styled.div`
   /* display: flex;
@@ -156,6 +162,38 @@ export const ListContainer = styled.div`
   @media (max-width: 600px) {
     width: 90vw;
     padding: 0 0.5rem;
+  }
+`;
+
+export const StyledModal = styled.div`
+  background-image: url("/popUpbg.svg");
+  z-index: 300;
+  width: 100vw;
+  /* padding: 0 2rem; */
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* transform: translate(-50%, -50%); */
+  /* display: flex;
+  align-items: center;
+  flex-direction: column; */
+  margin-top: 3rem;
+  /* padding-top: 5rem; */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+  @media (max-width: 1030px) {
+    width: 60vw;
+  }
+
+  @media (max-width: 600px) {
+    width: 90vw;
+    padding: 0 0.5rem;
+  }
+`;
+
+export const StyledButtonGroup = styled(ButtonGroup)`
+  span {
+    border: 1px solid white;
   }
 `;
 
