@@ -44,7 +44,7 @@ const updateResults = async () => {
                 ? resultado.strHomeTeam
                 : +resultado.intHomeScore < +resultado.intAwayScore
                 ? resultado.strAwayTeam
-                : "Empate",
+                : undefined,
             Penales: undefined,
             Tiempo_Extra: undefined,
           },
