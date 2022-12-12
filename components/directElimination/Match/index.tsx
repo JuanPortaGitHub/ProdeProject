@@ -14,7 +14,7 @@ import {
   StyledDate,
   Styledh4,
   StyledContainer,
-  StyledFormConrolLabel,
+  // StyledFormConrolLabel,
   StyledFormControlLabel,
 } from "./styled";
 import { t } from "../../../utils/dictionary";
@@ -73,21 +73,16 @@ export const Match = ({
   if (penales) instance = "Penales";
   if (tiempoExtra) instance = "120";
   if (!penales && !tiempoExtra) instance = "90";
+
   useEffect(() => {
-    // console.log(instance);
     if (watch[`${id}/${userGroup}/home`] > watch[`${id}/${userGroup}/away`]) {
       setValue(`${id}/${userGroup}/winnerTeam`, homeTeam);
-      setValue(`${id}/${userGroup}/instance`, "90");
     }
     if (watch[`${id}/${userGroup}/home`] < watch[`${id}/${userGroup}/away`]) {
       setValue(`${id}/${userGroup}/winnerTeam`, awayTeam);
-      setValue(`${id}/${userGroup}/instance`, "90");
     }
     if (watch[`${id}/${userGroup}/home`] == watch[`${id}/${userGroup}/away`]) {
-      console.log("entre");
       setValue(`${id}/${userGroup}/instance`, "Penales");
-      console.log(watch[`${id}/${userGroup}/instance`]);
-      // instance = "Penales";
     }
   }, [
     userHomeScore,
