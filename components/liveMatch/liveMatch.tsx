@@ -39,9 +39,7 @@ export const LiveMatch = ({ selectedUserGrupo }) => {
           ))}
         </StyledContainer>
       ) : (
-        <div style={{ paddingTop: "5rem" }}>
-          <NextMatches />
-        </div>
+        <div style={{ paddingTop: "5rem" }}>{/* <NextMatches /> */}</div>
       )}
     </>
   );
