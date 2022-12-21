@@ -126,7 +126,7 @@ export default function Home() {
                   <StyledGroup>
                     <GroupResults />
                   </StyledGroup>
-                  <NextMatches />
+                  {/* <NextMatches /> */}
                   <LastMatches />
                 </CalendarContent>
               </CalendarContainer>
@@ -190,7 +190,7 @@ export default function Home() {
                   <StyledGroup>
                     <GroupResults />
                   </StyledGroup>
-                  <NextMatches />
+                  {/* <NextMatches /> */}
                   <LastMatches />
                 </CalendarContent>
               </CalendarContainer>
